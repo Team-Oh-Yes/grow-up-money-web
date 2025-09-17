@@ -12,7 +12,7 @@ const Container = styled.div`
 
 // ===== Navbar =====
 const Navbar = styled.header`
-  height: 80px;
+  height: 73px;
   background: #111;
   display: flex;
   align-items: center;
@@ -21,20 +21,21 @@ const Navbar = styled.header`
 
 // 로고 영역
 const LogoBox = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: white;
-  font-weight: bold;
+  color: #fff;
+  font-family: Poppins;
   font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
   margin-left: 28px;
 `;
 
 // 네비게이션 메뉴
 const NavMenu = styled.nav`
-  display: flex;
-  gap: 60px;
-`
+  display: inline-flex;
+  align-items: center;
+  gap: 88px;
+`;
 
 // 유저 메뉴
 const UserMenu = styled.div`
@@ -81,34 +82,47 @@ const UserMenu = styled.div`
 
 // ===== Hero Section =====
 const HeroSection = styled.main`
-  flex: 1;
   display: flex;
+  width: 740px;
+  padding: 0 2px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  gap: 0px;
+  margin: 0px;
 `;
 
 const HeroTitle = styled.h1`
-  font-size: 48px;
-  font-weight: 900;
+  color: #222;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 `;
 
 const HeroSub = styled.p`
-  font-size: 18px;
-  margin-top: 0px;
-  margin-left: 5px;
+  color: #222;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 const HeroButton = styled.button`
-  background: white;
-  border: 2px solid #ff6600;
-  color: #ff6600;
-  font-weight: bold;
-  border-radius: 30px;
-  cursor: pointer;
-  height: 52px;
-  min-width: 160px;
-
+  display: flex;
+  width: 180px;
+  height: 58px;
+  padding: 1px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 50px;
+  border: 2px solid #fe9c32;
+  background: #fff;
   &:hover {
     background: #fff5f0;
   }
@@ -147,7 +161,9 @@ function Firstmainpages() {
         <HeroSection>
           <HeroTitle>경제공부의 첫 걸음</HeroTitle>
           <HeroSub>GROW UP MONEY와 함께</HeroSub>
-          <HeroButton>시작하기</HeroButton>
+          <HeroButton>
+            <p className="Start">시작하기</p>
+          </HeroButton>
         </HeroSection>
       </div>
     </Container>

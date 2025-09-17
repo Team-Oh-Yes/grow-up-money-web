@@ -1,7 +1,7 @@
 .Topbutton {
   background-color: transparent;
   border: none;
-  color: #fff; 
+  color: #fff;
   font-size: 22px;
   font-weight: bold;
   position: relative;
@@ -12,11 +12,11 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 0; 
+  width: 0;
   height: 3px;
   border-radius: 30px;
-  background-color: #fff; 
-  transition: width 0.3s ease-out; 
+  background-color: #fff;
+  transition: width 0.3s ease-out;
 }
 
 .Topbutton:hover::after {
@@ -25,5 +25,14 @@
 .maintitle {
   position: absolute;
   left: 10px;
-  bottom: 30px;
+  bottom: 50px;
+}
+p {
+  color: #fe9c32;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }

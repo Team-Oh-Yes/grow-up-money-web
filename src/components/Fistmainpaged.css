@@ -1,33 +1,43 @@
+/* ...existing code... */
+
 .Topbutton {
   background-color: transparent;
   border: none;
   color: #fff;
-  font-size: 22px;
   font-weight: bold;
   position: relative;
 }
 
-.Topbutton::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 3px;
-  border-radius: 30px;
-  background-color: #fff;
-  transition: width 0.3s ease-out;
+/* 미디어 쿼리: 1024px 이하 */
+@media (max-width: 1024px) {
+  .Topbutton {
+    font-size: 16px;
+    padding: 4px 8px;
+  }
+  .maintitle {
+    left: 4px;
+    bottom: 20px;
+  }
+  p {
+    font-size: 22px;
+  }
 }
 
-.Topbutton:hover::after {
-  width: 100%;
+/* 미디어 쿼리: 768px 이하 */
+@media (max-width: 768px) {
+  .Topbutton {
+    font-size: 12px;
+    padding: 2px 4px;
+  }
+  .maintitle {
+    left: 2px;
+    bottom: 10px;
+  }
+  p {
+    font-size: 16px;
+  }
 }
-.maintitle {
-  position: absolute;
-  left: 10px;
-  bottom: 50px;
-}
-p {
+.Start {
   color: #fe9c32;
   text-align: center;
   font-family: Pretendard;

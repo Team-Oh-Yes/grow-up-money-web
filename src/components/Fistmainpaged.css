@@ -1,11 +1,4 @@
-body {
-  margin: 0px;
-}
-html,
-body {
-  overflow-x: hidden;
-}
-button {
+.Topbutton {
   background-color: transparent;
   border: none;
   color: #fff; 
@@ -14,7 +7,7 @@ button {
   position: relative;
 }
 
-button::after {
+.Topbutton::after {
   content: "";
   position: absolute;
   left: 0;
@@ -26,7 +19,7 @@ button::after {
   transition: width 0.3s ease-out; 
 }
 
-button:hover::after {
+.Topbutton:hover::after {
   width: 100%;
 }
 .maintitle {

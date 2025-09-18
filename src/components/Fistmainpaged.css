@@ -1,14 +1,141 @@
-/* ...existing code... */
-
+/* 메인 상단 버튼 */
 .Topbutton {
   background-color: transparent;
   border: none;
   color: #fff;
   font-weight: bold;
   position: relative;
+  font-size: clamp(12px, 1.15vw, 22px);
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
 }
 
-/* 미디어 쿼리: 1024px 이하 */
+.Topbutton::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  border-radius: 30px;
+  background-color: #fff;
+  transition: width 0.3s ease-out;
+}
+
+.Topbutton:hover {
+  color: #ddd;
+}
+
+.Topbutton:hover::after {
+  width: 100%;
+}
+
+/* 다른 버튼들에는 ::after 막기 */
+button:not(.Topbutton)::after {
+  content: none !important;
+}
+
+/* 메인 타이틀 영역 */
+.maintitle {
+  position: relative;
+  margin: 0px;
+  padding-top: 60px;
+}
+
+/* 시작하기 텍스트 */
+.Start {
+  color: #fe9c32;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: clamp(14px, 2.2vw, 30px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transition: all 0.5s ease;
+}
+
+/* 로그인 버튼 - 애니메이션 완전 제거 */
+.login-btn {
+  background: #fe8401 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: 0.3s all ease !important;
+}
+
+.login-btn:hover {
+  background: #fe8401 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 시작하기 버튼 - 애니메이션 완전 제거 */
+button[class*="HeroButton"] {
+  transition: none;
+  transform: none;
+}
+
+button[class*="HeroButton"]:hover {
+  background: #fff !important;
+  transform: none;
+  transition: none;
+}
+
+/* 모든 버튼의 기본 애니메이션 제거 (Topbutton 제외) */
+button:not(.Topbutton) {
+  transition: none;
+  animation: none;
+}
+
+button:not(.Topbutton):hover {
+  transform: none;
+  transition: none;
+  animation: none;
+}
+
+/* 메인 프레임 flex 가운데 정렬 */
+.MainFrame {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* 404 안내 박스 스타일 */
+.blocked-wrapper {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  min-height: 60vh;
+}
+
+.blocked-box {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  padding: 32px 28px;
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+}
+
+.blocked-title {
+  margin: 0 0 8px 0;
+  color: #222;
+  font-family: Pretendard;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.blocked-desc {
+  margin: 0;
+  color: #444;
+  font-size: 16px;
+}
+
+/* 1024px 이하 스타일 */
 @media (max-width: 1024px) {
   .Topbutton {
     font-size: 16px;
@@ -23,32 +150,17 @@
   }
 }
 
-/* 미디어 쿼리: 768px 이하 */
+/* 768px 이하에서는 메인 영역 숨기고 404 안내만 표시 */
 @media (max-width: 768px) {
-  .Topbutton {
-    font-size: 12px;
-    padding: 2px 4px;
+  .Topbutton,
+  .maintitle,
+  .MainFrame,
+  .login-btn,
+  nav,
+  header {
+    display: none !important;
   }
-  .maintitle {
-    left: 2px;
-    bottom: 10px;
+  .blocked-wrapper {
+    display: flex !important;
   }
-  p {
-    font-size: 16px;
-  }
-}
-.Start {
-  color: #fe9c32;
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-.MainFrame{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

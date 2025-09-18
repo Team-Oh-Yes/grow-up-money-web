@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./Fistmainpaged.css";
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -21,7 +22,6 @@ const Container = styled.div`
   }
 `;
 
-// ===== Navbar =====
 const Navbar = styled.header`
   height: 73px;
   background: #111;
@@ -38,27 +38,25 @@ const Navbar = styled.header`
   }
 `;
 
-// 로고 영역
 const LogoBox = styled.div`
   color: #fff;
   font-family: Poppins;
-  font-size: 24px;
+  font-size: 20px; /* 4px 감소 */
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   margin-left: 28px;
 
   @media (max-width: 1024px) {
-    font-size: 22px;
+    font-size: 18px;
     margin-left: 10px;
   }
   @media (max-width: 768px) {
-    font-size: 18px;
+    font-size: 14px;
     margin-left: 4px;
   }
 `;
 
-// 네비게이션 메뉴
 const NavMenu = styled.nav`
   display: inline-flex;
   align-items: center;
@@ -66,27 +64,26 @@ const NavMenu = styled.nav`
 
   @media (max-width: 1200px) {
     gap: 48px;
-    font-size: 22px;
+    font-size: 18px; /* 4px 감소 */
   }
   @media (max-width: 1110px) {
     gap: 38px;
-    font-size: 20px;
+    font-size: 16px;
   }
   @media (max-width: 1000px) {
     gap: 30px;
-    font-size: 18px;
+    font-size: 14px;
   }
   @media (max-width: 900px) {
     gap: 22px;
-    font-size: 10px;
+    font-size: 6px;
   }
   @media (max-width: 769px) {
     gap: 10px;
-    font-size: 6px;
+    font-size: 2px;
   }
 `;
 
-// 유저 메뉴
 const UserMenu = styled.div`
   display: flex;
   align-items: center;
@@ -94,7 +91,7 @@ const UserMenu = styled.div`
 
   .bell {
     position: relative;
-    font-size: 22px;
+    font-size: 18px; /* 4px 감소 */
     cursor: pointer;
 
     &::after {
@@ -104,9 +101,9 @@ const UserMenu = styled.div`
       right: -8px;
       background: #2196f3;
       color: #fff;
-      font-size: 12px;
-      width: 20px;
-      height: 20px;
+      font-size: 8px; /* 4px 감소 */
+      width: 16px;
+      height: 16px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -121,27 +118,26 @@ const UserMenu = styled.div`
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    height: 36px;
-    min-width: 100px;
+    height: 32px; /* 4px 감소 */
+    min-width: 96px; /* 4px 감소 */
     margin-right: 28px;
-    font-size: 20px;
+    font-size: 16px; /* 4px 감소 */
     font-weight: bold;
     @media (max-width: 1024px) {
-      height: 34px;
-      min-width: 92px;
+      height: 30px;
+      min-width: 88px;
       margin-right: 12px;
-      font-size: 18px;
+      font-size: 14px;
     }
     @media (max-width: 768px) {
-      height: 32px;
-      min-width: 88px;
+      height: 28px;
+      min-width: 84px;
       margin-right: 8px;
-      font-size: 16px;
+      font-size: 12px;
     }
   }
 `;
 
-// ===== Hero Section =====
 const HeroSection = styled.main`
   display: flex;
   width: 740px;
@@ -151,7 +147,7 @@ const HeroSection = styled.main`
   align-items: flex-start;
   gap: 0px;
   margin: 0px;
-
+  margin-left: 20px;
   @media (max-width: 1200px) {
     width: 620px;
   }
@@ -167,7 +163,7 @@ const HeroTitle = styled.h1`
   color: #222;
   text-align: center;
   font-family: Pretendard;
-  font-size: clamp(28px, 6vw, 80px);
+  font-size: clamp(24px, 6vw, 76px); /* 4px 감소 */
   font-style: normal;
   font-weight: 700;
   line-height: 1.1;
@@ -179,7 +175,7 @@ const HeroSub = styled.p`
   color: #222;
   text-align: center;
   font-family: Pretendard;
-  font-size: clamp(16px, 3.2vw, 30px);
+  font-size: clamp(12px, 3.2vw, 26px); /* 4px 감소 */
   font-style: normal;
   font-weight: 500;
   line-height: 1.3;
@@ -189,26 +185,29 @@ const HeroSub = styled.p`
 
 const HeroButton = styled.button`
   display: flex;
-  width: 180px;
-  height: 58px;
-  padding: 1px 32px;
+  width: 150px;
+  height: 48px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   border-radius: 50px;
   border: 2px solid #fe9c32;
   background: #fff;
-  &:hover {
-    background: #fff5f0;
-  }
   @media (max-width: 1024px) {
-    width: 168px;
-    height: 52px;
-    padding: 0 28px;
+    width: 140px;
+    height: 42px;
+  }
+  transition: all 0.5s ease;
+  &:hover {
+    background-color: #fe9c32;
+    .Start {
+      color: white;
+      transition: all 0.5s ease;
+    }
+    border: 2px solid white;
   }
 `;
 
-// ===== Mobile Blocked (404-like) =====
 const BlockedWrapper = styled.div`
   flex: 1;
   display: flex;
@@ -231,15 +230,16 @@ const BlockedTitle = styled.h2`
   margin: 0 0 8px 0;
   color: #222;
   font-family: Pretendard;
-  font-size: 32px;
+  font-size: 28px; /* 4px 감소 */
   font-weight: 800;
 `;
 
 const BlockedDesc = styled.p`
   margin: 0;
   color: #444;
-  font-size: 16px;
+  font-size: 12px; /* 4px 감소 */
 `;
+
 function Firstmainpages() {
   const [isMobileBlocked, setIsMobileBlocked] = useState(false);
 
@@ -261,21 +261,11 @@ function Firstmainpages() {
         {!isMobileBlocked ? (
           <>
             <NavMenu>
-              <button href="#" className="Topbutton">
-                프로그램 정보
-              </button>
-              <button href="#" className="Topbutton">
-                미디어
-              </button>
-              <button href="#" className="Topbutton">
-                소식
-              </button>
-              <button href="#" className="Topbutton">
-                고객지원
-              </button>
-              <button href="#" className="Topbutton">
-                소셜미디어
-              </button>
+              <button className="Topbutton">프로그램 정보</button>
+              <button className="Topbutton">미디어</button>
+              <button className="Topbutton">소식</button>
+              <button className="Topbutton">고객지원</button>
+              <button className="Topbutton">소셜미디어</button>
             </NavMenu>
             <UserMenu>
               <button className="login-btn">로그인</button>
@@ -283,7 +273,6 @@ function Firstmainpages() {
           </>
         ) : null}
       </Navbar>
-
       {isMobileBlocked ? (
         <BlockedWrapper>
           <BlockedBox>
@@ -294,14 +283,21 @@ function Firstmainpages() {
           </BlockedBox>
         </BlockedWrapper>
       ) : (
-        <div className="maintitle">
-          <HeroSection>
-            <HeroTitle>경제공부의 첫 걸음</HeroTitle>
-            <HeroSub>GROW UP MONEY와 함께</HeroSub>
-            <HeroButton>
-              <p className="Start">시작하기</p>
-            </HeroButton>
-          </HeroSection>
+        <div className="MainFrame">
+          <div className="maintitle">
+            <HeroSection>
+              <HeroTitle>경제공부의 첫 걸음</HeroTitle>
+              <HeroSub>GROW UP MONEY와 함께</HeroSub>
+              <HeroButton>
+                <p
+                  className="Start"
+                  style={{ fontSize: "clamp(10px, 2vw, 26px)" }}
+                >
+                  시작하기
+                </p>
+              </HeroButton>
+            </HeroSection>
+          </div>
         </div>
       )}
     </Container>

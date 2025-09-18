@@ -97,9 +97,10 @@ button:not(.Topbutton):hover {
 /* 메인 프레임 flex 가운데 정렬 */
 .MainFrame {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 73px);
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 /* 404 안내 박스 스타일 */
@@ -148,6 +149,9 @@ button:not(.Topbutton):hover {
   p {
     font-size: 22px;
   }
+  .MainFrame {
+    height: calc(100vh - 68px);
+  }
 }
 
 /* 768px 이하에서는 메인 영역 숨기고 404 안내만 표시 */
@@ -163,4 +167,5 @@ button:not(.Topbutton):hover {
   .blocked-wrapper {
     display: flex !important;
   }
+  /* 모바일에서는 전체 화면 안내만 보이므로 높이 조정 불필요 */
 }

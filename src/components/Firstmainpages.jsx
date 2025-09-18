@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import downArrowSvg from "../img/아래방향 화살표.svg";
 import "./Fistmainpaged.css";
 
 const Container = styled.div`
@@ -240,6 +241,16 @@ const BlockedDesc = styled.p`
   font-size: 12px; /* 4px 감소 */
 `;
 
+const DownArrow = styled.img`
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: auto;
+  opacity: 0.8;
+`;
+
 function Firstmainpages() {
   const [isMobileBlocked, setIsMobileBlocked] = useState(false);
 
@@ -298,6 +309,7 @@ function Firstmainpages() {
               </HeroButton>
             </HeroSection>
           </div>
+          <DownArrow src={downArrowSvg} alt="아래로 이동" />
         </div>
       )}
     </Container>

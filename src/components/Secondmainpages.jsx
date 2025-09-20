@@ -6,4 +6,4 @@ function Secondmainpages() {
     </div>
   );
 }
-export default Secondmainpages
+export default Secondmainpages;

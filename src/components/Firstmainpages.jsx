@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import downArrowSvg from "../img/아래방향 화살표.svg";
+import downArrowSvg from "../img/아래방향 화살표.svg";
 import "./Fistmainpaged.css";
 
 const Container = styled.div`
@@ -23,7 +23,7 @@ const Container = styled.div`
   }
 `;
 
-const Navbar = styled.header`
+const Header = styled.header`
   height: 73px;
   background: #111;
   display: flex;
@@ -42,10 +42,8 @@ const Navbar = styled.header`
 const LogoBox = styled.div`
   color: #fff;
   font-family: Poppins;
-  font-size: 20px; /* 4px 감소 */
-  font-style: normal;
+  font-size: 20px;
   font-weight: 700;
-  line-height: normal;
   margin-left: 28px;
 
   @media (max-width: 1024px) {
@@ -64,24 +62,22 @@ const NavMenu = styled.nav`
   gap: 88px;
 
   @media (max-width: 1200px) {
-    gap: 48px;
-    font-size: 18px; /* 4px 감소 */
+    gap: 68px;
   }
-  @media (max-width: 1110px) {
-    gap: 38px;
-    font-size: 16px;
+  @media (max-width: 1100px) {
+    gap: 58px;
   }
   @media (max-width: 1000px) {
-    gap: 30px;
-    font-size: 14px;
+    gap: 48px;
   }
   @media (max-width: 900px) {
-    gap: 22px;
-    font-size: 6px;
+    gap: 38px;
+  }
+  @media (max-width: 800px) {
+    gap: 28px;
   }
   @media (max-width: 769px) {
-    gap: 10px;
-    font-size: 2px;
+    gap: 20px;
   }
 `;
 
@@ -92,7 +88,7 @@ const UserMenu = styled.div`
 
   .bell {
     position: relative;
-    font-size: 18px; /* 4px 감소 */
+    font-size: 18px;
     cursor: pointer;
 
     &::after {
@@ -102,7 +98,7 @@ const UserMenu = styled.div`
       right: -8px;
       background: #2196f3;
       color: #fff;
-      font-size: 8px; /* 4px 감소 */
+      font-size: 8px;
       width: 16px;
       height: 16px;
       display: flex;
@@ -119,11 +115,12 @@ const UserMenu = styled.div`
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    height: 32px; /* 4px 감소 */
-    min-width: 96px; /* 4px 감소 */
+    height: 32px;
+    min-width: 96px;
     margin-right: 28px;
-    font-size: 16px; /* 4px 감소 */
+    font-size: 16px;
     font-weight: bold;
+
     @media (max-width: 1024px) {
       height: 30px;
       min-width: 88px;
@@ -136,6 +133,16 @@ const UserMenu = styled.div`
       margin-right: 8px;
       font-size: 12px;
     }
+  }
+`;
+
+const MainContent = styled.div`
+  .MainFrame {
+    display: flex;
+    flex-direction: column;
+  }
+  .maintitle {
+    display: flex;
   }
 `;
 
@@ -164,7 +171,7 @@ const HeroTitle = styled.h1`
   color: #222;
   text-align: center;
   font-family: Pretendard;
-  font-size: clamp(24px, 6vw, 76px); /* 4px 감소 */
+  font-size: clamp(24px, 6vw, 76px);
   font-style: normal;
   font-weight: 700;
   line-height: 1.1;
@@ -176,7 +183,7 @@ const HeroSub = styled.p`
   color: #222;
   text-align: center;
   font-family: Pretendard;
-  font-size: clamp(12px, 3.2vw, 26px); /* 4px 감소 */
+  font-size: clamp(12px, 3.2vw, 26px);
   font-style: normal;
   font-weight: 500;
   line-height: 1.3;
@@ -209,6 +216,16 @@ const HeroButton = styled.button`
   }
 `;
 
+const DownArrow = styled.img`
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: auto;
+  opacity: 0.8;
+`;
+
 const BlockedWrapper = styled.div`
   flex: 1;
   display: flex;
@@ -231,26 +248,68 @@ const BlockedTitle = styled.h2`
   margin: 0 0 8px 0;
   color: #222;
   font-family: Pretendard;
-  font-size: 28px; /* 4px 감소 */
+  font-size: 28px;
   font-weight: 800;
 `;
 
 const BlockedDesc = styled.p`
   margin: 0;
   color: #444;
-  font-size: 12px; /* 4px 감소 */
+  font-size: 12px;
 `;
+// =========== Styled-components 끝 ===========
 
-const DownArrow = styled.img`
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 36px;
-  height: auto;
-  opacity: 0.8;
-`;
+// =========== 컴포넌트 시작 ===========
 
+// 작은 화면을 차단하는 컴포넌트
+function MobileBlocker() {
+  return (
+    <BlockedWrapper>
+      <BlockedBox>
+        <BlockedTitle>404 - 지원하지 않는 화면 크기</BlockedTitle>
+        <BlockedDesc>
+          현재 페이지는 가로 768px 이상에서만 이용할 수 있어요.
+        </BlockedDesc>
+      </BlockedBox>
+    </BlockedWrapper>
+  );
+}
+
+// 헤더 컴포넌트
+function Navbar() {
+  return (
+    <Header>
+      <LogoBox>GROWupMONEY</LogoBox>
+      <NavMenu>
+        <button className="Topbutton">프로그램 정보</button>
+        <button className="Topbutton">미디어</button>
+        <button className="Topbutton">소식</button>
+        <button className="Topbutton">고객지원</button>
+        <button className="Topbutton">소셜미디어</button>
+      </NavMenu>
+      <UserMenu>
+        <button className="login-btn">로그인</button>
+      </UserMenu>
+    </Header>
+  );
+}
+
+// 메인 히어로 섹션 컴포넌트
+function Hero() {
+  return (
+    <HeroSection>
+      <HeroTitle>경제공부의 첫 걸음</HeroTitle>
+      <HeroSub>GROW UP MONEY와 함께</HeroSub>
+      <HeroButton>
+        <p className="Start" style={{ fontSize: "clamp(10px, 2vw, 26px)" }}>
+          시작하기
+        </p>
+      </HeroButton>
+    </HeroSection>
+  );
+}
+
+// 전체 페이지를 렌더링하는 메인 컴포넌트
 function Firstmainpages() {
   const [isMobileBlocked, setIsMobileBlocked] = useState(false);
 
@@ -267,50 +326,18 @@ function Firstmainpages() {
 
   return (
     <Container>
-      <Navbar>
-        <LogoBox>GROWupMONEY</LogoBox>
-        {!isMobileBlocked ? (
-          <>
-            <NavMenu>
-              <button className="Topbutton">프로그램 정보</button>
-              <button className="Topbutton">미디어</button>
-              <button className="Topbutton">소식</button>
-              <button className="Topbutton">고객지원</button>
-              <button className="Topbutton">소셜미디어</button>
-            </NavMenu>
-            <UserMenu>
-              <button className="login-btn">로그인</button>
-            </UserMenu>
-          </>
-        ) : null}
-      </Navbar>
       {isMobileBlocked ? (
-        <BlockedWrapper>
-          <BlockedBox>
-            <BlockedTitle>404 - 지원하지 않는 화면 크기</BlockedTitle>
-            <BlockedDesc>
-              현재 페이지는 가로 768px 이상에서만 이용할 수 있어요.
-            </BlockedDesc>
-          </BlockedBox>
-        </BlockedWrapper>
+        <MobileBlocker />
       ) : (
-        <div className="MainFrame">
-          <div className="maintitle">
-            <HeroSection>
-              <HeroTitle>경제공부의 첫 걸음</HeroTitle>
-              <HeroSub>GROW UP MONEY와 함께</HeroSub>
-              <HeroButton>
-                <p
-                  className="Start"
-                  style={{ fontSize: "clamp(10px, 2vw, 26px)" }}
-                >
-                  시작하기
-                </p>
-              </HeroButton>
-            </HeroSection>
+        <>
+          <Navbar />
+          <div className="MainFrame">
+            <div className="maintitle">
+              <Hero />
+            </div>
+            <DownArrow src={downArrowSvg} alt="아래로 이동" />
           </div>
-          <DownArrow src={downArrowSvg} alt="아래로 이동" />
-        </div>
+        </>
       )}
     </Container>
   );

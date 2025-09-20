@@ -1,4 +1,4 @@
-import "./App.css";
+import "./Mainpages.css";
 import Firstmainpages from "./components/Firstmainpages";
 import Secondmainpages from "./components/Secondmainpages";
 function Mainpages() {

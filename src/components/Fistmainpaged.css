@@ -1,4 +1,8 @@
-/* 메인 상단 버튼 */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+* {
+  font-family: Pretendard;
+}
+
 .Topbutton {
   background-color: transparent;
   border: none;
@@ -10,7 +14,26 @@
   transition: color 0.3s ease-in-out;
 }
 
-/* 반응형 폰트 사이즈 - 더 부드럽게 조정 */
+/* 1920px 이상 대형 화면 대응 */
+@media (min-width: 1921px) {
+  .Topbutton {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 1920px) {
+  .Topbutton {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .Topbutton {
+    font-size: 19px;
+  }
+}
+
+/* 기존 반응형 폰트 사이즈 - 더 부드럽게 조정 */
 @media (max-width: 1200px) {
   .Topbutton {
     font-size: 17px;
@@ -79,6 +102,25 @@ button:not(.Topbutton)::after {
   padding-top: 60px;
 }
 
+/* 1920px 이상 대형 화면 대응 */
+@media (min-width: 1921px) {
+  .maintitle {
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 1920px) {
+  .maintitle {
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .maintitle {
+    padding-top: 65px;
+  }
+}
+
 /* 시작하기 텍스트 */
 .Start {
   color: #fe9c32;
@@ -89,6 +131,25 @@ button:not(.Topbutton)::after {
   font-weight: 700;
   line-height: normal;
   transition: all 0.5s ease;
+}
+
+/* 1920px 이상에서 시작하기 텍스트 크기 조정 */
+@media (min-width: 1921px) {
+  .Start {
+    font-size: clamp(18px, 2.2vw, 36px) !important;
+  }
+}
+
+@media (max-width: 1920px) {
+  .Start {
+    font-size: clamp(16px, 2.2vw, 34px) !important;
+  }
+}
+
+@media (max-width: 1440px) {
+  .Start {
+    font-size: clamp(15px, 2.2vw, 32px) !important;
+  }
 }
 
 /* 로그인 버튼 - 애니메이션 완전 제거 */
@@ -138,6 +199,25 @@ button:not(.Topbutton):hover {
   display: flex;
   align-items: center;
   position: relative;
+}
+
+/* 1920px 이상 대형 화면에서 메인프레임 높이 조정 */
+@media (min-width: 1921px) {
+  .MainFrame {
+    height: calc(100vh - 80px);
+  }
+}
+
+@media (max-width: 1920px) {
+  .MainFrame {
+    height: calc(100vh - 76px);
+  }
+}
+
+@media (max-width: 1440px) {
+  .MainFrame {
+    height: calc(100vh - 74px);
+  }
 }
 
 /* 404 안내 박스 스타일 */

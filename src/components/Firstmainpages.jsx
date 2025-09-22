@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import downArrowSvg from "../img/아래방향 화살표.svg";
 import "./Fistmainpaged.css";
@@ -7,7 +6,6 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background: #f5f5f5;
-  font-family: "Noto Sans KR", sans-serif;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -31,6 +29,18 @@ const Header = styled.header`
   justify-content: space-between;
   padding: 0 20px;
 
+  @media (min-width: 1921px) {
+    height: 80px;
+    padding: 0 40px;
+  }
+  @media (max-width: 1920px) {
+    height: 76px;
+    padding: 0 32px;
+  }
+  @media (max-width: 1440px) {
+    height: 74px;
+    padding: 0 24px;
+  }
   @media (max-width: 1024px) {
     height: 68px;
   }
@@ -46,6 +56,18 @@ const LogoBox = styled.div`
   font-weight: 700;
   margin-left: 28px;
 
+  @media (min-width: 1921px) {
+    font-size: 24px;
+    margin-left: 40px;
+  }
+  @media (max-width: 1920px) {
+    font-size: 22px;
+    margin-left: 36px;
+  }
+  @media (max-width: 1440px) {
+    font-size: 21px;
+    margin-left: 32px;
+  }
   @media (max-width: 1024px) {
     font-size: 18px;
     margin-left: 10px;
@@ -61,6 +83,15 @@ const NavMenu = styled.nav`
   align-items: center;
   gap: 88px;
 
+  @media (min-width: 1921px) {
+    gap: 120px;
+  }
+  @media (max-width: 1920px) {
+    gap: 100px;
+  }
+  @media (max-width: 1440px) {
+    gap: 94px;
+  }
   @media (max-width: 1200px) {
     gap: 68px;
   }
@@ -121,6 +152,24 @@ const UserMenu = styled.div`
     font-size: 16px;
     font-weight: bold;
 
+    @media (min-width: 1921px) {
+      height: 38px;
+      min-width: 110px;
+      margin-right: 40px;
+      font-size: 18px;
+    }
+    @media (max-width: 1920px) {
+      height: 36px;
+      min-width: 104px;
+      margin-right: 36px;
+      font-size: 17px;
+    }
+    @media (max-width: 1440px) {
+      height: 34px;
+      min-width: 100px;
+      margin-right: 32px;
+      font-size: 16px;
+    }
     @media (max-width: 1024px) {
       height: 30px;
       min-width: 88px;
@@ -156,6 +205,19 @@ const HeroSection = styled.main`
   gap: 0px;
   margin: 0px;
   margin-left: 20px;
+
+  @media (min-width: 1921px) {
+    width: 920px;
+    margin-left: 40px;
+  }
+  @media (max-width: 1920px) {
+    width: 840px;
+    margin-left: 32px;
+  }
+  @media (max-width: 1440px) {
+    width: 780px;
+    margin-left: 28px;
+  }
   @media (max-width: 1200px) {
     width: 620px;
   }
@@ -177,6 +239,16 @@ const HeroTitle = styled.h1`
   line-height: 1.1;
   word-break: keep-all;
   overflow-wrap: anywhere;
+
+  @media (min-width: 1921px) {
+    font-size: clamp(32px, 6vw, 88px);
+  }
+  @media (max-width: 1920px) {
+    font-size: clamp(28px, 6vw, 82px);
+  }
+  @media (max-width: 1440px) {
+    font-size: clamp(26px, 6vw, 78px);
+  }
 `;
 
 const HeroSub = styled.p`
@@ -189,6 +261,16 @@ const HeroSub = styled.p`
   line-height: 1.3;
   word-break: keep-all;
   overflow-wrap: anywhere;
+
+  @media (min-width: 1921px) {
+    font-size: clamp(16px, 3.2vw, 32px);
+  }
+  @media (max-width: 1920px) {
+    font-size: clamp(14px, 3.2vw, 30px);
+  }
+  @media (max-width: 1440px) {
+    font-size: clamp(13px, 3.2vw, 28px);
+  }
 `;
 
 const HeroButton = styled.button`
@@ -201,6 +283,19 @@ const HeroButton = styled.button`
   border-radius: 50px;
   border: 2px solid #fe9c32;
   background: #fff;
+
+  @media (min-width: 1921px) {
+    width: 180px;
+    height: 58px;
+  }
+  @media (max-width: 1920px) {
+    width: 170px;
+    height: 54px;
+  }
+  @media (max-width: 1440px) {
+    width: 160px;
+    height: 52px;
+  }
   @media (max-width: 1024px) {
     width: 140px;
     height: 42px;
@@ -224,56 +319,20 @@ const DownArrow = styled.img`
   width: 36px;
   height: auto;
   opacity: 0.8;
+
+  @media (min-width: 1921px) {
+    width: 44px;
+    bottom: 32px;
+  }
+  @media (max-width: 1920px) {
+    width: 40px;
+    bottom: 28px;
+  }
 `;
 
-const BlockedWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-`;
-
-const BlockedBox = styled.div`
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 16px;
-  padding: 32px 28px;
-  max-width: 640px;
-  width: 100%;
-  text-align: center;
-`;
-
-const BlockedTitle = styled.h2`
-  margin: 0 0 8px 0;
-  color: #222;
-  font-family: Pretendard;
-  font-size: 28px;
-  font-weight: 800;
-`;
-
-const BlockedDesc = styled.p`
-  margin: 0;
-  color: #444;
-  font-size: 12px;
-`;
 // =========== Styled-components 끝 ===========
 
 // =========== 컴포넌트 시작 ===========
-
-// 작은 화면을 차단하는 컴포넌트
-function MobileBlocker() {
-  return (
-    <BlockedWrapper>
-      <BlockedBox>
-        <BlockedTitle>404 - 지원하지 않는 화면 크기</BlockedTitle>
-        <BlockedDesc>
-          현재 페이지는 가로 768px 이상에서만 이용할 수 있어요.
-        </BlockedDesc>
-      </BlockedBox>
-    </BlockedWrapper>
-  );
-}
 
 // 헤더 컴포넌트
 function Navbar() {
@@ -311,34 +370,15 @@ function Hero() {
 
 // 전체 페이지를 렌더링하는 메인 컴포넌트
 function Firstmainpages() {
-  const [isMobileBlocked, setIsMobileBlocked] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (typeof window !== "undefined") {
-        setIsMobileBlocked(window.innerWidth < 768);
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <Container>
-      {isMobileBlocked ? (
-        <MobileBlocker />
-      ) : (
-        <>
-          <Navbar />
-          <div className="MainFrame">
-            <div className="maintitle">
-              <Hero />
-            </div>
-            <DownArrow src={downArrowSvg} alt="아래로 이동" />
-          </div>
-        </>
-      )}
+      <Navbar />
+      <div className="MainFrame">
+        <div className="maintitle">
+          <Hero />
+        </div>
+        <DownArrow src={downArrowSvg} alt="아래로 이동" />
+      </div>
     </Container>
   );
 }

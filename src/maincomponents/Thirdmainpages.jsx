@@ -35,16 +35,13 @@ function ThirdMainPages() {
 
   return (
     <div className="Thirdmainpageback">
-      {/* 제목 */}
       <h1 className="title">먼저보기</h1>
-      
       {/* 이미지 슬라이더 */}
       <div className="slider">
         {/* 이전 버튼 */}
         <button className="button" onClick={showPrevImage}>
           <img src={left}></img>
         </button>
-        
         {/* 이미지들 */}
         <div className="image-container">
           {imageList.map((imageUrl, index) => (

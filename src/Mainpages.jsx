@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./Mainpages.css";
-import Firstmainpages from "./components/Firstmainpages";
-import Secondmainpages from "./components/Secondmainpages";
-import Thirdmainpages from "./components/Thirdmainpages";
+import Firstmainpages from "./maincomponents/Firstmainpages";
+import Secondmainpages from "./maincomponents/Secondmainpages";
+import Thirdmainpages from "./maincomponents/Thirdmainpages";
 
 const Container = styled.div`
   width: 100vw;

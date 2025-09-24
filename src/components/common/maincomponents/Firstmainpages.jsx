@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import downArrowSvg from "../img/아래방향 화살표.svg";
-import "./Fistmainpaged.css";
+import downArrowSvg from "../../../img/아래방향 화살표.svg";
+import "../../css/mainpagescsss/Fistmainpaged.css";
 
 const Container = styled.div`
   width: 100vw;
@@ -146,7 +146,7 @@ const UserMenu = styled.div`
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    height: 32px;
+    height: 36px;
     min-width: 96px;
     margin-right: 28px;
     font-size: 16px;
@@ -312,30 +312,31 @@ const HeroButton = styled.button`
 `;
 
 const DownArrow = styled.img`
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 36px;
-  height: auto;
   opacity: 0.8;
-
-  @media (min-width: 1921px) {
-    width: 44px;
-    bottom: 32px;
+  width: 38px;
+  @media (max-width: 1821px) {
+    width: 48px;
   }
-  @media (max-width: 1920px) {
-    width: 40px;
-    bottom: 28px;
+  @media (max-width: 1921px) {
+    width: 52px;
+  }
+  @media (min-width: 1921px) {
+    width: 60px;
   }
 `;
+const Fall = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight, // 페이지의 전체 높이 값
+      behavior: 'smooth' // 스크롤을 부드럽게 이동
+    });
+  };
 
 // =========== Styled-components 끝 ===========
 
 // =========== 컴포넌트 시작 ===========
 
 // 헤더 컴포넌트
-function Navbar() {
+function Navbar({setLogin}) {
   return (
     <Header>
       <LogoBox>GROWupMONEY</LogoBox>
@@ -347,19 +348,19 @@ function Navbar() {
         <button className="Topbutton">소셜미디어</button>
       </NavMenu>
       <UserMenu>
-        <button className="login-btn">로그인</button>
+        <button className="login-btn" onClick={()=>setLogin(true)}>지금배우기</button>
       </UserMenu>
     </Header>
   );
 }
 
 // 메인 히어로 섹션 컴포넌트
-function Hero() {
+function Hero({setLogin}) {
   return (
     <HeroSection>
       <HeroTitle>경제공부의 첫 걸음</HeroTitle>
       <HeroSub>GROW UP MONEY와 함께</HeroSub>
-      <HeroButton>
+      <HeroButton onClick={()=>setLogin(true)}>
         <p className="Start" style={{ fontSize: "clamp(10px, 2vw, 26px)" }}>
           시작하기
         </p>
@@ -369,15 +370,17 @@ function Hero() {
 }
 
 // 전체 페이지를 렌더링하는 메인 컴포넌트
-function Firstmainpages() {
+function Firstmainpages({setLogin}) {
   return (
     <Container>
-      <Navbar />
+      <Navbar setLogin={setLogin} />
       <div className="MainFrame">
         <div className="maintitle">
-          <Hero />
+          <Hero  setLogin = {setLogin}/>
         </div>
-        <DownArrow src={downArrowSvg} alt="아래로 이동" />
+        <div className="Down">
+          <DownArrow src={downArrowSvg} alt="아래로 이동" onClick={Fall}/>
+        </div>
       </div>
     </Container>
   );

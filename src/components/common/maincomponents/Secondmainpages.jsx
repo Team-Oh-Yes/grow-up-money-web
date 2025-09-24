@@ -1,5 +1,6 @@
-import "./Secondmainpages.css";
-import arrow from "../img/최신소식 화살표.png"
+import "../../css/mainpagescsss/Secondmainpages.css";
+import arrow from "../../../img/최신소식 화살표.png";
+
 // 개별 뉴스 카드 컴포넌트
 const NewsCard = ({ date, title, description, isSpecial }) => {
   return (
@@ -43,7 +44,9 @@ const Secondmainpages = () => {
     <section className="latest-news">
       <div className="latest-news-header">
         <h2 className="header-title">최신 소식</h2>
-        <button className="header-arrow"><img src={arrow}></img></button>
+        <button className="header-arrow">
+          <img src={arrow}></img>
+        </button>
       </div>
       <div className="card-list">
         {newsData.map((news, index) => (

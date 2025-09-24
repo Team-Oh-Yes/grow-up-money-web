@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import "./Mainpages.css";
-import Firstmainpages from "./maincomponents/Firstmainpages";
-import Secondmainpages from "./maincomponents/Secondmainpages";
-import Thirdmainpages from "./maincomponents/Thirdmainpages";
+import Loginpages from "../common/Logincomponents/Loginpages";
+import Firstmainpages from "../common/maincomponents/Firstmainpages";
+import Secondmainpages from "../common/maincomponents/Secondmainpages";
+import Thirdmainpages from "../common/maincomponents/Thirdmainpages";
+import "../css/mainpagescsss/Mainpages.css";
 
 const Container = styled.div`
   width: 100vw;
@@ -64,6 +65,7 @@ function MobileBlocker() {
 }
 
 function Mainpages() {
+  const [Login, setLogin] = useState(false);
   const [isMobileBlocked, setIsMobileBlocked] = useState(false);
 
   useEffect(() => {
@@ -85,9 +87,10 @@ function Mainpages() {
   // 768px 이상일 때 모든 페이지 표시
   return (
     <div>
-      <Firstmainpages />
+      <Firstmainpages setLogin={setLogin}/>
       <Secondmainpages />
       <Thirdmainpages />
+      {Login ? <Loginpages  setLogin={setLogin}/> : null}
     </div>
   );
 }

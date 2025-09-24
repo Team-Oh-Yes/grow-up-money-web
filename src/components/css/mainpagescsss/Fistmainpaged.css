@@ -78,7 +78,7 @@
   width: 0;
   height: 3px;
   border-radius: 30px;
-  background-color: #fff;
+  background-color: #fe9c32;
   transition: width 0.3s ease-out;
 }
 
@@ -161,6 +161,7 @@ button:not(.Topbutton)::after {
   font-weight: bold !important;
   cursor: pointer !important;
   transition: 0.35s all ease !important;
+  text-align: center;
 }
 
 .login-btn:hover {
@@ -281,4 +282,13 @@ button:not(.Topbutton):hover {
     display: flex !important;
   }
   /* 모바일에서는 전체 화면 안내만 보이므로 높이 조정 불필요 */
+}
+.Down {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: auto;
+  opacity: 0.8;
 }

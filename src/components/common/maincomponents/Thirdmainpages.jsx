@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './Thirdmainpages.css';
-import left from"../img/왼쪽.png"
-import right from "../img/오른쪽.png"
+import { useState } from "react";
+import right from "../../../img/오른쪽.png";
+import left from "../../../img/왼쪽.png";
+import "../../css/mainpagescsss/ThirdMainPages.css";
 function ThirdMainPages() {
   // 현재 보여줄 이미지 번호 (0부터 시작)
   const [currentImage, setCurrentImage] = useState(2);
@@ -12,7 +12,7 @@ function ThirdMainPages() {
     "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=400",
     "https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=800&h=400",
     "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400",
-    "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=400"
+    "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=400",
   ];
 
   // 다음 이미지 보기
@@ -45,37 +45,39 @@ function ThirdMainPages() {
         {/* 이미지들 */}
         <div className="image-container">
           {imageList.map((imageUrl, index) => (
-            <img 
+            <img
               key={index}
-              src={imageUrl} 
-              className={index === currentImage ? 'image active' : 'image'}
+              src={imageUrl}
+              className={index === currentImage ? "image active" : "image"}
               onClick={() => setCurrentImage(index)}
             />
           ))}
         </div>
-        
+
         {/* 다음 버튼 */}
         <button className="button" onClick={showNextImage}>
           <img src={right}></img>
         </button>
       </div>
-      
+
       {/* 동그라미 버튼들 */}
       <div className="dots">
         {imageList.map((_, index) => (
-          <button 
+          <button
             key={index}
-            className={index === currentImage ? 'dot active' : 'dot'}
+            className={index === currentImage ? "dot active" : "dot"}
             onClick={() => setCurrentImage(index)}
           />
         ))}
       </div>
-      
+
       {/* 하단 검은색 영역 */}
       <div className="footer">
         <h2>GROW UP MONEY</h2>
         <hr></hr>
-        <p className='D'>이용약관 | 무이용약관 | 개인정보처리방침 | 책임준수정책</p>
+        <p className="D">
+          이용약관 | 무이용약관 | 개인정보처리방침 | 책임준수정책
+        </p>
         <p>대구광역시 달성군 구지면 창리로11길 93</p>
         <p>© Oh! YeeSi | GROW UP MONEY</p>
       </div>

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
+import Mainpages from "./components/Add/Mainpages";
 import Error from "./error/Error";
-import Mainpages from "./mainpages";
 const router = createBrowserRouter([
   {
     path: "/",

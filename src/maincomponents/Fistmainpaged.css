@@ -1,0 +1,284 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+* {
+  font-family: Pretendard;
+}
+
+.Topbutton {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  position: relative;
+  font-size: 18px; /* 기본 폰트 사이즈 고정 */
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+/* 1920px 이상 대형 화면 대응 */
+@media (min-width: 1921px) {
+  .Topbutton {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 1920px) {
+  .Topbutton {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .Topbutton {
+    font-size: 19px;
+  }
+}
+
+/* 기존 반응형 폰트 사이즈 - 더 부드럽게 조정 */
+@media (max-width: 1200px) {
+  .Topbutton {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .Topbutton {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .Topbutton {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  .Topbutton {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 800px) {
+  .Topbutton {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 769px) {
+  .Topbutton {
+    font-size: 12px;
+  }
+}
+
+.Topbutton::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  border-radius: 30px;
+  background-color: #fff;
+  transition: width 0.3s ease-out;
+}
+
+.Topbutton:hover {
+  color: #ddd;
+}
+
+.Topbutton:hover::after {
+  width: 100%;
+}
+
+/* 다른 버튼들에는 ::after 막기 */
+button:not(.Topbutton)::after {
+  content: none !important;
+}
+
+/* 메인 타이틀 영역 */
+.maintitle {
+  position: relative;
+  margin: 0px;
+  padding-top: 60px;
+}
+
+/* 1920px 이상 대형 화면 대응 */
+@media (min-width: 1921px) {
+  .maintitle {
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 1920px) {
+  .maintitle {
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .maintitle {
+    padding-top: 65px;
+  }
+}
+
+/* 시작하기 텍스트 */
+.Start {
+  color: #fe9c32;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: clamp(14px, 2.2vw, 30px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transition: all 0.5s ease;
+}
+
+/* 1920px 이상에서 시작하기 텍스트 크기 조정 */
+@media (min-width: 1921px) {
+  .Start {
+    font-size: clamp(18px, 2.2vw, 36px) !important;
+  }
+}
+
+@media (max-width: 1920px) {
+  .Start {
+    font-size: clamp(16px, 2.2vw, 34px) !important;
+  }
+}
+
+@media (max-width: 1440px) {
+  .Start {
+    font-size: clamp(15px, 2.2vw, 32px) !important;
+  }
+}
+
+/* 로그인 버튼 - 애니메이션 완전 제거 */
+.login-btn {
+  background: #fe8401 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: 0.35s all ease !important;
+}
+
+.login-btn:hover {
+  background: #fe8401 !important;
+  transform: translateY(-2px) !important;
+}
+
+/* 시작하기 버튼 - 애니메이션 완전 제거 */
+button[class*="HeroButton"] {
+  transition: none;
+  transform: none;
+}
+
+button[class*="HeroButton"]:hover {
+  background: #fff !important;
+  transform: none;
+  transition: none;
+}
+
+/* 모든 버튼의 기본 애니메이션 제거 (Topbutton 제외) */
+button:not(.Topbutton) {
+  transition: none;
+  animation: none;
+}
+
+button:not(.Topbutton):hover {
+  transform: none;
+  transition: none;
+  animation: none;
+}
+
+/* 메인 프레임 flex 가운데 정렬 */
+.MainFrame {
+  width: 100vw;
+  height: calc(100vh - 73px);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* 1920px 이상 대형 화면에서 메인프레임 높이 조정 */
+@media (min-width: 1921px) {
+  .MainFrame {
+    height: calc(100vh - 80px);
+  }
+}
+
+@media (max-width: 1920px) {
+  .MainFrame {
+    height: calc(100vh - 76px);
+  }
+}
+
+@media (max-width: 1440px) {
+  .MainFrame {
+    height: calc(100vh - 74px);
+  }
+}
+
+/* 404 안내 박스 스타일 */
+.blocked-wrapper {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  min-height: 60vh;
+}
+
+.blocked-box {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  padding: 32px 28px;
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+}
+
+.blocked-title {
+  margin: 0 0 8px 0;
+  color: #222;
+  font-family: Pretendard;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.blocked-desc {
+  margin: 0;
+  color: #444;
+  font-size: 16px;
+}
+
+/* 1024px 이하 스타일 */
+@media (max-width: 1024px) {
+  .maintitle {
+    left: 4px;
+    bottom: 20px;
+  }
+  p {
+    font-size: 22px;
+  }
+  .MainFrame {
+    height: calc(100vh - 68px);
+  }
+}
+
+/* 768px 이하에서는 메인 영역 숨기고 404 안내만 표시 */
+@media (max-width: 768px) {
+  .Topbutton,
+  .maintitle,
+  .MainFrame,
+  .login-btn,
+  nav,
+  header {
+    display: none !important;
+  }
+  .blocked-wrapper {
+    display: flex !important;
+  }
+  /* 모바일에서는 전체 화면 안내만 보이므로 높이 조정 불필요 */
+}

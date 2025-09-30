@@ -5,6 +5,7 @@ import Firstmainpages from "../common/maincomponents/Firstmainpages";
 import Secondmainpages from "../common/maincomponents/Secondmainpages";
 import Thirdmainpages from "../common/maincomponents/Thirdmainpages";
 import "../css/mainpagescsss/Mainpages.css";
+import { useRecoilState } from "recoil";
 
 const Container = styled.div`
   width: 100vw;
@@ -63,10 +64,12 @@ function MobileBlocker() {
     </Container>
   );
 }
-
+import { Loginstate } from "../../atoms";
+import { Mobilestate } from "../../atoms";
 function Mainpages() {
-  const [Login, setLogin] = useState(false);
-  const [isMobileBlocked, setIsMobileBlocked] = useState(false);
+    
+  const [Login, setLogin] = useRecoilState(Loginstate);
+  const [isMobileBlocked, setIsMobileBlocked] = useRecoilState(Mobilestate);
 
   useEffect(() => {
     const handleResize = () => {

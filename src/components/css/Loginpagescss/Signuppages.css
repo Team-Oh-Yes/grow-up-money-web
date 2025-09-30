@@ -1,0 +1,195 @@
+.Loginback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 0, 0, 0.3);
+  font-family: Pretendard;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+/* 로그인 폼 컨테이너 */
+.login-container {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* 제목 스타일 */
+.login-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: rgb(232, 149, 55);
+  margin: 0 0 10px 0;
+}
+
+/* 부제목 스타일 */
+.login-subtitle {
+  font-size: 1.1rem;
+  color: #6f6f6f;
+  margin: 0 0 30px 0;
+  font-weight: bold;
+}
+
+/* 폼 전체 */
+.login-form {
+  width: 100%;
+}
+
+/* 입력 필드 */
+.input-field {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.input-field::placeholder {
+  color: #adb5bd;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #c5a98b;
+  box-shadow: 0 0 0 2px rgba(197, 169, 139, 0.25);
+}
+
+/* 비밀번호 찾기 링크 */
+.forgot-password {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.lost,
+.signup {
+  background-color: transparent;
+  border: none;
+  color: #ffaf52;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* 로그인 버튼 스타일 */
+.login {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffaf52; /* 메인 색상 */
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+  background-color: #e39235; /* 호버 시 약간 어둡게 */
+}
+
+/* 구글 로그인 버튼 */
+.google-login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s;
+  margin-bottom: 30px;
+}
+
+.google-login-btn:hover {
+  background-color: #f8f9fa;
+}
+
+.google-login-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+/* 회원가입 링크 */
+.signup-link p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* 토스트 알림 메시지 스타일 */
+/* 토스트 알림 메시지 스타일 */
+.toast-message {
+  position: fixed;
+  top: 20px; /* 화면 위에서 20px */
+  right: 20px; /* 화면 오른쪽에서 20px */
+  padding: 12px 24px;
+  color: white;
+  border-radius: 4px;
+  z-index: 9999;
+  font-size: 1.1rem;
+  font-weight: bold;
+  animation: fadeInOut 3s forwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+}
+.toast-message::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  border-radius: 30px;
+  background-color: rgb(255, 255, 255);
+  animation: whitebar 3s ease;
+}
+@keyframes whitebar {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+/* 성공 토스트 */
+.toast-success {
+  background-color: #00c72e; /* 초록색 */
+}
+
+/* 실패 토스트 */
+.toast-error {
+  background-color: #ff0019; /* 빨간색 */
+}
+
+/* 페이드 인/아웃 애니메이션 */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+}

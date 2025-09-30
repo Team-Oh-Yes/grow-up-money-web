@@ -1,6 +1,6 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 * {
-  font-family: Pretendard;
+  font-family: Pretendard !important;
 }
 
 .Topbutton {
@@ -78,7 +78,7 @@
   width: 0;
   height: 3px;
   border-radius: 30px;
-  background-color: #fff;
+  background-color: #fe9c32;
   transition: width 0.3s ease-out;
 }
 
@@ -154,18 +154,18 @@ button:not(.Topbutton)::after {
 
 /* 로그인 버튼 - 애니메이션 완전 제거 */
 .login-btn {
-  background: #fe8401 !important;
+  background: #ff8707 !important;
   color: white !important;
   border: none !important;
   border-radius: 8px !important;
   font-weight: bold !important;
   cursor: pointer !important;
   transition: 0.35s all ease !important;
+  text-align: center;
 }
 
 .login-btn:hover {
-  background: #fe8401 !important;
-  transform: translateY(-2px) !important;
+  background: #db7100 !important;
 }
 
 /* 시작하기 버튼 - 애니메이션 완전 제거 */
@@ -281,4 +281,13 @@ button:not(.Topbutton):hover {
     display: flex !important;
   }
   /* 모바일에서는 전체 화면 안내만 보이므로 높이 조정 불필요 */
+}
+.Down {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: auto;
+  opacity: 0.8;
 }

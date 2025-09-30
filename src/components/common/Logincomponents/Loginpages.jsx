@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "../../css/Loginpagescss/Loginpages.css";
 import Signuppages from "./Signuppages";
-// setLogin prop을 받도록 수정
 function Loginpages({ setLogin }) {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");

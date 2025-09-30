@@ -1,6 +1,6 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 * {
-  font-family: Pretendard;
+  font-family: Pretendard !important;
 }
 
 .Topbutton {
@@ -154,7 +154,7 @@ button:not(.Topbutton)::after {
 
 /* 로그인 버튼 - 애니메이션 완전 제거 */
 .login-btn {
-  background: #fe8401 !important;
+  background: #ff8707 !important;
   color: white !important;
   border: none !important;
   border-radius: 8px !important;
@@ -165,8 +165,7 @@ button:not(.Topbutton)::after {
 }
 
 .login-btn:hover {
-  background: #fe8401 !important;
-  transform: translateY(-2px) !important;
+  background: #db7100 !important;
 }
 
 /* 시작하기 버튼 - 애니메이션 완전 제거 */

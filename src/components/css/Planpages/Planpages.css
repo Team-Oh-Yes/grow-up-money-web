@@ -1,81 +1,283 @@
-body {
-    margin: 0;
-    padding: 0;
-    background: #FFFFFF;
+/* Container: Sidebar + Main */
+.planpages-container {
+    display: flex;
+    min-height: 100vh;
+    background: #fff;
 }
 
-p {
-    margin: 0px !important;
-}
-
+/* Sidebar */
 .sidebar {
-    width: 256px;
-    height: 982px;
-    flex-shrink: 0;
+    width: 20%;
+    max-width: 256px;
+    min-width: 200px;
+    padding: 1rem;
+    background: #f8f8f8;
+    box-sizing: border-box;
 }
 
+/* Sidebar Title */
 .sidebar-title {
     color: #FE8401;
-    font-family: Pretendard;
-    font-size: 32px;
-    font-style: normal;
+    font-family: Pretendard, sans-serif;
+    font-size: 2rem;
     font-weight: 700;
-    line-height: normal;
-    width: 108px;
-    height: 38px;
-    
-    margin-left: 24px;
-    margin-top: 20px;
-    margin-bottom: 38px;
+    margin-bottom: 2rem;
 }
 
+/* List Items */
 .list {
     display: flex;
-    width: 218px;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-
-    margin-left: 19px;
+    gap: 0.8rem;
 }
 
-.loadMap, .exchange, .store, .account, .more {
+.loadMap, .ranking, .exchange, .store, .account, .more {
     display: flex;
-    padding: 8px 112px 8px 16px;
     align-items: center;
-    align-self: stretch;
-
+    padding: 0.5rem 1rem;
     border-radius: 10px;
+    text-decoration: none;
+    color: #777;
+    font-family: Pretendard, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.2s;
 }
 
-.ranking{
-    display: flex;
-    padding: 8px 126px 8px 16px;
-    align-items: center;
-    align-self: stretch;
-
-    border-radius: 10px;
+.loadMap:hover, .ranking:hover, .exchange:hover, .store:hover, .account:hover, .more:hover {
+    background: #ffe5cc;
 }
 
+/* Main content */
+.main-content {
+    flex-grow: 1;
+    padding: 2rem;
+    padding-left: 0;
+    box-sizing: border-box;
+}
+
+/* Main icon + text */
 .main {
     display: flex;
     align-items: center;
-    gap: 16px;
-    justify-content: center;
+    gap: 1rem;
 }
 
 .main img {
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+}
+
+/* Container: Sidebar + Main */
+.planpages-container {
+    display: flex;
+    min-height: 100vh;
+    background: #fff;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 20%;
+    max-width: 256px;
+    min-width: 200px;
+    padding: 1rem;
+    background: #f8f8f8;
+    box-sizing: border-box;
+}
+
+/* Sidebar Title */
+.sidebar-title {
+    color: #FE8401;
+    font-family: Pretendard, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* List Items */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.loadMap, .ranking, .exchange, .store, .account, .more {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #777;
+    font-family: Pretendard, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.loadMap:hover, .ranking:hover, .exchange:hover, .store:hover, .account:hover, .more:hover {
+    background: #ffe5cc;
+}
+
+/* Main icon + text */
+.main {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.main img {
+    width: 2rem;
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+}
+
+.topBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.state {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: 837px;
+}
+
+.heart, .diamondIcon, .ticketIcon {
+    width: 26px;
+    height: 26px;
     aspect-ratio: 1/1;
 }
 
-.loadMap, .exchange, .store, .account, .more, .ranking {
-    color: #777;
+.premiumIcon {
+    width: 26.002px;
+    height: 24.341px;
+    fill: #FFC600;
+}
+
+.life, .diamond, .ticket, .isPremium {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.life, .diamond, .ticket span {
+    color: #3D3D3D;
     font-family: Pretendard;
-    font-size: 16px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;    
+}
+
+.isPremium span {
+    color: #FE8401;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;   
+}
+
+.plan {
+    width: 1256px;
+    height: 892px;
+    flex-shrink: 0;
+    background: #F9F9F9;
+}
+
+.Plan span {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    position: absolute;
+    margin-left: 514px;
+    margin-bottom: 35px;
+}
+
+.BitCon {
+    width: 400px;
+    height: 526px;
+    flex-shrink: 0;
+    aspect-ratio: 200/263;
+    
+    position: absolute;
+    margin-top: 418px;
+}
+
+.DDongJon {
+    width: 400px;
+    height: 382px;
+    flex-shrink: 0;
+    aspect-ratio: 200/191;
+
+    position: absolute;
+    
+    margin-left: 930px;
+    margin-top: 510px;
+}
+
+.plans {
+    display: inline-flex;
+    align-items: center;
+    gap: 60px;
+
+    margin-left: 216px;
+    margin-top: 118px;
+}
+
+.Free {
+    width: 382px;
+    height: 740px;
+    border-radius: 14px;
+    border: 1px solid #E6E6E6;
+    background: #FFF;
+
+}
+
+.Premium {
+    width: 382px;
+    height: 740px;
+    border-radius: 14px;
+    border: 1px solid #E6E6E6;
+    background: #FFF;
+}
+
+.Free span {
+    color: #0D0D0D;
+    font-family: Pretendard;
+    font-size: 28px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    text-decoration: none;
+
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 24px;
+    margin-right: 292px;
+    margin-bottom: 677px;
+}
+
+.Premium span {
+    color: #0D0D0D;
+    font-family: Pretendard;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 24px;
+    margin-right: 245px;
+    margin-bottom: 677px;
 }

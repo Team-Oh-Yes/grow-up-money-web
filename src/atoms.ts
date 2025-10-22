@@ -14,3 +14,7 @@ export const Mobilestate = atom({
   key: "Mobilestate",
   default: false,
 });
+export const Big = atom({
+    key:"Big",
+    default:false
+})

@@ -22,7 +22,7 @@ export default function UserManagement() {
         <div className="user-management">
             <div className="header">
                 <div className="logo-area">
-                    <img src="NightroalIcon.png" alt="Logo" />
+                    <img src="" alt="Logo" />
                 </div>
                 <div className="nav-tabs">
                     <span className="active">유저 관리</span>
@@ -33,7 +33,7 @@ export default function UserManagement() {
             </div>
 
             <div className="search-bar">
-                <div className="search-icon">
+                <div>
                     <img src={search} alt="검색아이콘"></img>
                 </div>
                 <input placeholder="검색어를 입력해주세요." />

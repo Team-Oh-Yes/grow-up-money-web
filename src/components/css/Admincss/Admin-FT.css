@@ -59,6 +59,15 @@
     font-size: 14px;
 }
 
+.search-bar input:focus {
+    outline: none;
+}
+
+.search-bar img {
+    width: 14px;
+    height: 14px;
+}
+
 .user-table {
     width: calc(100% - 80px);
     margin: 0 auto;

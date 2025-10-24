@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Big, Mobilestate } from "../../../atoms";
 import BigBlocker from "../../../BigBlocker";
@@ -17,6 +18,8 @@ import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
 
 function Loginmaincomponents() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [active, setActive] = useState("box1");
   const [isMobileBlocked, setIsMobileBlocked] = useRecoilState(Mobilestate);
   const [isExtraLargeScreen, setIsExtraLargeScreen] = useRecoilState(Big);
@@ -36,12 +39,26 @@ function Loginmaincomponents() {
     return () => window.removeEventListener("resize", handleResize);
   }, [setIsMobileBlocked, setIsExtraLargeScreen]);
 
+  useEffect(() => {
+    const pathname = location.pathname;
+    const validPathPattern = /^\/login\/([1-9]|10)$/;
+
+    if (pathname.startsWith("/login/") && !validPathPattern.test(pathname)) {
+      navigate("/login", { replace: true });
+    }
+  }, [location.pathname, navigate]);
+
   if (isMobileBlocked) {
     return <MobileBlocker />;
   }
   if (isExtraLargeScreen) {
     return <BigBlocker />;
   }
+
+  const Action = (e) => {
+    setActive(e);
+    navigate("/login");
+  };
 
   return (
     <div className="maincon">
@@ -50,7 +67,7 @@ function Loginmaincomponents() {
         <div className="con">
           <div
             className={active === "box1" ? "boxactive" : "box"}
-            onClick={() => setActive("box1")}
+            onClick={() => Action("box1")}
           >
             <img src={map} alt="로드맵 이미지"></img>
             <p>로드맵</p>
@@ -106,18 +123,7 @@ function Loginmaincomponents() {
           </div>
         </S.Topbar>
         <div className="mainbox">
-          <div className="tama">
-            <div className="First"></div>
-            <div className="Second" ></div>
-            <div className="Third"></div>
-            <div className="Fouth"></div>
-            <div className="Fifth"></div>
-            <div className="Sixth"></div>
-            <div className="Seventh"></div>
-            <div className="Eighth"></div>
-            <div className="Ninth"></div>
-            <div className="Tenth"></div>
-          </div>
+          <Outlet />
         </div>
       </div>
     </div>

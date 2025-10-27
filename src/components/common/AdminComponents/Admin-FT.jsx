@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../css/Admincss/Admin-FT.css';
 import search from '../../../img/searchIcon.svg';
+import logo from '../../../img/logo.png';
 
 export default function UserManagement() {
     const users = [
@@ -9,20 +10,21 @@ export default function UserManagement() {
         { id: 'test9876', email: 'test9876@dgsw.hs.kr', status: '정상' },
     ];
 
-    const getStatusClass = (status) => {
-        if (status === '정상') return 'status-normal';
-        else if (status === '영구 정지') return 'status-banned';
-        else if (status === '1개월 정지') return 'status-suspended-month';
-        else if (status === '3주 정지') return 'status-suspended-3weeks';
-        else if (status === '1주 정지') return 'status-suspended-week';
-        else if (status === '1일 정지') return 'status-suspended-1day';
-    };
+    // const getStatusClass = (status) => {
+    //     if (status === '정상') return 'status-normal';
+    //     else if (status === '영구 정지') return 'status-banned';
+    //     else if (status === '1개월 정지') return 'status-suspended-month';
+    //     else if (status === '3주 정지') return 'status-suspended-3weeks';
+    //     else if (status === '1주 정지') return 'status-suspended-week';
+    //     else if (status === '1일 정지') return 'status-suspended-1day';
+    // };
 
     return (
         <div className="user-management">
             <div className="header">
                 <div className="logo-area">
-                    <img src="" alt="Logo" />
+                    {/* <div>Grow Money</div> */}
+                    <img src={logo} alt="Logo" />
                 </div>
                 <div className="nav-tabs">
                     <span className="active">유저 관리</span>

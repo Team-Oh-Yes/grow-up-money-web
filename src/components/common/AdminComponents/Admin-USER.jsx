@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/Admincss/Admin-FT.css';
+import '../../css/Admincss/Admin-USER.css';
 import search from '../../../img/searchIcon.svg';
 import logo from '../../../img/logo.png';
 

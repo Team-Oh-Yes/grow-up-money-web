@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Mainpages from "./components/Add/Mainpages";
-import Adminpages from "./components/common/AdminComponents/Admin-FT.jsx";
+import Adminpages from "./components/common/AdminComponents/Admin-USER.jsx";
 import Error from "./error/Error";
 const router = createBrowserRouter([
   {

@@ -5,7 +5,7 @@ function Tamatitle(props) {
     <div className="tamatitle">
       <img src={arrow} alt="화살표"></img>
       <p className="tamap">
-        {`테마${props.n},${props.m ? ` 단원${props.m}` : ""}`}
+        {`테마${props.n} ${props.m ? `, 단원${props.m}` : ""}`}
       </p>
     </div>
   );

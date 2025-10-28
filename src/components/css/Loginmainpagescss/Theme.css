@@ -151,62 +151,169 @@ h5 {
   padding-bottom: 15px;
 }
 
-.First {
+.First1 {
+  background-color: #feb39a;
+}
+.Second1 {
+  background-color: #fea080;
+}
+.Third1 {
+  background-color: #fe8d67;
+}
+.Fouth1 {
+  background-color: #fe7a4e;
+}
+.Fifth1 {
+  background-color: #fece9a;
+}
+.First2 {
+  background-color: #fec281;
+}
+.Second2 {
+  background-color: #feb667;
+}
+.Third2 {
+  background-color: #fda94e;
+}
+.Fouth2 {
+  background-color: #fd9d35;
+}
+.Fifth2 {
+  background-color: #fd911c;
+}
+.First3 {
+  background-color: #f9d99f;
+}
+.Second3 {
+  background-color: #f8cf87;
+}
+.Third3 {
+  background-color: #f6c56f;
+}
+.Fouth3 {
+  background-color: #f5bc57;
+}
+.Fifth3 {
+  background-color: #f3b23f;
+}
+.First4 {
+  background-color: #f0dfa8;
+}
+.Second4 {
+  background-color: #edd792;
+}
+.Third4 {
+  background-color: #edd792;
+}
+.Fouth4 {
+  background-color: #e5c766;
+}
+.Fifth4 {
+  background-color: #e2bf50;
+}
+.First5 {
+  background-color: #d9e5b3;
+}
+.Second5 {
+  background-color: #d0dea0;
+}
+.Third5 {
+  background-color: #c6d88d;
+}
+.Fouth5 {
+  background-color: #bdd17a;
+}
+.Fifth5 {
+  background-color: #b3cb67;
+}
+.First6 {
+  background-color: #b4e4c1;
+}
+.Second6 {
+  background-color: #a1deb1;
+}
+.Third6 {
+  background-color: #8ed7a2;
+}
+.Fouth6 {
+  background-color: #7bd092;
+}
+.Fifth6 {
+  background-color: #68ca83;
+}
+.First7 {
+  background-color: #b6e2d9;
+}
+.Second7 {
+  background-color: #a4dbd0;
+}
+.Third7 {
+  background-color: #92d3c6;
+}
+.Fouth7 {
+  background-color: #7fccbd;
+}
+.Fifth7 {
+  background-color: #6dc5b3;
+}
+.First8 {
+  background-color: #B8D3E0;
+}
+.Second8 {
+  background-color: #A6C8D8;
+}
+.Third8 {
+  background-color: #95BCD0;
+}
+.Fouth8 {
+  background-color: #83B1C9;
+}
+.Fifth8 {
+  background-color: #71A6C1;
+}
+
+.First9 {
+  background-color: #b5c7e3;
+}
+.Second9 {
+  background-color: #a3b9dc;
+}
+.Third9 {
+  background-color: #90abd5;
+}
+.Fouth9 {
+  background-color: #7e9dce;
+}
+.Fifth9 {
+  background-color: #6b8fc7;
+}
+.First10 {
+  background-color: #b4bbe4;
+}
+.Second10 {
+  background-color: #a1aade;
+}
+.Third10 {
+  background-color: #8e99d7;
+}
+.Fouth10 {
+  background-color: #7b88d0;
+}
+.Fifth10 {
+  background-color: #6877ca;
+}
+
+.ho {
   width: 14rem;
   min-width: 14rem;
   height: 100%;
-  border-radius: 1.2rem 0 0 1.2rem;
-  background: #fe8d67;
   flex-shrink: 0;
-  opacity: 0.4;
-  transition: all 1s ease;
-}
-.Second {
-  background-color: #feb567;
-}
-.Third {
-  background-color: #fec767;
-}
-.Fouth {
-  background-color: #f1d274;
-}
-.Fifth {
-  background-color: #c8dd88;
-}
-.Sixth {
-  background-color: #8adb9f;
-}
-.Seventh {
-  background-color: #8dd8c9;
-}
-.Eighth {
-  background-color: #92bfd4;
-}
-.Ninth {
-  background-color: #8ca9d9;
-}
-.Tenth {
-  background-color: #8a95db;
-  border-radius: 0 1.2rem 1.2rem 0;
-}
-.Second,
-.Third,
-.Fouth,
-.Fifth,
-.Sixth,
-.Seventh,
-.Eighth,
-.Ninth,
-.Tenth {
-  width: 14rem;
-  min-width: 14rem;
-  height: 100%;
-  flex-shrink: 0;
-  opacity: 0.4;
+  opacity: 0.7;
   transition: all 1s ease;
 }
 .ho:hover {
   opacity: 1;
+  transform: translateY(-5px);
 }
 /* 스크롤바 스타일을 tama에 적용 */
 .tama::-webkit-scrollbar {
@@ -259,31 +366,112 @@ h5 {
   white-space: pre-line;
 }
 .nexttama {
-  width: 11rem;
-  min-width: 11rem;
-  height: 100%;
+  width: 13rem;
   flex-shrink: 0;
   transition: all 1s ease;
-  background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-
-p{
-    margin: 0px;
+p {
+  margin: 0px;
 }
-.nextcon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgb(0, 0, 0);
-    font-weight: 600;
+.nextcon1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  background-color: #fe541b;
 }
-.nextarrow{
-    width: 15px;
-    height: 15px;
-    object-fit: contain;
-    margin: 0px;
+.nextcon2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  background-color: #fd911c;
+}
+.nextcon3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  background-color: #f2a927;
+}
+.nextcon4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  background-color: #e2bf50;
+}
+.nextcon5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  background-color: #aac455;
+}
+.nextcon6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  background-color: #55c373;
+}
+.nextcon7 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  background-color: #5bbdaa;
+}
+.nextcon8 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  background-color: #5F9BB9;
+}
+.nextcon9 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  background-color: #5981c0;
+}
+.nextcon10 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  background-color: #5566c3;
+}
+.nextarrow {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+  margin: 0px;
+}
+.ho1 {
+  width: 13rem;
+  min-width: 13rem;
+  height: 100%;
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: all 1s ease;
+}
+.ho1:hover {
+  opacity: 1;
+  transform: translateY(-5px);
 }

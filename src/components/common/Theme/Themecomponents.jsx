@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import arrow from "../../../img/arrow.png";
+import arrow from "../../../img/arrow_back_ios_new.png";
 import "../../css/Loginmainpagescss/Theme.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
@@ -12,7 +12,7 @@ function Themecomponents() {
       "경제 속 숨은 주인공들",
       "내 지갑은 왜 항상 텅텅\n 비어있을까?",
       "치킨? 떡볶이? 하나만\n 골라야 하는 이유",
-      "한정판 라부부가 미친듯이 비싸진 진짜 이유",
+      "한정판 라부부가 미친듯이\n 비싸진 진짜 이유",
       "내 하루가 경제 뉴스랑 \n 연결돼 있다고?",
     ];
   } else if (id == "2") {
@@ -91,23 +91,23 @@ function Themecomponents() {
   }
   return (
     <div className="tama">
-      <div className="First ho">
+      <div className={`First${id} ho`} >
         <Tamatitle n={id} m={1} />
         <TamaP n={n[0]} />
       </div>
-      <div className="Second ho">
+      <div className={`Second${id} ho`}>
         <Tamatitle n={id} m={2} />
         <TamaP n={n[1]} />
       </div>
-      <div className="Third ho">
+      <div className={`Third${id} ho`}>
         <Tamatitle n={id} m={3} />
         <TamaP n={n[2]} />
       </div>
-      <div className="Fouth ho">
+      <div className={`Fouth${id} ho`}>
         <Tamatitle n={id} m={4} />
         <TamaP n={n[3]} />
       </div>
-      <div className="Fifth ho">
+      <div className={`Fifth${id} ho`}>
         <Tamatitle n={id} m={5} />
         <TamaP n={n[4]} />
       </div>
@@ -118,7 +118,7 @@ function Themecomponents() {
           className="nexttama"
           onClick={() => navigate(`/login/${parseInt(id) + 1}`)}
         >
-          <div className="nextcon">
+          <div className={`nextcon${id} ho1`}>
             <p>다음테마로 가기</p> <img className="nextarrow" src={arrow}></img>
           </div>
         </div>

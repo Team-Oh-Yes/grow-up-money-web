@@ -1,7 +1,7 @@
 import { useState } from "react";
 import right from "../../../img/오른쪽.png";
 import left from "../../../img/왼쪽.png";
-import "../../css/mainpagescsss/ThirdMainPages.css";
+import "../../css/mainpagescsss/Thirdmainpages.css";
 function ThirdMainPages() {
   // 현재 보여줄 이미지 번호 (0부터 시작)
   const [currentImage, setCurrentImage] = useState(2);

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../../css/Admincss/Admin-USER.css';
 import search from '../../../img/searchIcon.svg';
-import logo from '../../../img/logo.png';
 
 export default function UserManagement() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -10,9 +9,10 @@ export default function UserManagement() {
         { id: 'test1234', email: 'test1234@dgsw.hs.kr', status: '영구 정지' },
         { id: 'test5678', email: '-', status: '1주 정지' },
         { id: 'test9876', email: 'test9876@dgsw.hs.kr', status: '정상' },
+        { id: '배준하', email: 'junha0729@dgsw.hs.kr', status: '정상' },
     ];
 
-    // 한글 초성 추출 함수
+    // 떼워먹기라 DB 연결하면 다시 로직 짜야함.
     const getChosung = (str) => {
         const chosung = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
         let result = '';
@@ -38,19 +38,7 @@ export default function UserManagement() {
     });
 
     return (
-        <div className="user-management">
-            <div className="header">
-                <div className="logo-area">
-                    <img src={logo} alt="Logo" />
-                </div>
-                <div className="nav-tabs">
-                    <span className="active">유저 관리</span>
-                    <span>NFT 관리</span>
-                    <span>환불/문의</span>
-                    <span>기타</span>
-                </div>
-            </div>
-
+        <div>
             <div className="search-bar">
                 <div>
                     <img src={search} alt="검색아이콘"></img>

@@ -39,14 +39,7 @@ function Loginmaincomponents() {
     return () => window.removeEventListener("resize", handleResize);
   }, [setIsMobileBlocked, setIsExtraLargeScreen]);
 
-  useEffect(() => {
-    const pathname = location.pathname;
-    const validPathPattern = /^\/login\/([1-9]|10)$/;
 
-    if (pathname.startsWith("/login/") && !validPathPattern.test(pathname)) {
-      navigate("/login", { replace: true });
-    }
-  }, [location.pathname, navigate]);
 
   if (isMobileBlocked) {
     return <MobileBlocker />;

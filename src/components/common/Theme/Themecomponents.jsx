@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import arrow from "../../../img/arrow_back_ios_new.png";
-import "../../css/Loginmainpagescss/Theme.css";
+import "../../css/Loginmainpagescss/Theme.css"
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
 function Themecomponents() {
@@ -91,23 +91,23 @@ function Themecomponents() {
   }
   return (
     <div className="tama">
-      <div className={`First${id} ho`} >
+      <div className={`First${id} ho`} onClick={()=> navigate('/login/quiz/1')}>
         <Tamatitle n={id} m={1} />
         <TamaP n={n[0]} />
       </div>
-      <div className={`Second${id} ho`}>
+      <div className={`Second${id} ho`} onClick={()=> navigate(`/login/${id}/2`)} >
         <Tamatitle n={id} m={2} />
         <TamaP n={n[1]} />
       </div>
-      <div className={`Third${id} ho`}>
+      <div className={`Third${id} ho`} onClick={()=> navigate(`/login/${id}/3`)}>
         <Tamatitle n={id} m={3} />
         <TamaP n={n[2]} />
       </div>
-      <div className={`Fouth${id} ho`}>
+      <div className={`Fouth${id} ho`} onClick={()=> navigate(`/login/${id}/4`)}>
         <Tamatitle n={id} m={4} />
         <TamaP n={n[3]} />
       </div>
-      <div className={`Fifth${id} ho`}>
+      <div className={`Fifth${id} ho`} onClick={()=> navigate(`/login/${id}/5`)}>
         <Tamatitle n={id} m={5} />
         <TamaP n={n[4]} />
       </div>

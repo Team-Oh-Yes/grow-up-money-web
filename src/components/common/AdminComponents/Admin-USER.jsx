@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { hangulIncludes } from 'es-hangul';
 import '../../css/Admincss/Admin-USER.css';
 import search from '../../../img/searchIcon.svg';
 
 export default function UserManagement() {
     const [searchTerm, setSearchTerm] = useState('');
 
-    // 더미 유저 데이터
     const users = [
         { id: 'test1234', email: 'test1234@dgsw.hs.kr', status: '영구 정지' },
         { id: 'test5678', email: '-', status: '1주 정지' },
@@ -13,30 +13,9 @@ export default function UserManagement() {
         { id: '배준하', email: 'junha0729@dgsw.hs.kr', status: '정상' },
     ];
 
-    // 떼워먹기라 DB 연결하면 다시 로직 짜야함.
-    const getChosung = (str) => {
-        const chosung = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-        let result = '';
-        
-        for (let i = 0; i < str.length; i++) {
-            const code = str.charCodeAt(i) - 44032;
-            if (code > -1 && code < 11172) {
-                result += chosung[Math.floor(code / 588)];
-            } else {
-                result += str.charAt(i);
-            }
-        }
-        return result;
-    };
-
-    // 검색 필터링 로직 (ID 기준, 초성 검색 포함)
-    const filteredUsers = users.filter(user => {
-        const search = searchTerm.toLowerCase();
-        const userId = user.id.toLowerCase();
-        const userIdChosung = getChosung(user.id);
-        
-        return userId.includes(search) || userIdChosung.includes(searchTerm);
-    });
+    const filteredUsers = users.filter(user => 
+        hangulIncludes(user.id, searchTerm)
+    );
 
     return (
         <div>
@@ -54,7 +33,6 @@ export default function UserManagement() {
             <table className="user-table">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" /></th>
                         <th>ID</th>
                         <th>이메일</th>
                         <th>계정 상태</th>
@@ -67,15 +45,20 @@ export default function UserManagement() {
                     {filteredUsers.length > 0 ? (
                         filteredUsers.map((u, i) => (
                             <tr key={i}>
-                                <td><input type="checkbox" /></td>
                                 <td>{u.id}</td>
                                 <td>{u.email}</td>
-                                <td className={u.status === '정상' ? 'status-normal' : 'status-banned'}>{u.status}</td>
-                                <td>
-                                    <button className={`btn-status ${u.status === '영구 정지' ? 'active' : ''}`}>계정 정지</button>
+                                <td className={u.status === '정상' ? 'status-normal' : 'status-banned'}>
+                                    {u.status}
                                 </td>
                                 <td>
-                                    <button className={`btn-point ${u.status === '영구 정지' ? 'active' : ''}`}>포인트 지급</button>
+                                    <button className={`btn-status ${u.status === '영구 정지' ? 'active' : ''}`}>
+                                        계정 정지
+                                    </button>
+                                </td>
+                                <td>
+                                    <button className={`btn-point ${u.status === '영구 정지' ? 'active' : ''}`}>
+                                        포인트 지급
+                                    </button>
                                 </td>
                                 <td>
                                     <button className={`btn-recover ${u.status === '영구 정지' ? 'active' : ''}`}>
@@ -86,7 +69,7 @@ export default function UserManagement() {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="7" style={{ textAlign: 'center', padding: '20px', color: '#999' }}>
+                            <td colSpan="6" style={{ textAlign: 'center', padding: '20px', color: '#999' }}>
                                 검색 결과가 없습니다
                             </td>
                         </tr>

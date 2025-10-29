@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import downArrowSvg from "../../../img/아래방향 화살표.svg";
+import downArrowSvg from "../../../img/arrowdown.svg";
 import "../../css/mainpagescsss/Fistmainpaged.css";
 
 const Container = styled.div`
@@ -341,11 +341,12 @@ function Navbar({setLogin}) {
     <Header>
       <LogoBox>GROWupMONEY</LogoBox>
       <NavMenu>
-        <button className="Topbutton">프로그램 정보</button>
-        <button className="Topbutton">미디어</button>
-        <button className="Topbutton">소식</button>
-        <button className="Topbutton">고객지원</button>
-        <button className="Topbutton">소셜미디어</button>
+        <button className="Topbutton">홈</button>
+        <button className="Topbutton">로드맵</button>
+        <button className="Topbutton">스토어</button>
+        <button className="Topbutton">프로필</button>
+        <button className="Topbutton">랭킹</button>
+        <button className="Topbutton">더보기</button>
       </NavMenu>
       <UserMenu>
         <button className="login-btn" onClick={()=>setLogin(true)}>지금배우기</button>

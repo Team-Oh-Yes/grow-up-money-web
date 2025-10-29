@@ -4,15 +4,15 @@ import { useRecoilState } from "recoil";
 import { Big, Mobilestate } from "../../../atoms";
 import BigBlocker from "../../../BigBlocker";
 import trade from "../../../img/거래소.png";
-import dia from "../../../img/다이야2.png";
-import more from "../../../img/더보기.png";
-import rank from "../../../img/랭킹.png";
-import map from "../../../img/로드맵.png";
-import store from "../../../img/스토어.png";
-import king from "../../../img/왕관.png";
+import dia from "../../../img/point.png";
+import more from "../../../img/more.png";
+import rank from "../../../img/rank.png";
+import map from "../../../img/loadmap.png";
+import store from "../../../img/store.png";
+import king from "../../../img/crown.png";
 import ticket from "../../../img/티켓2.png";
 import pro from "../../../img/프로필.png";
-import heart from "../../../img/하트.png";
+import heart from "../../../img/heart.png";
 import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
@@ -114,9 +114,9 @@ function Loginmaincomponents() {
           <div className="img">
             <img src={heart} alt="하트"></img>
             <h5>5</h5>
-            <img src={dia} alt="다이아몬드"></img>
+            <img src={dia} alt="포인트"></img>
             <h5>5</h5>
-            <img src={ticket} alt="티켓" />
+            <img src={ticket} alt="뽑기권" />
             <h5>5</h5>
             <img src={king}></img>
             <h5 className="premiun">Premium</h5>

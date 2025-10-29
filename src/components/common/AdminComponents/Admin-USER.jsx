@@ -5,6 +5,7 @@ import search from '../../../img/searchIcon.svg';
 export default function UserManagement() {
     const [searchTerm, setSearchTerm] = useState('');
 
+    // 더미 유저 데이터
     const users = [
         { id: 'test1234', email: 'test1234@dgsw.hs.kr', status: '영구 정지' },
         { id: 'test5678', email: '-', status: '1주 정지' },

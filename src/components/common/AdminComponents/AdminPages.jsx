@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '../../../img/logo.png';
 import UserPage from './Admin-USER';
 import '../../css/Admincss/AdminPages.css';
-// import FtPage from './Admin-FT'
+import FtPage from './Admin-FT'
 // import RefundPage from './Admin-Refund'
 // import EtcPage from './Admin-ETC'
 
@@ -42,7 +42,7 @@ const AdminPages = () => {
                         className={activeTab === 'nft' ? 'active' : ''}
                         onClick={() => setActiveTab('nft')}
                     >
-                        NFT 관리
+                        FT 관리
                     </span>
                     <span
                         className={activeTab === 'refund' ? 'active' : ''}

@@ -135,6 +135,8 @@ h5 {
   width: 100%;
   box-sizing: border-box;
   display: flex;
+  border-radius: 15px;
+  overflow: hidden; /* tama 내부 콘텐츠를 둥글게 잘라내는 역할 */
 }
 
 .tama {
@@ -142,23 +144,25 @@ h5 {
   height: 100%;
   display: flex;
   gap: 0;
-  overflow-x: auto; /* 스크롤을 tama로 이동 */
+  overflow-x: auto; /* 가로 스크롤 허용 */
   overflow-y: hidden;
-  border-radius: 1.25rem;
   background: transparent; /* tama 배경색 */
   margin-bottom: 10px;
   padding-bottom: 15px;
+  /* 이전 코드에서 제거된 부분: overflow: hidden; 및 border-radius: 15px; */
 }
 
 .First {
   width: 14rem;
   min-width: 13rem;
   height: 100%;
-  border-radius: 1.2rem 0 0 1.2rem;
   background: #fe8d67;
   flex-shrink: 0;
   opacity: 0.4;
   transition: all 1s ease;
+  /* [수정] 왼쪽 모서리 둥글게 */
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 .Second {
   background-color: #feb567;
@@ -186,7 +190,9 @@ h5 {
 }
 .Tenth {
   background-color: #8a95db;
-  border-radius: 0 1.2rem 1.2rem 0;
+  /* [수정] 오른쪽 모서리 둥글게 */
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 .Second,
 .Third,
@@ -215,6 +221,11 @@ h5 {
 .tama::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 5px;
+}
+
+/* [추가] 스크롤바가 모서리를 침범하는 것을 방지 */
+.tama::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 .tama::-webkit-scrollbar-thumb {

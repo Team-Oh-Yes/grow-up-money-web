@@ -23,7 +23,7 @@ const Container = styled.div`
 
 const Header = styled.header`
   height: 73px;
-  background: #111;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,30 +50,30 @@ const Header = styled.header`
 `;
 
 const LogoBox = styled.div`
-  color: #fff;
+  color: #FE8401;
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 700;
   margin-left: 28px;
 
   @media (min-width: 1921px) {
-    font-size: 24px;
+    font-size: 32px;
     margin-left: 40px;
   }
   @media (max-width: 1920px) {
-    font-size: 22px;
+    font-size: 28px;
     margin-left: 36px;
   }
   @media (max-width: 1440px) {
-    font-size: 21px;
+    font-size: 26px;
     margin-left: 32px;
   }
   @media (max-width: 1024px) {
-    font-size: 18px;
+    font-size: 22px;
     margin-left: 10px;
   }
   @media (max-width: 768px) {
-    font-size: 14px;
+    font-size: 18px;
     margin-left: 4px;
   }
 `;
@@ -339,13 +339,13 @@ const Fall = () => {
 function Navbar({setLogin}) {
   return (
     <Header>
-      <LogoBox>GROWupMONEY</LogoBox>
+      <LogoBox>Oh!Yes</LogoBox>
       <NavMenu>
-        <button className="Topbutton">프로그램 정보</button>
-        <button className="Topbutton">미디어</button>
-        <button className="Topbutton">소식</button>
-        <button className="Topbutton">고객지원</button>
-        <button className="Topbutton">소셜미디어</button>
+        <button className="Topbutton home">홈</button>
+        <button className="Topbutton load">로드맵</button>
+        <button className="Topbutton rank">랭킹</button>
+        <button className="Topbutton shop">상정</button>
+        <button className="Topbutton my">마이프로필</button>
       </NavMenu>
       <UserMenu>
         <button className="login-btn" onClick={()=>setLogin(true)}>지금배우기</button>

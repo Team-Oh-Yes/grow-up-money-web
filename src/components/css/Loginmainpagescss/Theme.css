@@ -130,29 +130,36 @@ h5 {
   margin-right: 0 !important;
 }
 
+/* [수정] mainbox에 border-radius와 overflow: hidden을 복원하여 둥근 모서리 컨테이너 역할을 맡깁니다. */
 .mainbox {
   flex: 1;
   width: 100%;
   padding: 0rem 2rem 1.5rem 3rem;
   box-sizing: border-box;
   display: flex;
+  border-radius: 15px; /* 복원 */
+  overflow: hidden; /* 복원 */
 }
 
-.tama {
+.tama{
   width: 100%;
   height: 100%;
   display: flex;
   gap: 0;
   overflow-x: auto; /* 스크롤을 tama로 이동 */
   overflow-y: hidden;
-  border-radius: 1.25rem;
+  border-radius: 15px; /* tama에도 radius를 적용하여 flex item이 없을 때를 대비 */
   background: transparent; /* tama 배경색 */
   margin-bottom: 10px;
   padding-bottom: 15px;
 }
 
+/* Flex Item 색상 클래스는 변경 없음 */
 .First1 {
   background-color: #feb39a;
+  /* [추가] 맨 왼쪽 아이템의 둥근 모서리 처리 */
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 .Second1 {
   background-color: #fea080;
@@ -164,7 +171,7 @@ h5 {
   background-color: #fe7a4e;
 }
 .Fifth1 {
-  background-color: #fece9a;
+  background-color: #FE6734;
 }
 .First2 {
   background-color: #fec281;
@@ -301,8 +308,12 @@ h5 {
 }
 .Fifth10 {
   background-color: #6877ca;
+  /* [추가] 맨 오른쪽 아이템의 둥근 모서리 처리 */
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
+/* Flex Item을 감싸는 컨테이너 */
 .ho {
   width: 14rem;
   min-width: 14rem;
@@ -315,6 +326,20 @@ h5 {
   opacity: 1;
   transform: translateY(-5px);
 }
+/* ho1은 ho와 동일한 스타일을 가지지만, 맨 오른쪽 아이템을 감싸므로 따로 설정 */
+.ho1 {
+  width: 13rem;
+  min-width: 13rem;
+  height: 100%;
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: all 1s ease;
+}
+.ho1:hover {
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
 /* 스크롤바 스타일을 tama에 적용 */
 .tama::-webkit-scrollbar {
   height: 10px;
@@ -323,6 +348,11 @@ h5 {
 .tama::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 5px;
+}
+
+/* [추가] 스크롤바가 모서리를 침범하는 것을 방지 (Webkit) */
+.tama::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 .tama::-webkit-scrollbar-thumb {
@@ -377,6 +407,8 @@ h5 {
 p {
   margin: 0px;
 }
+/* nextcon 클래스들은 nexttama 내부의 색상 div라고 가정하고, 
+   스크롤의 시작과 끝이 First1과 Fifth10에 맞춰졌으므로 이 부분은 추가 수정이 필요 없습니다. */
 .nextcon1 {
   display: flex;
   justify-content: center;
@@ -462,16 +494,4 @@ p {
   height: 15px;
   object-fit: contain;
   margin: 0px;
-}
-.ho1 {
-  width: 13rem;
-  min-width: 13rem;
-  height: 100%;
-  flex-shrink: 0;
-  opacity: 0.7;
-  transition: all 1s ease;
-}
-.ho1:hover {
-  opacity: 1;
-  transform: translateY(-5px);
 }

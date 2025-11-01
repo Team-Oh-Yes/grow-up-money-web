@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Mainpages from "./components/Add/Mainpages";
-import Loadmap from "./components/common/Loadmapcomponents/Loadmap";
+import Learn from "./components/common/Loadmapcomponents/Learn";
 import Loginmaincomponents from "./components/common/Loginmaincomponents/Loginmaincomponents";
 import MainTheme from "./components/common/Theme/MainTheme";
 import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
@@ -25,8 +25,8 @@ const router = createBrowserRouter([
         element: <Themecomponents />,
       },
       {
-        path: "quiz/:i/:d",
-        element: <Loadmap />,
+        path: "Learn/:i/:d",
+        element: <Learn />,
       },
     ],
   },

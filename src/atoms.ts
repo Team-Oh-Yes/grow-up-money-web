@@ -18,3 +18,7 @@ export const Big = atom({
     key:"Big",
     default:false
 })
+export const Show = atom({
+    key:"story",
+    default:true
+})

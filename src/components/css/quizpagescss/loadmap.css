@@ -1,0 +1,163 @@
+
+* {
+  box-sizing: border-box; 
+}
+
+.story {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.story-container {
+  background: white;
+  border-radius: 1.25rem;
+  box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.3);
+  max-width: 40rem;
+  width: 90%;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.skip{
+    position: absolute;
+    left: 1.6rem;
+    top: 1.6rem;
+    border: none;
+    color: #FE8401;
+    background-color: transparent;
+    font-size: 0.9;
+}
+
+.page-number {
+  position: absolute;
+  top: 1.25rem;
+  right: 2.5rem;
+  font-size: 0.95rem;
+  color: #a0a0a0;
+  font-weight: 500;
+  letter-spacing: 0.02rem;
+}
+
+.story-content {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.story-image {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.story-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+/* ------------------------------------------- */
+/* 3. Story Text & Animation                   */
+/* ------------------------------------------- */
+
+/* 텍스트 페이드인/슬라이드 애니메이션 정의 */
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.story-text {
+  font-size: 1.15rem;
+  color: #4b5563;
+  line-height: 1.6;
+  animation: fadeInSlide 0.6s ease-out forwards;
+  /* 🌟 white-space: pre-wrap; 을 여기로 옮겼습니다. 🌟 */
+  white-space: pre-wrap;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-button:not(:disabled) {
+  background: #fe8401;
+  color: white;
+}
+
+.nav-button:not(:disabled):hover {
+  background: #d87000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nav-button:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.page-dots {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.5rem;
+}
+
+.dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.7;
+}
+
+.dot.active {
+  background-color: #fe8401;
+  width: 0.75rem;
+  height: 0.75rem;
+  opacity: 1;
+}
+
+.dot:not(.active) {
+  background: #d1d5db;
+}
+
+.dot:not(.active):hover {
+  background: #9ca3af;
+}

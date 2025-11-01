@@ -1,26 +1,9 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "../../css/quizpagescss/loadmap.css";
+import * as data from "../../data/loadmap/loadmapdata";
 import { useRecoilState } from "recoil";
 import { Show } from "../../../atoms";
-import * as data from "../../data/loadmap/loadmapdata";
-
-function Loadmap() {
-  const [sshow, setSshow] = useRecoilState(Show);
-  useEffect(() => {
-    setSshow(true);
-  }, [setSshow]);
-
-  return (
-    <div className="loadmap-container">{sshow ? <Story /> : <Quiz />}</div>
-  );
-}
-export default Loadmap;
-
-function Quiz() {
-  return <div className="quiz">여기는 퀴즈 컴포넌트입니다.</div>;
-}
-
+import { useState } from "react";
+import { useEffect } from "react";
 function Story() {
   const { i, d } = useParams();
   const datakey = `Theme${i}${d}`;
@@ -70,8 +53,6 @@ function Story() {
 
         <div className="story-content">
           <h1 className="story-title">{currentTheme.title}</h1>
-          
-          {/* 🔑 애니메이션 작동을 위한 핵심 수정: key={currentPage} 추가 🔑 */}
           <p key={currentPage} className="story-text">
             {currentTheme.story[currentPage]}
           </p>
@@ -107,3 +88,4 @@ function Story() {
     </div>
   );
 }
+export default Story

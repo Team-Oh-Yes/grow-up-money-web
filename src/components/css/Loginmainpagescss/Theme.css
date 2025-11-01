@@ -141,7 +141,7 @@ h5 {
   overflow: hidden; /* 복원 */
 }
 
-.tama{
+.tama {
   width: 100%;
   height: 100%;
   display: flex;
@@ -171,7 +171,7 @@ h5 {
   background-color: #fe7a4e;
 }
 .Fifth1 {
-  background-color: #FE6734;
+  background-color: #fe6734;
 }
 .First2 {
   background-color: #fec281;
@@ -264,19 +264,19 @@ h5 {
   background-color: #6dc5b3;
 }
 .First8 {
-  background-color: #B8D3E0;
+  background-color: #b8d3e0;
 }
 .Second8 {
-  background-color: #A6C8D8;
+  background-color: #a6c8d8;
 }
 .Third8 {
-  background-color: #95BCD0;
+  background-color: #95bcd0;
 }
 .Fouth8 {
-  background-color: #83B1C9;
+  background-color: #83b1c9;
 }
 .Fifth8 {
-  background-color: #71A6C1;
+  background-color: #71a6c1;
 }
 
 .First9 {
@@ -321,6 +321,7 @@ h5 {
   flex-shrink: 0;
   opacity: 0.7;
   transition: all 1s ease;
+  position: relative;
 }
 .ho:hover {
   opacity: 1;
@@ -471,7 +472,7 @@ p {
   align-items: center;
   color: rgb(255, 255, 255);
   font-weight: 600;
-  background-color: #5F9BB9;
+  background-color: #5f9bb9;
 }
 .nextcon9 {
   display: flex;
@@ -494,4 +495,40 @@ p {
   height: 15px;
   object-fit: contain;
   margin: 0px;
+}
+.choice {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.4s ease; 
+  pointer-events: none; 
+}
+.learn {
+  border: #ffbe85 solid 2px;
+  background-color: #fff0de;
+  color: #fe8401;
+  width: 6rem;
+  height: 2.2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+.quiz {
+  border: #ffbe85 solid 2px;
+  background-color: #fff0de;
+  color: #fe8401;
+  width: 6rem;
+  height: 2.2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+.ho:hover .choice,
+.ho1:hover .choice {
+  opacity: 1;
+  pointer-events: auto; /* 보일 때는 클릭 이벤트 허용 */
 }

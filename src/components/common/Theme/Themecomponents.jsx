@@ -91,23 +91,26 @@ function Themecomponents() {
   }
   return (
     <div className="tama">
-      <div className={`First${id} ho`} onClick={()=> navigate('/login/quiz/1')}>
+      <div className={`First${id} ho`} onClick={()=> navigate(`/login/quiz/${id}/1`)}>
         <Tamatitle n={id} m={1} />
         <TamaP n={n[0]} />
+        <div className="choose">
+
+        </div>
       </div>
-      <div className={`Second${id} ho`} onClick={()=> navigate(`/login/${id}/2`)} >
+      <div className={`Second${id} ho`} onClick={()=> navigate(`/login/quiz/${id}/2`)} >
         <Tamatitle n={id} m={2} />
         <TamaP n={n[1]} />
       </div>
-      <div className={`Third${id} ho`} onClick={()=> navigate(`/login/${id}/3`)}>
+      <div className={`Third${id} ho`} onClick={()=> navigate(`/login/quiz/${id}/3`)}>
         <Tamatitle n={id} m={3} />
         <TamaP n={n[2]} />
       </div>
-      <div className={`Fouth${id} ho`} onClick={()=> navigate(`/login/${id}/4`)}>
+      <div className={`Fouth${id} ho`} onClick={()=> navigate(`/login/quiz/${id}/4`)}>
         <Tamatitle n={id} m={4} />
         <TamaP n={n[3]} />
       </div>
-      <div className={`Fifth${id} ho`} onClick={()=> navigate(`/login/${id}/5`)}>
+      <div className={`Fifth${id} ho`} onClick={()=> navigate(`/login/quiz/${id}/5`)}>
         <Tamatitle n={id} m={5} />
         <TamaP n={n[4]} />
       </div>

@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         element: <Themecomponents />,
       },
       {
-        path: "quiz/:i",
+        path: "quiz/:i/:d",
         element: <Loadmap />,
       },
     ],

@@ -73,13 +73,13 @@ function ThirdMainPages() {
 
       {/* 하단 검은색 영역 */}
       <div className="footer">
-        <h2>GROW UP MONEY</h2>
+        <h2 className="ftitlem">GROW UP MONEY</h2>
         <hr></hr>
         <p className="D">
           이용약관 | 무이용약관 | 개인정보처리방침 | 책임준수정책
         </p>
-        <p>대구광역시 달성군 구지면 창리로11길 93</p>
-        <p>© Oh! YeeSi | GROW UP MONEY</p>
+        <p className="ftitle">대구광역시 달성군 구지면 창리로11길 93</p>
+        <p className="ftitle">© Oh!Yes | 전화번호: 010-1234-5678 | 이메일: me@ohyes.com</p>
       </div>
     </div>
   );

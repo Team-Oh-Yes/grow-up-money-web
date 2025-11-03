@@ -10,7 +10,7 @@ import rank from "../../../img/rank.png";
 import map from "../../../img/loadmap.png";
 import store from "../../../img/store.png";
 import king from "../../../img/crown.png";
-import ticket from "../../../img/티켓2.png";
+import ticket from "../../../img/gacha2.png";
 import pro from "../../../img/프로필.png";
 import heart from "../../../img/heart.png";
 import MobileBlocker from "../../../MobileBlocker";

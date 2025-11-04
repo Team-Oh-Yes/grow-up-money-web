@@ -23,7 +23,7 @@ const Container = styled.div`
 
 const Header = styled.header`
   height: 73px;
-  background: #111;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,9 +50,9 @@ const Header = styled.header`
 `;
 
 const LogoBox = styled.div`
-  color: #fff;
+  color: #FE8401;
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 32px !important;
   font-weight: 700;
   margin-left: 28px;
 
@@ -339,14 +339,7 @@ const Fall = () => {
 function Navbar({setLogin}) {
   return (
     <Header>
-      <LogoBox>GROWupMONEY</LogoBox>
-      <NavMenu>
-        <button className="Topbutton">프로그램 정보</button>
-        <button className="Topbutton">미디어</button>
-        <button className="Topbutton">소식</button>
-        <button className="Topbutton">고객지원</button>
-        <button className="Topbutton">소셜미디어</button>
-      </NavMenu>
+      <LogoBox>Oh!Yes</LogoBox>
       <UserMenu>
         <button className="login-btn" onClick={()=>setLogin(true)}>지금배우기</button>
       </UserMenu>

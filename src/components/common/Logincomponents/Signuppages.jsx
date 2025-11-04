@@ -1,15 +1,17 @@
 import { useState } from "react";
 import "../../css/Loginpagescss/Signuppages.css";
+import Sign from "../../api/signup";
 
-// setSignup, setLogin prop을 받도록 수정
 function Signuppages({ setSignup, setLogin }) {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [checkpw, setCheckpw] = useState("");
+  const [email, setEmail] = useState("");
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
-  const [checkpw, setCheckpw] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  // 토스트 메시지를 보여주는 함수 (타입 추가)
+  // 토스트 메시지를 보여주는 함수
   const showToast = (message, type = "error") => {
     setToastMessage(message);
     setToastType(type);
@@ -19,17 +21,64 @@ function Signuppages({ setSignup, setLogin }) {
     }, 3000);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!id || !password || !checkpw) {
+    
+    // 유효성 검사
+    if (!id || !password || !checkpw || !email) {
       showToast("모든 필드를 입력해주세요.", "error");
       return;
     }
+    
     if (password !== checkpw) {
       showToast("비밀번호가 일치하지 않습니다.", "error");
       return;
     }
-    showToast("회원가입 성공!", "success");
+
+    // 이메일 형식 검사 (선택사항)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showToast("올바른 이메일 형식을 입력해주세요.", "error");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // API 요청 데이터
+      const signupData = {
+        username: id,
+        password: password,
+        email: email
+      };
+
+      // Sign axios 인스턴스를 사용하여 회원가입 요청
+      const response = await Sign.post('/users/signup', signupData); // 엔드포인트는 실제 API에 맞게 수정하세요
+      
+      showToast("회원가입 성공!", "success");
+      
+      // 성공 후 로그인 페이지로 이동 (2초 후)
+      setTimeout(() => {
+        setSignup(false);
+      }, 2000);
+      
+    } catch (error) {
+      // 에러 처리
+      if (error.response) {
+        // 서버가 응답을 반환한 경우
+        const errorMessage = error.response.data.message || "회원가입에 실패했습니다.";
+        showToast(errorMessage, "error");
+      } else if (error.request) {
+        // 요청이 전송되었지만 응답을 받지 못한 경우
+        showToast("서버와 연결할 수 없습니다.", "error");
+      } else {
+        // 요청 설정 중에 오류가 발생한 경우
+        showToast("오류가 발생했습니다. 다시 시도해주세요.", "error");
+      }
+      console.error("회원가입 에러:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleClose = () => {
@@ -58,6 +107,15 @@ function Signuppages({ setSignup, setLogin }) {
             placeholder="아이디를 입력해주세요"
             value={id}
             onChange={(e) => setId(e.target.value)}
+            disabled={isLoading}
+          />
+          <input
+            type="email"
+            className="input-field"
+            placeholder="이메일을 입력해주세요"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isLoading}
           />
           <input
             type="password"
@@ -65,6 +123,7 @@ function Signuppages({ setSignup, setLogin }) {
             placeholder="비밀번호를 입력해주세요"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            disabled={isLoading}
           />
           <input
             type="password"
@@ -72,11 +131,12 @@ function Signuppages({ setSignup, setLogin }) {
             placeholder="비밀번호를 다시 입력해주세요"
             value={checkpw}
             onChange={(e) => setCheckpw(e.target.value)}
+            disabled={isLoading}
           />
-          <button type="submit" className="login">
-            가입하기
+          <button type="submit" className="login" disabled={isLoading}>
+            {isLoading ? "가입 중..." : "가입하기"}
           </button>
-          <button type="button" className="google-login-btn">
+          <button type="button" className="google-login-btn" disabled={isLoading}>
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
               alt="Google login"
@@ -87,7 +147,7 @@ function Signuppages({ setSignup, setLogin }) {
         <div className="signup-link">
           <p>
             계정을 만들었나요?{" "}
-            <button className="signup" onClick={() => setSignup(false)}>
+            <button className="signup" onClick={() => setSignup(false)} disabled={isLoading}>
               로그인하기
             </button>
           </p>

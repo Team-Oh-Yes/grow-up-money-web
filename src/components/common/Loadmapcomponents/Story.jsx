@@ -1,12 +1,16 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import * as data from "../../data/loadmap/loadmapdata";
 import { useRecoilState } from "recoil";
 import { Show } from "../../../atoms";
-import { useState } from "react";
-import { useEffect } from "react";
+import * as data from "../../data/loadmap/loadmapdata";
 function Story() {
-  const { i, d } = useParams();
-  const datakey = `Theme${i}${d}`;
+  const { i, d } = useParams(); // i = "theme1", d = "unit2" 와 같은 값 가정
+  const original_string = i; // "theme1"
+  const result1 = original_string.replace("theme", ""); // "1"만 남음
+  const original = d; // "unit2"
+  const result2 = original.replace("unit", ""); // "2"만 남음
+  const datakey = `Theme${result1}${result2}`; // 예: "Theme12"
+  console.log(datakey);
   const currentTheme = data[datakey];
 
   const [sshow, setSshow] = useRecoilState(Show);
@@ -24,7 +28,7 @@ function Story() {
   if (!currentTheme) {
     return <div className="story">데이터를 찾을 수 없습니다: {datakey}</div>;
   }
-  
+
   const nextPage = () => {
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
@@ -40,13 +44,15 @@ function Story() {
   };
 
   if (totalPages === 0) {
-      return null;
+    return null;
   }
 
   return (
     <div className="story">
       <div className="story-container">
-        <button className="skip" onClick={()=> setSshow(false)}>스킵하기</button>
+        <button className="skip" onClick={() => setSshow(false)}>
+          스킵하기
+        </button>
         <div className="page-number">
           {currentPage + 1} / {totalPages}
         </div>
@@ -77,10 +83,7 @@ function Story() {
             ))}
           </div>
 
-          <button
-            onClick={nextPage}
-            className="nav-button"
-          >
+          <button onClick={nextPage} className="nav-button">
             {currentPage === totalPages - 1 ? "퀴즈" : "다음"} →
           </button>
         </div>
@@ -88,4 +91,4 @@ function Story() {
     </div>
   );
 }
-export default Story
+export default Story;

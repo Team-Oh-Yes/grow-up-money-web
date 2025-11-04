@@ -5,6 +5,7 @@ import Loginmaincomponents from "./components/common/Loginmaincomponents/Loginma
 import MainTheme from "./components/common/Theme/MainTheme";
 import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
 import Error from "./error/Error";
+import Quiz from "./components/common/Loadmapcomponents/Quiz";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: "/login",
+    path: "roadmap",
     element: <Loginmaincomponents />,
     children: [
       {
@@ -25,8 +26,12 @@ const router = createBrowserRouter([
         element: <Themecomponents />,
       },
       {
-        path: "Learn/:i/:d",
+        path: ":i/:d/learn",
         element: <Learn />,
+      },
+      {
+        path: ":i/:d/quiz",
+        element: <Quiz />,
       },
     ],
   },

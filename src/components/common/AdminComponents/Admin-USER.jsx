@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../css/Admincss/Admin-USER.css';
 import search from '../../../img/searchIcon.svg';
-import logo from '../../../img/logo.png';
+import logo from '../../../img/LOGO.png';
 
 export default function UserManagement() {
     const [searchTerm, setSearchTerm] = useState('');

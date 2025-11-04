@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../../css/loadmapcss/Quiz.css"; // CSS 경로는 유지
 
 const sample = [
   {
@@ -38,43 +39,45 @@ const sample = [
 
 function Quiz() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [isAnswered, setIsAnswered] = useState(false);
-  const [score, setScore] = useState(0);
+  const [isCorrect, setIsCorrect] = useState(null); // null: 초기 상태, true: 정답, false: 오답
+  const [score, setScore] = useState(0); // 점수 상태 추가
 
+  // 현재 퀴즈 데이터
   const currentQuiz = sample[currentQuestionIndex];
+
+  // 모든 퀴즈를 완료했는지 확인
   const isQuizFinished = currentQuestionIndex >= sample.length;
 
-  const handleAnswerClick = (option) => {
-    if (isAnswered) return;
+  // 답변 처리 함수
+  const handleAnswerClick = (selectedOption) => {
+    // 이미 답을 선택한 후라면 함수 실행 중단 (2초 타이머 동안 중복 클릭 방지)
+    if (isCorrect !== null) return;
 
-    setSelectedOption(option);
-    const isCorrectAnswer = option === currentQuiz.correctAnswer;
+    const isCorrectAnswer = selectedOption === currentQuiz.correctAnswer;
+    setIsCorrect(isCorrectAnswer);
 
     if (isCorrectAnswer) {
-      setIsAnswered(true);
-      setScore((prevScore) => prevScore + 1);
-
-      setTimeout(() => {
-        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-        setIsAnswered(false);
-        setSelectedOption(null);
-      }, 2000);
+      setScore((prevScore) => prevScore + 1); // 정답일 경우 점수 증가
     }
+
+    // 2초 후 다음 문제로 이동
+    setTimeout(() => {
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+      setIsCorrect(null); // 상태 초기화
+    }, 2000);
   };
 
+  // 문제 컨테이너 클래스 결정
   const quizContainerClass = `Qcon ${
-    isAnswered ? "TQcon" : selectedOption !== null ? "FQcon" : ""
+    isCorrect === true ? "TQcon" : isCorrect === false ? "FQcon" : ""
   }`;
 
-  const getButtonClass = (option) => {
-    if (selectedOption === option) {
-      const isCorrectAnswer = option === currentQuiz.correctAnswer;
-      return isCorrectAnswer ? "AC TAC" : "AC FAC";
-    }
-    return "AC";
-  };
+  // 버튼 클래스 결정 (현재는 모든 버튼에 동일하게 적용되도록 수정)
+  const buttonClass = `AC ${
+    isCorrect === true ? "TAC" : isCorrect === false ? "FAC" : ""
+  }`;
 
+  // 퀴즈 완료 화면 렌더링
   if (isQuizFinished) {
     return (
       <div className="Qmaincon">
@@ -96,21 +99,24 @@ function Quiz() {
 
   return (
     <div className="Qmaincon">
+      {/* 문제 번호 표시 */}
       <p className="Qnumber">
         문제 {currentQuestionIndex + 1} / {sample.length}
       </p>
 
+      {/* 문제 컨테이너 */}
       <div className={quizContainerClass}>
         <p>{currentQuiz.question}</p>
       </div>
 
+      {/* 답변 컨테이너 */}
       <div className="Acon">
         {currentQuiz.options.map((option, index) => (
           <button
             key={index}
-            className={getButtonClass(option)}
+            className={buttonClass}
             onClick={() => handleAnswerClick(option)}
-            disabled={isAnswered}
+            disabled={isCorrect !== null} // 답변을 선택한 후에는 비활성화
           >
             <p className="QA">{option}</p>
           </button>

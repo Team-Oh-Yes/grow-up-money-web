@@ -164,7 +164,7 @@ export default function SignUp() {
 
                         {/* 약관 텍스트 */}
                         <div className="signup-terms">
-                            <p>The Google <a className="signup-link" href="#">Privacy Policy</a> and <a className="signup-link" href="#">Terms of Service</a> apply.</p>
+                            <p>The Google <a className="signup-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a className="signup-link" href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> apply.</p>
                         </div>
                     </div>
                 </div>

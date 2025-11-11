@@ -138,7 +138,7 @@ export default function SignUp() {
                     
                         <div className="social-signup-buttons">
                             {/* 구글 회원가입 버튼 */}
-                            <Earth img={GoogleIcon} />
+                            <Earth img={GoogleIcon} alt="Sign up with Google" />
                         </div>
                     </div>
 

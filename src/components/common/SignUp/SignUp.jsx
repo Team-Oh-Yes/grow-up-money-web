@@ -119,7 +119,7 @@ export default function SignUp() {
                     // 요청 설정 중에 에러가 발생한 경우
                     toast.error(error.message, toastcode(3000));
                     toast.clearWaitingQueue();
-                };
+                }
             });
     };
 

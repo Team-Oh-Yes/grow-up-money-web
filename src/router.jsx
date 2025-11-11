@@ -11,6 +11,15 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Mainpages />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/login",
+    element: <Loginmaincomponents />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin",
     element: <Adminpages />,
     errorElement: <Error />,
   },

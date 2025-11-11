@@ -58,7 +58,6 @@ const AdminPages = () => {
                     </span>
                 </div>
             </div>
-
             <div className="pageRender">{Render()}</div>
         </div>
     );

@@ -76,7 +76,10 @@ function ThirdMainPages() {
         <h2>GROW UP MONEY</h2>
         <hr></hr>
         <p className="D">
-          이용약관 | 무이용약관 | 개인정보처리방침 | 책임준수정책
+          <a href="/terms" target="_blank" rel="noopener noreferrer">이용약관</a> |
+          <a href="/no-terms" target="_blank" rel="noopener noreferrer"> 무이용약관</a> |
+          <a href="/privacy" target="_blank" rel="noopener noreferrer"> 개인정보처리방침</a> |
+          <a href="/policy" target="_blank" rel="noopener noreferrer"> 책임준수정책</a>
         </p>
         <p>대구광역시 달성군 구지면 창리로11길 93</p>
         <p>© Oh! YeeSi | GROW UP MONEY</p>

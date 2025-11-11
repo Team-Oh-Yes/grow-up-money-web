@@ -20,10 +20,10 @@ export default function SignUp() {
 
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const Earth = ({ img }) => {
+    const Earth = ({ img, alt }) => {
         return (
             <button type="button" className="social-signup-btn">
-                <img src={img} className="social-signup-icon" />
+                <img src={img} alt={alt} className="social-signup-icon" />
             </button>
         );
     };

@@ -1,7 +1,7 @@
-
 import React, { useState, useCallback, useMemo } from 'react';
 import '../../css/Admincss/Admin-USER.css';
 import search from '../../../img/searchIcon.svg';
+import StatusPopup from './Admin-USER-status.jsx'
 
 // 한글 검색 유틸리티 함수 (es-hangul 대체)
 const hangulIncludes = (text, search) => {
@@ -103,7 +103,7 @@ const ActionButton = ({ type, status, onClick, disabled }) => {
 };
 
 // 유저 행 컴포넌트
-const UserRow = React.memo(({ user, onAction }) => {
+const UserRow = React.memo(({ user, onAction, onBanClick }) => {
     return (
         <tr>
             <td>{user.id}</td>
@@ -115,7 +115,7 @@ const UserRow = React.memo(({ user, onAction }) => {
                 <ActionButton 
                     type={ACTION_TYPES.BAN}
                     status={user.status}
-                    onClick={() => onAction(user.id, ACTION_TYPES.BAN)}
+                    onClick={() => onBanClick(user)}
                     disabled={user.status === USER_STATUS.BANNED}
                 />
             </td>
@@ -152,29 +152,41 @@ export default function UserManagement() {
     const [searchTerm, setSearchTerm] = useState('');
     const [users, setUsers] = useState(INITIAL_USERS);
 
-    // 필터링된 유저 목록 (메모이제이션)
+    // 팝업 상태 추가
+    const [selectedUser, setSelectedUser] = useState(null); // 현재 정지하려는 유저 정보
+    const [isPopupOpen, setIsPopupOpen] = useState(false); // 팝업 열림/닫힘 상태
+
+    // 필터링된 유저 목록
     const filteredUsers = useMemo(() => {
         if (!searchTerm.trim()) return users;
         return users.filter(user => hangulIncludes(user.id, searchTerm));
     }, [users, searchTerm]);
 
-    // 액션 핸들러
+    // 계정 정지 버튼 클릭 시 팝업 오픈
+    const handleBanClick = useCallback((user) => {
+        setSelectedUser(user);
+        setIsPopupOpen(true);
+    }, []);
+
+    // 팝업 닫기 핸들러
+    const handleClosePopup = useCallback(() => {
+        setIsPopupOpen(false);
+        setSelectedUser(null);
+    }, []);
+
+    // 액션 핸들러 (포인트 지급, 복구)
     const handleAction = useCallback((userId, actionType) => {
         setUsers(prevUsers => 
             prevUsers.map(user => {
                 if (user.id !== userId) return user;
 
                 switch (actionType) {
-                    case ACTION_TYPES.BAN:
-                        alert(`${userId} 계정을 정지합니다.`);
-                        return { ...user, status: USER_STATUS.BANNED };
-                    
                     case ACTION_TYPES.POINT:
-                        alert(`${userId}에게 포인트를 지급합니다.`);
+                        // alert(`${userId}에게 포인트를 지급합니다.`);
                         return user;
                     
                     case ACTION_TYPES.RECOVER:
-                        alert(`${userId} 계정을 복구합니다.`);
+                        // alert(`${userId} 계정을 복구합니다.`);
                         return { ...user, status: USER_STATUS.NORMAL };
                     
                     default:
@@ -206,6 +218,7 @@ export default function UserManagement() {
                                 key={user.id}
                                 user={user}
                                 onAction={handleAction}
+                                onBanClick={() => handleBanClick(user)}
                             />
                         ))
                     ) : (
@@ -213,6 +226,14 @@ export default function UserManagement() {
                     )}
                 </tbody>
             </table>
+
+            {/* 팝업 렌더링 */}
+            {isPopupOpen && (
+                <StatusPopup 
+                    user={selectedUser}
+                    onClose={handleClosePopup}
+                />
+            )}
         </div>
     );
 }

@@ -1,11 +1,13 @@
 
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
+import LoginAndSignup from "./components/common/LoginAndSignup";
 
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <LoginAndSignup />
+      {/* <RouterProvider router={router} /> */}
     </>
   );
 }

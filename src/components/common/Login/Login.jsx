@@ -70,7 +70,7 @@ export default function Login() {
 
         // 유효성 검사
         if (!sendData.username) {
-            toast.info('닉네임을 입력해주세요', toastcode(1000));
+            toast.info('아이디를 입력해주세요', toastcode(1000));
             toast.clearWaitingQueue();
             return;
         } else if (!sendData.password) {

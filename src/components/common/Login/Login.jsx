@@ -23,8 +23,8 @@ export default function Login() {
 
     const Earth = ({ img, alt }) => {
         return (
-            <button type="button" className="social-signup-btn">
-                <img src={img} alt={alt} className="social-signup-icon" />
+            <button type="button" className="social-login-btn">
+                <img src={img} alt={alt} className="social-login-icon" />
             </button>
         );
     };

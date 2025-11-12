@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Mainpages from "./components/Add/Mainpages";
 import Loginmaincomponents from "./components/common/Loginmaincomponents/Loginmaincomponents";
+import Adminpages from "./components/common/AdminComponents/AdminPages";
 import Error from "./error/Error";
 import MainTheme from "./components/common/Theme/MainTheme";
 // You need to import the Theme component
@@ -12,6 +13,16 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Mainpages />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/login",
+    element: <Loginmaincomponents />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin",
+    element: <Adminpages />,
     errorElement: <Error />,
   },
   {

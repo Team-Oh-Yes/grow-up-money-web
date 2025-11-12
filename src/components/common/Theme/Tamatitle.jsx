@@ -1,5 +1,5 @@
 import { memo } from "react"; // 잊지 말고 import 해야 합니다.
-import arrow from "../../../img/화살표.png";
+import arrow from "../../../img/arrowleft.png";
 function Tamatitle(props) {
   return (
     <div className="tamatitle">

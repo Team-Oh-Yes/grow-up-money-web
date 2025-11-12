@@ -6,6 +6,7 @@ import MainTheme from "./components/common/Theme/MainTheme";
 // You need to import the Theme component
 import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
 import SignUp from "./components/common/SignUp/SignUp.jsx";
+import Login from "./components/common/Login/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: "/login",
+    path: "/home",
     element: <Loginmaincomponents />,
     children: [
       {  
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         element: <Themecomponents />,
       },
     ],
+  },
+  {
+    path: "/Login",
+    element: <Login />,
   },
   {
     path: "/signup",

@@ -2,6 +2,7 @@
 import '../../css/LoginAndSignUp/SignUp.css';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 // AxiosInstance import
@@ -12,6 +13,8 @@ import GoogleIcon from '../../../img/Google-icon.png';
 
 // Const
 export default function SignUp() {
+    const navigate = useNavigate();
+
     const [sendData, setSendData] = useState({
         username: "",
         password: "",
@@ -104,11 +107,8 @@ export default function SignUp() {
         axiosInstance.post('/users/signup', sendData)
             // 성공 시
             .then(response => {
-                toast.success('회원가입 성공!', { ...toastcode(3000) });
-                toast.clearWaitingQueue();
-                
-                // state 초기화 (뒤로가기 후 다시 접속 시 메시지 재표시 방지)
-                window.history.replaceState({}, document.title);
+                // 로그인 페이지로 이동하면서 state 전달
+                navigate('/login', { state: { signUpSuccess: true } });
             })
 
             // 실패 시

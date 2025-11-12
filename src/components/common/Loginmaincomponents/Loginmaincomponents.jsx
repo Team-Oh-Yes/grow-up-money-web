@@ -16,6 +16,8 @@ import heart from "../../../img/하트.png";
 import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Loginmaincomponents() {
   const navigate = useNavigate();
@@ -23,6 +25,28 @@ function Loginmaincomponents() {
   const [active, setActive] = useState("box1");
   const [isMobileBlocked, setIsMobileBlocked] = useRecoilState(Mobilestate);
   const [isExtraLargeScreen, setIsExtraLargeScreen] = useRecoilState(Big);
+
+  const toastcode = (time = 1000) => ({
+    position: "top-right",
+    autoClose: time,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: 0,
+    theme: "light",
+  });
+
+  // 로그인 성공 시 토스트 메시지 표시
+  useEffect(() => {
+      if (location.state?.loginSuccess) {
+          toast.success('로그인 성공!', {...toastcode(2000)});
+          toast.clearWaitingQueue();
+          
+          // state 초기화 (뒤로가기 후 다시 접속 시 메시지 재표시 방지)
+          window.history.replaceState({}, document.title);
+      }
+  }, [location]);
 
   useEffect(() => {
     const handleResize = () => {

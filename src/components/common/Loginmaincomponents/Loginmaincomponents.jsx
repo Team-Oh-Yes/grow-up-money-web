@@ -81,7 +81,7 @@ function Loginmaincomponents() {
 
   const Action = (e) => {
     setActive(e);
-    navigate("/login");
+    navigate("/home");
   };
 
   return (

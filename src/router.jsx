@@ -8,6 +8,8 @@ import MainTheme from "./components/common/Theme/MainTheme";
 import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import Login from "./components/common/Login/Login.jsx";
+import Planpages from "./components/common/plancomponents/Planpages";
+import EULA from "./components/common/Serviccenter/EULA";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,15 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <SignUp />,
   },
+  {
+    path: "/eula",
+    element: <EULA />,
+    errorElement: <Error />
+  },
+  {path:"/plan",
+    element :<Planpages />,
+    errorElement: <Error />
+  }
 ]);
 
 export default router;

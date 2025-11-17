@@ -5,12 +5,10 @@ import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
 
 function Themecomponents() {
-  const { id } = useParams(); // useParams 훅 추가
-  const navigate = useNavigate(); // useNavigate 훅 추가
-  console.log(id);
+  const { id } = useParams(); 
+  const navigate = useNavigate(); 
   const original_string = id;
   const result = original_string.replace("theme", "");
-  console.log(result)
   let n = [];
   if (id === "theme1") {
     n = [
@@ -38,7 +36,7 @@ function Themecomponents() {
       "신용점수 낮으면 나중에 \n무슨 일이 생길까?",
       "청소년이 자주 당하는\n 금융 사기 피하는 법",
     ];
-  } else if (id === "4") {
+  } else if (id === "theme4") {
     n = [
       "투자는 돈 있는 어른들만\n 하는 거라고? ",
       "주식, 진짜 사면 내 돈이\n 회사에 들어가는 거야?",

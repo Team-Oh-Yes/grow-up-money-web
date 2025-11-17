@@ -1,11 +1,18 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Mainpages from "./components/Add/Mainpages";
 import Learn from "./components/common/Loadmapcomponents/Learn";
-import Loginmaincomponents from "./components/common/Loginmaincomponents/Loginmaincomponents";
-import MainTheme from "./components/common/Theme/MainTheme";
-import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
-import Error from "./error/Error";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
+import MainTheme from "./components/common/Theme/MainTheme";
+import Error from "./error/Error";
+
+const Loginmaincomponents = lazy(() =>
+  import("./components/common/Loginmaincomponents/Loginmaincomponents")
+);
+
+const Themecomponents = lazy(() =>
+  import("./components/common/Theme/Themecomponents")
+);
 
 const router = createBrowserRouter([
   {
@@ -15,7 +22,11 @@ const router = createBrowserRouter([
   },
   {
     path: "roadmap",
-    element: <Loginmaincomponents />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Loginmaincomponents />
+      </Suspense>
+    ),
     children: [
       {
         index: true,
@@ -23,7 +34,11 @@ const router = createBrowserRouter([
       },
       {
         path: ":id",
-        element: <Themecomponents />,
+        element: (
+          <Suspense fallback={<div>loading</div>}>
+            <Themecomponents />
+          </Suspense>
+        ),
       },
       {
         path: ":i/:d/learn",

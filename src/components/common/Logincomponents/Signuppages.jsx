@@ -45,19 +45,13 @@ function Signuppages({ setSignup, setLogin }) {
     setIsLoading(true);
 
     try {
-      // API 요청 데이터
       const signupData = {
         username: id,
         password: password,
         email: email,
       };
-
-      // Sign axios 인스턴스를 사용하여 회원가입 요청
-      const response = await Sign.post("/users/signup", signupData); // 엔드포인트는 실제 API에 맞게 수정하세요
-
+      const response = await Sign.post("/users/signup", signupData);
       showToast("회원가입 성공!", "success");
-
-      // 성공 후 로그인 페이지로 이동 (2초 후)
       setTimeout(() => {
         setSignup(false);
       }, 2000);

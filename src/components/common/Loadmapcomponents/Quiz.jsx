@@ -1,4 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { quizProgressState } from "../../../atoms";
+import answer from "../../../img/answer.png";
+import ma from "../../../img/image 11.svg";
+import nanswer from "../../../img/nanswer.png";
 import "../../css/loadmapcss/Quiz.css";
 
 const sample = [
@@ -36,13 +42,72 @@ const sample = [
 ];
 
 function Quiz() {
+  const navigate = useNavigate();
+  const { i, d } = useParams();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
-
+  const [progress, setProgress] = useRecoilState(quizProgressState);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const original_string = d || "";
+  const unitFreeString = original_string.replace("unit", "");
   const currentQuiz = sample[currentQuestionIndex];
   const isQuizFinished = currentQuestionIndex >= sample.length;
+  const handleSpacebarPress = (event) => {
+    if (!isQuizFinished && (event.key === " " || event.key === "Spacebar")) {
+      event.preventDefault();
+      setCurrentQuestionIndex((prev) => prev + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleSpacebarPress);
+    return () => {
+      window.removeEventListener("keydown", handleSpacebarPress);
+    };
+  }, [isQuizFinished, isAnswered]);
+
+  useEffect(() => {
+    if (!isInitialized) {
+      if (progress.TF) {
+        setCurrentQuestionIndex(sample.length);
+        setScore(progress.score || 0);
+      }
+      setIsInitialized(true);
+    }
+  }, []);
+
+  const handleContinue = () => {
+    navigate(`/roadmap/${i}/unit${parseInt(unitFreeString) + 1}/learn`);
+  };
+
+  const handleStop = () => {
+    navigate("/roadmap");
+  };
+
+  useEffect(() => {
+    setProgress((prev) => ({
+      ...prev,
+      totalQuestions: sample.length,
+    }));
+  }, [setProgress]);
+
+  useEffect(() => {
+    setProgress((prev) => ({
+      ...prev,
+      score: currentQuestionIndex,
+    }));
+  }, [currentQuestionIndex, setProgress]);
+
+  useEffect(() => {
+    if (isQuizFinished) {
+      setProgress((prev) => ({
+        ...prev,
+        TF: true,
+      }));
+    }
+  }, [isQuizFinished, setProgress]);
 
   const handleAnswerClick = (selectedOption) => {
     if (isAnswered) return;
@@ -51,39 +116,31 @@ function Quiz() {
     setSelectedAnswer(selectedOption);
 
     const isCorrectAnswer = selectedOption === currentQuiz.correctAnswer;
-
     if (isCorrectAnswer) {
       setScore((prev) => prev + 1);
-      setTimeout(() => {
-        setCurrentQuestionIndex((prev) => prev + 1);
-        setIsAnswered(false);
-        setSelectedAnswer(null);
-      }, 1500);
-    } else {
-      setTimeout(() => {
-        setIsAnswered(false);
-        setSelectedAnswer(null);
-      }, 1500);
     }
+
+    setCurrentQuestionIndex((prev) => prev + 1);
+    setIsAnswered(false);
+    setSelectedAnswer(null);
   };
 
   if (isQuizFinished) {
     return (
-      <div className="Qmaincon">
-        <h2>🎉 퀴즈 종료!</h2>
-        <p>
-          총 {sample.length}문제 중 {score}문제 정답!
-        </p>
-        <button
-          onClick={() => {
-            setCurrentQuestionIndex(0);
-            setScore(0);
-            setIsAnswered(false);
-            setSelectedAnswer(null);
-          }}
-        >
-          다시 시작
-        </button>
+      <div className="Ccon">
+        <div className="realcon">
+          <div>
+            <img src={ma} className="m" alt="character" />
+          </div>
+          <div className="cbox">
+            <button className="go" onClick={handleContinue}>
+              학습하러가기
+            </button>
+            <button className="stop" onClick={handleStop}>
+              그만하기
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -91,22 +148,33 @@ function Quiz() {
   return (
     <div className="Qmaincon">
       <div className="Tcon">
-        <p className="Qnumber">
-          문제 {currentQuestionIndex + 1} / {sample.length}
-        </p>
         <div className="Qcon">
-          <p>{currentQuiz.question}</p>
+          <p>
+            {currentQuestionIndex + 1}. {currentQuiz.question}
+          </p>
         </div>
       </div>
-
       <div className="Acon">
         {currentQuiz.options.map((option, index) => {
           let buttonClass = "AC";
-          if (isAnswered && option === selectedAnswer) {
-            if (option === currentQuiz.correctAnswer) buttonClass += " TAC";
-            else buttonClass += " FAC";
-          }
+          let imgSrc = null; // 기본값은 null (이미지 없음)
 
+          if (isAnswered) {
+            // 1. 선택한 답변에 대한 시각적 피드백
+            if (option === selectedAnswer) {
+              if (option === currentQuiz.correctAnswer) {
+                buttonClass += " TAC"; // 정답을 맞춤
+                imgSrc = answer;
+              } else {
+                buttonClass += " FAC"; // 오답을 선택함
+                imgSrc = nanswer;
+              }
+            }
+            // 2. 오답을 선택했을 때 정답 표시
+            else if (option === currentQuiz.correctAnswer) {
+              buttonClass += " TAC_show_correct"; // 오답 선택 시 정답을 표시
+            }
+          }
           return (
             <button
               key={index}
@@ -114,10 +182,15 @@ function Quiz() {
               onClick={() => handleAnswerClick(option)}
               disabled={isAnswered}
             >
+              {imgSrc && <img src={imgSrc} alt="정답/오답 아이콘" />}
               <p className="QA">{option}</p>
+              {imgSrc && <img src={imgSrc} alt="정답/오답 아이콘" />}
             </button>
           );
         })}
+      </div>
+      <div className="skip">
+        <p>{"<Space Bar>로 다음 문제로 넘어가기"}</p>
       </div>
     </div>
   );

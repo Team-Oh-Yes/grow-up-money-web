@@ -1,17 +1,52 @@
 :root {
   font-size: 16px;
 }
+.rcon {
+  height: 100%;
+  width: 28rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 2.4rem;
+}
 
+.topbar-progress-background {
+  flex: 1;
+  height: 2rem; 
+  background-color: #e8e8e8; /* 회색 배경 */
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.topbar-progress-bar {
+  height: 100%;
+  background-color: #fe8401;
+  transition: width 0.5s ease-in-out;
+  border-radius: 10px;
+  display: flex;
+  min-width: 0; /* 0%일 때도 자연스럽게 */
+}
+.topbar-progress-container {
+  display: flex;
+  flex:1;
+  height: 100%;
+  margin-right: 1rem;
+  align-items: center; 
+}
 /* 2. 768px ~ 1920px 사이: 16px에서 20px로 점점 커짐 (유동적 범위) */
 @media (min-width: 768px) and (max-width: 1920px) {
   :root {
     font-size: calc(16px + (20 - 16) * ((100vw - 768px) / (1920 - 768)));
   }
 }
-
 body {
   margin: 0px;
   position: relative;
+}
+@media (max-width:1024px) {
+
+    
 }
 
 .maincon {
@@ -81,7 +116,9 @@ img {
   white-space: nowrap;
   margin: 0px;
 }
-
+.QA {
+  margin: 0 !important;
+}
 .con {
   position: absolute;
   display: flex;
@@ -116,8 +153,6 @@ h5 {
 .img {
   display: flex;
   align-items: center;
-  position: absolute;
-  right: 2.5rem;
 }
 
 .premiun {
@@ -136,7 +171,8 @@ h5 {
   box-sizing: border-box;
   display: flex;
   border-radius: 15px;
-  overflow: hidden; /* tama 내부 콘텐츠를 둥글게 잘라내는 역할 */
+  overflow: hidden;
+  padding: 0rem 2rem 1.5rem 2rem !important;
 }
 
 .tama {
@@ -267,4 +303,10 @@ h5 {
   line-height: normal;
   letter-spacing: -0.09rem;
   margin: 0px;
+}
+.b{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

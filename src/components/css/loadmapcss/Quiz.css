@@ -8,7 +8,9 @@
   position: relative;
   box-sizing: border-box;
 }
-
+.rcon {
+  width: auto;
+}
 /* 상단 영역 */
 .Tcon {
   position: relative;
@@ -16,6 +18,9 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
 }
 
 /* 문제 박스 */
@@ -38,18 +43,20 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
   gap: 1.5rem;
   position: relative;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 /* 버튼 기본 */
 .AC {
   width: 100%;
   height: 3.5rem;
-  border: 2px #e5e5e5 solid;
+  border: 3px #e5e5e5 solid;
   border-radius: 12px;
   background-color: transparent;
   color: black;
@@ -65,9 +72,19 @@
 /* 정답/오답 시 */
 .TAC {
   border-color: #94fd68;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  align-items: center;
 }
 .FAC {
   border-color: #fd8d68;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  align-items: center;
 }
 
 /* 정답/오답 시 문제 박스 강조 */
@@ -153,4 +170,63 @@
   .Qnumber {
     font-size: 1.2rem;
   }
+}
+.go {
+  background-color: #fe8401;
+  border: none;
+  width: 7rem;
+  height: 2.4rem;
+  border-radius: 12px;
+  font-size: 0.96rem;
+}
+.stop {
+  background-color: #ffffff;
+  border: none;
+  width: 7rem;
+  height: 2.4rem;
+  border-radius: 12px;
+  color: #fe8401;
+    font-size: 0.96rem;
+}
+.chose {
+  display: flex;
+  gap: 8px;
+}
+.cbox {
+  display: flex;
+  gap: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 150%);
+}
+.Ccon {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  background-color: rgb(0, 0, 0, 0.5);
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+.realcon {
+  background-color: white;
+  border-radius: 30px;
+  width: 19rem;
+  height: 20rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 2rem;
+  padding-top: 2rem;
+}
+.skip{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

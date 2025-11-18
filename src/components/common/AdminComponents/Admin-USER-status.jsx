@@ -24,7 +24,7 @@ export default function StatusPopup({ user, onClose }) {
                 <div className="status-section">
                     <p className="status-section-title">지속 시간</p>
                     <div className="status-duration">
-                        {['1일', '3일', '1주', '영구'].map((label) => (
+                        {['1일', '3일', '1주','1달', '영구'].map((label) => (
                             <button
                                 key={label}
                                 className={selected === label ? 'active' : ''}

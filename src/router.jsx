@@ -79,6 +79,11 @@ const router = createBrowserRouter([
   {path:"/plan",
     element :<Planpages />,
     errorElement: <Error />
+  },
+  {
+    path: "/admin/*",
+    element: <Adminpages />,
+    errorElement: <Error />,
   }
 ]);
 

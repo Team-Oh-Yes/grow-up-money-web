@@ -37,12 +37,30 @@ function Loginmaincomponents() {
     theme: "light",
   });
 
+  // 페이지 로드 시 쿠키 확인 및 인증 체크
+  useEffect(() => {
+      console.log('현재 쿠키:', document.cookie);
+      
+      // accessToken 또는 refreshToken이 없으면 로그인 페이지로 리다이렉트
+      const hasAccessToken = document.cookie.includes('accessToken');
+      const hasRefreshToken = document.cookie.includes('refreshToken');
+      
+      if (!hasAccessToken && !hasRefreshToken) {
+          console.log('쿠키 없음 - 로그인 페이지로 이동');
+          toast.error('로그인이 필요합니다', toastcode(2000));
+          toast.clearWaitingQueue();
+          navigate('/login', { replace: true });
+      } else {
+          console.log('쿠키 확인됨 - 인증 성공');
+      }
+  }, [navigate]);
+
   // 로그인 성공 시 토스트 메시지 표시
   useEffect(() => {
       if (location.state?.loginSuccess) {
           toast.success('로그인 성공!', {...toastcode(2000)});
           toast.clearWaitingQueue();
-          
+  
           // state 초기화 (뒤로가기 후 다시 접속 시 메시지 재표시 방지)
           window.history.replaceState({}, document.title);
       }

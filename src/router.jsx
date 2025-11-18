@@ -1,11 +1,10 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Mainpages from "./components/Add/Mainpages";
-import Loginmaincomponents from "./components/common/Loginmaincomponents/Loginmaincomponents";
+// import Loginmaincomponents from "./components/common/Loginmaincomponents/Loginmaincomponents";
 import Adminpages from "./components/common/AdminComponents/AdminPages";
 import Error from "./error/Error";
-import MainTheme from "./components/common/Theme/MainTheme";
-import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
+// import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import Login from "./components/common/Login/Login.jsx";
 import Planpages from "./components/common/plancomponents/Planpages";
@@ -13,7 +12,7 @@ import EULA from "./components/common/Serviccenter/EULA";
 import Learn from "./components/common/Loadmapcomponents/Learn";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
 import MainTheme from "./components/common/Theme/MainTheme";
-import Error from "./error/Error";
+
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents")

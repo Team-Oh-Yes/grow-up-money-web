@@ -344,7 +344,7 @@ function Navbar({setLogin}) {
         <button className="Topbutton">프로그램 정보</button>
         <button className="Topbutton">미디어</button>
         <button className="Topbutton">소식</button>
-        <button className="Topbutton">고객지원</button>
+        <button className="Topbutton" onClick={()=> window.location.href="/servicecenter/notice"}>고객 지원</button>
         <button className="Topbutton">소셜미디어</button>
       </NavMenu>
       <UserMenu>

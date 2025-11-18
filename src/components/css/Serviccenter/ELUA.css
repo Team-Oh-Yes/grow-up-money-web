@@ -44,9 +44,24 @@ nav ul li a.active {
     margin-bottom: 2rem;
     font-family: Pretendard-Bold, sans-serif;
     text-align: center;
+    padding-top: 2rem;
 }
 
 .line {
     border-top: 0.1rem solid #d3d3d3;
     margin: 2rem 0;
+}
+
+.mainText {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333333;
+    font-family: Pretendard-Regular, sans-serif;
+    padding: 0 8rem;
+}
+
+.mainText h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 2rem;
 }

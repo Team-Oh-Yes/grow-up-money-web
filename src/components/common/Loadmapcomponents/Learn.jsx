@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ma from "../../../img/image 11.svg";
 import arrow from "../../../img/오른쪽.png";
-import "../../css/loadmapcss/Learn.css";
 import { Ldata } from "../../data/loadmap/learndata";
+import "../../css/loadmapcss/learn.css"
 function Learn() {
   const [story, setStory] = useState(0);
   const [showChose, setShowChose] = useState(false);

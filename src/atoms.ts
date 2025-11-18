@@ -15,6 +15,18 @@ export const Mobilestate = atom({
   default: false,
 });
 export const Big = atom({
-    key:"Big",
-    default:false
-})
+  key: "Big",
+  default: false,
+});
+export const Show = atom({
+  key: "story",
+  default: true,
+});
+export const quizProgressState = atom({
+  key: "quizProgressState",
+  default: {
+    TF: false,
+    score: 0,
+    totalQuestions: 0,
+  },
+});

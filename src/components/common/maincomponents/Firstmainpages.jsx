@@ -340,7 +340,7 @@ function Navbar({setLogin}) {
   return (
     <Header>
       <LogoBox>Oh!Yes</LogoBox>
-      <LogoBox>GROWupMONEY</LogoBox>
+      <LogoBox>GROW MONEY</LogoBox>
       <NavMenu>
         <button className="Topbutton">홈</button>
         <button className="Topbutton">로드맵</button>
@@ -361,7 +361,7 @@ function Hero({setLogin}) {
   return (
     <HeroSection>
       <HeroTitle>경제공부의 첫 걸음</HeroTitle>
-      <HeroSub>GROW UP MONEY와 함께</HeroSub>
+      <HeroSub>GROW MONEY와 함께</HeroSub>
       <HeroButton onClick={()=>setLogin(true)}>
         <p className="Start" style={{ fontSize: "clamp(10px, 2vw, 26px)" }}>
           시작하기

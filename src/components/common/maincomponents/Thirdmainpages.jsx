@@ -76,7 +76,7 @@ function ThirdMainPages() {
         <h2>GROW UP MONEY</h2>
         <hr></hr>
         <p className="D">
-          <a href="/terms" target="_blank" rel="noopener noreferrer">이용약관</a> |
+          <a href="/servicecenter/eula" target="_blank" rel="noopener noreferrer">이용약관</a> |
           <a href="/no-terms" target="_blank" rel="noopener noreferrer"> 무이용약관</a> |
           <a href="/privacy" target="_blank" rel="noopener noreferrer"> 개인정보처리방침</a> |
           <a href="/policy" target="_blank" rel="noopener noreferrer"> 책임준수정책</a>

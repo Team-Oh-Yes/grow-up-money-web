@@ -1,96 +1,46 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import BigBlocker from "../../BigBlocker";
+import MobileBlocker from "../../MobileBlocker";
+import { Big, Loginstate, Mobilestate } from "../../atoms";
 import Loginpages from "../common/Logincomponents/Loginpages";
 import Firstmainpages from "../common/maincomponents/Firstmainpages";
 import Secondmainpages from "../common/maincomponents/Secondmainpages";
 import Thirdmainpages from "../common/maincomponents/Thirdmainpages";
 import "../css/mainpagescsss/Mainpages.css";
 
-const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: #f5f5f5;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow-x: hidden;
-`;
-
-const BlockedWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-`;
-
-const BlockedBox = styled.div`
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 16px;
-  padding: 32px 28px;
-  max-width: 640px;
-  width: 100%;
-  text-align: center;
-`;
-
-const BlockedTitle = styled.h2`
-  margin: 0 0 8px 0;
-  color: #222;
-  font-family: Pretendard;
-  font-size: 28px;
-  font-weight: 800;
-`;
-
-const BlockedDesc = styled.p`
-  margin: 0;
-  color: #444;
-  font-size: 16px;
-`;
-
-// 모바일 차단 컴포넌트
-function MobileBlocker() {
-  return (
-    <Container>
-      <BlockedWrapper>
-        <BlockedBox>
-          <BlockedTitle>404 - 지원하지 않는 화면 크기</BlockedTitle>
-          <BlockedDesc>
-            현재 페이지는 가로 768px 이상에서만 이용할 수 있어요.
-          </BlockedDesc>
-        </BlockedBox>
-      </BlockedWrapper>
-    </Container>
-  );
-}
-
 function Mainpages() {
-  const [Login, setLogin] = useState(false);
-  const [isMobileBlocked, setIsMobileBlocked] = useState(false);
-
+  const [Login, setLogin] = useRecoilState(Loginstate);
+  const [isMobileBlocked, setIsMobileBlocked] = useRecoilState(Mobilestate);
+  const [isExtraLargeScreen, setIsExtraLargeScreen] = useRecoilState(Big);
   useEffect(() => {
     const handleResize = () => {
       if (typeof window !== "undefined") {
-        setIsMobileBlocked(window.innerWidth < 768);
+        const width = window.innerWidth;
+        setIsMobileBlocked(width < 768);
+        setIsExtraLargeScreen(width >= 1920);
       }
     };
+
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
-  // 768px 이하일 때 404 페이지만 표시
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setIsMobileBlocked, setIsExtraLargeScreen]); 
   if (isMobileBlocked) {
     return <MobileBlocker />;
   }
+  if (isExtraLargeScreen) {
+    return <BigBlocker />;
+  }
 
-  // 768px 이상일 때 모든 페이지 표시
+  // 나머지 정상적으로
   return (
     <div>
-      <Firstmainpages setLogin={setLogin}/>
+      <Firstmainpages setLogin={setLogin} />
       <Secondmainpages />
       <Thirdmainpages />
-      {Login ? <Loginpages  setLogin={setLogin}/> : null}
+      {Login ? <Loginpages setLogin={setLogin} /> : null}
     </div>
   );
 }

@@ -6,7 +6,7 @@
 .Topbutton {
   background-color: transparent;
   border: none;
-  color: #fff;
+  color: #777777;
   font-weight: bold;
   position: relative;
   font-size: 18px; /* 기본 폰트 사이즈 고정 */
@@ -73,8 +73,9 @@
 .Topbutton::after {
   content: "";
   position: absolute;
-  left: 0;
-  bottom: 0;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
   width: 0;
   height: 3px;
   border-radius: 30px;
@@ -82,10 +83,12 @@
   transition: width 0.3s ease-out;
 }
 
-.Topbutton:hover {
-  color: #ddd;
+.Topbutton:hover{
+    color: #FE8401;
+    border: 2px #FFBE85 solid;
+    background-color: #FFF0DE;
+    border-radius: 8px;
 }
-
 .Topbutton:hover::after {
   width: 100%;
 }
@@ -290,4 +293,24 @@ button:not(.Topbutton):hover {
   width: 36px;
   height: auto;
   opacity: 0.8;
+}
+.home{
+    width: 60px;
+    height: 32px;
+}
+.rank{
+    width: 60px;
+    height: 32px;
+}
+.load{
+    width: 72px;
+    height: 32px;
+}
+.shop{
+    width: 60px;
+    height: 32px;
+}
+.my{
+    width: 120px;
+    height: 32px;
 }

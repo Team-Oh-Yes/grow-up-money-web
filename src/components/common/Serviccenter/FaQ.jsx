@@ -8,7 +8,6 @@ function Announcement() {
                 <h1>고객 지원</h1>
                 <nav className="menuNav">
                     <ul>
-                        <li><a href="/">메인 페이지</a></li>
                         <li><a href="/servicecenter/notice">공지사항</a></li>
                         <li><a href="/servicecenter/faq" className="active">자주 묻는 질문</a></li>
                         <li><a href="/servicecenter/qna">1:1 문의</a></li>
@@ -89,10 +88,16 @@ function Announcement() {
                         </div>
                     </details>
 
+                    <div className="moreQnA">
+                        <h3>더 궁금한 점이 있으신가요?</h3>
+                        <p>1:1 문의를 통해 고객 지원팀에 연락해 주세요!</p>
+                    </div>
+
                 </nav>
             </main>
-            <div className="footer2">
-                <h2>GROW UP MONEY</h2>
+            
+            <div className="footer3">
+                <h2>GROW MONEY™</h2>
                 <hr></hr>
                 <p className="D">
                 <a href="/servicecenter/eula" target="_blank" rel="noopener noreferrer">이용약관</a> |
@@ -101,7 +106,7 @@ function Announcement() {
                 <a href="/policy" target="_blank" rel="noopener noreferrer"> 책임준수정책</a>
                 </p>
                 <p>대구광역시 달성군 구지면 창리로11길 93</p>
-                <p>© Oh! YeeSi | GROW UP MONEY</p>
+                <p>© Oh! YeeSi | GROW MONEY™</p>
             </div>
         </div>
     );

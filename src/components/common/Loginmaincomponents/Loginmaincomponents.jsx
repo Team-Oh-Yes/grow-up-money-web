@@ -87,7 +87,7 @@ function Loginmaincomponents() {
   return (
     <div className="maincon">
       <S.Sidebar>
-        <p className="title">oh!Yes</p>
+        <p className="title">Grow Money</p>
         <div className="con">
           <div
             className={active === "box1" ? "boxactive" : "box"}

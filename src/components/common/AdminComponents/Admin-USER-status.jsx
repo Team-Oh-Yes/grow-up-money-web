@@ -7,6 +7,7 @@ export default function StatusPopup({ user, onClose }) {
 
     const handleSelect = (value) => setSelected(value);
 
+
     return (
         <div className="status-popup-overlay">
             <div className="status-popup">
@@ -40,17 +41,20 @@ export default function StatusPopup({ user, onClose }) {
                     <textarea
                         className="reason-box"
                         placeholder="사유를 입력해주세요."
-                        maxLength={250}
+                        maxLength={299}
                         value={reason}
                         onChange={(e) => setReason(e.target.value)}
                     />
                     <div className="char-count">
-                        {reason.length}/250
+                        {reason.length}/300
                     </div>
                 </div>
 
                 <div className="status-popup-footer">
-                    <button className="status-save-btn">저장</button>
+                    <button
+                        className="status-save-btn"
+                        
+                    >저장</button>
                 </div>
             </div>
         </div>

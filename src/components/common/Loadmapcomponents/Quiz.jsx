@@ -50,6 +50,7 @@ function Quiz() {
   const [score, setScore] = useState(0);
   const [progress, setProgress] = useRecoilState(quizProgressState);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [na, setNa] = useState(false);
   const original_string = d || "";
   const unitFreeString = original_string.replace("unit", "");
   const currentQuiz = sample[currentQuestionIndex];
@@ -119,19 +120,21 @@ function Quiz() {
     if (isCorrectAnswer) {
       setScore((prev) => prev + 1);
     }
-
-    setCurrentQuestionIndex((prev) => prev + 1);
-    setIsAnswered(false);
-    setSelectedAnswer(null);
+    setTimeout(() => {
+      setCurrentQuestionIndex((prev) => prev + 1);
+      setIsAnswered(false);
+      setSelectedAnswer(null);
+    }, 1000);
   };
 
   if (isQuizFinished) {
     return (
       <div className="Ccon">
         <div className="realcon">
-          <div>
-            <img src={ma} className="m" alt="character" />
-          </div>
+          <img src={ma} className="m" alt="character" />
+
+          <p className="result-text">아쉽네요 {score}개 맞추셨어요</p>
+
           <div className="cbox">
             <button className="go" onClick={handleContinue}>
               학습하러가기
@@ -152,27 +155,27 @@ function Quiz() {
           <p>
             {currentQuestionIndex + 1}. {currentQuiz.question}
           </p>
+          <div className="skip">
+            <p>{"<Space Bar>로 다음 문제로 넘어가기"}</p>
+          </div>
         </div>
       </div>
       <div className="Acon">
         {currentQuiz.options.map((option, index) => {
           let buttonClass = "AC";
-          let imgSrc = null; // 기본값은 null (이미지 없음)
+          let imgSrc = null;
 
           if (isAnswered) {
-            // 1. 선택한 답변에 대한 시각적 피드백
             if (option === selectedAnswer) {
               if (option === currentQuiz.correctAnswer) {
-                buttonClass += " TAC"; // 정답을 맞춤
+                buttonClass += " TAC";
                 imgSrc = answer;
               } else {
-                buttonClass += " FAC"; // 오답을 선택함
+                buttonClass += " FAC";
                 imgSrc = nanswer;
               }
-            }
-            // 2. 오답을 선택했을 때 정답 표시
-            else if (option === currentQuiz.correctAnswer) {
-              buttonClass += " TAC_show_correct"; // 오답 선택 시 정답을 표시
+            } else if (option === currentQuiz.correctAnswer) {
+              buttonClass += " TAC_show_correct";
             }
           }
           return (
@@ -188,9 +191,6 @@ function Quiz() {
             </button>
           );
         })}
-      </div>
-      <div className="skip">
-        <p>{"<Space Bar>로 다음 문제로 넘어가기"}</p>
       </div>
     </div>
   );

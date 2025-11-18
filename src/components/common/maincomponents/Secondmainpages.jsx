@@ -16,8 +16,6 @@ const NewsCard = ({ date, title, description, isSpecial }) => {
     </div>
   );
 };
-
-// 메인 컴포넌트
 const Secondmainpages = () => {
   const newsData = [
     {

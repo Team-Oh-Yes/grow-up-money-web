@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import logo from '../../../img/logo.png';
+import { useState } from 'react';
+import logo from '../../../img/LOGO.png';
 import UserPage from './Admin-USER';
 import '../../css/Admincss/AdminPages.css';
 import FtPage from './Admin-FT'

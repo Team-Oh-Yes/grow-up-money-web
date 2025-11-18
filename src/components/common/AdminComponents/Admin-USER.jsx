@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import '../../css/Admincss/Admin-USER.css';
 import search from '../../../img/searchIcon.svg';
-import logo from '../../../img/LOGO.png';
+import logo from '../../../img/logo.png';
 import StatusPopup from './Admin-USER-status.jsx'
 
 // 한글 검색 유틸리티 함수 (es-hangul 대체)

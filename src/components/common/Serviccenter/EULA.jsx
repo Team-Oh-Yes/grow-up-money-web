@@ -8,7 +8,6 @@ function EULA() {
                 <h1>고객 지원</h1>
                 <nav className="menuNav">
                     <ul>
-                        <li><a href="/">메인 페이지</a></li>
                         <li><a href="/servicecenter/notice">공지사항</a></li>
                         <li><a href="/servicecenter/faq">자주 묻는 질문</a></li>
                         <li><a href="/servicecenter/qna">1:1 문의</a></li>
@@ -21,7 +20,7 @@ function EULA() {
                 <div className='line'></div>
                 <div className='mainText'>
                     <h1>제1조 (목적)</h1>
-                    <p>본 최종 사용자 라이선스 계약("계약")은 귀하("사용자")와 [Oh!Yes] ("회사") 간에 체결되며, 회사가 제공하는 소프트웨어 제품("GROW MONEY")의 사용과 관련된 권리와 의무를 규정합니다. 소프트웨어를 설치하거나 사용하는 경우, 귀하는 본 계약의 조건에 동의하는 것으로 간주됩니다.</p>
+                    <p>본 최종 사용자 라이선스 계약("계약")은 귀하("사용자")와 [Oh!Yes] ("회사") 간에 체결되며, 회사가 제공하는 소프트웨어 제품("GROW MONEY™")의 사용과 관련된 권리와 의무를 규정합니다. 소프트웨어를 설치하거나 사용하는 경우, 귀하는 본 계약의 조건에 동의하는 것으로 간주됩니다.</p>
 
                     <h1>제2조 (정의)</h1>
                     <p style={{ lineHeight: '1.2' }}>
@@ -69,7 +68,7 @@ function EULA() {
 
                     <h1>제8조 (이용 제한 및 계약 해지)</h1>
                     <p style={{lineHeight: '1.2'}}>
-                        1. 회사는 회원이 약관을 위반하거나 불법 행위를 한 경우, 서비스 이용을 제한하거나 회원 자격을 박탈할 수 있습니다.
+                        1. 회사는 회원이 약관을 위반하거나 불법 행위를 한 경우, 서비스 이용을 제한하거나 회원 자격을 박탈할 수 있습니다. <br />
                         2. 회원은 언제든지 계정 설정을 통해 탈퇴할 수 있습니다. <br />
                         3. 탈퇴 시 회원의 모든 데이터는 삭제되며, 복구가 불가능할 수 있습니다. <br />
                     </p>
@@ -87,8 +86,8 @@ function EULA() {
                     </p>
                 </div>
             </main>
-            <div className="footer">
-                <h2>GROW UP MONEY</h2>
+            <div className="footer3">
+                <h2>GROW MONEY™</h2>
                 <hr></hr>
                 <p className="D">
                 <a href="/servicecenter/eula" target="_blank" rel="noopener noreferrer">이용약관</a> |
@@ -97,7 +96,7 @@ function EULA() {
                 <a href="/policy" target="_blank" rel="noopener noreferrer"> 책임준수정책</a>
                 </p>
                 <p>대구광역시 달성군 구지면 창리로11길 93</p>
-                <p>© Oh! YeeSi | GROW UP MONEY</p>
+                <p>© Oh! YeeSi | GROW MONEY™</p>
             </div>
         </div>
         

@@ -102,3 +102,36 @@ nav ul li a.active {
     font-weight: bold;
     margin-top: 2rem;
 }
+
+.footer3 {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  background: black;
+  color: white;
+  padding: 40px;
+}
+
+.footer3 h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.D {
+  color: white !important;
+}
+.D a {
+  color: #969696;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-decoration: none;
+}
+.footer3 p {
+  color: #969696;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+hr {
+  margin-bottom: 10px;
+  background-color: #969696;
+}

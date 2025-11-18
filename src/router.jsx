@@ -12,6 +12,7 @@ import EULA from "./components/common/Serviccenter/EULA";
 import Learn from "./components/common/Loadmapcomponents/Learn";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
 import MainTheme from "./components/common/Theme/MainTheme";
+import FaQ from "./components/common/Serviccenter/FaQ.jsx";
 
 
 const Loginmaincomponents = lazy(() =>

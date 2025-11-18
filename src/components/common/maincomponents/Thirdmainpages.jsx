@@ -73,7 +73,7 @@ function ThirdMainPages() {
 
       {/* 하단 검은색 영역 */}
       <div className="footer">
-        <h2 className="ftitlem">GROW UP MONEY</h2>
+        <h2 className="ftitlem">GROW MONEY™</h2>
         <hr></hr>
         <p className="D">
           <a href="/servicecenter/eula" target="_blank" rel="noopener noreferrer">이용약관</a> |

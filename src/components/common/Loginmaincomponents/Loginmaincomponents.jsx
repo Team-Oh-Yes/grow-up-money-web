@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { Big, Mobilestate, quizProgressState } from "../../../atoms";
 import BigBlocker from "../../../BigBlocker";
 import back from "../../../img/back.png";
-import trade from "../../../img/거래소.png";
+import trade from "../../../img/trade.png";
 import dia from "../../../img/point.png";
 import more from "../../../img/more.png";
 import rank from "../../../img/rank.png";
@@ -12,11 +12,12 @@ import map from "../../../img/loadmap.png";
 import store from "../../../img/store.png";
 import king from "../../../img/crown.png";
 import ticket from "../../../img/gacha2.png";
-import pro from "../../../img/프로필.png";
+import pro from "../../../img/profile.png";
 import heart from "../../../img/heart.png";
 import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
+
 function Loginmaincomponents() {
   const navigate = useNavigate();
   const location = useLocation();

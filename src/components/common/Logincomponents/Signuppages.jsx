@@ -143,13 +143,13 @@ function Signuppages({ setSignup, setLogin }) {
 
         <div className="signup-link">
           <p>
-            계정을 만들었나요?{" "}
+            아직 계정이 없나요?{" "}
             <button
               className="signup"
               onClick={() => setSignup(false)}
               disabled={isLoading}
             >
-              로그인하기
+              로그인
             </button>
           </p>
         </div>

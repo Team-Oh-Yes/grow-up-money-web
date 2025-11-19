@@ -1,7 +1,11 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import '../../css/Admincss/Admin-USER.css';
 import search from '../../../img/searchIcon.svg';
-import StatusPopup from './Admin-USER-status.jsx'
+import StatusPopup from './Admin-USER-status.jsx';
+// import axios from 'axios';
+
+// const suspend_url = 'http://localhost:8080/admin/users/suspend';
+// const recover_url = '';
 
 // 한글 검색 유틸리티 함수
 const hangulIncludes = (text, search) => {
@@ -32,11 +36,11 @@ const hangulIncludes = (text, search) => {
 // 상수 정의
 const USER_STATUS = {
     NORMAL: '정상',
-    BANNED: '영구 정지',
-    DAY_BANNED: '1일 정지',
-    THREE_DAY_BANNED: '3일 정지',
-    WEEK_BANNED: '1주 정지',
-    MONTH_BANNED: '1달 정지'
+    PERMANENT: '영구 정지',
+    ONE_DAY: '1일 정지',
+    THREE_DAYS: '3일 정지',
+    ONE_WEEK: '1주 정지',
+    ONE_MONTH: '1달 정지'
 };
 
 const ACTION_TYPES = {
@@ -47,9 +51,9 @@ const ACTION_TYPES = {
 
 // 더미 데이터
 const INITIAL_USERS = [
-    { id: 'test1234', email: 'test1234@dgsw.hs.kr', status: USER_STATUS.BANNED },
-    { id: 'test5678', email: '-', status: USER_STATUS.WEEK_BANNED },
-    { id: 'test9876', email: 'test9876@dgsw.hs.kr', status: USER_STATUS.NORMAL },
+    { id: 'test1234', email: 'test1234@dgsw.hs.kr', status: USER_STATUS.PERMANENT },
+    { id: 'test5678', email: '-', status: USER_STATUS.ONE_DAY },
+    { id: '문채원', email: 'dsmg20090717@dgsw.hs.kr', status: USER_STATUS.NORMAL },
     { id: '배준하', email: 'junha0729@dgsw.hs.kr', status: USER_STATUS.NORMAL },
 ];
 
@@ -75,7 +79,7 @@ const ActionButton = ({ type, status, onClick, disabled }) => {
         [ACTION_TYPES.BAN]: { 
             label: '계정 정지', 
             className: 'btn-status',
-            isActive: status === USER_STATUS.BANNED 
+            isActive: status !== USER_STATUS.NORMAL
         },
         [ACTION_TYPES.POINT]: { 
             label: '포인트 지급', 
@@ -85,7 +89,7 @@ const ActionButton = ({ type, status, onClick, disabled }) => {
         [ACTION_TYPES.RECOVER]: { 
             label: '유저 계정 복구', 
             className: 'btn-recover',
-            isActive: status === USER_STATUS.BANNED 
+            isActive: status !== USER_STATUS.NORMAL
         }
     };
 
@@ -116,7 +120,7 @@ const UserRow = React.memo(({ user, onAction, onBanClick }) => {
                     type={ACTION_TYPES.BAN}
                     status={user.status}
                     onClick={() => onBanClick(user)}
-                    disabled={user.status === USER_STATUS.BANNED}
+                    disabled={user.status !== USER_STATUS.NORMAL}
                 />
             </td>
             <td>

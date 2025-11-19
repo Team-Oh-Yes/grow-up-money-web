@@ -134,14 +134,14 @@ function Loginmaincomponents() {
             onClick={() => Action("box4", "main//store")}
           >
             <img src={store} alt="스토어 이미지"></img>
-            <p>스토어</p>
+            <p>상점</p>
           </div>
           <div
             className={active === "box5" ? "boxactive" : "box"}
             onClick={() => Action("box5", "/profile")}
           >
             <img src={pro} alt="프로필 이미지"></img>
-            <p>프로필</p>
+            <p>마이페이지</p>
           </div>
           <div
             className={active === "box6" ? "boxactive" : "box"}

@@ -133,11 +133,11 @@ function Quiz() {
         <div className="realcon">
           <img src={ma} className="m" alt="character" />
 
-          <p className="result-text">아쉽네요 {score}개 맞추셨어요</p>
+          <p className="result-text">아쉽네요, {score}개 맞추셨어요</p>
 
           <div className="cbox">
             <button className="go" onClick={handleContinue}>
-              학습하러가기
+              학습 하러가기
             </button>
             <button className="stop" onClick={handleStop}>
               그만하기

@@ -22,7 +22,7 @@ export default function StatusPopup({ user, onClose }) {
                 </div>
 
                 <div className="status-section">
-                    <p className="status-section-title">지속 시간</p>
+                    <p className="status-section-title">정지 지속 시간</p>
                     <div className="status-duration">
                         {['1일', '3일', '1주','1달', '영구'].map((label) => (
                             <button
@@ -40,7 +40,7 @@ export default function StatusPopup({ user, onClose }) {
                     <label>사유</label>
                     <textarea
                         className="reason-box"
-                        placeholder="사유를 입력해주세요."
+                        placeholder="정지 사유를 입력해주세요."
                         maxLength={299}
                         value={reason}
                         onChange={(e) => setReason(e.target.value)}
@@ -52,9 +52,9 @@ export default function StatusPopup({ user, onClose }) {
 
                 <div className="status-popup-footer">
                     <button
-                        className="status-save-btn"
-                        
-                    >저장</button>
+                        className="status-save-btn">
+                            저장
+                        </button>
                 </div>
             </div>
         </div>

@@ -3,12 +3,13 @@
 /* "최신 소식" 전체 섹션 */
 .latest-news {
   width: 100%;
-  margin: 50px 0;
-  padding-left: 29px;
+  /* margin: 50px 0; */
+  /* padding-left: 29px; */
+  padding: 120px 29px;
   font-family: "Pretendard";
   box-sizing: border-box;
   position: relative;
-  padding-right: 29px;
+  /* padding-right: 29px; */
 }
 
 /* "최신 소식" 헤더 (제목 + 화살표) */
@@ -84,7 +85,7 @@
 
 /* 카드 제목 */
 .card-title {
-  font-size: 18px;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #222;
   margin: 0 0 8px 0;

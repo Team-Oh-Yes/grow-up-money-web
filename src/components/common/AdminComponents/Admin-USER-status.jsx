@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import '../../css/Admincss/Admin-USER-status.css';
+import axios from 'axios';
+
+const sever = 'http://localhost:8080';
+
 
 export default function StatusPopup({ user, onClose }) {
     const [selected, setSelected] = useState('');
@@ -7,6 +11,16 @@ export default function StatusPopup({ user, onClose }) {
 
     const handleSelect = (value) => setSelected(value);
 
+    const usersuspend = ({id, label, reason}) => {
+        let res
+        try { res = axios.post(`${sever}/admin/user/suspend`, {
+            "username": id,
+            "suspensionType" : label,
+            "reason": reason
+        })
+        } catch (error) {
+            console.error("유저 상태 정지에 실패했습니다", error);
+        }};
 
     return (
         <div className="status-popup-overlay">
@@ -52,9 +66,11 @@ export default function StatusPopup({ user, onClose }) {
 
                 <div className="status-popup-footer">
                     <button
-                        className="status-save-btn">
-                            저장
-                        </button>
+                        className="status-save-btn"
+                        onClick={() => {usersuspend({id: user.id, label: selected, reason: reason})}}
+                    >
+                        저장
+                    </button>
                 </div>
             </div>
         </div>

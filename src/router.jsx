@@ -12,6 +12,7 @@ import EULA from "./components/common/Serviccenter/EULA";
 import Learn from "./components/common/Loadmapcomponents/Learn";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
 import MainTheme from "./components/common/Theme/MainTheme";
+import UserSuspendPopup from "./components/common/AdminComponents/Admin-USER-status.jsx"
 
 
 const Loginmaincomponents = lazy(() =>
@@ -83,6 +84,11 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <Adminpages />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/userSuspendPopup",
+    element: <UserSuspendPopup />,
     errorElement: <Error />,
   }
 ]);

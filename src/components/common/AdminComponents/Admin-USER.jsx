@@ -4,7 +4,6 @@ import search from '../../../img/searchIcon.svg';
 import StatusPopup from './Admin-USER-status.jsx';
 // import axios from 'axios';
 
-// const suspend_url = 'http://localhost:8080/admin/users/suspend';
 // const recover_url = '';
 
 // 한글 검색 유틸리티 함수

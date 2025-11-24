@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../../css/Admincss/Admin-USER-status.css';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
 
 const sever = 'http://localhost:8080';
 
@@ -11,16 +13,28 @@ export default function StatusPopup({ user, onClose }) {
 
     const handleSelect = (value) => setSelected(value);
 
-    const usersuspend = ({id, label, reason}) => {
-        let res
-        try { res = axios.post(`${sever}/admin/user/suspend`, {
-            "username": id,
-            "suspensionType" : label,
-            "reason": reason
-        })
+    const usersuspend = async ({ id, label, reason }) => {
+        if (!label) {
+            toast.error("정지 기간을 선택해주세요.");
+            return;
+        }
+    
+        try {
+            const res = await axios.post(`${sever}/admin/user/suspend`, {
+                username: id,
+                suspensionType: label,
+                reason: reason
+            });
+    
+            toast.success("유저 계정 정지가 성공했습니다!");
+            onClose();
+    
         } catch (error) {
             console.error("유저 상태 정지에 실패했습니다", error);
-        }};
+            toast.error("유저 정지 요청에 실패했습니다.");
+        }
+    };
+    
 
     return (
         <div className="status-popup-overlay">

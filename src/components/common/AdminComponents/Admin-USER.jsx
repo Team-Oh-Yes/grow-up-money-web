@@ -2,9 +2,7 @@ import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import '../../css/Admincss/Admin-USER.css';
 import search from '../../../img/searchIcon.svg';
 import StatusPopup from './Admin-USER-status.jsx';
-import axios from 'axios';
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+import axiosInstance from '../../api/axiosInstance';
 
 // 페이지네이션 상수
 const DEFAULT_PAGE = 0;
@@ -176,7 +174,7 @@ export default function UserManagement() {
     const GetUserRow = async(page = DEFAULT_PAGE, size = DEFAULT_SIZE) => {
         try {
             setIsLoading(true);
-            const res = await axios.get(`${API_BASE_URL}/admin/users/`, {
+            const res = await axiosInstance.get("/admin/users/", {
                 params: { page, size }
             });
             

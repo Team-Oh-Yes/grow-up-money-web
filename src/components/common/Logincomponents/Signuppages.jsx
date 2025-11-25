@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Sign from "../../api/login";
+import Main from "../../api/login";
 import "../../css/Loginpagescss/Signuppages.css";
 
 function Signuppages({ setSignup, setLogin }) {
@@ -50,7 +50,7 @@ function Signuppages({ setSignup, setLogin }) {
         password: password,
         email: email,
       };
-      const response = await Sign.post("/users/signup", signupData);
+      const response = await Main.post("/users/signup", signupData);
       showToast("회원가입 성공!", "success");
       setTimeout(() => {
         setSignup(false);

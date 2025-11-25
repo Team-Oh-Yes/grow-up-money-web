@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 
-const sever = 'http://localhost:8080';
+const sever = 'http://16.171.8.148.8080';
 
 
 export default function StatusPopup({ user, onClose }) {

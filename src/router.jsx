@@ -12,7 +12,8 @@ import EULA from "./components/common/Serviccenter/EULA";
 import Learn from "./components/common/Loadmapcomponents/Learn";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
 import MainTheme from "./components/common/Theme/MainTheme";
-import UserSuspendPopup from "./components/common/AdminComponents/Admin-USER-status.jsx"
+import FaQ from "./components/common/Serviccenter/FaQ.jsx";
+import Notice from "./components/common/Serviccenter/Notice.jsx";
 
 
 const Loginmaincomponents = lazy(() =>
@@ -73,7 +74,7 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path: "/eula",
+    path: "/servicecenter/eula",
     element: <EULA />,
     errorElement: <Error />
   },
@@ -87,9 +88,14 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: "/userSuspendPopup",
-    element: <UserSuspendPopup />,
-    errorElement: <Error />,
+    path: "/servicecenter/faq",
+    element: <FaQ />,
+    errorElement: <Error />
+  },
+  {
+    path: "/servicecenter/notice",
+    element: <Notice />,
+    errorElement: <Error />
   }
 ]);
 

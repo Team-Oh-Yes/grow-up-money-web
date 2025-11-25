@@ -4,7 +4,7 @@ import search from '../../../img/searchIcon.svg';
 import StatusPopup from './Admin-USER-status.jsx';
 import axios from 'axios';
 
-const sever = 'http://16.171.8.148:8080';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 // 페이지네이션 상수
 const DEFAULT_PAGE = 0;
@@ -176,7 +176,7 @@ export default function UserManagement() {
     const GetUserRow = async(page = DEFAULT_PAGE, size = DEFAULT_SIZE) => {
         try {
             setIsLoading(true);
-            const res = await axios.get(`${sever}/admin/users/`, {
+            const res = await axios.get(`${API_BASE_URL}/admin/users/`, {
                 params: { page, size }
             });
             

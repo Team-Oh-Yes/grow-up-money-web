@@ -3,9 +3,7 @@ import '../../css/Admincss/Admin-USER-status.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-
-const sever = 'http://16.171.8.148.8080';
-
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 export default function StatusPopup({ user, onClose }) {
     const [selected, setSelected] = useState('');
@@ -20,7 +18,7 @@ export default function StatusPopup({ user, onClose }) {
         }
     
         try {
-            const res = await axios.post(`${sever}/admin/user/suspend`, {
+            const res = await axios.post(`${API_BASE_URL}/admin/user/suspend`, {
                 username: id,
                 suspensionType: label,
                 reason: reason

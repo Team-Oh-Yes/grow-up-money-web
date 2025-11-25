@@ -14,7 +14,7 @@ import Quiz from "./components/common/Loadmapcomponents/Quiz";
 import MainTheme from "./components/common/Theme/MainTheme";
 import FaQ from "./components/common/Serviccenter/FaQ.jsx";
 import Notice from "./components/common/Serviccenter/Notice.jsx";
-
+import More from "./components/common/more/more.jsx";
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents")
@@ -100,6 +100,20 @@ const router = createBrowserRouter([
     path: "/servicecenter/notice",
     element: <Notice />,
     errorElement: <Error />
+  },
+  {
+    path: "/more",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Loginmaincomponents />
+      </Suspense>
+    ),
+    children: [
+      {
+        index: true,
+        element: <More />,
+      },
+    ]
   }
 ]);
 

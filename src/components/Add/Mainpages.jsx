@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import BigBlocker from "../../BigBlocker";
 import MobileBlocker from "../../MobileBlocker";
 import { Big, Loginstate, Mobilestate } from "../../atoms";
-import Loginpages from "../common/Logincomponents/Loginpages";
 import Firstmainpages from "../common/maincomponents/Firstmainpages";
 import Secondmainpages from "../common/maincomponents/Secondmainpages";
 import Thirdmainpages from "../common/maincomponents/Thirdmainpages";
@@ -13,6 +13,15 @@ function Mainpages() {
   const [Login, setLogin] = useRecoilState(Loginstate);
   const [isMobileBlocked, setIsMobileBlocked] = useRecoilState(Mobilestate);
   const [isExtraLargeScreen, setIsExtraLargeScreen] = useRecoilState(Big);
+  const navigate = useNavigate();
+
+  // 로그인 상태 변경 시 로그인 페이지로 이동
+  useEffect(() => {
+    if (Login) {
+      navigate("/login");
+      setLogin(false); // 상태 초기화
+    }
+  }, [Login, navigate, setLogin]);
   useEffect(() => {
     const handleResize = () => {
       if (typeof window !== "undefined") {
@@ -40,7 +49,6 @@ function Mainpages() {
       <Firstmainpages setLogin={setLogin} />
       <Secondmainpages />
       <Thirdmainpages />
-      {Login ? <Loginpages setLogin={setLogin} /> : null}
     </div>
   );
 }

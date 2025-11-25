@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.menuBar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.menuBar nav ul li a {
+    position: relative;
+    text-decoration: none;
+    color: #f5f5f5;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+/* 기본 밑줄은 없음 */
+.menuBar nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 3px;
+    background-color: #ff8b00; /* 주황색 */
+    transition: width 0.3s ease;
+}
+
+/* 마우스 올렸을 때 밑줄 슬라이드 애니메이션 */
+.menuBar nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* 현재 활성화된 메뉴 (active)에 기본적으로 밑줄 표시 */
+.menuBar nav ul li a.active::after {
+    width: 100%;
+}
+
+
+.menuBar {
+    background-color: #000000;
+    padding: 1rem;
+}
+
+.menuBar h1 {
+    font-size: 2rem;
+    color: #f5f5f5;
+    font-family: Pretendard-Regular, sans-serif;
+    margin-bottom: 1rem;
+}
+
+.menuContainer {
+    display: flex;
+    align-items: center; /* 세로 가운데 정렬 */
+    justify-content: space-between; /* 왼쪽, 오른쪽으로 배치 */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem; /* 메뉴 사이 간격 */
+}
+
+nav ul li a {
+    color: #f5f5f5;
+    text-decoration: none;
+}
+
+nav ul li a.active {
+    font-weight: bold;
+    border-bottom: 0.2rem solid #fe9c32; /* 강조 효과 */
+}
+
+.eulaTitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    font-family: Pretendard-Bold, sans-serif;
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.line {
+    border-top: 0.1rem solid #d3d3d3;
+    margin: 2rem 0;
+}
+
+.mainText {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333333;
+    font-family: Pretendard-Regular, sans-serif;
+    padding: 0 8rem;
+}
+
+.mainText h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 2rem;
+}
+
+.footer3 {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  background: black;
+  color: white;
+  padding: 40px;
+}
+
+.footer3 h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.D {
+  color: white !important;
+}
+.D a {
+  color: #969696;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-decoration: none;
+}
+.footer3 p {
+  color: #969696;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+hr {
+  margin-bottom: 10px;
+  background-color: #969696;
+}

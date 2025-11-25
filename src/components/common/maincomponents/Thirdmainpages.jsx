@@ -1,7 +1,7 @@
 import { useState } from "react";
 import right from "../../../img/오른쪽.png";
-import left from "../../../img/왼쪽.png";
-import "../../css/mainpagescsss/ThirdMainPages.css";
+import left from "../../../img/arrowleft2.png";
+import "../../css/mainpagescsss/Thirdmainpages.css";
 function ThirdMainPages() {
   // 현재 보여줄 이미지 번호 (0부터 시작)
   const [currentImage, setCurrentImage] = useState(2);
@@ -73,13 +73,16 @@ function ThirdMainPages() {
 
       {/* 하단 검은색 영역 */}
       <div className="footer">
-        <h2>GROW UP MONEY</h2>
+        <h2 className="ftitlem">GROW MONEY™</h2>
         <hr></hr>
         <p className="D">
-          이용약관 | 무이용약관 | 개인정보처리방침 | 책임준수정책
+          <a href="/servicecenter/eula" target="_blank" rel="noopener noreferrer">이용약관</a> |
+          <a href="/no-terms" target="_blank" rel="noopener noreferrer"> 무이용약관</a> |
+          <a href="/privacy" target="_blank" rel="noopener noreferrer"> 개인정보처리방침</a> |
+          <a href="/policy" target="_blank" rel="noopener noreferrer"> 책임준수정책</a>
         </p>
-        <p>대구광역시 달성군 구지면 창리로11길 93</p>
-        <p>© Oh! YeeSi | GROW UP MONEY</p>
+        <p className="ftitle">대구광역시 달성군 구지면 창리로11길 93</p>
+        <p className="ftitle">© Oh!Yes | 전화번호: 010-1234-5678 | 이메일: me@ohyes.com</p>
       </div>
     </div>
   );

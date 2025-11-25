@@ -5,18 +5,19 @@ import { Big, Mobilestate, quizProgressState } from "../../../atoms";
 import BigBlocker from "../../../BigBlocker";
 import back from "../../../img/back.png";
 import trade from "../../../img/거래소.png";
-import dia from "../../../img/다이야2.png";
-import more from "../../../img/더보기.png";
-import rank from "../../../img/랭킹.png";
-import map from "../../../img/로드맵.png";
-import store from "../../../img/스토어.png";
-import king from "../../../img/왕관.png";
-import ticket from "../../../img/티켓2.png";
+import dia from "../../../img/point.png";
+import more from "../../../img/more.png";
+import rank from "../../../img/rank.png";
+import map from "../../../img/loadmap.png";
+import store from "../../../img/store.png";
+import king from "../../../img/crown.png";
+import ticket from "../../../img/gacha2.png";
 import pro from "../../../img/프로필.png";
-import heart from "../../../img/하트.png";
+import heart from "../../../img/heart.png";
 import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
+import { toast } from 'react-toastify';
 function Loginmaincomponents() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,6 +26,46 @@ function Loginmaincomponents() {
   const [isExtraLargeScreen, setIsExtraLargeScreen] = useRecoilState(Big);
   const [show, setShow] = useRecoilState(quizProgressState);
   const { TF, score, totalQuestions } = show;
+
+  const toastcode = (time = 1000) => ({
+    position: "top-right",
+    autoClose: time,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: 0,
+    theme: "light",
+  });
+
+  // // 페이지 로드 시 쿠키 확인 및 인증 체크
+  // useEffect(() => {
+  //     console.log('현재 쿠키:', document.cookie);
+      
+  //     // accessToken 또는 refreshToken이 없으면 로그인 페이지로 리다이렉트
+  //     const hasAccessToken = document.cookie.includes('accessToken');
+  //     const hasRefreshToken = document.cookie.includes('refreshToken');
+      
+  //     if (!hasAccessToken && !hasRefreshToken) {
+  //         console.log('쿠키 없음 - 로그인 페이지로 이동');
+  //         toast.error('로그인이 필요합니다', toastcode(2000));
+  //         toast.clearWaitingQueue();
+  //         navigate('/login', { replace: true });
+  //     } else {
+  //         console.log('쿠키 확인됨 - 인증 성공');
+  //     }
+  // }, [navigate]);
+
+  // 로그인 성공 시 토스트 메시지 표시
+  useEffect(() => {
+      if (location.state?.loginSuccess) {
+          toast.success('로그인 성공!', {...toastcode(2000)});
+          toast.clearWaitingQueue();
+  
+          // state 초기화 (뒤로가기 후 다시 접속 시 메시지 재표시 방지)
+          window.history.replaceState({}, document.title);
+      }
+  }, [location]);
 
   useEffect(() => {
     const handleResize = () => {

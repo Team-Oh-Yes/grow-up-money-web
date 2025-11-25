@@ -339,7 +339,7 @@ const Fall = () => {
 function Navbar({setLogin}) {
   return (
     <Header>
-      <LogoBox>Oh!Yes</LogoBox>
+      <LogoBox>GROW MONEY™</LogoBox>
       <NavMenu>
         <button className="Topbutton home">홈</button>
         <button className="Topbutton load">로드맵</button>
@@ -359,7 +359,7 @@ function Hero({setLogin}) {
   return (
     <HeroSection>
       <HeroTitle>경제공부의 첫 걸음</HeroTitle>
-      <HeroSub>GROW MONEY와 함께</HeroSub>
+      <HeroSub>GROW MONEY™와 함께</HeroSub>
       <HeroButton onClick={()=>setLogin(true)}>
         <p className="Start" style={{ fontSize: "clamp(10px, 2vw, 26px)" }}>
           시작하기

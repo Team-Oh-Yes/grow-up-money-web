@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import downArrowSvg from "../../../img/아래방향 화살표.svg";
+import downArrowSvg from "../../../img/arrowdown.svg";
 import "../../css/mainpagescsss/Fistmainpaged.css";
 
 const Container = styled.div`
@@ -52,28 +52,28 @@ const Header = styled.header`
 const LogoBox = styled.div`
   color: #FE8401;
   font-family: Poppins;
-  font-size: 32px !important;
+  font-size: 26px;
   font-weight: 700;
   margin-left: 28px;
 
   @media (min-width: 1921px) {
-    font-size: 24px;
+    font-size: 32px;
     margin-left: 40px;
   }
   @media (max-width: 1920px) {
-    font-size: 22px;
+    font-size: 28px;
     margin-left: 36px;
   }
   @media (max-width: 1440px) {
-    font-size: 21px;
+    font-size: 26px;
     margin-left: 32px;
   }
   @media (max-width: 1024px) {
-    font-size: 18px;
+    font-size: 22px;
     margin-left: 10px;
   }
   @media (max-width: 768px) {
-    font-size: 14px;
+    font-size: 18px;
     margin-left: 4px;
   }
 `;
@@ -339,7 +339,14 @@ const Fall = () => {
 function Navbar({setLogin}) {
   return (
     <Header>
-      <LogoBox>Oh!Yes</LogoBox>
+      <LogoBox>GROW MONEY™</LogoBox>
+      <NavMenu>
+        <button className="Topbutton home">홈</button>
+        <button className="Topbutton load">로드맵</button>
+        <button className="Topbutton rank">랭킹</button>
+        <button className="Topbutton shop">상정</button>
+        <button className="Topbutton my">마이프로필</button>
+      </NavMenu>
       <UserMenu>
         <button className="login-btn" onClick={()=>setLogin(true)}>지금배우기</button>
       </UserMenu>
@@ -352,7 +359,7 @@ function Hero({setLogin}) {
   return (
     <HeroSection>
       <HeroTitle>경제공부의 첫 걸음</HeroTitle>
-      <HeroSub>GROW UP MONEY와 함께</HeroSub>
+      <HeroSub>GROW MONEY™와 함께</HeroSub>
       <HeroButton onClick={()=>setLogin(true)}>
         <p className="Start" style={{ fontSize: "clamp(10px, 2vw, 26px)" }}>
           시작하기

@@ -1,0 +1,61 @@
+.header {
+    width: 100%;
+    height: 73px;
+    background: black;
+    display: flex;
+    align-items: center;
+    padding-left: 44px;
+    gap: 52px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    justify-content: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-area div {
+    font-size: 20px;
+    font-weight: 700;
+    color: #F5F5F5;}
+
+.logo-area img {
+    height: 36px;
+}
+
+.nav-tabs {
+    width: 100%;
+    height: 67px;
+    background: #F5F5F5;
+    display: flex;
+    align-items: center;
+    padding-left: 44px;
+    gap: 52px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 67px; 
+    left: 0;
+    z-index: 900; 
+}
+
+.nav-tabs span {
+    cursor: pointer;
+    padding-bottom: 5px;
+    color: #222222;
+    font-size: 18px;
+}
+
+.nav-tabs .active {
+    border-bottom: 3px solid orange;
+    font-weight: 600;
+}
+
+.nav-tabs span:hover {
+    font-weight: 600;
+}

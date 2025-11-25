@@ -7,7 +7,7 @@ import Error from "./error/Error";
 // import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import Login from "./components/common/Login/Login.jsx";
-import Planpages from "./components/common/plancomponents/Planpages";
+import Planpages from "../src/components/common/plancomponents/Planpages.jsx";
 import EULA from "./components/common/Serviccenter/EULA";
 import Learn from "./components/common/Loadmapcomponents/Learn";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
@@ -79,8 +79,17 @@ const router = createBrowserRouter([
     errorElement: <Error />
   },
   {path:"/plan",
-    element :<Planpages />,
-    errorElement: <Error />
+     element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Loginmaincomponents />
+      </Suspense>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Planpages />,
+      },
+    ]
   },
   {
     path: "/servicecenter/faq",

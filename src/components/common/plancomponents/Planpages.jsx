@@ -29,106 +29,39 @@ function Planpages() {
 
   return (
     <div className="planpages-container">
-      <nav className="sidebar">
-        <div className="sidebar-title">Oh!Yes</div>
-        <div className="list">
-          <a href="#" className="loadMap">
-            <div className="main">
-              <img src="/img/home.svg" alt="home" />
-              <div>로드맵</div>
-            </div>
-          </a>
-          <a href="#" className="ranking">
-            <div className="main">
-              <img src="/img/ranking.svg" alt="ranking" />
-              <div>랭킹</div>
-            </div>
-          </a>
-          <a href="#" className="exchange">
-            <div className="main">
-              <img src="/img/graph.svg" alt="exchange" />
-              <div>거래소</div>
-            </div>
-          </a>
-          <a href="#" className="store">
-            <div className="main">
-              <img src="/img/store.svg" alt="store" />
-              <div>상점</div>
-            </div>
-          </a>
-          <a href="#" className="account">
-            <div className="main">
-              <img src="/img/account.svg" alt="account" />
-              <div>프로필</div>
-            </div>
-          </a>
-          <a href="#" className="more">
-            <div className="main">
-              <img src="/img/more.svg" alt="more" />
-              <div>더보기</div>
-            </div>
-          </a>
-        </div>
-      </nav>
+      <header className="plan-header">
+        <h1>플랜 선택</h1>
+        <p>Grow Money의 모든 기능을 이용하려면 프리미엄 플랜으로 업그레이드하세요!</p>
+      </header>
 
-      <main className="main-content">
-        <div className="topBar">
-          <div className="Plan">
-            <img src="/img/BitCon.svg" alt="BitCon" className="BitCon" />
-            <img src="/img/DDongJon.svg" alt="DDongJon" className="DDongJon" />
+      <main className="plan-main">
+        <section className="plan-monthly">
+          <h2>월간 프리미엄 플랜</h2>
+          <p className="plan-price">₩8,900 / 월</p>
+          <ul className="plan-features">
+            <li>광고 제거</li>
+            <li>FT 고화질 다운로드</li>
+            <li>프리미엄용 프로필 꾸미기 가능</li>
+            <li>프로필 닉네임 그라데이션</li>
+            <li>포인트 충전 + 10%</li>
+            <li>심화 문제 (포인트 10배)</li>
+          </ul>
+          <button className="plan-select-button" onClick={handlePaymentcurrentPlan}>
+            이 플랜 선택
+          </button>
+        </section>
 
-            <span>플랜 업그레이드</span>
-            <div className="plans">
-              <div className="Free">
-                <span>MONTHLY PREMIUM</span>
-                <p className="Dollor">₩</p>
-                <p className="price">8900</p>
-                <p className="USD">KRW /</p>
-                <p className="perMonth">월</p>
-                <p className="explanation">
-                  Grow Up Money의 월별 유료 제공 플랜
-                </p>
-
-                <button
-                  onClick={handlePaymentcurrentPlan}
-                  className="currentPlan"
-                >
-                  <div>플랜 업그레이드</div>
-                </button>
-                <ul className="features">
-                  <li>광고 제거</li>
-                  <li>FT 고화질 다운로드</li>
-                  <li>프리미엄용 프로필 꾸미기 가능</li>
-                  <li>프로필 닉네임 그라데이션</li>
-                  <li>포인트 충전 + 10%</li>
-                  <li>심화 문제 (포인트 10배)</li>
-                </ul>
-              </div>
-
-              <div className="Premium">
-                <span>EVERLASTING PREMIUM</span>
-                <p className="Dollor">₩</p>
-                <p className="price">29,000</p>
-                <p className="USD">KRW /</p>
-                <p className="perMonth">영구</p>
-                <p className="explanation">
-                  Grow Up Money의 영구 유료 제공 플랜
-                </p>
-
-                <button
-                  onClick={handlePaymentcurrentPlanPremium}
-                  className="currentPlanPremium"
-                >
-                  <div>플랜 업그레이드</div>
-                </button>
-                <ul className="features">
-                  <li>MONTHLY PREMIUM의 모든 기능</li>
-                  <li>영구 구독</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        <section className="plan-everlasting">
+          <h2>영구 프리미엄 플랜</h2>
+          <p className="plan-price">₩29,000 (일회성 결제)</p>
+          <ul className="plan-features">
+            <li>월간 프리미엄의 모든 기능</li>
+            <li>영구 구독</li>
+          </ul>
+          <button className="plan-select-button" onClick={handlePaymentcurrentPlanPremium}>
+            이 플랜 선택
+          </button>
+        </section>
       </main>
     </div>
   );

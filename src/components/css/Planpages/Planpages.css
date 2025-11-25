@@ -1,478 +1,155 @@
-/* Container: Sidebar + Main */
-.planpages-container {
-    display: flex;
+/* planpages-container: 중앙 정렬 레이아웃, 왼쪽 사이드바 공간 유지 */
+.planpages-container{
     min-height: 100vh;
-    background: #fff;
-}
-
-button {
-    border: none;        /* 테두리 제거 */
-    background: none;    /* 배경 제거 */
-    box-shadow: none;    /* 그림자 제거 */
-    outline: none;       /* 클릭 후 생기는 테두리 제거 */
-    cursor: pointer; 
-}
-
-/* Sidebar */
-.sidebar {
-    width: 20%;
-    max-width: 256px;
-    min-width: 200px;
-    padding: 1rem;
-    background: #f8f8f8;
+    margin-left: 2rem;            /* 좌측 사이드바 공간 확보(원하시면 값 조정) */
     box-sizing: border-box;
-}
-
-/* Sidebar Title */
-.sidebar-title {
-    color: #FE8401;
-    font-family: Pretendard, sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-}
-
-/* List Items */
-.list {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    align-items: center;         /* 전체 중앙 정렬 */
+    /* padding: 2rem 1rem; */
+    background: #faf9f8;         /* 은은한 배경(선택) */
 }
 
-.loadMap, .ranking, .exchange, .store, .account, .more {
-    display: flex;
-    align-items: center;
+/* 헤더: 제목과 설명 중앙 정렬 */
+.plan-header {
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+    margin: 0 auto 1rem;
     padding: 0.5rem 1rem;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #777;
-    font-family: Pretendard, sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background 0.2s;
-}
-
-.loadMap:hover, .ranking:hover, .exchange:hover, .store:hover, .account:hover, .more:hover {
-    background: #ffe5cc;
-}
-
-/* Main content */
-.main-content {
-    flex-grow: 1;
-    padding: 2rem;
-    padding-left: 0;
-    box-sizing: border-box;
-}
-
-/* Main icon + text */
-.main {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.main img {
-    width: 2rem;
-    height: 2rem;
-    aspect-ratio: 1 / 1;
-}
-
-/* Container: Sidebar + Main */
-.planpages-container {
-    display: flex;
-    min-height: 100vh;
-    background: #fff;
-}
-
-/* Sidebar */
-.sidebar {
-    width: 20%;
-    max-width: 256px;
-    min-width: 200px;
-    padding: 1rem;
-    background: #f8f8f8;
-    box-sizing: border-box;
-}
-
-/* Sidebar Title */
-.sidebar-title {
-    color: #FE8401;
-    font-family: Pretendard, sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-}
-
-/* List Items */
-.list {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-}
-
-.loadMap, .ranking, .exchange, .store, .account, .more {
-    display: flex;
     align-items: center;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #777;
-    font-family: Pretendard, sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background 0.2s;
+    gap: 6px;
+    text-align: center;
 }
 
-.loadMap:hover, .ranking:hover, .exchange:hover, .store:hover, .account:hover, .more:hover {
-    background: #ffe5cc;
+.plan-header h1{
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0d0d0d;
 }
 
-/* Main icon + text */
-.main {
+.plan-header p{
+    margin: 0;
+    font-size: 14px;
+    color: #6b6b6b;
+}
+
+/* 메인: 카드 2개 가로 배치 (중앙 정렬) */
+.plan-main{
+    width: 100%;
+    max-width: 1200px;
     display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.main img {
-    width: 2rem;
-    height: 2rem;
-    aspect-ratio: 1 / 1;
-}
-
-.topBar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.state {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    margin-left: 837px;
-}
-
-.heart, .diamondIcon, .ticketIcon {
-    width: 26px;
-    height: 26px;
-    aspect-ratio: 1/1;
-}
-
-.premiumIcon {
-    width: 26.002px;
-    height: 24.341px;
-    fill: #FFC600;
-}
-
-.life, .diamond, .ticket, .isPremium {
-    display: flex;
+    gap: 32px;
     justify-content: center;
-    align-items: center;
-    gap: 8px;
+    align-items: flex-start;
+    padding: 24px;
+    box-sizing: border-box;
 }
 
-.life, .diamond, .ticket span {
-    color: #3D3D3D;
-    font-family: Pretendard;
+/* 개별 카드 공통 (JSX에서 plan-monthly / plan-everlasting 사용) */
+.plan-monthly,
+.plan-everlasting {
+    width: 480px;
+    border-radius: 12px;
+    padding: 28px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 520px;
+    background: #ffffff;
+    border: 1px solid #efefef;
+    box-shadow: 0 4px 24px rgba(18,18,18,0.03);
+}
+
+/* 첫번째 카드(월간) — 깔끔한 흰색 */
+.plan-main .plan-monthly{
+    background: #ffffff;
+    border-color: #f2f2f2;
+}
+
+/* 두번째 카드(영구) — 연한 살구 톤 */
+.plan-main .plan-everlasting{
+    background: #fff5ee;
+    border-color: #f9dcc8;
+}
+
+/* 카드 제목 (공통) */
+.plan-monthly h2,
+.plan-everlasting h2 {
+    margin: 0;
     font-size: 20px;
-    font-style: normal;
     font-weight: 700;
-    line-height: normal;    
+    color: #111;
 }
 
-.isPremium span {
-    color: #FE8401;
-    font-family: Pretendard;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;   
-}
-
-.plan {
-    width: 1256px;
-    height: 892px;
-    flex-shrink: 0;
-    background: #F9F9F9;
-}
-
-.Plan span {
-    color: #000;
-    font-family: Pretendard;
+/* 가격 스타일 (공통) */
+.plan-monthly .plan-price,
+.plan-everlasting .plan-price,
+.plan-price {
+    margin: 6px 0 0 0;
     font-size: 36px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    position: absolute;
-    margin-left: 514px;
-    margin-bottom: 35px;
+    font-weight: 800;
+    color: #111;
+    display: block;
 }
 
-.BitCon {
-    width: 400px;
-    height: 526px;
-    flex-shrink: 0;
-    aspect-ratio: 200/263;
-    
-    position: absolute;
-    margin-top: 418px;
-
-    z-index: 0;
+/* 기능 목록 (공통) */
+.plan-monthly .plan-features,
+.plan-everlasting .plan-features,
+.plan-features {
+    margin: 12px 0 0 0;
+    padding-left: 18px;
+    list-style: disc;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.7;
+    flex-grow: 1;
 }
 
-.DDongJon {
-    width: 400px;
-    height: 382px;
-    flex-shrink: 0;
-    aspect-ratio: 200/191;
-
-    position: absolute;
-    margin-left: 930px;
-    margin-top: 510px;
-
-    z-index: 0;
-}
-
-
-.plans {
+/* 버튼 스타일 (공통) */
+.plan-monthly .plan-select-button,
+.plan-everlasting .plan-select-button,
+.plan-select-button {
+    width: 100%;
+    height: 46px;
+    border-radius: 28px;
+    background: #ff8a00;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 60px;
-
-    margin-left: 216px;
-    margin-top: 118px;
-}
-
-.Free {
-    width: 382px;
-    height: 740px;
-    border-radius: 14px;
-    border: 1px solid #FDE5CE;
-    background: #FFF8F5;
-
-    z-index: 1;
-}
-
-.Premium {
-    width: 382px;
-    height: 740px;
-    border-radius: 14px;
-    border: 1px solid #FDE5CE;
-    background: #FFF8F5;
-
-    z-index: 1;
-}
-
-.Free span {
-    color: #0D0D0D;
-    font-family: Pretendard;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-
-    position: absolute;
-    margin-top: 30px;
-    margin-left: 24px;
-    margin-right: 292px;
-    margin-bottom: 677px;
-}
-
-.Premium span {
-    color: #0D0D0D;
-    font-family: Pretendard;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-
-    position: absolute;
-    margin-top: 30px;
-    margin-left: 24px;
-    margin-right: 245px;
-    margin-bottom: 677px;
-}
-
-.Dollor {
-    color: #777777;
-    font-family: Pretendard;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    position: absolute;
-    margin-top: 85px;
-    margin-left: 24px;
-}
-
-.Free .price {
-    color: #0D0D0D;
-    font-family: Pretendard;
-    font-size: 48px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-
-    position: absolute;
-    margin-top: 80px;
-    margin-left: 40px;
-}
-.Free .USD {
-    color: #5D5D5D;
-    font-family: Pretendard;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    position: absolute;
-    margin-top: 100px;
-    margin-left: 170px;
-}
-.perMonth {
-    color: #5D5D5D;
-    font-family: Pretendard;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    position: absolute;
-    margin-top: 115px;
-    margin-left: 170px;
-}
-
-.explanation {
-    color: #0D0D0D;
-    font-family: Pretendard;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    position: absolute;
-    margin-top: 140px;
-    margin-left: 24px;
-    width: 334px;
-    height: 40px;
-}
-
-.currentPlan {
-    width: 334px;
-    height: 44px;
-    border-radius: 50px;
-    background: #FE8401;
-
-    display: flex;
     justify-content: center;
-    align-items: center;
-
-    position: absolute;
-    margin-top: 200px;
-    margin-left: 24px;
-
-    font-family: Pretendard;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-
-    color: #FFFFFF; /* ✅ 글자색 흰색으로 지정 */
-    text-decoration: none; /* ✅ 혹시 a태그면 밑줄 제거 */
+    margin-top: 12px;
+    box-shadow: 0 6px 14px rgba(255,138,0,0.15);
 }
 
-.currentPlanPremium {
-    width: 334px;
-    height: 44px;
-    border-radius: 50px;
-    background: #FE8401;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: absolute;
-    margin-top: 200px;
-    margin-left: 24px;
-
-    font-family: Pretendard;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-
-    color: #FFFFFF; /* ✅ 글자색 흰색으로 지정 */
-    text-decoration: none; /* ✅ 혹시 a태그면 밑줄 제거 */
+/* 두번째 카드의 버튼 색상(영구 플랜) */
+.plan-main .plan-everlasting .plan-select-button{
+    background: #ff7a00;
 }
 
-.Free .features{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    position: absolute;
-    margin-top: 270px;
-    margin-left: 40px;
+/* 버튼 포커스 접근성 */
+.plan-select-button:focus{
+    outline: 3px solid rgba(255,138,0,0.18);
+    outline-offset: 2px;
 }
 
-.Free .features li{
-    margin-bottom: 5px;
-}
-
-.Premium .price{
-    color: #0D0D0D;
-    font-family: Pretendard;
-    font-size: 48px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-
-    position: absolute;
-    margin-top: 80px;
-    margin-left: 40px;
-}
-
-.Premium .USD{
-    color: #5D5D5D;
-    font-family: Pretendard;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    position: absolute;
-    margin-top: 100px;
-    margin-left: 210px;
-}
-
-.Premium .perMonth{
-    color: #5D5D5D;
-    font-family: Pretendard;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    position: absolute;
-    margin-top: 115px;
-    margin-left: 210px;
-}
-
-.Premium .features{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    position: absolute;
-    margin-top: 270px;
-    margin-left: 40px;
-}
-
-.Premium .features li{
-    margin-bottom: 5px;
+/* 반응형: 좁은 화면에서 카드 세로 배치 */
+@media (max-width: 1000px){
+    .plan-main{
+        flex-direction: column;
+        align-items: center;
+    }
+    .plan-option{
+        width: 100%;
+        max-width: 720px;
+    }
 }

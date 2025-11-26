@@ -98,7 +98,7 @@ export default function SignUp() {
             toast.clearWaitingQueue();
             return;
         } else if (!isValidEmail(sendData.email)) {
-            toast.info('올바른 이메일 형식을 입력해주세요', toastcode(1000));
+            toast.info('올바른 이메일 형식을 입력해주세요(@, 도메인 포함)', toastcode(1000));
             toast.clearWaitingQueue();
             return;
         }

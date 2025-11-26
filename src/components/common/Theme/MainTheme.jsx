@@ -5,6 +5,16 @@ import "../../css/Loginmainpagescss/Loginmainpages.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
 function MainTheme() {
+  const location = useLocation();
+  console.log(location);
+  const connect = async () => {
+    const response = await Main.get("/admin/roadmap/themes");
+    console.log(response)
+  };
+  useEffect(() => {
+    const isQuizPath = location.pathname.includes("/roadmap");
+    connect()
+  }, [location.pathname]);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -68,7 +78,7 @@ function MainTheme() {
       </div>
       <div className="Tenth ho" onClick={() => navigate("/roadmap/theme10")}>
         <Tamatitle n={10} />
-        <TamaP n={"북극곰 구하고,"} m={"우리경제구하기"} />
+        <TamaP n={"북극곰 구하고,\n우리경제구하기"} />
       </div>
     </div>
   );

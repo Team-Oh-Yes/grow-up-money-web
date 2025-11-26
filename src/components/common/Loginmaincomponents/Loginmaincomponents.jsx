@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Big, Mobilestate, quizProgressState } from "../../../atoms";
+import { toast } from "react-toastify";
 import BigBlocker from "../../../BigBlocker";
 import back from "../../../img/back.png";
-import trade from "../../../img/거래소.png";
+import trade from "../../../img/trade.png";
 import dia from "../../../img/point.png";
 import more from "../../../img/more.png";
 import rank from "../../../img/rank.png";
@@ -12,12 +13,11 @@ import map from "../../../img/loadmap.png";
 import store from "../../../img/store.png";
 import king from "../../../img/crown.png";
 import ticket from "../../../img/gacha2.png";
-import pro from "../../../img/프로필.png";
+import pro from "../../../img/profile.png";
 import heart from "../../../img/heart.png";
 import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
-import { toast } from 'react-toastify';
 function Loginmaincomponents() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -124,7 +124,7 @@ function Loginmaincomponents() {
   return (
     <div className="maincon">
       <S.Sidebar>
-        <p className="title">oh!Yes</p>
+        <p className="title">Grow Money</p>
         <div className="con">
           <div
             className={active === "box1" ? "boxactive" : "box"}
@@ -152,14 +152,14 @@ function Loginmaincomponents() {
             onClick={() => Action("box4", "main//store")}
           >
             <img src={store} alt="스토어 이미지"></img>
-            <p>스토어</p>
+            <p>상점</p>
           </div>
           <div
             className={active === "box5" ? "boxactive" : "box"}
             onClick={() => Action("box5", "/profile")}
           >
             <img src={pro} alt="프로필 이미지"></img>
-            <p>프로필</p>
+            <p>마이페이지</p>
           </div>
           <div
             className={active === "box6" ? "boxactive" : "box"}
@@ -172,7 +172,7 @@ function Loginmaincomponents() {
       </S.Sidebar>
       <div className="changebox">
         <S.Topbar>
-          <div className="b" onClick={()=>navigate('/roadmap')}>
+          <div className="b" onClick={() => navigate("/roadmap")}>
             <img src={back}></img>
           </div>
           <div className="topbar-progress-container">

@@ -99,7 +99,7 @@ export default function Login() {
                 }
                 
                 // 메인 페이지로 이동하면서 state 전달
-                navigate('/home', { state: { loginSuccess: true } });
+                navigate('/roadmap', { state: { loginSuccess: true } });
             })
 
             // 실패 시

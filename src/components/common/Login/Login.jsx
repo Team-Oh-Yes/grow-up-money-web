@@ -82,31 +82,12 @@ export default function Login() {
         // API 요청
         axiosInstance.post('/users/login', sendData)
             .then(response => {
-                console.log('로그인 성공:', response.data);
-                console.log('액세스 토큰:', response.data?.accessToken);
-                console.log('쿠키 확인:', document.cookie);
-
-                // 토큰 저장
-                if (response.data?.accessToken) {
-                    const token = response.data.accessToken;
-                    // 사용자가 '로그인 유지'를 체크하면 localStorage에, 아니면 sessionStorage에 저장
-                    if (token) {
-                        localStorage.setItem('token', token);
-                        console.log('토큰(localStorage)에 저장 완료');
-                    } else {
-                        sessionStorage.setItem('token', token);
-                        console.log('토큰(sessionStorage)에 저장 완료');
-                    }
-                }
-                
-                // 메인 페이지로 이동하면서 state 전달
-                navigate('/roadmap', { state: { loginSuccess: true } });
+                // 로그인 성공 후 메인 페이지로 이동 — 이동한 페이지에서 토스트를 표시합니다
+                navigate('/roadmap', { replace: true, state: { loginSuccess: true } });
             })
 
             // 실패 시
             .catch(error => {
-                console.error('API Error:', error);
-                
                 if (error.response?.data) {
                     // 요청 설정 중에 에러가 발생한 경우
                     toast.info(error.response.data.detail, toastcode(3000));

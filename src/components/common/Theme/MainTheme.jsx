@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
+
 function MainTheme() {
   const location = useLocation();
   console.log(location);
@@ -16,7 +17,6 @@ function MainTheme() {
     connect()
   }, [location.pathname]);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const toastOptions = (time = 2000) => ({
     position: "top-right",

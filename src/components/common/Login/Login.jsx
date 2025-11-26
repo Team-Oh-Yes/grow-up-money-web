@@ -82,24 +82,12 @@ export default function Login() {
         // API 요청
         axiosInstance.post('/users/login', sendData)
             .then(response => {
-                console.log('로그인 성공:', response.data);
-                console.log('액세스 토큰:', response.data?.accessToken);
-                console.log('쿠키 확인:', document.cookie);
-
-                // 로그인 성공 토스트
-                toast.success('로그인 성공!', toastcode(2000));
-                toast.clearWaitingQueue();
-
-                // 메인 페이지로 이동
-                setTimeout(() => {
-                    navigate('/home', { replace: true });
-                }, 1000);
+                // 로그인 성공 후 메인 페이지로 이동 — 이동한 페이지에서 토스트를 표시합니다
+                navigate('/roadmap', { replace: true, state: { loginSuccess: true } });
             })
 
             // 실패 시
             .catch(error => {
-                console.error('API Error:', error);
-                
                 if (error.response?.data) {
                     // 요청 설정 중에 에러가 발생한 경우
                     toast.info(error.response.data.detail, toastcode(3000));

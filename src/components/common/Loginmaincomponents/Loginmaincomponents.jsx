@@ -172,7 +172,7 @@ function Loginmaincomponents() {
       </S.Sidebar>
       <div className="changebox">
         <S.Topbar>
-          <div className="b" onClick={()=>navigate('/roadmap')}>
+          <div className="b" onClick={() => navigate("/roadmap")}>
             <img src={back}></img>
           </div>
           <div className="topbar-progress-container">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Big, Mobilestate, quizProgressState } from "../../../atoms";
+import { toast } from "react-toastify";
 import BigBlocker from "../../../BigBlocker";
 import back from "../../../img/back.png";
 import trade from "../../../img/trade.png";

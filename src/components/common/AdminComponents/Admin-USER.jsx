@@ -103,6 +103,7 @@ const UserRow = React.memo(({ user, onAction, onBanClick }) => {
     return (
         <tr>
             <td>{user.id}</td>
+            <td>{user.role}</td>
             <td>{user.email}</td>
             <td className={user.status === USER_STATUS.NORMAL ? 'status-normal' : 'status-banned'}>
                 {user.status}
@@ -260,6 +261,7 @@ export default function UserManagement() {
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>권한</th>
                         <th>이메일</th>
                         <th>계정 상태</th>
                         <th>상태 제어</th>

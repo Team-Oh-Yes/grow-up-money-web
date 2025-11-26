@@ -84,6 +84,7 @@ export default function Login() {
             .then(response => {
                 console.log('로그인 성공:', response.data);
                 console.log('액세스 토큰:', response.data?.accessToken);
+                console.log('쿠키 확인:', document.cookie);
 
                 // 토큰 저장
                 if (response.data?.accessToken) {
@@ -106,9 +107,13 @@ export default function Login() {
             .catch(error => {
                 console.error('API Error:', error);
                 
-                if (error.message) {
+                if (error.response?.data) {
                     // 요청 설정 중에 에러가 발생한 경우
-                    toast.error(error.message, toastcode(3000));
+                    toast.info(error.response.data.detail, toastcode(3000));
+                    toast.clearWaitingQueue();
+                } else {
+                    // 서버와의 통신 자체가 실패한 경우
+                    toast.error('서버와 통신할 수 없습니다: ' + error.message, toastcode(3000));
                     toast.clearWaitingQueue();
                 }
             });

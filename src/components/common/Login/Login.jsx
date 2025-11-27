@@ -92,7 +92,7 @@ export default function Login() {
 
                 // 메인 페이지로 이동
                 setTimeout(() => {
-                    navigate('/home', { replace: true });
+                    navigate('/roadmap', { replace: true });
                 }, 1000);
             })
 

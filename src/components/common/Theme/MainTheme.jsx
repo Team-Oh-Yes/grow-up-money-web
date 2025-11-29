@@ -1,6 +1,6 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Main from "../../api/login";
+import { toast } from 'react-toastify';
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
@@ -17,6 +17,28 @@ function MainTheme() {
     connect()
   }, [location.pathname]);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const toastOptions = (time = 2000) => ({
+    position: "top-right",
+    autoClose: time,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: 0,
+    theme: "light",
+  });
+
+  useEffect(() => {
+    if (location.state?.loginSuccess) {
+      toast.success('로그인 성공!', toastOptions(2000));
+      toast.clearWaitingQueue();
+
+      // state 초기화하여 뒤로가거나 새로고침 시 중복 표시 방지
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
   return (
     <div className="tama">
       <div className="First ho" onClick={() => navigate("/roadmap/theme1")}>

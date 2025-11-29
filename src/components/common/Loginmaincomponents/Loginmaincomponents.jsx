@@ -3,7 +3,6 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { Big, Mobilestate, quizProgressState } from "../../../atoms";
-import { toast } from "react-toastify";
 import BigBlocker from "../../../BigBlocker";
 import back from "../../../img/back.png";
 import king from "../../../img/crown.png";

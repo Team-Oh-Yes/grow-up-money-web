@@ -17,7 +17,6 @@ function MainTheme() {
     connect()
   }, [location.pathname]);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const toastOptions = (time = 2000) => ({
     position: "top-right",

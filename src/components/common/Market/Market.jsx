@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import coin from "../../../img/coin.png";
@@ -18,6 +19,18 @@ function Market() {
     const isQuizPath = location.pathname.includes("/roadmap");
     connect();
   }, [location.pathname]);
+=======
+import { useState } from "react";
+import coin from "../../../img/coin.png";
+import m from "../../../img/image 11.svg";
+import "../../css/Market/Market.css";
+
+function Market() {
+  const [show, setShow] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [sell, setSell] = useState(false);
+
+>>>>>>> 998e195c7598f4f0b80db45d42e3479dd1a1876d
   const sample = [
     {
       id: 1,

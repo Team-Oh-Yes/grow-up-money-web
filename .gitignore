@@ -26,3 +26,5 @@ dist-ssr
 *.sw?
 package-lock.json
 *.env
+local.growmoney.duckdns.org-key.pem
+local.growmoney.duckdns.org.pem

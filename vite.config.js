@@ -5,18 +5,16 @@ import { defineConfig } from "vite";
 const keyPath = "./local.growmoney.duckdns.org-key.pem";
 const certPath = "./local.growmoney.duckdns.org.pem";
 
-export default defineConfig({
-  plugins: [
-    react(),
-  ],
+export default defineConfig(({ mode }) => ({
+  plugins: [react()],
   server: {
-    https: {
-      key: fs.readFileSync(keyPath),
-      cert: fs.readFileSync(certPath),
-    },
+    https: mode === "development"
+      ? {
+          key: fs.readFileSync(keyPath),
+          cert: fs.readFileSync(certPath),
+        }
+      : false, 
     host: "0.0.0.0",
     port: 5173,
-    proxy: {
-    },
   },
-});
+}));

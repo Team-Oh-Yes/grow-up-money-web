@@ -6,28 +6,17 @@ import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
 function MainTheme() {
   const location = useLocation();
-<<<<<<< HEAD
   const connect = async () => {
     const response = await Main.get("/admin/roadmap/themes");
     const length = response.data.length
     const data = response.data
     console.log(length,data)
-=======
-  console.log(location);
-  const connect = async () => {
-    const response = await Main.get("/admin/roadmap/themes");
-    console.log(response)
->>>>>>> 998e195c7598f4f0b80db45d42e3479dd1a1876d
   };
   useEffect(() => {
     const isQuizPath = location.pathname.includes("/roadmap");
     connect()
   }, [location.pathname]);
   const navigate = useNavigate();
-<<<<<<< HEAD
-=======
-  const location = useLocation();
->>>>>>> 998e195c7598f4f0b80db45d42e3479dd1a1876d
 
   const toastOptions = (time = 2000) => ({
     position: "top-right",

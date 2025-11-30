@@ -104,7 +104,7 @@ export default function SignUp() {
             // 성공 시
             .then(response => {
                 // 로그인 페이지로 이동하면서 state 전달
-                navigate('/login', { state: { signUpSuccess: true } });
+                navigate('/Login', { state: { signUpSuccess: true } });
             })
 
             // 실패 시

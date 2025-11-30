@@ -4,11 +4,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-
-// AxiosInstance import
 import axiosInstance from '../../api/axiosInstance';
-
-// Img import
 import GoogleIcon from '../../../img/Google-icon.png';
 
 // Const

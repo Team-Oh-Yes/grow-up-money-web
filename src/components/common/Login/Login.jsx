@@ -99,16 +99,18 @@ export default function Login() {
                 }
                 
                 // 메인 페이지로 이동하면서 state 전달
-                navigate('/home', { state: { loginSuccess: true } });
+                navigate('/roadmap', { state: { loginSuccess: true } });
             })
 
             // 실패 시
             .catch(error => {
-                console.error('API Error:', error);
-                
-                if (error.message) {
+                if (error.response?.data) {
                     // 요청 설정 중에 에러가 발생한 경우
-                    toast.error(error.message, toastcode(3000));
+                    toast.info(error.response.data.detail, toastcode(3000));
+                    toast.clearWaitingQueue();
+                } else {
+                    // 서버와의 통신 자체가 실패한 경우
+                    toast.error('서버와 통신할 수 없습니다: ' + error.message, toastcode(3000));
                     toast.clearWaitingQueue();
                 }
             });

@@ -161,6 +161,17 @@ h2 {
 .D {
   color: white !important;
 }
+<<<<<<< HEAD
+.footer p {
+  color: #909AA5;
+=======
+.D a {
+  color: #969696;
+>>>>>>> 56c88d1c53e4dd06d6d1b1ec9a59c5df00d4042b
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-decoration: none;
+}
 .footer p {
   color: #909AA5;
   font-size: 14px;

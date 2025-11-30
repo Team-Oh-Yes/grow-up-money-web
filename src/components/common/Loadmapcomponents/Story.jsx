@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Show } from "../../../atoms";
 import * as data from "../../data/loadmap/loadmapdata";
-
 function Story() {
   const { i, d } = useParams(); // i = "theme1", d = "unit2" 와 같은 값 가정
   const original_string = i; // "theme1"

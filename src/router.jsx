@@ -1,15 +1,6 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Mainpages from "./components/Add/Mainpages";
-<<<<<<< HEAD
-import Loginmaincomponents from "./components/common/Loginmaincomponents/Loginmaincomponents";
-import Error from "./error/Error";
-import MainTheme from "./components/common/Theme/MainTheme";
-// You need to import the Theme component
-import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
-import SignUp from "./components/common/SignUp/SignUp.jsx";
-import Login from "./components/common/Login/Login.jsx";
-=======
 // import Loginmaincomponents from "./components/common/Loginmaincomponents/Loginmaincomponents";
 import Adminpages from "./components/common/AdminComponents/AdminPages";
 import Error from "./error/Error";
@@ -32,7 +23,6 @@ const Loginmaincomponents = lazy(() =>
 const Themecomponents = lazy(() =>
   import("./components/common/Theme/Themecomponents")
 );
->>>>>>> 56c88d1c53e4dd06d6d1b1ec9a59c5df00d4042b
 
 const router = createBrowserRouter([
   {
@@ -40,13 +30,6 @@ const router = createBrowserRouter([
     element: <Mainpages />,
     errorElement: <Error />,
   },
-<<<<<<< HEAD
-  {
-    path: "/home",
-    element: <Loginmaincomponents />,
-    children: [
-      {  
-=======
   // {
   //   path: "/login",
   //   element: <Loginmaincomponents />,
@@ -61,15 +44,10 @@ const router = createBrowserRouter([
     ),
     children: [
       {
->>>>>>> 56c88d1c53e4dd06d6d1b1ec9a59c5df00d4042b
         index: true,
         element: <MainTheme />,
       },
       {
-<<<<<<< HEAD
-        path: ":id", 
-        element: <Themecomponents />,
-=======
         path: ":id",
         element: (
           <Suspense fallback={<div>loading</div>}>
@@ -84,7 +62,6 @@ const router = createBrowserRouter([
       {
         path: ":i/:d/quiz",
         element: <Quiz />,
->>>>>>> 56c88d1c53e4dd06d6d1b1ec9a59c5df00d4042b
       },
     ],
   },
@@ -96,11 +73,6 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <SignUp />,
   },
-<<<<<<< HEAD
-]);
-
-export default router;
-=======
   {
     path: "/servicecenter/eula",
     element: <EULA />,
@@ -146,4 +118,3 @@ export default router;
 ]);
 
 export default router;
->>>>>>> 56c88d1c53e4dd06d6d1b1ec9a59c5df00d4042b

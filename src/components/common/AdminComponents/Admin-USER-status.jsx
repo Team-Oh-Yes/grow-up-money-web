@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../../css/Admincss/Admin-USER-status.css';
 import { toast } from 'react-toastify';
 import axiosInstance from '../../api/axiosInstance';
@@ -29,7 +29,7 @@ export default function StatusPopup({ user, onClose }) {
         }
 
         try {
-            const res = await axiosInstance.post('/admin/user/suspend', {
+            const res = await axiosInstance.post('/admin/users/suspend', {
                 username: id,
                 suspensionType: enumLabel,
                 reason: reason,

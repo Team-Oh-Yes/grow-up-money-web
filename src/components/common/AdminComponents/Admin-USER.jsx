@@ -11,17 +11,17 @@ const DEFAULT_SIZE = 10;
 // 한글 검색 유틸리티 함수
 const hangulIncludes = (text, search) => {
     if (!search) return true;
-    
+
     const normalize = (str) => str.toLowerCase().replace(/\s/g, '');
     const normalizedText = normalize(text);
     const normalizedSearch = normalize(search);
-    
+
     // 기본 포함 검색
     if (normalizedText.includes(normalizedSearch)) return true;
-    
+
     // 초성 검색
-    const CHO = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
-    
+    const CHO = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+
     const getChosung = (char) => {
         const code = char.charCodeAt(0);
         if (code >= 44032 && code <= 55203) {
@@ -29,20 +29,23 @@ const hangulIncludes = (text, search) => {
         }
         return char;
     };
-    
+
     const textChosung = Array.from(normalizedText).map(getChosung).join('');
     return textChosung.includes(normalizedSearch);
 };
 
 // 상수 정의
 const USER_STATUS = {
+    ACTIVE: '정상',
     NORMAL: '정상',
+    SUSPENDED: '계정 정지',
     PERMANENT: '영구 정지',
     ONE_DAY: '1일 정지',
     THREE_DAYS: '3일 정지',
     ONE_WEEK: '1주 정지',
     ONE_MONTH: '1달 정지'
 };
+
 
 const ACTION_TYPES = {
     BAN: 'ban',
@@ -56,7 +59,7 @@ const SearchBar = ({ value, onChange }) => (
         <div>
             <img src={search} alt="검색아이콘" />
         </div>
-        <input 
+        <input
             type="text"
             placeholder="유저 ID를 입력해주세요. (초성 검색 가능)"
             value={value}
@@ -68,18 +71,18 @@ const SearchBar = ({ value, onChange }) => (
 // 액션 버튼 컴포넌트
 const ActionButton = ({ type, status, onClick, disabled }) => {
     const buttonConfig = {
-        [ACTION_TYPES.BAN]: { 
-            label: '계정 정지', 
+        [ACTION_TYPES.BAN]: {
+            label: '계정 정지',
             className: 'btn-status',
             isActive: status !== USER_STATUS.NORMAL
         },
-        [ACTION_TYPES.POINT]: { 
-            label: '포인트 지급', 
+        [ACTION_TYPES.POINT]: {
+            label: '포인트 지급',
             className: 'btn-point',
             isActive: false
         },
-        [ACTION_TYPES.RECOVER]: { 
-            label: '유저 계정 복구', 
+        [ACTION_TYPES.RECOVER]: {
+            label: '유저 계정 복구',
             className: 'btn-recover',
             isActive: status !== USER_STATUS.NORMAL
         }
@@ -88,7 +91,7 @@ const ActionButton = ({ type, status, onClick, disabled }) => {
     const config = buttonConfig[type];
 
     return (
-        <button 
+        <button
             className={`${config.className} ${config.isActive ? 'active' : ''}`}
             onClick={onClick}
             disabled={disabled}
@@ -109,7 +112,7 @@ const UserRow = React.memo(({ user, onAction, onBanClick }) => {
                 {user.status}
             </td>
             <td>
-                <ActionButton 
+                <ActionButton
                     type={ACTION_TYPES.BAN}
                     status={user.status}
                     onClick={() => onBanClick(user)}
@@ -117,14 +120,14 @@ const UserRow = React.memo(({ user, onAction, onBanClick }) => {
                 />
             </td>
             <td>
-                <ActionButton 
+                <ActionButton
                     type={ACTION_TYPES.POINT}
                     status={user.status}
                     onClick={() => onAction(user.id, ACTION_TYPES.POINT)}
                 />
             </td>
             <td>
-                <ActionButton 
+                <ActionButton
                     type={ACTION_TYPES.RECOVER}
                     status={user.status}
                     onClick={() => onAction(user.id, ACTION_TYPES.RECOVER)}
@@ -172,25 +175,34 @@ export default function UserManagement() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     // 유저 목록 가져오기
-    const GetUserRow = async(page = DEFAULT_PAGE, size = DEFAULT_SIZE) => {
+    const GetUserRow = async (page = DEFAULT_PAGE, size = DEFAULT_SIZE) => {
         try {
             setIsLoading(true);
             const res = await axiosInstance.get("/admin/users/", {
                 params: { page, size }
             });
-            
+
             // API 응답에서 content 배열과 페이지네이션 정보 추출
             const data = res.data;
-            
-            const mappedUsers = data.content.map(user => ({
-                id: user.username,
-                email: user.email,
-                status: user.status === 'ACTIVE' ? USER_STATUS.NORMAL : USER_STATUS.PERMANENT,
-                role: user.role,
-                created_at: user.created_at,
-                updated_at: user.updated_at
-            }));
-            
+
+            // 디버깅: 실제 유저 데이터 확인
+            console.log('API Response - User data:', data.content);
+
+            const mappedUsers = data.content.map(user => {
+                console.log('User status:', user.status, 'suspensionType:', user.suspensionType);
+                return {
+                    id: user.username,
+                    email: user.email,
+                    // 정지된 유저는 정지 기간을 표시, 정상 유저는 "정상" 표시
+                    status: user.status === 'SUSPENDED' && user.suspensionType
+                        ? USER_STATUS[user.suspensionType] || '계정 정지'
+                        : USER_STATUS[user.status] || user.status,
+                    role: user.role,
+                    created_at: user.created_at,
+                    updated_at: user.updated_at
+                };
+            });
+
             setUsers(mappedUsers);
             setPagination({
                 currentPage: data.number,
@@ -207,6 +219,8 @@ export default function UserManagement() {
             setIsLoading(false);
         }
     }
+
+
 
     // 컴포넌트 마운트 시 유저 목록 로드
     useEffect(() => {
@@ -232,25 +246,20 @@ export default function UserManagement() {
     }, []);
 
     // 액션 핸들러 (포인트 지급, 복구)
-    const handleAction = useCallback((userId, actionType) => {
-        setUsers(prevUsers => 
-            prevUsers.map(user => {
-                if (user.id !== userId) return user;
-
-                switch (actionType) {
-                    case ACTION_TYPES.POINT:
-                        // alert(`${userId}에게 포인트를 지급합니다.`);
-                        return user;
-                    
-                    case ACTION_TYPES.RECOVER:
-                        // alert(`${userId} 계정을 복구합니다.`);
-                        return { ...user, status: USER_STATUS.NORMAL };
-                    
-                    default:
-                        return user;
-                }
-            })
-        );
+    const handleAction = useCallback(async (userId, actionType) => {
+        if (actionType === ACTION_TYPES.RECOVER) {
+            try {
+                await axiosInstance.post(`/admin/users/${userId}/unsuspend`);
+                alert(`${userId} 계정이 복구되었습니다.`);
+                // 유저 목록 새로고침
+                GetUserRow();
+            } catch (error) {
+                console.error("계정 복구에 실패했습니다", error);
+                alert("계정 복구에 실패했습니다.");
+            }
+        } else if (actionType === ACTION_TYPES.POINT) {
+            alert(`${userId}에게 포인트를 지급합니다.`);
+        }
     }, []);
 
     return (
@@ -274,7 +283,7 @@ export default function UserManagement() {
                         <LoadingState />
                     ) : filteredUsers.length > 0 ? (
                         filteredUsers.map(user => (
-                            <UserRow 
+                            <UserRow
                                 key={user.id}
                                 user={user}
                                 onAction={handleAction}
@@ -289,7 +298,7 @@ export default function UserManagement() {
 
             {/* 팝업 렌더링 */}
             {isPopupOpen && (
-                <StatusPopup 
+                <StatusPopup
                     user={selectedUser}
                     onClose={handleClosePopup}
                 />

@@ -120,6 +120,10 @@ export default function FtManagement() {
             {isIssuePopupOpen && (
                 <AdminFTIssue
                     onClose={() => setIsIssuePopupOpen(false)}
+                    onSuccess={() => {
+                        // NFT 목록 새로고침 로직 추가 가능
+                        console.log('NFT 발급 완료');
+                    }}
                 />
             )}
         </div>

@@ -1,0 +1,55 @@
+/* ===== 팝업 오버레이 ===== */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+/* ===== 팝업 컨테이너 ===== */
+.popup-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-family: 'Pretendard', sans-serif;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* ===== 헤더 ===== */
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.popup-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #181f29;
+}
+
+/* 닫기 버튼 */
+.popup-close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #181f29;
+}
+
+.popup-close-btn:hover {
+    color: #666;
+}
+
+/* ===== 컨텐츠 ===== */
+.popup-content {
+    padding: 10px 0;
+}

@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import '../../css/Admincss/Admin-FT-issue.css';
+import '../../css/Admincss/Admin-FT-collections.css';
 import { toast } from 'react-toastify';
 import axiosInstance from '../../api/axiosInstance';
 import Popup from './Popup';
 
-const AdminFTIssue = ({ onClose, onSuccess }) => {
+const AdminFTCollections = ({ onClose, onSuccess }) => {
     const [formData, setFormData] = useState({
         collectionName: '',
         serialNo: '',
@@ -173,4 +173,4 @@ const AdminFTIssue = ({ onClose, onSuccess }) => {
     );
 };
 
-export default AdminFTIssue;
+export default AdminFTCollections;

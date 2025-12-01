@@ -10,9 +10,15 @@ export default defineConfig(({ mode }) => ({
   server: {
     https: mode === "development"
       ? {
+<<<<<<< HEAD
         key: fs.readFileSync(keyPath),
         cert: fs.readFileSync(certPath),
       }
+=======
+          key: fs.readFileSync(keyPath),
+          cert: fs.readFileSync(certPath),
+        }
+>>>>>>> 94ba6ca6e36a4efb34f4b6652cdc41129fd6dbe5
       : false,
 
     host: "0.0.0.0",

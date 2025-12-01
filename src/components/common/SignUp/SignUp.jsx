@@ -19,11 +19,11 @@ export default function SignUp() {
 
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const Earth = ({ img, alt }) => {
+    const Earth = ({ img, alt, href }) => {
         return (
-            <button type="button" className="social-signup-btn">
-                <img src={img} alt={alt} className="social-signup-icon" />
-            </button>
+            <a href={href} className="social-login-btn">
+                <img src={img} alt={alt} className="social-login-icon" />
+            </a>
         );
     };
 
@@ -134,7 +134,7 @@ export default function SignUp() {
                     
                         <div className="social-signup-buttons">
                             {/* 구글 회원가입 버튼 */}
-                            <Earth img={GoogleIcon} alt="Sign up with Google" />
+                            <Earth img={GoogleIcon} alt="login with Google" href={"https://growmoney.duckdns.org/oauth2/authorization/google"} />
                         </div>
                     </div>
 
@@ -151,7 +151,7 @@ export default function SignUp() {
                             <input type="email" className="signup-input" placeholder="이메일" value={sendData.email} onChange={onChangeEmail} />
 
                             {/* 회원가입 버튼 */}
-                            <button className="signup-button" type="button" onClick={handleSignUp}>회원가입</button>
+                            <button className="signup-button" type="submit" onClick={handleSignUp}>회원가입</button>
                             <p className="signup-login-link">이미 계정이 있으신가요? <a className="signup-link" href="/login">로그인</a></p>
                         </form>
 

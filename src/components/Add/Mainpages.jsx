@@ -14,12 +14,10 @@ function Mainpages() {
   const [isMobileBlocked, setIsMobileBlocked] = useRecoilState(Mobilestate);
   const [isExtraLargeScreen, setIsExtraLargeScreen] = useRecoilState(Big);
   const navigate = useNavigate();
-
-  // 로그인 상태 변경 시 로그인 페이지로 이동
   useEffect(() => {
     if (Login) {
       navigate("/login");
-      setLogin(false); // 상태 초기화
+      setLogin(false); 
     }
   }, [Login, navigate, setLogin]);
   useEffect(() => {
@@ -27,10 +25,11 @@ function Mainpages() {
       if (typeof window !== "undefined") {
         const width = window.innerWidth;
         setIsMobileBlocked(width < 768);
-        setIsExtraLargeScreen(width >= 1920);
+        setIsExtraLargeScreen(width >= 3200);
       }
     };
-
+    console.log(isMobileBlocked)
+    console.log(isExtraLargeScreen)
     handleResize();
     window.addEventListener("resize", handleResize);
 

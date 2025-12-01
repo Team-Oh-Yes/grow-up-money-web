@@ -60,7 +60,7 @@ function Loginmaincomponents() {
       if (typeof window !== "undefined") {
         const width = window.innerWidth;
         setIsMobileBlocked(width < 768);
-        setIsExtraLargeScreen(width >= 2000);
+        setIsExtraLargeScreen(width >= 3200);
       }
     };
 

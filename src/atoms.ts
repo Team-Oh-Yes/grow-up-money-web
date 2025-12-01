@@ -30,3 +30,9 @@ export const quizProgressState = atom({
     totalQuestions: 0,
   },
 });
+export const roadmapdata = atom({
+    key:"roadmap",
+    default: {
+        
+    }
+})

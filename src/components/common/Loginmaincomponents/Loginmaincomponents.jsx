@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { Big, Mobilestate, quizProgressState } from "../../../atoms";
 import BigBlocker from "../../../BigBlocker";
 import back from "../../../img/back.png";
-import trade from "../../../img/거래소.png";
-import dia from "../../../img/point.png";
-import more from "../../../img/more.png";
-import rank from "../../../img/rank.png";
-import map from "../../../img/loadmap.png";
-import store from "../../../img/store.png";
 import king from "../../../img/crown.png";
 import ticket from "../../../img/gacha2.png";
-import pro from "../../../img/프로필.png";
 import heart from "../../../img/heart.png";
+import map from "../../../img/loadmap.png";
+import more from "../../../img/more.png";
+import dia from "../../../img/point.png";
+import rank from "../../../img/rank.png";
+import store from "../../../img/store.png";
+import trade from "../../../img/trade.png";
+import pro from "../../../img/profile.png";
 import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
@@ -36,16 +37,21 @@ function Loginmaincomponents() {
     progress: 0,
     theme: "light",
   });
-
-  // 로그인 성공 시 토스트 메시지 표시
   useEffect(() => {
-      if (location.state?.loginSuccess) {
-          toast.success('로그인 성공!', {...toastcode(2000)});
-          toast.clearWaitingQueue();
-          
-          // state 초기화 (뒤로가기 후 다시 접속 시 메시지 재표시 방지)
-          window.history.replaceState({}, document.title);
-      }
+    const path = location.pathname;
+    if (path.includes("/roadmap")) {
+      setActive("box1");
+    } else if (path.includes("/market")) {
+      setActive("box3");
+    }
+  }, [location.pathname]);
+  useEffect(() => {
+    if (location.state?.loginSuccess) {
+      toast.success("로그인 성공!", { ...toastcode(2000) });
+      toast.clearWaitingQueue();
+
+      window.history.replaceState({}, document.title);
+    }
   }, [location]);
 
   useEffect(() => {
@@ -105,7 +111,7 @@ function Loginmaincomponents() {
   return (
     <div className="maincon">
       <S.Sidebar>
-        <p className="title">oh!Yes</p>
+        <p className="title">Grow Money</p>
         <div className="con">
           <div
             className={active === "box1" ? "boxactive" : "box"}
@@ -123,7 +129,7 @@ function Loginmaincomponents() {
           </div>
           <div
             className={active === "box3" ? "boxactive" : "box"}
-            onClick={() => Action("box3", "/trade")}
+            onClick={() => Action("box3", "/market")}
           >
             <img src={trade} alt="거래소 이미지"></img>
             <p>거래소</p>
@@ -133,14 +139,14 @@ function Loginmaincomponents() {
             onClick={() => Action("box4", "main//store")}
           >
             <img src={store} alt="스토어 이미지"></img>
-            <p>스토어</p>
+            <p>상점</p>
           </div>
           <div
             className={active === "box5" ? "boxactive" : "box"}
             onClick={() => Action("box5", "/profile")}
           >
             <img src={pro} alt="프로필 이미지"></img>
-            <p>프로필</p>
+            <p>마이페이지</p>
           </div>
           <div
             className={active === "box6" ? "boxactive" : "box"}
@@ -153,7 +159,7 @@ function Loginmaincomponents() {
       </S.Sidebar>
       <div className="changebox">
         <S.Topbar>
-          <div className="b" onClick={()=>navigate('/roadmap')}>
+          <div className="b" onClick={() => navigate("/roadmap")}>
             <img src={back}></img>
           </div>
           <div className="topbar-progress-container">

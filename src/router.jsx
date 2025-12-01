@@ -15,6 +15,8 @@ import MainTheme from "./components/common/Theme/MainTheme";
 import FaQ from "./components/common/Serviccenter/FaQ.jsx";
 import Notice from "./components/common/Serviccenter/Notice.jsx";
 import More from "./components/common/more/more.jsx";
+import Mypage from "./components/common/mypage/Mypage.jsx";
+import Market from "./components/common/Market/Market.jsx";
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents")
@@ -66,7 +68,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/Login",
+    path: "/login",
     element: <Login />,
   },
   {
@@ -92,6 +94,11 @@ const router = createBrowserRouter([
     ]
   },
   {
+    path: "/admin",
+    element: <Adminpages />,
+    errorElement: <Error />,
+  },
+  {
     path: "/servicecenter/faq",
     element: <FaQ />,
     errorElement: <Error />
@@ -102,7 +109,11 @@ const router = createBrowserRouter([
     errorElement: <Error />
   },
   {
-    path: "/more",
+    path: "/admin",
+    element: <Adminpages />,
+    errorElement: <Error />,
+  },{
+    path: "/mypage",
     element: (
       <Suspense fallback={<div>Loading...</div>}>
         <Loginmaincomponents />
@@ -111,10 +122,24 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <More />,
+        element: <Mypage />,
       },
     ]
-  }
+  },
+  {
+    path: "market",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Loginmaincomponents />
+      </Suspense>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Market/>,
+      }
+    ]
+    }
 ]);
 
 export default router;

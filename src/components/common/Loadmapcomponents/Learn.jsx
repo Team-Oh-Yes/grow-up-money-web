@@ -43,10 +43,10 @@ function Learn() {
             </div>
             <div className="cbox">
               <button className="go" onClick={handleContinue}>
-                퀴즈풀러가기
+                퀴즈 풀러가기
               </button>
               <button className="stop" onClick={handleStop}>
-                그만하기
+                학습 그만하기
               </button>
             </div>
           </div>

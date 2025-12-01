@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const Sign = axios.create({
-  baseURL: import.meta.env.VITE_Signup_URL,
+const Main = axios.create({
+  baseURL: import.meta.env.VITE_Main_URL,
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true, 
 });
-
-export default Sign;
+export default Main;

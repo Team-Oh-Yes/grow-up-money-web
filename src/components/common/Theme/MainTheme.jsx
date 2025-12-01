@@ -1,9 +1,44 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from 'react-toastify';
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
+import Main from "../../api/login";
 function MainTheme() {
+  const location = useLocation();
+  const connect = async () => {
+    const response = await Main.get("/admin/roadmap/themes");
+    const length = response.data.length
+    const data = response.data
+    console.log(length,data)
+  };
+  useEffect(() => {
+    const isQuizPath = location.pathname.includes("/roadmap");
+    connect()
+  }, [location.pathname]);
   const navigate = useNavigate();
+
+  const toastOptions = (time = 2000) => ({
+    position: "top-right",
+    autoClose: time,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: 0,
+    theme: "light",
+  });
+
+  useEffect(() => {
+    if (location.state?.loginSuccess) {
+      toast.success('로그인 성공!', toastOptions(2000));
+      toast.clearWaitingQueue();
+
+      // state 초기화하여 뒤로가거나 새로고침 시 중복 표시 방지
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
   return (
     <div className="tama">
       <div className="First ho" onClick={() => navigate("/roadmap/theme1")}>
@@ -44,7 +79,7 @@ function MainTheme() {
       </div>
       <div className="Tenth ho" onClick={() => navigate("/roadmap/theme10")}>
         <Tamatitle n={10} />
-        <TamaP n={"북극곰 구하고,"} m={"우리경제구하기"} />
+        <TamaP n={"북극곰 구하고,\n우리경제구하기"} />
       </div>
     </div>
   );

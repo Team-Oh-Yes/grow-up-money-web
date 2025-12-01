@@ -16,5 +16,10 @@ export default defineConfig(({ mode }) => ({
       : false, 
     host: "0.0.0.0",
     port: 5173,
+    hmr: {
+      protocol: 'wss',
+      host: 'local.growmoney.duckdns.org',
+      port: 5173,
+    }
   },
 }));

@@ -18,7 +18,7 @@ import Mypage from "./components/common/mypage/Mypage.jsx";
 import Market from "./components/common/Market/Market.jsx";
 
 const Loginmaincomponents = lazy(() =>
-  import("./components/common/Loginmaincomponents/Loginmaincomponents")
+  import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
 );
 
 const Themecomponents = lazy(() =>
@@ -31,11 +31,6 @@ const router = createBrowserRouter([
     element: <Mainpages />,
     errorElement: <Error />,
   },
-  // {
-  //   path: "/login",
-  //   element: <Loginmaincomponents />,
-  //   errorElement: <Error />,
-  // },
   {
     path: "roadmap",
     element: (

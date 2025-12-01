@@ -1,0 +1,64 @@
+/* ===== 팝업 오버레이 ===== */
+.history-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+/* ===== 팝업 본체 ===== */
+.history-popup {
+    width: 500px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-family: 'Pretendard', sans-serif;
+}
+
+/* ===== 헤더 ===== */
+.history-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.history-popup-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #181f29;
+}
+
+/* 닫기 버튼 */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #181f29;
+}
+
+/* ===== 리스트 아이템 ===== */
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+}
+
+.history-date {
+    color: #666;
+}
+
+.history-type {
+    font-weight: 500;
+    color: #000;
+}

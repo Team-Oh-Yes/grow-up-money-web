@@ -1,96 +1,85 @@
-/* Main Layout */
-.ft-management {
-    position: relative;
-    width: 1512px;
-    height: 982px;
-    background: #FFFFFF;
-    margin: 0 auto; /* Center content if screen is wider */
+/* Reusing styles from Admin-USER.css structure but keeping file separate for modularity */
+
+.ft-top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 40px;
 }
 
-/* Search Bar */
+/* Search Bar - Matching Admin-USER.css structure but with custom width */
 .search-bar {
-    position: absolute;
-    width: 1432px;
-    height: 40px;
-    left: 40px;
-    top: 168px;
-    background: #F5F5F5;
-    border-radius: 12px;
     display: flex;
     align-items: center;
-    padding: 0 12px;
-    box-sizing: border-box;
+    background: #f8f8f8;
+    padding: 10px 15px;
+    border-radius: 6px;
 }
 
-.search-bar img {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
+.ft-search-bar-custom {
+    width: calc(100% - 180px);
+    /* Adjust width to leave space for button */
+    margin: 0;
+    /* Remove default margin */
 }
 
 .search-bar input {
-    width: 100%;
     border: none;
     background: transparent;
-    font-family: 'Pretendard';
-    font-weight: 500;
+    margin-left: 10px;
+    width: 100%;
     font-size: 16px;
-    color: #747474;
+}
+
+.search-bar input:focus {
     outline: none;
 }
 
-/* Table */
-.ft-table-container {
-    position: absolute;
-    top: 237px;
-    left: 40px; /* Adjusted to align with search bar */
-    width: 1432px;
+.search-bar img {
+    width: 14px;
+    height: 14px;
 }
 
-.ft-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 16px; /* Spacing between rows */
-}
-
-.ft-table th {
-    font-family: 'Pretendard';
-    font-weight: 500;
-    font-size: 16px;
-    color: #000000;
-    padding-bottom: 20px;
-    text-align: center;
-    border-bottom: 3px solid #C3C4C5;
-}
-
-.ft-table td {
-    background: #FFFFFF;
-    height: 60px;
-    vertical-align: middle;
-    text-align: center;
-    font-family: 'Pretendard';
-    font-weight: 500;
-    font-size: 16px;
-    color: #000000;
-}
-
-/* Checkbox Column */
-.checkbox-col input {
-    width: 28px;
-    height: 28px;
-    border: 4px solid #C3C4C5;
+.btn-create-ft {
+    width: 160px;
+    height: 40px;
+    /* Match search bar height */
+    background: #000000;
+    /* Black button for contrast */
+    color: #FFFFFF;
+    border: none;
     border-radius: 8px;
-    appearance: none;
+    font-family: 'Pretendard';
+    font-weight: 600;
+    font-size: 14px;
     cursor: pointer;
 }
 
-.checkbox-col input:checked {
-    background-color: #C3C4C5; /* Simple checked state */
+/* Table - Matching Admin-USER.css structure */
+.user-table {
+    width: calc(100% - 80px);
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 16px;
 }
 
-/* Buttons */
+.user-table th {
+    padding: 12px 10px;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+}
+
+.user-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Custom Buttons for FT Page (keeping original colors but adapting sizing if needed) */
 .btn-history {
-    width: 200px;
+    width: 160px;
+    /* Adjusted to fit better in standard table */
     height: 28px;
     background: #FE4142;
     border-radius: 8px;
@@ -108,7 +97,8 @@
 }
 
 .btn-issue {
-    width: 295px;
+    width: 160px;
+    /* Adjusted to fit better in standard table */
     height: 28px;
     background: #00BF3F;
     border-radius: 8px;
@@ -128,7 +118,8 @@
 /* Status Badges */
 .status-badge {
     display: inline-block;
-    width: 200px;
+    width: 120px;
+    /* Adjusted width */
     height: 28px;
     line-height: 28px;
     border-radius: 8px;
@@ -138,66 +129,18 @@
 }
 
 .status-unissued {
-    background: #FE9C32; /* Orange for unissued based on design */
+    background: #FE9C32;
 }
 
 .status-selling {
-    background: #FE9C32; /* Same orange */
+    background: #FE9C32;
 }
 
 .status-owned {
-    background: #FE9C32; /* Same orange */
+    background: #FE9C32;
 }
 
 /* Text Colors */
 .text-red {
     color: #FF0000 !important;
-}
-
-/* History Popup */
-.history-popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.history-popup {
-    width: 500px;
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.history-popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.history-popup-header h2 {
-    margin: 0;
-    font-size: 20px;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.history-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
 }

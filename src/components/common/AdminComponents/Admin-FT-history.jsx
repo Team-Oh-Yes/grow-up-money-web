@@ -1,10 +1,10 @@
 import React from 'react';
-import '../../css/Admincss/Admin-FT.css';
+import '../../css/Admincss/Admin-FT-history.css';
 
 const AdminFTHistory = ({ history, onClose }) => {
     return (
-        <div className="history-popup-overlay">
-            <div className="history-popup">
+        <div className="history-popup-overlay" onClick={onClose}>
+            <div className="history-popup" onClick={(e) => e.stopPropagation()}>
                 <div className="history-popup-header">
                     <h2>소유자 히스토리</h2>
                     <button className="close-btn" onClick={onClose}>X</button>

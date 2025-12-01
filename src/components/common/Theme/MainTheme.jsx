@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
+import Main from "../../api/login";
 function MainTheme() {
   const location = useLocation();
   const connect = async () => {

@@ -4,11 +4,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-
-// AxiosInstance import
-import axiosInstance from '../../api/axiosInstance';
-
-// Img import
+import Sign from '../../api/signup';;
 import GoogleIcon from '../../../img/Google-icon.png';
 
 // Const
@@ -104,7 +100,7 @@ export default function SignUp() {
         }
 
         // API 요청
-        axiosInstance.post('/users/signup', sendData)
+        Sign.post('/users/signup', sendData)
             // 성공 시
             .then(response => {
                 // 로그인 페이지로 이동하면서 state 전달

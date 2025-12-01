@@ -52,11 +52,7 @@ const Header = styled.header`
 const LogoBox = styled.div`
   color: #FE8401;
   font-family: Poppins;
-<<<<<<< HEAD
-  font-size: 32px !important;
-=======
   font-size: 26px;
->>>>>>> 56c88d1c53e4dd06d6d1b1ec9a59c5df00d4042b
   font-weight: 700;
   margin-left: 28px;
 

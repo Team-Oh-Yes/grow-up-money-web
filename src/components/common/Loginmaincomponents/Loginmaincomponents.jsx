@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { Big, Mobilestate, quizProgressState } from "../../../atoms";
-import { toast } from "react-toastify";
 import BigBlocker from "../../../BigBlocker";
 import back from "../../../img/back.png";
-import trade from "../../../img/trade.png";
-import dia from "../../../img/point.png";
-import more from "../../../img/more.png";
-import rank from "../../../img/rank.png";
-import map from "../../../img/loadmap.png";
-import store from "../../../img/store.png";
 import king from "../../../img/crown.png";
 import ticket from "../../../img/gacha2.png";
-import pro from "../../../img/profile.png";
 import heart from "../../../img/heart.png";
+import map from "../../../img/loadmap.png";
+import more from "../../../img/more.png";
+import dia from "../../../img/point.png";
+import rank from "../../../img/rank.png";
+import store from "../../../img/store.png";
+import trade from "../../../img/trade.png";
+import pro from "../../../img/profile.png";
 import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
@@ -37,34 +37,21 @@ function Loginmaincomponents() {
     progress: 0,
     theme: "light",
   });
-
-  // // 페이지 로드 시 쿠키 확인 및 인증 체크
-  // useEffect(() => {
-  //     console.log('현재 쿠키:', document.cookie);
-      
-  //     // accessToken 또는 refreshToken이 없으면 로그인 페이지로 리다이렉트
-  //     const hasAccessToken = document.cookie.includes('accessToken');
-  //     const hasRefreshToken = document.cookie.includes('refreshToken');
-      
-  //     if (!hasAccessToken && !hasRefreshToken) {
-  //         console.log('쿠키 없음 - 로그인 페이지로 이동');
-  //         toast.error('로그인이 필요합니다', toastcode(2000));
-  //         toast.clearWaitingQueue();
-  //         navigate('/login', { replace: true });
-  //     } else {
-  //         console.log('쿠키 확인됨 - 인증 성공');
-  //     }
-  // }, [navigate]);
-
-  // 로그인 성공 시 토스트 메시지 표시
   useEffect(() => {
-      if (location.state?.loginSuccess) {
-          toast.success('로그인 성공!', {...toastcode(2000)});
-          toast.clearWaitingQueue();
-  
-          // state 초기화 (뒤로가기 후 다시 접속 시 메시지 재표시 방지)
-          window.history.replaceState({}, document.title);
-      }
+    const path = location.pathname;
+    if (path.includes("/roadmap")) {
+      setActive("box1");
+    } else if (path.includes("/market")) {
+      setActive("box3");
+    }
+  }, [location.pathname]);
+  useEffect(() => {
+    if (location.state?.loginSuccess) {
+      toast.success("로그인 성공!", { ...toastcode(2000) });
+      toast.clearWaitingQueue();
+
+      window.history.replaceState({}, document.title);
+    }
   }, [location]);
 
   useEffect(() => {
@@ -72,7 +59,7 @@ function Loginmaincomponents() {
       if (typeof window !== "undefined") {
         const width = window.innerWidth;
         setIsMobileBlocked(width < 768);
-        setIsExtraLargeScreen(width >= 2000);
+        setIsExtraLargeScreen(width >= 3200);
       }
     };
 
@@ -142,7 +129,7 @@ function Loginmaincomponents() {
           </div>
           <div
             className={active === "box3" ? "boxactive" : "box"}
-            onClick={() => Action("box3", "/trade")}
+            onClick={() => Action("box3", "/market")}
           >
             <img src={trade} alt="거래소 이미지"></img>
             <p>거래소</p>

@@ -1,21 +1,25 @@
-import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { toast } from 'react-toastify';
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+
+import Main from "../../api/login";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
 function MainTheme() {
-  console.log(location);
+  const location = useLocation();
   const connect = async () => {
     const response = await Main.get("/admin/roadmap/themes");
-    console.log(response)
+    const length = response.data.length;
+    const data = response.data;
+    console.log(length, data);
   };
   useEffect(() => {
     const isQuizPath = location.pathname.includes("/roadmap");
-    connect()
+    connect();
   }, [location.pathname]);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const toastOptions = (time = 2000) => ({
     position: "top-right",
@@ -30,7 +34,7 @@ function MainTheme() {
 
   useEffect(() => {
     if (location.state?.loginSuccess) {
-      toast.success('로그인 성공!', toastOptions(2000));
+      toast.success("로그인 성공!", toastOptions(2000));
       toast.clearWaitingQueue();
 
       // state 초기화하여 뒤로가거나 새로고침 시 중복 표시 방지

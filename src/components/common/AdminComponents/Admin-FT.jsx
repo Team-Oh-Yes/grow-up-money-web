@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import '../../css/Admincss/Admin-FT.css';
 import searchIcon from '../../../img/searchIcon.svg';
 import AdminFTHistory from './Admin-FT-history';
-import AdminFTIssue from './Admin-FT-issue';
+import AdminFTCollections from './Admin-FT-collections';
 
 // Mock Data
 const MOCK_FTS = [
@@ -118,7 +118,7 @@ export default function FtManagement() {
             )}
 
             {isIssuePopupOpen && (
-                <AdminFTIssue
+                <AdminFTCollections
                     onClose={() => setIsIssuePopupOpen(false)}
                     onSuccess={() => {
                         // NFT 목록 새로고침 로직 추가 가능

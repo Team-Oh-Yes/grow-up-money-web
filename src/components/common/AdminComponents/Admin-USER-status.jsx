@@ -2,6 +2,7 @@ import { useState } from 'react';
 import '../../css/Admincss/Admin-USER-status.css';
 import { toast } from 'react-toastify';
 import axiosInstance from '../../api/axiosInstance';
+import Popup from './Popup';
 
 export default function StatusPopup({ user, onClose }) {
     const [selected, setSelected] = useState('');
@@ -44,53 +45,46 @@ export default function StatusPopup({ user, onClose }) {
     };
 
     return (
-        <div className="status-popup-overlay">
-            <div className="status-popup">
-                <div className="status-popup-header">
-                    <h2>{user.id}님의 상태 제어</h2>
-                    <button className="status-popup-close" onClick={onClose}>X</button>
-                </div>
-
-                <div className="status-section">
-                    <p className="status-section-title">정지 지속 시간</p>
-                    <div className="status-duration">
-                        {['1일', '3일', '1주', '1달', '영구'].map((label) => (
-                            <button
-                                key={label}
-                                className={selected === label ? 'active' : ''}
-                                onClick={() => handleSelect(label)}
-                            >
-                                {label}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="reason-section">
-                    <label>사유</label>
-                    <textarea
-                        className="reason-box"
-                        placeholder="정지 사유를 입력해주세요."
-                        maxLength={299}
-                        value={reason}
-                        onChange={(e) => setReason(e.target.value)}
-                    />
-                    <div className="char-count">
-                        {reason.length}/300
-                    </div>
-                </div>
-
-                <div className="status-popup-footer">
-                    <button
-                        className="status-save-btn"
-                        onClick={() =>
-                            usersuspend({ id: user.id, label: selected, reason: reason })
-                        }
-                    >
-                        저장
-                    </button>
+        <Popup onClose={onClose} title={`${user.id}님의 상태 제어`} width="513px">
+            <div className="status-section">
+                <p className="status-section-title">정지 지속 시간</p>
+                <div className="status-duration">
+                    {['1일', '3일', '1주', '1달', '영구'].map((label) => (
+                        <button
+                            key={label}
+                            className={selected === label ? 'active' : ''}
+                            onClick={() => handleSelect(label)}
+                        >
+                            {label}
+                        </button>
+                    ))}
                 </div>
             </div>
-        </div>
+
+            <div className="reason-section">
+                <label>사유</label>
+                <textarea
+                    className="reason-box"
+                    placeholder="정지 사유를 입력해주세요."
+                    maxLength={299}
+                    value={reason}
+                    onChange={(e) => setReason(e.target.value)}
+                />
+                <div className="char-count">
+                    {reason.length}/300
+                </div>
+            </div>
+
+            <div className="status-popup-footer">
+                <button
+                    className="status-save-btn"
+                    onClick={() =>
+                        usersuspend({ id: user.id, label: selected, reason: reason })
+                    }
+                >
+                    저장
+                </button>
+            </div>
+        </Popup>
     );
 }

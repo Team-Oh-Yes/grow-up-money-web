@@ -22,4 +22,5 @@ export default defineConfig(({ mode }) => ({
       port: 5173,
     }
   },
+//   문채원 똑바로 안하냐
 }));

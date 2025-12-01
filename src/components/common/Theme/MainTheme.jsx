@@ -4,13 +4,14 @@ import { toast } from 'react-toastify';
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
-
+import Main from "../../api/login";
 function MainTheme() {
   const location = useLocation();
-  console.log(location);
   const connect = async () => {
     const response = await Main.get("/admin/roadmap/themes");
-    console.log(response)
+    const length = response.data.length
+    const data = response.data
+    console.log(length,data)
   };
   useEffect(() => {
     const isQuizPath = location.pathname.includes("/roadmap");

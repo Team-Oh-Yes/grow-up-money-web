@@ -31,11 +31,6 @@ const router = createBrowserRouter([
     element: <Mainpages />,
     errorElement: <Error />,
   },
-  // {
-  //   path: "/login",
-  //   element: <Loginmaincomponents />,
-  //   errorElement: <Error />,
-  // },
   {
     path: "roadmap",
     element: (

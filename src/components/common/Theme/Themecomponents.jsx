@@ -1,12 +1,37 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { Big, Mobilestate } from "../../../atoms";
+import BigBlocker from "../../../BigBlocker";
 import arrow from "../../../img/arrow_back_ios_new.png";
+import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Theme.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
-
 function Themecomponents() {
-  const { id } = useParams(); 
-  const navigate = useNavigate(); 
+  const [isMobileBlocked, setIsMobileBlocked] = useRecoilState(Mobilestate);
+  const [isExtraLargeScreen, setIsExtraLargeScreen] = useRecoilState(Big);
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        const width = window.innerWidth;
+        setIsMobileBlocked(width < 768);
+        setIsExtraLargeScreen(width >= 3200);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setIsMobileBlocked, setIsExtraLargeScreen]);
+  if (isMobileBlocked) {
+    return <MobileBlocker />;
+  }
+  if (isExtraLargeScreen) {
+    return <BigBlocker />;
+  }
+  const { id } = useParams();
+  const navigate = useNavigate();
   const original_string = id;
   const result = original_string.replace("theme", "");
   let n = [];

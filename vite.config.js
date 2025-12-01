@@ -14,10 +14,10 @@ export default defineConfig(({ mode }) => ({
           cert: fs.readFileSync(certPath),
         }
       : false,
-  
+
     host: "0.0.0.0",
     port: 5173,
-  
+
     hmr: {
       host: "local.growmoney.duckdns.org",
       protocol: "wss",
@@ -25,5 +25,3 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
-
-

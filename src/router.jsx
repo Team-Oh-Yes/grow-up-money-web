@@ -83,11 +83,6 @@ const router = createBrowserRouter([
     errorElement: <Error />
   },
   {
-    path: "/admin",
-    element: <Adminpages />,
-    errorElement: <Error />,
-  },
-  {
     path: "/servicecenter/faq",
     element: <FaQ />,
     errorElement: <Error />

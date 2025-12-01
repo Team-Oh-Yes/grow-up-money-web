@@ -31,6 +31,11 @@ const router = createBrowserRouter([
     element: <Mainpages />,
     errorElement: <Error />,
   },
+  // {
+  //   path: "/login",
+  //   element: <Loginmaincomponents />,
+  //   errorElement: <Error />,
+  // },
   {
     path: "roadmap",
     element: (
@@ -98,7 +103,7 @@ const router = createBrowserRouter([
     element: <Adminpages />,
     errorElement: <Error />,
   },{
-    path: "/mypage",
+    path: "/profile",
     element: (
       <Suspense fallback={<div>Loading...</div>}>
         <Loginmaincomponents />

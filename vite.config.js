@@ -13,7 +13,8 @@ export default defineConfig(({ mode }) => ({
           key: fs.readFileSync(keyPath),
           cert: fs.readFileSync(certPath),
         }
-      : false, 
+      : false,
+
     host: "0.0.0.0",
     port: 5173,
     hmr: {
@@ -22,5 +23,4 @@ export default defineConfig(({ mode }) => ({
       port: 5173,
     }
   },
-//   문채원 똑바로 안하냐
 }));

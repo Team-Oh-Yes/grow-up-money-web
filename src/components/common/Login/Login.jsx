@@ -21,11 +21,11 @@ export default function Login() {
         password: "",
     });
 
-    const Earth = ({ img, alt }) => {
+    const Earth = ({ img, alt, href }) => {
         return (
-            <button type="button" className="social-login-btn">
+            <a href={href} className="social-login-btn">
                 <img src={img} alt={alt} className="social-login-icon" />
-            </button>
+            </a>
         );
     };
 
@@ -83,23 +83,9 @@ export default function Login() {
         axiosInstance.post('/users/login', sendData)
             .then(response => {
                 console.log('로그인 성공:', response.data);
-                console.log('액세스 토큰:', response.data?.accessToken);
 
-                // 토큰 저장
-                if (response.data?.accessToken) {
-                    const token = response.data.accessToken;
-                    // 사용자가 '로그인 유지'를 체크하면 localStorage에, 아니면 sessionStorage에 저장
-                    if (token) {
-                        localStorage.setItem('token', token);
-                        console.log('토큰(localStorage)에 저장 완료');
-                    } else {
-                        sessionStorage.setItem('token', token);
-                        console.log('토큰(sessionStorage)에 저장 완료');
-                    }
-                }
-                
                 // 메인 페이지로 이동하면서 state 전달
-                navigate('/roadmap', { state: { loginSuccess: true } });
+                navigate('/profile', { state: { loginSuccess: true } });
             })
 
             // 실패 시
@@ -131,7 +117,7 @@ export default function Login() {
                     
                         <div className="social-login-buttons">
                             {/* 구글 로그인 버튼 */}
-                            <Earth img={GoogleIcon} alt="login with Google" />
+                            <Earth img={GoogleIcon} alt="login with Google" href={"https://growmoney.duckdns.org/oauth2/authorization/google"} />
                         </div>
                     </div>
 
@@ -146,7 +132,7 @@ export default function Login() {
                             <input type="password" className="login-input" placeholder="비밀번호" value={sendData.password} onChange={onChangePassword} />
                             
                             {/* 로그인 버튼 */}
-                            <button className="login-button" type="button" onClick={handleLogin}>로그인</button>
+                            <button className="login-button" type="submit" onClick={handleLogin}>로그인</button>
                             <p className="login-forgot-password">아이디/비밀번호 재설정</p>
                             <p className="login-signup-link">계정이 없으신가요? <a className="login-link" href="/signup">회원가입</a></p>
                         </form>

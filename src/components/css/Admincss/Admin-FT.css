@@ -1,0 +1,203 @@
+/* Main Layout */
+.ft-management {
+    position: relative;
+    width: 1512px;
+    height: 982px;
+    background: #FFFFFF;
+    margin: 0 auto; /* Center content if screen is wider */
+}
+
+/* Search Bar */
+.search-bar {
+    position: absolute;
+    width: 1432px;
+    height: 40px;
+    left: 40px;
+    top: 168px;
+    background: #F5F5F5;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    box-sizing: border-box;
+}
+
+.search-bar img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 16px;
+    color: #747474;
+    outline: none;
+}
+
+/* Table */
+.ft-table-container {
+    position: absolute;
+    top: 237px;
+    left: 40px; /* Adjusted to align with search bar */
+    width: 1432px;
+}
+
+.ft-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 16px; /* Spacing between rows */
+}
+
+.ft-table th {
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
+    padding-bottom: 20px;
+    text-align: center;
+    border-bottom: 3px solid #C3C4C5;
+}
+
+.ft-table td {
+    background: #FFFFFF;
+    height: 60px;
+    vertical-align: middle;
+    text-align: center;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
+}
+
+/* Checkbox Column */
+.checkbox-col input {
+    width: 28px;
+    height: 28px;
+    border: 4px solid #C3C4C5;
+    border-radius: 8px;
+    appearance: none;
+    cursor: pointer;
+}
+
+.checkbox-col input:checked {
+    background-color: #C3C4C5; /* Simple checked state */
+}
+
+/* Buttons */
+.btn-history {
+    width: 200px;
+    height: 28px;
+    background: #FE4142;
+    border-radius: 8px;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-history.disabled {
+    background: #9C9C9C;
+    cursor: default;
+}
+
+.btn-issue {
+    width: 295px;
+    height: 28px;
+    background: #00BF3F;
+    border-radius: 8px;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-issue.disabled {
+    background: #9C9C9C;
+    cursor: default;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    width: 200px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-unissued {
+    background: #FE9C32; /* Orange for unissued based on design */
+}
+
+.status-selling {
+    background: #FE9C32; /* Same orange */
+}
+
+.status-owned {
+    background: #FE9C32; /* Same orange */
+}
+
+/* Text Colors */
+.text-red {
+    color: #FF0000 !important;
+}
+
+/* History Popup */
+.history-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.history-popup {
+    width: 500px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.history-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.history-popup-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}

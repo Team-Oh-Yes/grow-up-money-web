@@ -15,11 +15,6 @@ export const Mobilestate = atom({
   default: false,
 });
 export const Big = atom({
-<<<<<<< HEAD
-    key:"Big",
-    default:false
-})
-=======
   key: "Big",
   default: false,
 });
@@ -41,4 +36,3 @@ export const roadmapdata = atom({
         
     }
 })
->>>>>>> 56c88d1c53e4dd06d6d1b1ec9a59c5df00d4042b

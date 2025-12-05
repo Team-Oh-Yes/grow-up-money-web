@@ -17,7 +17,7 @@ import Notice from "./components/common/Serviccenter/Notice.jsx";
 import Mypage from "./components/common/mypage/Mypage.jsx";
 
 const Loginmaincomponents = lazy(() =>
-  import("./components/common/Loginmaincomponents/Loginmaincomponents")
+  import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
 );
 
 const Themecomponents = lazy(() =>

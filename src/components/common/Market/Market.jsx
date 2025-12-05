@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import coin from "../../../img/coin.png";
 import m from "../../../img/image 11.svg";
 import "../../css/Market/Market.css";
-import Main from "../../api/login";
+import axiosInstance from '../../api/axiosInstance';
 
 function Market() {
   const location = useLocation();
@@ -11,7 +11,7 @@ function Market() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [sell, setSell] = useState(false);
   const connect = async () => {
-    const response = await Main.get("/market/listings");
+    const response = await axiosInstance.get("/market/listings");
     console.log(response);
   };
   useEffect(() => {

@@ -1,19 +1,18 @@
 import { useState } from "react";
-import right from "../../../img/오른쪽.png";
 import left from "../../../img/arrowleft2.png";
+import pre1 from "../../../img/pre1.png";
+import pre2 from "../../../img/pre2.png";
+import pre3 from "../../../img/pre3.png";
+import pre4 from "../../../img/pre4.png";
+import pre5 from "../../../img/pre5.png";
+import right from "../../../img/오른쪽.png";
 import "../../css/mainpagescsss/Thirdmainpages.css";
 function ThirdMainPages() {
   // 현재 보여줄 이미지 번호 (0부터 시작)
   const [currentImage, setCurrentImage] = useState(2);
 
   // 이미지 목록
-  const imageList = [
-    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=400",
-    "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=400",
-    "https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=800&h=400",
-    "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400",
-    "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=400",
-  ];
+  const imageList = [pre1, pre2, pre3, pre4, pre5];
 
   // 다음 이미지 보기
   function showNextImage() {
@@ -76,13 +75,33 @@ function ThirdMainPages() {
         <h2 className="ftitlem">GROW MONEY™</h2>
         <hr></hr>
         <p className="D">
-          <a href="/servicecenter/eula" target="_blank" rel="noopener noreferrer">이용약관</a> |
-          <a href="/no-terms" target="_blank" rel="noopener noreferrer"> 무이용약관</a> |
-          <a href="/privacy" target="_blank" rel="noopener noreferrer"> 개인정보처리방침</a> |
-          <a href="/policy" target="_blank" rel="noopener noreferrer"> 책임준수정책</a>
+          <a
+            href="/servicecenter/eula"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            이용약관
+          </a>{" "}
+          |
+          <a href="/no-terms" target="_blank" rel="noopener noreferrer">
+            {" "}
+            무이용약관
+          </a>{" "}
+          |
+          <a href="/privacy" target="_blank" rel="noopener noreferrer">
+            {" "}
+            개인정보처리방침
+          </a>{" "}
+          |
+          <a href="/policy" target="_blank" rel="noopener noreferrer">
+            {" "}
+            책임준수정책
+          </a>
         </p>
         <p className="ftitle">대구광역시 달성군 구지면 창리로11길 93</p>
-        <p className="ftitle">© Oh!Yes | 전화번호: 010-1234-5678 | 이메일: me@ohyes.com</p>
+        <p className="ftitle">
+          © Oh!Yes | 전화번호: 010-1234-5678 | 이메일: me@ohyes.com
+        </p>
       </div>
     </div>
   );

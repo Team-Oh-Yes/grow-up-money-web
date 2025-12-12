@@ -18,6 +18,7 @@ import pro from "../../../img/profile.png";
 import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
+
 function Loginmaincomponents() {
   const navigate = useNavigate();
   const location = useLocation();

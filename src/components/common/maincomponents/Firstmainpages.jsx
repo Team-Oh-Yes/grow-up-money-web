@@ -344,7 +344,7 @@ function Navbar({setLogin}) {
         <button className="Topbutton home">홈</button>
         <button className="Topbutton load">로드맵</button>
         <button className="Topbutton rank">랭킹</button>
-        <button className="Topbutton shop">상정</button>
+        <button className="Topbutton shop">상점</button>
         <button className="Topbutton my">마이프로필</button>
       </NavMenu>
       <UserMenu>

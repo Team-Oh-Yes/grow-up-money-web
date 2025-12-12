@@ -1,147 +1,98 @@
-/* ===== 팝업 오버레이 ===== */
-.status-popup-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-  /* ===== 팝업 본체 ===== */
-.status-popup {
-    width: 513px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.02);
-    padding: 32px 40px;
-    position: relative;
-    font-family: 'Pretendard', sans-serif;
-}
-
-  /* ===== 헤더 ===== */
-.status-popup-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-bottom: 40px;
-}
-
-.status-popup-header h2 {
-    font-weight: 600;
-    font-size: 24px;
-    color: #181f29;
-}
-
-  /* 닫기 버튼 */
-.status-popup-close {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #181f29;
-}
-
   /* ===== 지속시간 선택 ===== */
 
-.status-section {
-    margin-bottom: 32px;
-}
+  .status-section {
+      margin-bottom: 32px;
+  }
 
-.status-section-title {
-    font-size: 16px;
-    font-weight: 500;
-    color: #181f29;
-    margin-bottom: 8px;
-}
+  .status-section-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: #181f29;
+      margin-bottom: 8px;
+  }
 
-.status-duration {
-    display: flex;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-}
+  .status-duration {
+      display: flex;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+  }
 
-.status-duration button {
-    flex: 1;
-    height: 40px;
-    border: none;
-    background: #606060;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
+  .status-duration button {
+      flex: 1;
+      height: 40px;
+      border: none;
+      background: #606060;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s ease;
+  }
 
-.status-duration button:hover {
-    background: #4b4b4b;
-}
+  .status-duration button:hover {
+      background: #4b4b4b;
+  }
 
-.status-duration button.active {
-    background: #fe9c32;
-    font-weight: 700;
-}
+  .status-duration button.active {
+      background: #fe9c32;
+      font-weight: 700;
+  }
 
   /* ===== 사유 입력 ===== */
-.reason-section {
-    margin-bottom: 32px;
-}
+  .reason-section {
+      margin-bottom: 32px;
+  }
 
-.reason-section label {
-    display: block;
-    font-size: 16px;
-    font-weight: 500;
-    color: #181f29;
-    margin-bottom: 8px;
-}
+  .reason-section label {
+      display: block;
+      font-size: 16px;
+      font-weight: 500;
+      color: #181f29;
+      margin-bottom: 8px;
+  }
 
-.reason-box {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 12px;
-    height: 140px;
-    resize: none;
-    width: 100%;
-    font-size: 15px;
-    color: #181f29;
-}
+  .reason-box {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 12px;
+      height: 140px;
+      resize: none;
+      width: 100%;
+      font-size: 15px;
+      color: #181f29;
+  }
 
-.reason-box::placeholder {
-    color: #ccc;
-}
+  .reason-box::placeholder {
+      color: #ccc;
+  }
 
-.char-count {
-    text-align: right;
-    font-size: 10px;
-    color: #181f29;
-    margin-top: 4px;
-}
+  .char-count {
+      text-align: right;
+      font-size: 10px;
+      color: #181f29;
+      margin-top: 4px;
+  }
 
   /* ===== 저장 버튼 ===== */
-.status-popup-footer {
-    display: flex;
-    justify-content: center;
-}
+  .status-popup-footer {
+      display: flex;
+      justify-content: center;
+  }
 
-.status-save-btn {
-    width: 126px;
-    height: 42px;
-    background: #fe9c32;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
+  .status-save-btn {
+      width: 126px;
+      height: 42px;
+      background: #fe9c32;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+  }
 
-.status-save-btn:hover {
-    background: #e68b2b;
-}
+  .status-save-btn:hover {
+      background: #e68b2b;
+  }

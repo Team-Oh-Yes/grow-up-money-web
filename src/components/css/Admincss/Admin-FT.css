@@ -1,0 +1,146 @@
+/* Reusing styles from Admin-USER.css structure but keeping file separate for modularity */
+
+.ft-top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 40px;
+}
+
+/* Search Bar - Matching Admin-USER.css structure but with custom width */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #f8f8f8;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+
+.ft-search-bar-custom {
+    width: calc(100% - 180px);
+    /* Adjust width to leave space for button */
+    margin: 0;
+    /* Remove default margin */
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    margin-left: 10px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
+.search-bar img {
+    width: 14px;
+    height: 14px;
+}
+
+.btn-create-ft {
+    width: 160px;
+    height: 40px;
+    /* Match search bar height */
+    background: #000000;
+    /* Black button for contrast */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Pretendard';
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Table - Matching Admin-USER.css structure */
+.user-table {
+    width: calc(100% - 80px);
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.user-table th {
+    padding: 12px 10px;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+}
+
+.user-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Custom Buttons for FT Page (keeping original colors but adapting sizing if needed) */
+.btn-history {
+    width: 160px;
+    /* Adjusted to fit better in standard table */
+    height: 28px;
+    background: #FE4142;
+    border-radius: 8px;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-history.disabled {
+    background: #9C9C9C;
+    cursor: default;
+}
+
+.btn-issue {
+    width: 160px;
+    /* Adjusted to fit better in standard table */
+    height: 28px;
+    background: #00BF3F;
+    border-radius: 8px;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-issue.disabled {
+    background: #9C9C9C;
+    cursor: default;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    width: 120px;
+    /* Adjusted width */
+    height: 28px;
+    line-height: 28px;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-unissued {
+    background: #FE9C32;
+}
+
+.status-selling {
+    background: #FE9C32;
+}
+
+.status-owned {
+    background: #FE9C32;
+}
+
+/* Text Colors */
+.text-red {
+    color: #FF0000 !important;
+}

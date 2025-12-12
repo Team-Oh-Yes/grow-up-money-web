@@ -1,10 +1,9 @@
-// Link import
 import '../../css/LoginAndSignUp/SignUp.css';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import axiosInstance from '../../api/axiosInstance';;
+import axiosInstance from '../../api/axiosInstance';
 import GoogleIcon from '../../../img/Google-icon.png';
 
 // Const

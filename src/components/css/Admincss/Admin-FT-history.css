@@ -1,0 +1,40 @@
+/* ===== 리스트 아이템 ===== */
+.history-list {
+    padding: 10px 0;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+}
+
+.history-date {
+    color: #666;
+}
+
+.history-type {
+    font-weight: 500;
+    color: #000;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+}
+
+.history-date {
+    color: #666;
+}
+
+.history-type {
+    font-weight: 500;
+    color: #000;
+}

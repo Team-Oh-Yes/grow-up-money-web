@@ -62,10 +62,11 @@ function Quiz() {
       setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
+  console.log(unitFreeString);
   useEffect(() => {
     if (unitFreeString) {
       axiosInstance
-        .post(`/roadmap/lesson/${unitFreeString}/start`)
+        .post(`/roadmap/lesson/${parseInt(unitFreeString - 1)}/start`)
         .then((response) => {
           console.log("퀴즈 시작 API 호출 성공:", response.data);
         })

@@ -6,16 +6,6 @@ import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
 function MainTheme() {
   const location = useLocation();
-  const connect = async () => {
-    const response = await Main.get("/admin/roadmap/themes");
-    const length = response.data.length
-    const data = response.data
-    console.log(length,data)
-  };
-  useEffect(() => {
-    const isQuizPath = location.pathname.includes("/roadmap");
-    connect()
-  }, [location.pathname]);
   const navigate = useNavigate();
 
   const toastOptions = (time = 2000) => ({

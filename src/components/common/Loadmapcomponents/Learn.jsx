@@ -13,6 +13,7 @@ function Learn() {
   const unitFreeString = original_string.replace("unit", "");
   const index = parseInt(unitFreeString, 10) - 1;
   const currentUnit = Ldata[index];
+
   const storyLength = currentUnit.text.length;
   const isLastStory = story === storyLength - 1;
 
@@ -59,10 +60,7 @@ function Learn() {
                 className="random"
               ></img>
             </div>
-            <button className="stext" onClick={next}>
-                <img src={currentUnit.text[story].img} className="maskort"></img>
-              <div className="textcom">{currentUnit.text[story].real}</div>
-            </button>
+            <div className="textcom">{currentUnit.text[story].real}</div>
           </div>
           <button onClick={next} className="next">
             <img src={arrow}></img>

@@ -1,8 +1,8 @@
-import { useState } from "react";
-import logo from "../../../img/store.png";
-import "../../css/Admincss/AdminPages.css";
-import FtPage from "./Admin-FT";
-import UserPage from "./Admin-USER";
+import { useState } from 'react';
+import logo from "../../../img/store.png"
+import UserPage from './Admin-USER';
+import '../../css/Admincss/AdminPages.css';
+import FtPage from './Admin-FT'
 // import RefundPage from './Admin-Refund'
 // import EtcPage from './Admin-ETC'
 

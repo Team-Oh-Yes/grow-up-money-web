@@ -9,7 +9,7 @@ import Learn from "./components/common/Loadmapcomponents/Learn";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
 import Login from "./components/common/Login/Login.jsx";
 import Market from "./components/common/Market/Market.jsx";
-import Mypage from "./components/common/mypage/Mypage.jsx";
+import MypageProfile from "./components/common/MypageProfile/MypageProfile.jsx";
 import Planpages from "./components/common/plancomponents/Planpages";
 import EULA from "./components/common/Serviccenter/EULA";
 import FaQ from "./components/common/Serviccenter/FaQ.jsx";
@@ -96,7 +96,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: "/profile",
+    path: "/my",
     element: (
       <Suspense fallback={<div>Loading...</div>}>
         <Loginmaincomponents />
@@ -105,7 +105,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Mypage />,
+        element: <MypageProfile />,
       },
     ],
   },

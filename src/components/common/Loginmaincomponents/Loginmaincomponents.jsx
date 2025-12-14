@@ -11,10 +11,10 @@ import heart from "../../../img/heart.png";
 import map from "../../../img/loadmap.png";
 import more from "../../../img/more.png";
 import dia from "../../../img/point.png";
+import pro from "../../../img/profile.png";
 import rank from "../../../img/rank.png";
 import store from "../../../img/store.png";
 import trade from "../../../img/trade.png";
-import pro from "../../../img/profile.png";
 import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
@@ -42,10 +42,19 @@ function Loginmaincomponents() {
     const path = location.pathname;
     if (path.includes("/roadmap")) {
       setActive("box1");
+    } else if (path.includes("/rank")) {
+      setActive("box2");
     } else if (path.includes("/market")) {
       setActive("box3");
+    } else if (path.includes("/shop")) {
+      setActive("box4");
+    } else if (path.includes("/my")) {
+      setActive("box5");
+    } else if (path.includes("/more")) {
+      setActive("box6");
     }
   }, [location.pathname]);
+  //현수야고침
   useEffect(() => {
     if (location.state?.loginSuccess) {
       toast.success("로그인 성공!", { ...toastcode(2000) });
@@ -137,14 +146,14 @@ function Loginmaincomponents() {
           </div>
           <div
             className={active === "box4" ? "boxactive" : "box"}
-            onClick={() => Action("box4", "main//store")}
+            onClick={() => Action("box4", "/shop")}
           >
             <img src={store} alt="스토어 이미지"></img>
             <p>상점</p>
           </div>
           <div
             className={active === "box5" ? "boxactive" : "box"}
-            onClick={() => Action("box5", "/profile")}
+            onClick={() => Action("box5", "/my")}
           >
             <img src={pro} alt="프로필 이미지"></img>
             <p>마이페이지</p>

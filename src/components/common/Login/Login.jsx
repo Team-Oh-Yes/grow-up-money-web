@@ -85,7 +85,7 @@ export default function Login() {
                 console.log('로그인 성공:', response.data);
 
                 // 메인 페이지로 이동하면서 state 전달
-                navigate('/profile', { state: { loginSuccess: true } });
+                navigate('/my', { state: { loginSuccess: true } });
             })
 
             // 실패 시

@@ -171,7 +171,7 @@ h5 {
   display: flex;
   border-radius: 15px;
   overflow: hidden;
-  padding: 0rem 2rem 1.5rem 2rem !important;
+  /* padding: 0rem 2rem 1.5rem 2rem !important; */
 }
 
 .tama {

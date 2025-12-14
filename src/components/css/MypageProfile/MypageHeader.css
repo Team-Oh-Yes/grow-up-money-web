@@ -40,10 +40,12 @@
     transition: 0.3s ease;
 }
 
-.clickbutton:hover::after {
+.clickbutton:hover::after,
+.clickbutton.active::after {
     transform: translateX(-50%) scaleX(1);
 }
 
-.clickbutton:hover {
+.clickbutton:hover,
+.clickbutton.active {
     color: #fe8401;
 }

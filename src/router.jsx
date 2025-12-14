@@ -96,7 +96,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: "/profile",
+    path: "/my",
     element: (
       <Suspense fallback={<div>Loading...</div>}>
         <Loginmaincomponents />

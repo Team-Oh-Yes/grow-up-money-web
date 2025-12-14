@@ -54,6 +54,7 @@ function Loginmaincomponents() {
       setActive("box6");
     }
   }, [location.pathname]);
+  //현수야고침
   useEffect(() => {
     if (location.state?.loginSuccess) {
       toast.success("로그인 성공!", { ...toastcode(2000) });

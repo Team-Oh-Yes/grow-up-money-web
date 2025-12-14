@@ -10,12 +10,12 @@ import Quiz from "./components/common/Loadmapcomponents/Quiz";
 import Login from "./components/common/Login/Login.jsx";
 import Market from "./components/common/Market/Market.jsx";
 import MypageProfile from "./components/common/MypageProfile/MypageProfile.jsx";
-import Planpages from "./components/common/plancomponents/Planpages";
 import EULA from "./components/common/Serviccenter/EULA";
 import FaQ from "./components/common/Serviccenter/FaQ.jsx";
 import Notice from "./components/common/Serviccenter/Notice.jsx";
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import MainTheme from "./components/common/Theme/MainTheme";
+import Planpages from "./components/common/plancomponents/Planpages";
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
@@ -79,7 +79,20 @@ const router = createBrowserRouter([
     element: <EULA />,
     errorElement: <Error />,
   },
-  { path: "/plan", element: <Planpages />, errorElement: <Error /> },
+  {
+    path: "/more",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Loginmaincomponents />
+      </Suspense>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Planpages />,
+      },
+    ],
+  },
   {
     path: "/servicecenter/faq",
     element: <FaQ />,

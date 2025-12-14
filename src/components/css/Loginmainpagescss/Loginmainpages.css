@@ -184,6 +184,8 @@ h5 {
   background: transparent; /* tama 배경색 */
   margin-bottom: 10px;
   padding-bottom: 15px;
+  padding: 0rem 2rem 1.5rem 2rem !important;
+
   /* 이전 코드에서 제거된 부분: overflow: hidden; 및 border-radius: 15px; */
 }
 
@@ -304,6 +306,7 @@ h5 {
   letter-spacing: -0.09rem;
   margin: 0px;
 }
+
 .b {
   height: 100%;
   display: flex;

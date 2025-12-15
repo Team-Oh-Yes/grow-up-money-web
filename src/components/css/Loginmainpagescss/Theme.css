@@ -150,8 +150,6 @@ h5 {
   overflow-y: hidden;
   border-radius: 15px; /* tama에도 radius를 적용하여 flex item이 없을 때를 대비 */
   background: transparent; /* tama 배경색 */
-  margin-bottom: 10px;
-  padding-bottom: 15px;
 }
 /* Flex Item 색상 클래스는 변경 없음 */
 .First1 {

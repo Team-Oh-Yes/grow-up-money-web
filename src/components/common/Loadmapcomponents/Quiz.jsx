@@ -4,11 +4,11 @@ import { useRecoilState } from "recoil";
 // Testheart import 추가
 import { quizProgressState, Testheart } from "../../../atoms";
 import answer from "../../../img/answer.png";
+import dia from "../../../img/Icon/basil_diamond-solid.png";
 import nanswer from "../../../img/nanswer.png";
 import cream from "../../../img/NFT/cream.svg";
 import axiosInstance from "../../api/axiosInstance";
 import "../../css/loadmapcss/Quiz.css";
-
 const sample = [
   {
     question: "다음 중 프론트엔드 개발에 주로 사용되는 언어가 아닌 것은?",
@@ -179,7 +179,9 @@ function Quiz() {
         <div className="rqrealcon">
           <img src={cream} className="igotp"></img>
           <div className="rqcbox">
-            <button className="rgo">하트구매하기</button>
+            <button className="rgo">
+              <img src={dia}></img>하트구매하기
+            </button>
             <button className="rstop" onClick={handleStop}>
               학습 그만하기
             </button>
@@ -200,10 +202,10 @@ function Quiz() {
               <span className="score">{score}</span>개 맞추셨어요
             </p>
             <div className="qcbox">
-              <button className="go" onClick={handleContinue}>
+              <button className="rego" onClick={handleContinue}>
                 학습 하러가기
               </button>
-              <button className="stop" onClick={handleStop}>
+              <button className="restop" onClick={handleStop}>
                 그만하기
               </button>
             </div>

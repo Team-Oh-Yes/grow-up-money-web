@@ -36,6 +36,23 @@
   color: #fe8401;
   font-size: 0.96rem;
 }
+.rego {
+  background-color: #fe8401;
+  border: none;
+  width: 7rem;
+  height: 2.4rem;
+  border-radius: 12px;
+  font-size: 0.96rem;
+}
+.restop {
+  background-color: #ffffff;
+  border: none;
+  width: 7rem;
+  height: 2.4rem;
+  border-radius: 12px;
+  color: #fe8401;
+  font-size: 0.96rem;
+}
 .rqcbox {
   display: flex;
   gap: 1rem;

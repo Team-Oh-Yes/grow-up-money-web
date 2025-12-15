@@ -212,6 +212,7 @@ export default function UserManagement() {
                 isFirst: data.first,
                 isLast: data.last
             });
+
         } catch (error) {
             console.error("유저 목록을 불러오는데 실패했습니다", error);
             setUsers([]);

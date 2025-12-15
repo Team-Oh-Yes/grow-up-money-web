@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import Sign from '../../api/signup';;
+import axiosInstance from '../../api/axiosInstance';;
 import GoogleIcon from '../../../img/Google-icon.png';
 
 // Const
@@ -100,7 +100,7 @@ export default function SignUp() {
         }
 
         // API 요청
-        Sign.post('/users/signup', sendData)
+        axiosInstance.post('/users/signup', sendData)
             // 성공 시
             .then(response => {
                 // 로그인 페이지로 이동하면서 state 전달
@@ -110,7 +110,7 @@ export default function SignUp() {
             // 실패 시
             .catch(error => {
                 console.error('API Error:', error);
-                
+
                 if (error.message) {
                     // 요청 설정 중에 에러가 발생한 경우
                     toast.error(error.message, toastcode(3000));
@@ -131,7 +131,7 @@ export default function SignUp() {
                     {/* 소셜 회원가입 섹션 */}
                     <div className="social-signup-section">
                         <p className="social-signup-title">소셜 회원가입</p>
-                    
+
                         <div className="social-signup-buttons">
                             {/* 구글 회원가입 버튼 */}
                             <Earth img={GoogleIcon} alt="login with Google" href={"https://growmoney.duckdns.org/oauth2/authorization/google"} />

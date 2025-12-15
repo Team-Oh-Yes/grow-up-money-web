@@ -1,0 +1,64 @@
+.mypage-main {
+    margin: 40px 97px 0 97px;
+    height: 785px;
+    width: calc(100% - 474px);
+    background-color: #ffffff;
+    border-radius: 20px 20px 0 0;
+    background-image: url('../../../img/MypageProfile/BackgroundImg.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.Info-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #181F29;
+    margin: 44px 0 16px 44px;
+}
+
+.line {
+    width: calc(100% - 80px);
+    position: relative;
+    left: 40px;
+    height: 1px;
+    background-color: #8C8989;
+}
+
+.Info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 26px 0 0 48px;
+}
+
+.Info-content-item {
+    display: flex;
+    color: #181F29;
+    justify-content: start;
+    align-items: center;
+    gap: 16px;
+}
+
+.Info-setting-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #181F29;
+}
+
+.Info-setting-text {
+    font-size: 21px;
+    font-weight: 500;
+    color: #777777;
+}
+
+.email-button {
+    padding: 3px 24px;
+    background-color: #fe8401;
+    border-radius: 100px;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}

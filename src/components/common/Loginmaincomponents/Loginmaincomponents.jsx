@@ -18,8 +18,10 @@ import trade from "../../../img/trade.png";
 import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
+import { Testheart } from "../../../atoms";
 
 function Loginmaincomponents() {
+const [testheart,setTestheart] = useRecoilState(Testheart)
   const navigate = useNavigate();
   const location = useLocation();
   const [active, setActive] = useState("box1");
@@ -185,7 +187,7 @@ function Loginmaincomponents() {
           <div className="rcon">
             <div className="img">
               <img src={heart} alt="하트"></img>
-              <h5>5</h5>
+              <h5>{testheart}</h5>
               <img src={dia} alt="다이아몬드"></img>
               <h5>5</h5>
               <img src={ticket} alt="티켓" />

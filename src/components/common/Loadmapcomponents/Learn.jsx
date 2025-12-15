@@ -23,7 +23,6 @@ function Learn() {
       setStory(story + 1);
     }
   };
-
   const handleContinue = () => {
     navigate(`/roadmap/${i}/unit${parseInt(unitFreeString)}/quiz`);
   };

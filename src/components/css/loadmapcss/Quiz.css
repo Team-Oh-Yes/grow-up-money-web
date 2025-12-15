@@ -7,9 +7,107 @@
   flex-direction: column;
   position: relative;
   box-sizing: border-box;
+  padding: 2rem !important;
 }
-.rcon {
-  width: auto;
+.rqCcon {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  background-color: rgb(0, 0, 0, 0.5);
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+.rgo {
+  background-color: #fe8401;
+  border: none;
+  width: 15rem;
+  height: 2rem;
+  border-radius: 12px;
+  font-size: 0.96rem;
+}
+.rstop {
+  background-color: #ffffff;
+  border: none;
+  width: 15rem;
+  height: 2rem;
+  border-radius: 12px;
+  color: #fe8401;
+  font-size: 0.96rem;
+}
+.rqcbox {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+.igotp {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+.rqrealcon {
+  background-color: white;
+  border-radius: 30px;
+  width: 17.2rem;
+  height: 20rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.result-text {
+  font-size: 2rem;
+  padding-left: 8rem;
+  font-weight: 550;
+}
+.score {
+  color: #fe8401;
+}
+.qcbox {
+  display: flex;
+  gap: 1rem;
+  padding-left: 6rem;
+}
+.chose {
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.cream {
+  width: 700px;
+  height: 700px;
+  object-fit: contain;
+  position: absolute;
+  bottom: -100px;
+  right: -180px;
+}
+.learncon {
+  width: 100%;
+  height: 100%;
+  padding: 2rem !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.gostop {
+  position: relative;
+  width: 50rem;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  border: 3px #fe8e16 solid;
+  border-radius: 12px;
+  overflow: hidden;
 }
 /* 상단 영역 */
 .Tcon {
@@ -63,11 +161,12 @@
   transition: all 0.2s ease;
   cursor: pointer;
 }
+
 .AC:hover {
   background-color: #f5f5f5;
 }
 
-/* 정답/오답 시 */
+/* 정답 시 */
 .TAC {
   border-color: #94fd68;
   display: flex;
@@ -76,6 +175,8 @@
   padding-right: 2rem;
   align-items: center;
 }
+
+/* 오답 시 */
 .FAC {
   border-color: #fd8d68;
   display: flex;
@@ -85,23 +186,23 @@
   align-items: center;
 }
 
-/* 정답/오답 시 문제 박스 강조 */
-.TQcon {
-  border-color: #94fd68;
-}
-.FQcon {
-  border-color: #fd8d68;
+/* 스페이스바 안내 */
+.skip {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-right: 2rem;
 }
 
-/* 문제 번호 */
-.Qnumber {
-  width: 100%;
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #fe8401;
-  margin-bottom: 0.5rem;
-  margin-top: 4px;
+.skip p {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  font-weight: 500;
+  border-radius: 20px;
+  background-color: transparent;
 }
 
 /* ✅ 반응형 구간들 */
@@ -123,8 +224,13 @@
     font-size: 1rem;
   }
 
-  .Qnumber {
-    font-size: 1rem;
+  .skip {
+    bottom: 10px;
+  }
+
+  .skip p {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
   }
 }
 
@@ -143,10 +249,6 @@
     height: 3.2rem;
     font-size: 1.1rem;
   }
-
-  .Qnumber {
-    font-size: 1.1rem;
-  }
 }
 
 /* 🖥️ 데스크톱 (1024px 이상) */
@@ -163,104 +265,5 @@
   .AC {
     height: 4rem;
     font-size: 1.3rem;
-  }
-
-  .Qnumber {
-    font-size: 1.2rem;
-  }
-}
-.go {
-  background-color: #fe8401;
-  border: none;
-  width: 7rem;
-  height: 2.4rem;
-  border-radius: 12px;
-  font-size: 0.96rem;
-}
-.stop {
-  background-color: #ffffff;
-  border: none;
-  width: 7rem;
-  height: 2.4rem;
-  border-radius: 12px;
-  color: #fe8401;
-  font-size: 0.96rem;
-}
-.chose {
-  display: flex;
-  gap: 8px;
-}
-
-.Ccon {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  display: flex;
-  background-color: rgb(0, 0, 0, 0.5);
-  z-index: 1;
-  top: 0;
-  left: 0;
-}
-.realcon {
-  background-color: white;
-  border-radius: 30px;
-  width: 19rem;
-  height: 20rem;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding-top: 1.5rem !important;
-  padding: 2rem;
-}
-
-.result-text {
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 0px;
-}
-
-.cbox {
-  display: flex;
-  margin: 0;
-}
-
-
-.skip {
-  position: absolute;
-  bottom: 20px; 
-  width: 100%; 
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-  display: flex;
-  justify-content: end;
-  align-items: center;
-margin-right: 2rem;
-}
-
-.skip p {
-  font-size: 0.9rem;
-  color: #a0a0a0; 
-  font-weight: 500;
-  border-radius: 20px; /* 둥근 모양 */
-  background-color: transparent; /* 배경색 추가 (필요시) */
- 
-}
-
-/* 📱 모바일 환경에서는 하단 위치와 글씨 크기 조정 */
-@media (max-width: 600px) {
-  .skip {
-    bottom: 10px;
-  }
-  .skip p {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.8rem;
   }
 }

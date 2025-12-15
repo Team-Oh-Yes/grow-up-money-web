@@ -28,109 +28,59 @@ function Planpages() {
   };
 
   return (
-    <div className="planpages-container">
-      <nav className="sidebar">
-        <div className="sidebar-title">Oh!Yes</div>
-        <div className="list">
-          <a href="#" className="loadMap">
-            <div className="main">
-              <img src="/img/home.svg" alt="home" />
-              <div>로드맵</div>
-            </div>
-          </a>
-          <a href="#" className="ranking">
-            <div className="main">
-              <img src="/img/ranking.svg" alt="ranking" />
-              <div>랭킹</div>
-            </div>
-          </a>
-          <a href="#" className="exchange">
-            <div className="main">
-              <img src="/img/graph.svg" alt="exchange" />
-              <div>거래소</div>
-            </div>
-          </a>
-          <a href="#" className="store">
-            <div className="main">
-              <img src="/img/store.svg" alt="store" />
-              <div>상점</div>
-            </div>
-          </a>
-          <a href="#" className="account">
-            <div className="main">
-              <img src="/img/account.svg" alt="account" />
-              <div>프로필</div>
-            </div>
-          </a>
-          <a href="#" className="more">
-            <div className="main">
-              <img src="/img/more.svg" alt="more" />
-              <div>더보기</div>
-            </div>
-          </a>
-        </div>
-      </nav>
+    <main className="main-content">
+      <div className="topBar">
+        <div className="Plan">
 
-      <main className="main-content">
-        <div className="topBar">
-          <div className="Plan">
-            <img src="/img/BitCon.svg" alt="BitCon" className="BitCon" />
-            <img src="/img/DDongJon.svg" alt="DDongJon" className="DDongJon" />
+          <span>플랜 업그레이드</span>
+          <div className="plans">
+            <div className="Free">
+              <span>MONTHLY PREMIUM</span>
+              <p className="Dollor">₩</p>
+              <p className="price">8900</p>
+              <p className="USD">KRW /</p>
+              <p className="perMonth">월</p>
+              <p className="explanation">Grow Up Money의 월별 유료 제공 플랜</p>
 
-            <span>플랜 업그레이드</span>
-            <div className="plans">
-              <div className="Free">
-                <span>MONTHLY PREMIUM</span>
-                <p className="Dollor">₩</p>
-                <p className="price">8900</p>
-                <p className="USD">KRW /</p>
-                <p className="perMonth">월</p>
-                <p className="explanation">
-                  Grow Up Money의 월별 유료 제공 플랜
-                </p>
+              <button
+                onClick={handlePaymentcurrentPlan}
+                className="currentPlan"
+              >
+                <div>플랜 업그레이드</div>
+              </button>
+              <ul className="features">
+                <li>광고 제거</li>
+                <li>FT 고화질 다운로드</li>
+                <li>프리미엄용 프로필 꾸미기 가능</li>
+                <li>프로필 닉네임 그라데이션</li>
+                <li>포인트 충전 + 10%</li>
+                <li>심화 문제 (포인트 10배)</li>
+              </ul>
+            </div>
 
-                <button
-                  onClick={handlePaymentcurrentPlan}
-                  className="currentPlan"
-                >
-                  <div>플랜 업그레이드</div>
-                </button>
-                <ul className="features">
-                  <li>광고 제거</li>
-                  <li>FT 고화질 다운로드</li>
-                  <li>프리미엄용 프로필 꾸미기 가능</li>
-                  <li>프로필 닉네임 그라데이션</li>
-                  <li>포인트 충전 + 10%</li>
-                  <li>심화 문제 (포인트 10배)</li>
-                </ul>
-              </div>
+            <div className="Premium">
+              <span>EVERLASTING PREMIUM</span>
+              <p className="Dollor">₩</p>
+              <p className="price">29,000</p>
+              <p className="USD">KRW /</p>
+              <p className="perMonth">영구</p>
+              <p className="explanation">Grow Up Money의 영구 유료 제공 플랜</p>
 
-              <div className="Premium">
-                <span>EVERLASTING PREMIUM</span>
-                <p className="Dollor">₩</p>
-                <p className="price">29,000</p>
-                <p className="USD">KRW /</p>
-                <p className="perMonth">영구</p>
-                <p className="explanation">
-                  Grow Up Money의 영구 유료 제공 플랜
-                </p>
-
-                <button
-                  onClick={handlePaymentcurrentPlanPremium}
-                  className="currentPlanPremium"
-                >
-                  <div>플랜 업그레이드</div>
-                </button>
-                <ul className="features">
-                  <li>MONTHLY PREMIUM의 모든 기능</li>
-                  <li>영구 구독</li>
-                </ul>
-              </div>
+              <button
+                onClick={handlePaymentcurrentPlanPremium}
+                className="currentPlanPremium"
+              >
+                <div>플랜 업그레이드</div>
+              </button>
+              <ul className="features">
+                <li>MONTHLY PREMIUM의 모든 기능</li>
+                <li>영구 구독</li>
+              </ul>
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
 

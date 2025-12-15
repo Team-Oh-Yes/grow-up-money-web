@@ -23,7 +23,6 @@ function Learn() {
       setStory(story + 1);
     }
   };
-
   const handleContinue = () => {
     navigate(`/roadmap/${i}/unit${parseInt(unitFreeString)}/quiz`);
   };
@@ -35,7 +34,21 @@ function Learn() {
   return (
     <div className="lcon">
       {showChose ? (
-        <Modal />
+        <div className="Ccon">
+          <div className="realcon">
+            <div>
+              <img src={ma} className="m" alt="character" />
+            </div>
+            <div className="cbox">
+              <button className="go" onClick={handleContinue}>
+                퀴즈 풀러가기
+              </button>
+              <button className="stop" onClick={handleStop}>
+                학습 그만하기
+              </button>
+            </div>
+          </div>
+        </div>
       ) : (
         <>
           <div className="lsubcon">
@@ -60,22 +73,3 @@ function Learn() {
 }
 
 export default Learn;
-function Modal() {
-  return (
-    <div className="Ccon">
-      <div className="realcon">
-        <div>
-          <img src={ma} className="m" alt="character" />
-        </div>
-        <div className="cbox">
-          <button className="go" onClick={handleContinue}>
-            퀴즈 풀러가기
-          </button>
-          <button className="stop" onClick={handleStop}>
-            학습 그만하기
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}

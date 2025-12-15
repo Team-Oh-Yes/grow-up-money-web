@@ -9,7 +9,106 @@
   box-sizing: border-box;
   padding: 2rem !important;
 }
-
+.rqCcon {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  background-color: rgb(0, 0, 0, 0.5);
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+.rgo {
+  background-color: #fe8401;
+  border: none;
+  width: 15rem;
+  height: 2rem;
+  border-radius: 12px;
+  font-size: 0.96rem;
+}
+.rstop {
+  background-color: #ffffff;
+  border: none;
+  width: 15rem;
+  height: 2rem;
+  border-radius: 12px;
+  color: #fe8401;
+  font-size: 0.96rem;
+}
+.rqcbox {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+.igotp {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+.rqrealcon {
+  background-color: white;
+  border-radius: 30px;
+  width: 17.2rem;
+  height: 20rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.result-text {
+  font-size: 2rem;
+  padding-left: 8rem;
+  font-weight: 550;
+}
+.score {
+  color: #fe8401;
+}
+.qcbox {
+  display: flex;
+  gap: 1rem;
+  padding-left: 6rem;
+}
+.chose {
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.cream {
+  width: 700px;
+  height: 700px;
+  object-fit: contain;
+  position: absolute;
+  bottom: -100px;
+  right: -180px;
+}
+.learncon {
+  width: 100%;
+  height: 100%;
+  padding: 2rem !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.gostop {
+  position: relative;
+  width: 50rem;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  border: 3px #fe8e16 solid;
+  border-radius: 12px;
+  overflow: hidden;
+}
 /* 상단 영역 */
 .Tcon {
   position: relative;

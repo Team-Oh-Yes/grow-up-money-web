@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { quizProgressState } from "../../../atoms";
+// Testheart import 추가
+import { quizProgressState, Testheart } from "../../../atoms";
 import answer from "../../../img/answer.png";
 import nanswer from "../../../img/nanswer.png";
+import cream from "../../../img/NFT/cream.svg";
 import axiosInstance from "../../api/axiosInstance";
 import "../../css/loadmapcss/Quiz.css";
 
@@ -42,6 +44,8 @@ const sample = [
 ];
 
 function Quiz() {
+  // Testheart Recoil 상태 사용
+  const [testheart, setTestheart] = useRecoilState(Testheart);
   const navigate = useNavigate();
   const { i, d } = useParams();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -55,26 +59,31 @@ function Quiz() {
   const unitFreeString = original_string.replace("unit", "");
   const currentQuiz = sample[currentQuestionIndex];
   const isQuizFinished = currentQuestionIndex >= sample.length;
+
   const handleSpacebarPress = (event) => {
     if (!isQuizFinished && (event.key === " " || event.key === "Spacebar")) {
       event.preventDefault();
       setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
+
+  console.log(unitFreeString);
+
   useEffect(() => {
     if (unitFreeString) {
       axiosInstance
         .post(`/roadmap/lesson/${parseInt(unitFreeString - 1)}/start`)
         .then((response) => {
-          console.log(response.data);
+          console.log("퀴즈 시작 API 호출 성공:", response.data);
         })
         .catch((error) => {
-          console.error(error);
+          console.error("퀴즈 시작 API 호출 실패:", error);
         });
     } else {
       console.warn("라우트 파라미터 'd'가 유효하지 않습니다.");
     }
   }, [unitFreeString]);
+
   useEffect(() => {
     window.addEventListener("keydown", handleSpacebarPress);
     return () => {
@@ -101,6 +110,7 @@ function Quiz() {
     }
     navigate(`/roadmap/${i}/unit${parseInt(unitFreeString) + 1}/learn`);
   };
+
   const handleStop = async () => {
     try {
       await axiosInstance.post(`/roadmap/lesson/${unitFreeString}/complete`);
@@ -110,6 +120,7 @@ function Quiz() {
     }
     navigate("/roadmap");
   };
+
   useEffect(() => {
     setProgress((prev) => ({
       ...prev,
@@ -140,9 +151,20 @@ function Quiz() {
     setSelectedAnswer(selectedOption);
 
     const isCorrectAnswer = selectedOption === currentQuiz.correctAnswer;
+
     if (isCorrectAnswer) {
       setScore((prev) => prev + 1);
+    } else {
+      // 오답일 경우 하트 감소 로직 (Testheart 업데이트)
+      setTestheart((prevHeart) => {
+        // 하트가 0보다 클 경우에만 1 감소
+        if (prevHeart > 0) {
+          return prevHeart - 1;
+        }
+        return 0;
+      });
     }
+
     setTimeout(() => {
       setCurrentQuestionIndex((prev) => prev + 1);
       setIsAnswered(false);
@@ -150,6 +172,48 @@ function Quiz() {
     }, 1000);
   };
 
+  // 1. 🚨 하트가 0일 경우, 무조건 이 창만 뜹니다. (최우선)
+  if (testheart == 0) {
+    return (
+      <div className="rqCcon">
+        <div className="rqrealcon">
+          <img src={cream} className="igotp"></img>
+          <div className="rqcbox">
+            <button className="rgo">하트구매하기</button>
+            <button className="rstop" onClick={handleStop}>
+              학습 그만하기
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 2. 퀴즈가 완료되었을 경우 (하트가 0이 아니면서 퀴즈가 끝났을 때)
+  if (isQuizFinished) {
+    return (
+      <div className="learncon">
+        <div className="gostop">
+          <img src={cream} className="cream"></img>
+          <div className="chose">
+            <p className="result-text">
+              <span className="score">{score}</span>개 맞추셨어요
+            </p>
+            <div className="qcbox">
+              <button className="go" onClick={handleContinue}>
+                학습 하러가기
+              </button>
+              <button className="stop" onClick={handleStop}>
+                그만하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 3. 퀴즈 진행 중 (기본 화면)
   return (
     <div className="Qmaincon">
       <div className="Tcon">

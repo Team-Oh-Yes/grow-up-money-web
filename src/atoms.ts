@@ -31,8 +31,10 @@ export const quizProgressState = atom({
   },
 });
 export const roadmapdata = atom({
-    key:"roadmap",
-    default: {
-        
-    }
-})
+  key: "roadmap",
+  default: {},
+});
+export const Testheart = atom({
+  key: "heart",
+  default: 3,
+});

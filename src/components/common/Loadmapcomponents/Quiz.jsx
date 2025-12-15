@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { quizProgressState } from "../../../atoms";
 import answer from "../../../img/answer.png";
-import ma from "../../../img/image 11.svg";
 import nanswer from "../../../img/nanswer.png";
+import axiosInstance from "../../api/axiosInstance";
 import "../../css/loadmapcss/Quiz.css";
 
 const sample = [
@@ -61,7 +61,20 @@ function Quiz() {
       setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
-
+  useEffect(() => {
+    if (unitFreeString) {
+      axiosInstance
+        .post(`/roadmap/lesson/${parseInt(unitFreeString - 1)}/start`)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      console.warn("라우트 파라미터 'd'가 유효하지 않습니다.");
+    }
+  }, [unitFreeString]);
   useEffect(() => {
     window.addEventListener("keydown", handleSpacebarPress);
     return () => {
@@ -79,14 +92,24 @@ function Quiz() {
     }
   }, []);
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
+    try {
+      await axiosInstance.post(`/roadmap/lesson/${unitFreeString}/complete`);
+      console.log("퀴즈 완료 API 호출 성공 (Continue)");
+    } catch (error) {
+      console.error("퀴즈 완료 API 호출 실패 (Continue):", error);
+    }
     navigate(`/roadmap/${i}/unit${parseInt(unitFreeString) + 1}/learn`);
   };
-
-  const handleStop = () => {
+  const handleStop = async () => {
+    try {
+      await axiosInstance.post(`/roadmap/lesson/${unitFreeString}/complete`);
+      console.log("퀴즈 완료 API 호출 성공 (Stop)");
+    } catch (error) {
+      console.error("퀴즈 완료 API 호출 실패 (Stop):", error);
+    }
     navigate("/roadmap");
   };
-
   useEffect(() => {
     setProgress((prev) => ({
       ...prev,
@@ -126,27 +149,6 @@ function Quiz() {
       setSelectedAnswer(null);
     }, 1000);
   };
-
-  if (isQuizFinished) {
-    return (
-      <div className="Ccon">
-        <div className="realcon">
-          <img src={ma} className="m" alt="character" />
-
-          <p className="result-text">아쉽네요, {score}개 맞추셨어요</p>
-
-          <div className="cbox">
-            <button className="go" onClick={handleContinue}>
-              학습 하러가기
-            </button>
-            <button className="stop" onClick={handleStop}>
-              그만하기
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="Qmaincon">

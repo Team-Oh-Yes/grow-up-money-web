@@ -5,19 +5,20 @@ import Mainpages from "./components/Add/Mainpages";
 import Adminpages from "./components/common/AdminComponents/AdminPages";
 import Error from "./error/Error";
 // import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
-import SignUp from "./components/common/SignUp/SignUp.jsx";
-import Login from "./components/common/Login/Login.jsx";
-import Planpages from "./components/common/plancomponents/Planpages";
-import EULA from "./components/common/Serviccenter/EULA";
 import Learn from "./components/common/Loadmapcomponents/Learn";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
-import MainTheme from "./components/common/Theme/MainTheme";
+import Login from "./components/common/Login/Login.jsx";
+import Market from "./components/common/Market/Market.jsx";
+import MypageProfile from "./components/common/MypageProfile/MypageProfile.jsx";
+import EULA from "./components/common/Serviccenter/EULA";
 import FaQ from "./components/common/Serviccenter/FaQ.jsx";
 import Notice from "./components/common/Serviccenter/Notice.jsx";
-import Mypage from "./components/common/mypage/Mypage.jsx";
+import SignUp from "./components/common/SignUp/SignUp.jsx";
+import MainTheme from "./components/common/Theme/MainTheme";
+import Planpages from "./components/common/plancomponents/Planpages";
 
 const Loginmaincomponents = lazy(() =>
-  import("./components/common/Loginmaincomponents/Loginmaincomponents")
+  import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
 );
 
 const Themecomponents = lazy(() =>
@@ -76,28 +77,10 @@ const router = createBrowserRouter([
   {
     path: "/servicecenter/eula",
     element: <EULA />,
-    errorElement: <Error />
-  },
-  {path:"/plan",
-    element :<Planpages />,
-    errorElement: <Error />
-  },
-  {
-    path: "/servicecenter/faq",
-    element: <FaQ />,
-    errorElement: <Error />
-  },
-  {
-    path: "/servicecenter/notice",
-    element: <Notice />,
-    errorElement: <Error />
-  },
-  {
-    path: "/admin",
-    element: <Adminpages />,
     errorElement: <Error />,
-  },{
-    path: "/profile",
+  },
+  {
+    path: "/more",
     element: (
       <Suspense fallback={<div>Loading...</div>}>
         <Loginmaincomponents />
@@ -106,10 +89,53 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Mypage />,
+        element: <Planpages />,
       },
-    ]
-  }
+    ],
+  },
+  {
+    path: "/servicecenter/faq",
+    element: <FaQ />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/servicecenter/notice",
+    element: <Notice />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin",
+    element: <Adminpages />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/my",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Loginmaincomponents />
+      </Suspense>
+    ),
+    children: [
+      {
+        index: true,
+        element: <MypageProfile />,
+      },
+    ],
+  },
+  {
+    path: "/market",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Loginmaincomponents />
+      </Suspense>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Market />,
+      },
+    ],
+  },
 ]);
 
 export default router;

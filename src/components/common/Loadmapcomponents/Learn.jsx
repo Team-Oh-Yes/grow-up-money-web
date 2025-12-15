@@ -35,21 +35,7 @@ function Learn() {
   return (
     <div className="lcon">
       {showChose ? (
-        <div className="Ccon">
-          <div className="realcon">
-            <div>
-              <img src={ma} className="m" alt="character" />
-            </div>
-            <div className="cbox">
-              <button className="go" onClick={handleContinue}>
-                퀴즈 풀러가기
-              </button>
-              <button className="stop" onClick={handleStop}>
-                학습 그만하기
-              </button>
-            </div>
-          </div>
-        </div>
+        <Modal />
       ) : (
         <>
           <div className="lsubcon">
@@ -74,3 +60,22 @@ function Learn() {
 }
 
 export default Learn;
+function Modal() {
+  return (
+    <div className="Ccon">
+      <div className="realcon">
+        <div>
+          <img src={ma} className="m" alt="character" />
+        </div>
+        <div className="cbox">
+          <button className="go" onClick={handleContinue}>
+            퀴즈 풀러가기
+          </button>
+          <button className="stop" onClick={handleStop}>
+            학습 그만하기
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -231,7 +231,7 @@ function Sell({ setSell, sell, myNFTs, openPriceModal }) {
           </button>
         </div>
       </div>
-      <div style={{ padding: "20px" }}>팔 NFT를 선택하세요</div>
+      <div style={{ padding: "20px",backgroundColor:"#f9f9f9" }} >팔 NFT를 선택하세요</div>
       <div className="market">
         {myNFTs.map((nft) => {
           return (

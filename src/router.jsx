@@ -18,7 +18,7 @@ import MainTheme from "./components/common/Theme/MainTheme";
 import Planpages from "./components/common/plancomponents/Planpages";
 
 const Loginmaincomponents = lazy(() =>
-  import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
+  import("./components/common/Loginmaincomponents/Loginmaincomponents")
 );
 
 const Themecomponents = lazy(() =>

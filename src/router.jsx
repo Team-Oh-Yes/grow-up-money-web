@@ -14,12 +14,9 @@ import Notice from "./components/common/Serviccenter/Notice.jsx";
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import MainTheme from "./components/common/Theme/MainTheme";
 import Planpages from "./components/common/plancomponents/Planpages";
-<<<<<<< HEAD
 import Tshow from "./components/common/Market/Tshow.jsx";
-=======
 import PrivateRoute from "./protected/PrivateRoute";
 import PublicRoute from "./protected/PublicRoute";
->>>>>>> origin/main
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")

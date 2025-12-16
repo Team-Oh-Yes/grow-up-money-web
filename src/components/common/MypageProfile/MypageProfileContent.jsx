@@ -19,6 +19,8 @@ export default function MypageProfileContent() {
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
     const [fileName, setFileName] = useState('');
+    const [pendingImageFile, setPendingImageFile] = useState(null); // 저장 전 대기 중인 이미지 파일
+    const [previewImage, setPreviewImage] = useState(''); // 로컬 미리보기 URL
     const fileInputRef = useRef(null);
 
     // 프로필 정보 조회
@@ -55,8 +57,8 @@ export default function MypageProfileContent() {
         }
     };
 
-    // 프로필 이미지 업로드
-    const handleImageUpload = async (e) => {
+    // 프로필 이미지 선택 (로컬 미리보기만, 저장 시 업로드)
+    const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
@@ -72,53 +74,67 @@ export default function MypageProfileContent() {
             return;
         }
 
-        try {
-            setFileName(file.name);
-            
-            // Presigned URL 요청 (fileName을 쿼리 파라미터로 전송)
-            const presignedResponse = await axiosInstance.get('/my/profile/image/presigned-url', {
-                params: { fileName: file.name }
-            });
-            const { presignedUrl } = presignedResponse.data;
+        // 로컬 미리보기 URL 생성
+        const previewUrl = URL.createObjectURL(file);
+        setPreviewImage(previewUrl);
+        setPendingImageFile(file);
+        setFileName(file.name);
+    };
 
-            // S3에 이미지 업로드
-            await fetch(presignedUrl, {
-                method: 'PUT',
-                body: file,
-                headers: {
-                    'Content-Type': file.type,
-                },
-            });
+    // 실제 이미지 업로드 (저장 시 호출)
+    const uploadImage = async (file) => {
+        // Presigned URL 요청 (fileName을 쿼리 파라미터로 전송)
+        const presignedResponse = await axiosInstance.get('/my/profile/image/presigned-url', {
+            params: { fileName: file.name }
+        });
+        const { presignedUrl } = presignedResponse.data;
 
-            // 업로드된 이미지 URL 추출 (presigned URL에서 쿼리 파라미터 제거)
-            const imageUrl = presignedUrl.split('?')[0];
-            setProfileImage(imageUrl);
-            
-            toast.success('이미지가 업로드되었습니다.');
-        } catch (error) {
-            console.error('이미지 업로드 실패:', error);
-            toast.error('이미지 업로드에 실패했습니다.');
-        }
+        // S3에 이미지 업로드
+        await fetch(presignedUrl, {
+            method: 'PUT',
+            body: file,
+            headers: {
+                'Content-Type': file.type,
+            },
+        });
+
+        // 업로드된 이미지 URL 추출 (presigned URL에서 쿼리 파라미터 제거)
+        return presignedUrl.split('?')[0];
     };
 
     // 프로필 저장
     const handleSave = async () => {
         if (!nickname.trim()) {
-            toast.error('닉네임을 입력해주세요.');
+            toast.error('아이디를 입력해주세요.');
             return;
         }
 
         try {
             setIsSaving(true);
+
+            // 대기 중인 이미지가 있으면 먼저 업로드
+            let newProfileImageUrl = profileImage;
+            if (pendingImageFile) {
+                newProfileImageUrl = await uploadImage(pendingImageFile);
+                setProfileImage(newProfileImageUrl);
+            }
+
             await axiosInstance.patch('/my/profile', {
                 username: nickname,
                 introduction: intro
             });
 
+            // 미리보기 URL 정리
+            if (previewImage) {
+                URL.revokeObjectURL(previewImage);
+                setPreviewImage('');
+            }
+            setPendingImageFile(null);
+
             setOriginalData({
                 nickname,
                 intro,
-                profileImage,
+                profileImage: newProfileImageUrl,
                 fileName
             });
 
@@ -133,6 +149,13 @@ export default function MypageProfileContent() {
 
     // 취소 (원래 데이터로 복원)
     const handleCancel = () => {
+        // 미리보기 URL 정리
+        if (previewImage) {
+            URL.revokeObjectURL(previewImage);
+            setPreviewImage('');
+        }
+        setPendingImageFile(null);
+        
         setNickname(originalData.nickname);
         setIntro(originalData.intro);
         setProfileImage(originalData.profileImage);
@@ -149,7 +172,8 @@ export default function MypageProfileContent() {
     const hasChanges = 
         nickname !== originalData.nickname || 
         intro !== originalData.intro || 
-        profileImage !== originalData.profileImage;
+        profileImage !== originalData.profileImage ||
+        pendingImageFile !== null;
 
     if (isLoading) {
         return (
@@ -173,7 +197,7 @@ export default function MypageProfileContent() {
                 <div className='profile-picture'>
                     <img 
                         className='profile-icon' 
-                        src={profileImage || DefaultProfileIcon} 
+                        src={previewImage || profileImage || DefaultProfileIcon} 
                         alt="Profile" 
                     />
                 </div>
@@ -196,22 +220,22 @@ export default function MypageProfileContent() {
             
             <div className='profile-info-container'>
                 <div className='profile-nickname-container'>
-                    <div className='profile-nickname-title'>닉네임</div>
+                    <div className='profile-nickname-title'>아이디</div>
                     <input 
                         className='profile-nickname-input' 
                         type="text" 
-                        placeholder='닉네임을 입력해주세요' 
+                        placeholder='아이디를 입력해주세요' 
                         value={nickname} 
                         onChange={(e) => setNickname(e.target.value)} 
                     />
                 </div>
 
                 <div className='profile-intro-container'>
-                    <div className='profile-intro-title'>소개글</div>
+                    <div className='profile-intro-title'>자기 소개</div>
                     
                     <textarea 
                         className='profile-intro-textarea' 
-                        placeholder='소개글을 입력해주세요' 
+                        placeholder='자기 소개를 입력해주세요' 
                         value={intro} 
                         onChange={(e) => setIntro(e.target.value)} 
                         maxLength={250} 

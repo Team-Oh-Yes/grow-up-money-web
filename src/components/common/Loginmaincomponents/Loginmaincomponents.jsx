@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
-import { Big, Mobilestate, quizProgressState } from "../../../atoms";
+import { Big, Mobilestate, quizProgressState, Testheart } from "../../../atoms";
 import BigBlocker from "../../../BigBlocker";
 import back from "../../../img/back.png";
 import king from "../../../img/crown.png";
 import ticket from "../../../img/gacha2.png";
 import heart from "../../../img/heart.png";
+import point from "../../../img/Icon/bouncepoint.svg";
 import map from "../../../img/loadmap.png";
 import more from "../../../img/more.png";
 import dia from "../../../img/point.png";
@@ -16,12 +17,12 @@ import rank from "../../../img/rank.png";
 import store from "../../../img/store.png";
 import trade from "../../../img/trade.png";
 import MobileBlocker from "../../../MobileBlocker";
+import axiosInstance from "../../api/axiosInstance";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
-import { Testheart } from "../../../atoms";
 
 function Loginmaincomponents() {
-const [testheart,setTestheart] = useRecoilState(Testheart)
+  const [testheart, setTestheart] = useRecoilState(Testheart);
   const navigate = useNavigate();
   const location = useLocation();
   const [active, setActive] = useState("box1");
@@ -40,6 +41,27 @@ const [testheart,setTestheart] = useRecoilState(Testheart)
     progress: 0,
     theme: "light",
   });
+  const [data, setData] = useState(null);
+
+  // ✨ 숫자를 k, m 형식으로 포맷팅하는 함수
+  const formatNumber = (num) => {
+    if (num === null || num === undefined) return "0";
+    const number = Number(num);
+    
+    if (isNaN(number)) return String(num); 
+
+    if (number >= 1000000) {
+      // 100만 이상: M (예: 1.5M)
+      return (number / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+    }
+    if (number >= 1000) {
+      // 1천 이상: k (예: 1.2k, 10k)
+      return (number / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+    }
+    return number.toString();
+  };
+  // ----------------------------------------------------
+
   useEffect(() => {
     const path = location.pathname;
     if (path.includes("/roadmap")) {
@@ -56,6 +78,7 @@ const [testheart,setTestheart] = useRecoilState(Testheart)
       setActive("box6");
     }
   }, [location.pathname]);
+
   //현수야고침
   useEffect(() => {
     if (location.state?.loginSuccess) {
@@ -74,13 +97,25 @@ const [testheart,setTestheart] = useRecoilState(Testheart)
         setIsExtraLargeScreen(width >= 3200);
       }
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
   }, [setIsMobileBlocked, setIsExtraLargeScreen]);
-
+  
+  // ✨ API 호출을 마운트 시 한 번만 실행하도록 수정 (location 의존성 제거)
+  useEffect(() => {
+    axiosInstance
+      .get("/me")
+      .then((response) => {
+        setData(response.data);
+        console.log("사용자 데이터 로드 성공:", response.data);
+      })
+      .catch((error) => {
+        console.error("하트시스템호출 에러:", error);
+      });
+  }, []); // 👈 의존성 배열을 빈 배열 []로 수정하여 마운트 시 1회만 호출되도록 변경했습니다.
+  
   useEffect(() => {
     const isQuizPath = location.pathname.includes("/quiz");
 
@@ -99,7 +134,7 @@ const [testheart,setTestheart] = useRecoilState(Testheart)
       }, 1500);
     }
   }, [score, totalQuestions, TF, location.pathname, setShow]);
-
+  
   if (isMobileBlocked) {
     return <MobileBlocker />;
   }
@@ -172,7 +207,7 @@ const [testheart,setTestheart] = useRecoilState(Testheart)
       <div className="changebox">
         <S.Topbar>
           <div className="b" onClick={() => navigate("/roadmap")}>
-            <img src={back}></img>
+            <img src={back} alt="뒤로가기"></img>
           </div>
           <div className="topbar-progress-container">
             {TF && (
@@ -187,12 +222,20 @@ const [testheart,setTestheart] = useRecoilState(Testheart)
           <div className="rcon">
             <div className="img">
               <img src={heart} alt="하트"></img>
-              <h5>{testheart}</h5>
+              {/* data가 null일 때 0을 반환하도록 옵셔널 체이닝 적용 */}
+              <h5>{formatNumber(data?.hearts ?? 0)}</h5>
+              
               <img src={dia} alt="다이아몬드"></img>
-              <h5>5</h5>
+              {/* data가 null일 때 0을 반환하도록 옵셔널 체이닝 적용 */}
+              <h5>{formatNumber(data?.pointBalance ?? 0)}</h5>
+              
+              <img src={point} alt="포인트"></img>
+              {/* data가 null일 때 0을 반환하도록 옵셔널 체이닝 적용 */}
+              <h5>{formatNumber(data?.boundPoint ?? 0)}</h5>
+              
               <img src={ticket} alt="티켓" />
-              <h5>5</h5>
-              <img src={king}></img>
+              <h5>5</h5> 
+              <img src={king} alt="왕관"></img>
               <h5 className="premiun">Premium</h5>
             </div>
           </div>

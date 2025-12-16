@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   padding-right: 2.4rem;
+  
 }
 
 .topbar-progress-background {
@@ -146,7 +147,7 @@ h5 {
   font-weight: 700;
   line-height: normal;
   margin: 0;
-  margin-right: 3rem;
+  margin-right: 1.6rem;
 }
 
 .img {
@@ -184,7 +185,7 @@ h5 {
   background: transparent; /* tama 배경색 */
   margin-bottom: 10px;
   padding-bottom: 15px;
-  padding: 0rem 2rem 1.5rem 2rem !important;
+  padding: 0rem 2rem 1.5rem 3rem;
 
   /* 이전 코드에서 제거된 부분: overflow: hidden; 및 border-radius: 15px; */
 }

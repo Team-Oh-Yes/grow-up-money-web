@@ -16,6 +16,7 @@ import Notice from "./components/common/Serviccenter/Notice.jsx";
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import MainTheme from "./components/common/Theme/MainTheme";
 import Planpages from "./components/common/plancomponents/Planpages";
+import Tshow from "./components/common/Market/Tshow.jsx";
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
@@ -134,6 +135,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Market />,
       },
+      {
+        path:"tshow",
+        element: <Tshow></Tshow>
+      }
     ],
   },
 ]);

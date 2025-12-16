@@ -2,11 +2,11 @@ import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Mainpages from "./components/Add/Mainpages";
 import Adminpages from "./components/common/AdminComponents/AdminPages";
-import Error from "./error/Error";
 import Learn from "./components/common/Loadmapcomponents/Learn";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
 import Login from "./components/common/Login/Login.jsx";
 import Market from "./components/common/Market/Market.jsx";
+import Tshow from "./components/common/Market/Tshow.jsx";
 import MypageProfile from "./components/common/MypageProfile/MypageProfile.jsx";
 import EULA from "./components/common/Serviccenter/EULA";
 import FaQ from "./components/common/Serviccenter/FaQ.jsx";
@@ -14,13 +14,9 @@ import Notice from "./components/common/Serviccenter/Notice.jsx";
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import MainTheme from "./components/common/Theme/MainTheme";
 import Planpages from "./components/common/plancomponents/Planpages";
-<<<<<<< HEAD
-import Tshow from "./components/common/Market/Tshow.jsx";
-=======
+import Error from "./error/Error";
 import PrivateRoute from "./protected/PrivateRoute";
 import PublicRoute from "./protected/PublicRoute";
->>>>>>> origin/main
-
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
 );
@@ -159,9 +155,9 @@ const router = createBrowserRouter([
         element: <Market />,
       },
       {
-        path:"tshow",
-        element: <Tshow></Tshow>
-      }
+        path: "tshow",
+        element: <Tshow></Tshow>,
+      },
     ],
   },
 ]);

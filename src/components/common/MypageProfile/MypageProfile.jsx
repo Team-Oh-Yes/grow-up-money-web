@@ -11,6 +11,7 @@ import axiosInstance from '../../api/axiosInstance';
 // Components import
 import MypageHeader from './MypageHeader';
 import MypageProfileContent from './MypageProfileContent';
+import MypageInfoContent from './MypageInfoContent';
 
 // Const
 export default function MypageProfile() {
@@ -53,7 +54,7 @@ export default function MypageProfile() {
             case 'billing':
                 return <div className='mypage-main'>청구 설정</div>;
             case 'info':
-                return <div className='mypage-main'>개인정보 변경</div>;
+                return <MypageInfoContent />;
             case 'refund':
                 return <div className='mypage-main'>환불/문의</div>;
             default:

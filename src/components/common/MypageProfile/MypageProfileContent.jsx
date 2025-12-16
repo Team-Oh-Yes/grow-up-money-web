@@ -12,10 +12,10 @@ import axiosInstance from '../../api/axiosInstance';
 
 // Const
 export default function MypageProfileContent() {
-    const [nickname, setNickname] = useState('');
+    const [displayName, setDisplayName] = useState('');
     const [intro, setIntro] = useState('');
     const [profileImage, setProfileImage] = useState('');
-    const [originalData, setOriginalData] = useState({ nickname: '', intro: '', profileImage: '', fileName: '' });
+    const [originalData, setOriginalData] = useState({ displayName: '', intro: '', profileImage: '', fileName: '' });
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
     const [fileName, setFileName] = useState('');
@@ -32,19 +32,19 @@ export default function MypageProfileContent() {
         try {
             setIsLoading(true);
             const response = await axiosInstance.get('/my/profile');
-            const { username, introduction, profileImageUrl } = response.data;
+            const { displayName, introduction, profileImageUrl } = response.data;
             
             // URL에서 파일명 추출 후 디코딩
             const extractedFileName = profileImageUrl 
                 ? decodeURIComponent(profileImageUrl.split('/').pop()) 
                 : '';
             
-            setNickname(username || '');
+            setDisplayName(displayName || '');
             setIntro(introduction || '');
             setProfileImage(profileImageUrl || '');
             setFileName(extractedFileName);
             setOriginalData({
-                nickname: username || '',
+                displayName: displayName || '',
                 intro: introduction || '',
                 profileImage: profileImageUrl || '',
                 fileName: extractedFileName
@@ -104,8 +104,8 @@ export default function MypageProfileContent() {
 
     // 프로필 저장
     const handleSave = async () => {
-        if (!nickname.trim()) {
-            toast.error('아이디를 입력해주세요.');
+        if (!displayName.trim()) {
+            toast.error('닉네임을 입력해주세요.');
             return;
         }
 
@@ -120,9 +120,12 @@ export default function MypageProfileContent() {
             }
 
             await axiosInstance.patch('/my/profile', {
-                username: nickname,
+                displayName: displayName,
                 introduction: intro
             });
+
+            // 토큰 갱신 (프로필 정보가 토큰에 포함되어 있을 수 있으므로)
+            await axiosInstance.post('/users/refresh');
 
             // 미리보기 URL 정리
             if (previewImage) {
@@ -132,7 +135,7 @@ export default function MypageProfileContent() {
             setPendingImageFile(null);
 
             setOriginalData({
-                nickname,
+                displayName,
                 intro,
                 profileImage: newProfileImageUrl,
                 fileName
@@ -156,7 +159,7 @@ export default function MypageProfileContent() {
         }
         setPendingImageFile(null);
         
-        setNickname(originalData.nickname);
+        setDisplayName(originalData.displayName);
         setIntro(originalData.intro);
         setProfileImage(originalData.profileImage);
         setFileName(originalData.fileName);
@@ -170,7 +173,7 @@ export default function MypageProfileContent() {
 
     // 변경사항 확인
     const hasChanges = 
-        nickname !== originalData.nickname || 
+        displayName !== originalData.displayName || 
         intro !== originalData.intro || 
         profileImage !== originalData.profileImage ||
         pendingImageFile !== null;
@@ -219,23 +222,23 @@ export default function MypageProfileContent() {
             </div>
             
             <div className='profile-info-container'>
-                <div className='profile-nickname-container'>
-                    <div className='profile-nickname-title'>아이디</div>
+                <div className='profile-displayname-container'>
+                    <div className='profile-displayname-title'>닉네임</div>
                     <input 
-                        className='profile-nickname-input' 
+                        className='profile-displayname-input' 
                         type="text" 
-                        placeholder='아이디를 입력해주세요' 
-                        value={nickname} 
-                        onChange={(e) => setNickname(e.target.value)} 
+                        placeholder='닉네임을 입력해주세요' 
+                        value={displayName} 
+                        onChange={(e) => setDisplayName(e.target.value)} 
                     />
                 </div>
 
                 <div className='profile-intro-container'>
-                    <div className='profile-intro-title'>자기 소개</div>
+                    <div className='profile-intro-title'>자기소개</div>
                     
                     <textarea 
                         className='profile-intro-textarea' 
-                        placeholder='자기 소개를 입력해주세요' 
+                        placeholder='자기소개를 입력해주세요' 
                         value={intro} 
                         onChange={(e) => setIntro(e.target.value)} 
                         maxLength={250} 

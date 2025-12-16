@@ -12,6 +12,7 @@ import axiosInstance from '../../api/axiosInstance';
 import MypageHeader from './MypageHeader';
 import MypageProfileContent from './MypageProfileContent';
 import MypageInfoContent from './MypageInfoContent';
+import MypageDevelopContent from './MypageDevelopContent';
 
 // Const
 export default function MypageProfile() {
@@ -50,13 +51,13 @@ export default function MypageProfile() {
             case 'profile':
                 return <MypageProfileContent />;
             case 'status':
-                return <div className='mypage-main'>사용자 통계</div>;
+                return <MypageDevelopContent />; 
             case 'billing':
-                return <div className='mypage-main'>청구 설정</div>;
+                return <MypageDevelopContent />;
             case 'info':
                 return <MypageInfoContent />;
             case 'refund':
-                return <div className='mypage-main'>환불/문의</div>;
+                return <MypageDevelopContent />;
             default:
                 return <MypageProfileContent />;
         }

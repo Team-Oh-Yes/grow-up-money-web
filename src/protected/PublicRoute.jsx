@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import axiosInstance from "../components/api/axiosInstance";
 
 /**
- * PrivateRoute 컴포넌트
- * - API를 통해 토큰 유효성을 확인
- * - 인증되지 않은 사용자는 로그인 페이지로 리다이렉트
+ * PublicRoute 컴포넌트
+ * - 로그인되지 않은 사용자만 접근 가능한 페이지용
+ * - 로그인된 사용자는 /roadmap으로 리다이렉트
  */
-const PrivateRoute = ({ children }) => {
+const PublicRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const location = useLocation();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -19,7 +18,7 @@ const PrivateRoute = ({ children }) => {
         await axiosInstance.get("/my/profile");
         setIsAuthenticated(true);
       } catch (error) {
-        console.log("인증 실패:", error.response?.status);
+        // 401 또는 다른 에러 = 미인증 상태
         setIsAuthenticated(false);
       } finally {
         setIsLoading(false);
@@ -46,13 +45,13 @@ const PrivateRoute = ({ children }) => {
     );
   }
 
-  // 인증되지 않으면 로그인 페이지로 리다이렉트 (현재 경로 저장)
-  if (!isAuthenticated) {
-    return <Navigate to="/Login" state={{ from: location }} replace />;
+  // 인증되면 roadmap으로 리다이렉트
+  if (isAuthenticated) {
+    return <Navigate to="/roadmap" replace />;
   }
 
-  // 인증되면 자식 컴포넌트 렌더링
+  // 인증되지 않으면 자식 컴포넌트 렌더링
   return children;
 };
 
-export default PrivateRoute;
+export default PublicRoute;

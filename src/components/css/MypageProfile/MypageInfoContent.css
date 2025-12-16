@@ -1,0 +1,196 @@
+.mypage-main {
+    margin: 40px 97px 0 97px;
+    height: 785px;
+    width: calc(100% - 474px);
+    background-color: #ffffff;
+    border-radius: 20px 20px 0 0;
+    background-image: url('../../../img/MypageProfile/BackgroundImg.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.profile-Info-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #181F29;
+    margin: 44px 0 16px 44px;
+}
+
+.line {
+    width: calc(100% - 80px);
+    position: relative;
+    left: 40px;
+    height: 1px;
+    background-color: #8C8989;
+}
+
+.profile-Info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 26px 0 0 48px;
+}
+
+.profile-Info-content-item {
+    display: flex;
+    color: #181F29;
+    justify-content: start;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-Info-setting-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #181F29;
+}
+
+.profile-Info-setting-text {
+    font-size: 21px;
+    font-weight: 500;
+    color: #777777;
+}
+
+.profile-Info-password-button {
+    padding: 3px 24px;
+    background-color: #fe8401;
+    border-radius: 100px;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.profile-Info-password-button:hover {
+    background-color: #e57700;
+}
+
+/* 로딩 스피너 */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #fe8401;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 비밀번호 변경 모달 */
+.profile-Info-password-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.profile-Info-password-modal {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-Info-password-modal-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #181F29;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.profile-Info-password-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-Info-password-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-Info-password-input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #181F29;
+}
+
+.profile-Info-password-input-group input {
+    padding: 12px 16px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.profile-Info-password-input-group input:focus {
+    border-color: #fe8401;
+}
+
+.profile-Info-password-input-group input::placeholder {
+    color: #A0A0A0;
+}
+
+.profile-Info-password-modal-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.profile-Info-password-modal-cancel,
+.profile-Info-password-modal-submit {
+    flex: 1;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.profile-Info-password-modal-cancel {
+    background-color: #E8E8E8;
+    color: #666666;
+}
+
+.profile-Info-password-modal-cancel:hover {
+    background-color: #D8D8D8;
+}
+
+.profile-Info-password-modal-submit {
+    background-color: #fe8401;
+    color: #ffffff;
+}
+
+.profile-Info-password-modal-submit:hover {
+    background-color: #e57700;
+}
+
+.profile-Info-password-modal-submit.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}

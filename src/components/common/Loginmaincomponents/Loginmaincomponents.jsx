@@ -3,7 +3,16 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { Big, Mobilestate, quizProgressState, Testheart } from "../../../atoms";
+<<<<<<< HEAD
+=======
+
+// Components
+>>>>>>> origin/main
 import BigBlocker from "../../../BigBlocker";
+import MobileBlocker from "../../../MobileBlocker";
+import * as S from "../../styled/top&sidebar";
+
+// Images
 import back from "../../../img/back.png";
 import king from "../../../img/crown.png";
 import ticket from "../../../img/gacha2.png";
@@ -16,6 +25,7 @@ import pro from "../../../img/profile.png";
 import rank from "../../../img/rank.png";
 import store from "../../../img/store.png";
 import trade from "../../../img/trade.png";
+<<<<<<< HEAD
 import MobileBlocker from "../../../MobileBlocker";
 import axiosInstance from "../../api/axiosInstance";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
@@ -23,14 +33,36 @@ import * as S from "../../styled/top&sidebar";
 
 function Loginmaincomponents() {
   const [testheart, setTestheart] = useRecoilState(Testheart);
+=======
+
+// CSS
+import "../../css/Loginmainpagescss/Loginmainpages.css";
+
+// 사이드바 메뉴 데이터
+const MENU_ITEMS = [
+  { id: "box1", path: "/roadmap", icon: map, label: "로드맵" },
+  { id: "box2", path: "/rank", icon: rank, label: "랭킹" },
+  { id: "box3", path: "/market", icon: trade, label: "거래소" },
+  { id: "box4", path: "/shop", icon: store, label: "상점" },
+  { id: "box5", path: "/my", icon: pro, label: "마이페이지" },
+  { id: "box6", path: "/more", icon: more, label: "더보기" },
+];
+
+function Loginmaincomponents() {
+>>>>>>> origin/main
   const navigate = useNavigate();
   const location = useLocation();
+  
+  // States
   const [active, setActive] = useState("box1");
+  const [testheart] = useRecoilState(Testheart);
   const [isMobileBlocked, setIsMobileBlocked] = useRecoilState(Mobilestate);
   const [isExtraLargeScreen, setIsExtraLargeScreen] = useRecoilState(Big);
-  const [show, setShow] = useRecoilState(quizProgressState);
-  const { TF, score, totalQuestions } = show;
+  const [quizProgress, setQuizProgress] = useRecoilState(quizProgressState);
+  
+  const { TF, score, totalQuestions } = quizProgress;
 
+<<<<<<< HEAD
   const toastcode = (time = 1000) => ({
     position: "top-right",
     autoClose: time,
@@ -62,46 +94,48 @@ function Loginmaincomponents() {
   };
   // ----------------------------------------------------
 
+=======
+  // 현재 경로에 따라 활성 메뉴 설정
+>>>>>>> origin/main
   useEffect(() => {
-    const path = location.pathname;
-    if (path.includes("/roadmap")) {
-      setActive("box1");
-    } else if (path.includes("/rank")) {
-      setActive("box2");
-    } else if (path.includes("/market")) {
-      setActive("box3");
-    } else if (path.includes("/shop")) {
-      setActive("box4");
-    } else if (path.includes("/my")) {
-      setActive("box5");
-    } else if (path.includes("/more")) {
-      setActive("box6");
-    }
+    const currentMenu = MENU_ITEMS.find(item => 
+      location.pathname.includes(item.path.slice(1))
+    );
+    if (currentMenu) setActive(currentMenu.id);
   }, [location.pathname]);
 
+<<<<<<< HEAD
   //현수야고침
+=======
+  // 로그인 성공 토스트
+>>>>>>> origin/main
   useEffect(() => {
     if (location.state?.loginSuccess) {
-      toast.success("로그인 성공!", { ...toastcode(2000) });
-      toast.clearWaitingQueue();
-
+      toast.success("로그인 성공!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "light",
+      });
       window.history.replaceState({}, document.title);
     }
   }, [location]);
 
+  // 화면 크기 감지
   useEffect(() => {
     const handleResize = () => {
-      if (typeof window !== "undefined") {
-        const width = window.innerWidth;
-        setIsMobileBlocked(width < 768);
-        setIsExtraLargeScreen(width >= 3200);
-      }
+      const width = window.innerWidth;
+      setIsMobileBlocked(width < 768);
+      setIsExtraLargeScreen(width >= 3200);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, [setIsMobileBlocked, setIsExtraLargeScreen]);
+<<<<<<< HEAD
   
   // ✨ API 호출을 마운트 시 한 번만 실행하도록 수정 (location 의존성 제거)
   useEffect(() => {
@@ -116,23 +150,27 @@ function Loginmaincomponents() {
       });
   }, []); // 👈 의존성 배열을 빈 배열 []로 수정하여 마운트 시 1회만 호출되도록 변경했습니다.
   
+=======
+
+  // 퀴즈 진행 상태 관리
+>>>>>>> origin/main
   useEffect(() => {
     const isQuizPath = location.pathname.includes("/quiz");
-
+    
     if (isQuizPath && !TF) {
-      setShow((prev) => ({ ...prev, TF: true }));
+      setQuizProgress(prev => ({ ...prev, TF: true }));
     } else if (!isQuizPath && TF) {
-      setShow({ TF: false, score: 0, totalQuestions: 4 });
+      setQuizProgress({ TF: false, score: 0, totalQuestions: 4 });
     }
-  }, [location.pathname, TF, setShow]);
+  }, [location.pathname, TF, setQuizProgress]);
 
+  // 퀴즈 완료 시 점수 리셋
   useEffect(() => {
     const isQuizPath = location.pathname.includes("/quiz");
     if (isQuizPath && TF && totalQuestions > 0 && score === totalQuestions) {
-      setTimeout(() => {
-        setShow({ score: 0 });
-      }, 1500);
+      setTimeout(() => setQuizProgress(prev => ({ ...prev, score: 0 })), 1500);
     }
+<<<<<<< HEAD
   }, [score, totalQuestions, TF, location.pathname, setShow]);
   
   if (isMobileBlocked) {
@@ -141,86 +179,71 @@ function Loginmaincomponents() {
   if (isExtraLargeScreen) {
     return <BigBlocker />;
   }
+=======
+  }, [score, totalQuestions, TF, location.pathname, setQuizProgress]);
 
-  const Action = (e, n) => {
-    setActive(e);
-    navigate(n);
+  // 화면 차단 처리
+  if (isMobileBlocked) return <MobileBlocker />;
+  if (isExtraLargeScreen) return <BigBlocker />;
+>>>>>>> origin/main
+
+  // 메뉴 클릭 핸들러
+  const handleMenuClick = (id, path) => {
+    setActive(id);
+    navigate(path);
   };
 
-  // 프로그레스 퍼센트 계산
-  const progressPercentage = (score / totalQuestions) * 100;
-  const safeProgressPercentage = TF
-    ? isNaN(progressPercentage)
-      ? 0
-      : progressPercentage
+  // 퀴즈 진행률 계산
+  const progressPercentage = TF && totalQuestions > 0 
+    ? (score / totalQuestions) * 100 
     : 0;
 
   return (
     <div className="maincon">
+      {/* 사이드바 */}
       <S.Sidebar>
         <p className="title">Grow Money</p>
         <div className="con">
-          <div
-            className={active === "box1" ? "boxactive" : "box"}
-            onClick={() => Action("box1", "/roadmap")}
-          >
-            <img src={map} alt="로드맵 이미지"></img>
-            <p>로드맵</p>
-          </div>
-          <div
-            className={active === "box2" ? "boxactive" : "box"}
-            onClick={() => Action("box2", "/rank")}
-          >
-            <img src={rank} alt="랭킹 이미지"></img>
-            <p>랭킹</p>
-          </div>
-          <div
-            className={active === "box3" ? "boxactive" : "box"}
-            onClick={() => Action("box3", "/market")}
-          >
-            <img src={trade} alt="거래소 이미지"></img>
-            <p>거래소</p>
-          </div>
-          <div
-            className={active === "box4" ? "boxactive" : "box"}
-            onClick={() => Action("box4", "/shop")}
-          >
-            <img src={store} alt="스토어 이미지"></img>
-            <p>상점</p>
-          </div>
-          <div
-            className={active === "box5" ? "boxactive" : "box"}
-            onClick={() => Action("box5", "/my")}
-          >
-            <img src={pro} alt="프로필 이미지"></img>
-            <p>마이페이지</p>
-          </div>
-          <div
-            className={active === "box6" ? "boxactive" : "box"}
-            onClick={() => Action("box6", "/more")}
-          >
-            <img src={more} alt="더보기 이미지"></img>
-            <p>더보기</p>
-          </div>
+          {MENU_ITEMS.map(({ id, path, icon, label }) => (
+            <div
+              key={id}
+              className={active === id ? "boxactive" : "box"}
+              onClick={() => handleMenuClick(id, path)}
+            >
+              <img src={icon} alt={label} />
+              <p>{label}</p>
+            </div>
+          ))}
         </div>
       </S.Sidebar>
+
+      {/* 메인 콘텐츠 */}
       <div className="changebox">
         <S.Topbar>
           <div className="b" onClick={() => navigate("/roadmap")}>
+<<<<<<< HEAD
             <img src={back} alt="뒤로가기"></img>
+=======
+            <img src={back} alt="뒤로가기" />
+>>>>>>> origin/main
           </div>
+          
+          {/* 퀴즈 진행 바 */}
           <div className="topbar-progress-container">
             {TF && (
               <div className="topbar-progress-background">
                 <div
                   className="topbar-progress-bar"
-                  style={{ width: `${safeProgressPercentage}%` }}
+                  style={{ width: `${progressPercentage}%` }}
                 />
               </div>
             )}
           </div>
+
+          {/* 상단 우측 아이콘 */}
           <div className="rcon">
             <div className="img">
+<<<<<<< HEAD
               <img src={heart} alt="하트"></img>
               {/* data가 null일 때 0을 반환하도록 옵셔널 체이닝 적용 */}
               <h5>{formatNumber(data?.hearts ?? 0)}</h5>
@@ -236,10 +259,20 @@ function Loginmaincomponents() {
               <img src={ticket} alt="티켓" />
               <h5>5</h5> 
               <img src={king} alt="왕관"></img>
+=======
+              <img src={heart} alt="하트" />
+              <h5>{testheart}</h5>
+              <img src={dia} alt="다이아몬드" />
+              <h5>5</h5>
+              <img src={ticket} alt="티켓" />
+              <h5>5</h5>
+              <img src={king} alt="프리미엄" />
+>>>>>>> origin/main
               <h5 className="premiun">Premium</h5>
             </div>
           </div>
         </S.Topbar>
+
         <div className="mainbox">
           <Outlet />
         </div>
@@ -247,4 +280,9 @@ function Loginmaincomponents() {
     </div>
   );
 }
+<<<<<<< HEAD
 export default Loginmaincomponents;
+=======
+
+export default Loginmaincomponents;
+>>>>>>> origin/main

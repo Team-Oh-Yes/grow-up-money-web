@@ -1,10 +1,8 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Mainpages from "./components/Add/Mainpages";
-// import Loginmaincomponents from "./components/common/Loginmaincomponents/Loginmaincomponents";
 import Adminpages from "./components/common/AdminComponents/AdminPages";
 import Error from "./error/Error";
-// import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
 import Learn from "./components/common/Loadmapcomponents/Learn";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
 import Login from "./components/common/Login/Login.jsx";
@@ -16,7 +14,12 @@ import Notice from "./components/common/Serviccenter/Notice.jsx";
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import MainTheme from "./components/common/Theme/MainTheme";
 import Planpages from "./components/common/plancomponents/Planpages";
+<<<<<<< HEAD
 import Tshow from "./components/common/Market/Tshow.jsx";
+=======
+import PrivateRoute from "./protected/PrivateRoute";
+import PublicRoute from "./protected/PublicRoute";
+>>>>>>> origin/main
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
@@ -29,7 +32,11 @@ const Themecomponents = lazy(() =>
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Mainpages />,
+    element: (
+      <PublicRoute>
+        <Mainpages />
+      </PublicRoute>
+    ),
     errorElement: <Error />,
   },
   // {
@@ -40,9 +47,11 @@ const router = createBrowserRouter([
   {
     path: "roadmap",
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Loginmaincomponents />
-      </Suspense>
+      <PrivateRoute>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Loginmaincomponents />
+        </Suspense>
+      </PrivateRoute>
     ),
     children: [
       {
@@ -69,11 +78,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/Login",
-    element: <Login />,
+    element: (
+      <PublicRoute>
+        <Login />
+      </PublicRoute>
+    ),
   },
   {
     path: "/signup",
-    element: <SignUp />,
+    element: (
+      <PublicRoute>
+        <SignUp />
+      </PublicRoute>
+    ),
   },
   {
     path: "/servicecenter/eula",
@@ -83,9 +100,11 @@ const router = createBrowserRouter([
   {
     path: "/more",
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Loginmaincomponents />
-      </Suspense>
+      <PrivateRoute>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Loginmaincomponents />
+        </Suspense>
+      </PrivateRoute>
     ),
     children: [
       {
@@ -112,9 +131,11 @@ const router = createBrowserRouter([
   {
     path: "/my",
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Loginmaincomponents />
-      </Suspense>
+      <PrivateRoute>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Loginmaincomponents />
+        </Suspense>
+      </PrivateRoute>
     ),
     children: [
       {
@@ -126,9 +147,11 @@ const router = createBrowserRouter([
   {
     path: "/market",
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Loginmaincomponents />
-      </Suspense>
+      <PrivateRoute>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Loginmaincomponents />
+        </Suspense>
+      </PrivateRoute>
     ),
     children: [
       {

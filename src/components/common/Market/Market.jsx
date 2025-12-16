@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import coin from "../../../img/coin.png";
 import m from "../../../img/image 11.svg";
 import cat from "../../../img/NFT/cat.svg";
 import axiosInstance from "../../api/axiosInstance";
 import "../../css/Market/Market.css";
-
 function Market() {
   const location = useLocation();
   const [show, setShow] = useState(false);
@@ -34,7 +33,7 @@ function Market() {
 
   const connect = async () => {
     const response = await axiosInstance.get("/market/listings");
-    console.log(response);
+    console.log(response.date);
   };
 
   useEffect(() => {
@@ -81,7 +80,6 @@ function Market() {
     // 모달 닫기
     setShow(false);
   };
-
   return (
     <>
       {sell === false ? (
@@ -122,8 +120,8 @@ function PriceModal({ nft, setShowPriceModal, handleSellNFT }) {
 
   const handleSubmit = () => {
     const numPrice = parseInt(price);
-    if (numPrice && numPrice > 0) {
-      handleSellNFT(nft, numPrice);
+    if (numPrice && numPrice > 100) {
+      axiosInstance.post("/market/listings", selldata);
     } else {
       alert("올바른 가격을 입력해주세요.");
     }
@@ -186,9 +184,13 @@ function Trade({ item, setShow, handleBuyNFT }) {
 }
 
 function Buy({ sample, trademain, setSell, sell }) {
+  let navigate = useNavigate();
   return (
     <div className="Mcon">
       <div className="mtitle">
+        <button className="tshow" onClick={()=>navigate("/market/tshow")}>
+          거래내역
+        </button>
         거래소
         <div className="sell">
           <button className="sbt" onClick={() => setSell(!sell)}>
@@ -231,7 +233,9 @@ function Sell({ setSell, sell, myNFTs, openPriceModal }) {
           </button>
         </div>
       </div>
-      <div style={{ padding: "20px",backgroundColor:"#f9f9f9" }} >팔 NFT를 선택하세요</div>
+      <div style={{ padding: "20px", backgroundColor: "#f9f9f9" }}>
+        팔 NFT를 선택하세요
+      </div>
       <div className="market">
         {myNFTs.map((nft) => {
           return (

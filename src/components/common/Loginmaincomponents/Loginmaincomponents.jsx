@@ -3,8 +3,11 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { Big, Mobilestate, quizProgressState, Testheart } from "../../../atoms";
+<<<<<<< HEAD
+=======
 
 // Components
+>>>>>>> origin/main
 import BigBlocker from "../../../BigBlocker";
 import MobileBlocker from "../../../MobileBlocker";
 import * as S from "../../styled/top&sidebar";
@@ -14,6 +17,7 @@ import back from "../../../img/back.png";
 import king from "../../../img/crown.png";
 import ticket from "../../../img/gacha2.png";
 import heart from "../../../img/heart.png";
+import point from "../../../img/Icon/bouncepoint.svg";
 import map from "../../../img/loadmap.png";
 import more from "../../../img/more.png";
 import dia from "../../../img/point.png";
@@ -21,6 +25,15 @@ import pro from "../../../img/profile.png";
 import rank from "../../../img/rank.png";
 import store from "../../../img/store.png";
 import trade from "../../../img/trade.png";
+<<<<<<< HEAD
+import MobileBlocker from "../../../MobileBlocker";
+import axiosInstance from "../../api/axiosInstance";
+import "../../css/Loginmainpagescss/Loginmainpages.css";
+import * as S from "../../styled/top&sidebar";
+
+function Loginmaincomponents() {
+  const [testheart, setTestheart] = useRecoilState(Testheart);
+=======
 
 // CSS
 import "../../css/Loginmainpagescss/Loginmainpages.css";
@@ -36,6 +49,7 @@ const MENU_ITEMS = [
 ];
 
 function Loginmaincomponents() {
+>>>>>>> origin/main
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -48,7 +62,41 @@ function Loginmaincomponents() {
   
   const { TF, score, totalQuestions } = quizProgress;
 
+<<<<<<< HEAD
+  const toastcode = (time = 1000) => ({
+    position: "top-right",
+    autoClose: time,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: 0,
+    theme: "light",
+  });
+  const [data, setData] = useState(null);
+
+  // ✨ 숫자를 k, m 형식으로 포맷팅하는 함수
+  const formatNumber = (num) => {
+    if (num === null || num === undefined) return "0";
+    const number = Number(num);
+    
+    if (isNaN(number)) return String(num); 
+
+    if (number >= 1000000) {
+      // 100만 이상: M (예: 1.5M)
+      return (number / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+    }
+    if (number >= 1000) {
+      // 1천 이상: k (예: 1.2k, 10k)
+      return (number / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+    }
+    return number.toString();
+  };
+  // ----------------------------------------------------
+
+=======
   // 현재 경로에 따라 활성 메뉴 설정
+>>>>>>> origin/main
   useEffect(() => {
     const currentMenu = MENU_ITEMS.find(item => 
       location.pathname.includes(item.path.slice(1))
@@ -56,7 +104,11 @@ function Loginmaincomponents() {
     if (currentMenu) setActive(currentMenu.id);
   }, [location.pathname]);
 
+<<<<<<< HEAD
+  //현수야고침
+=======
   // 로그인 성공 토스트
+>>>>>>> origin/main
   useEffect(() => {
     if (location.state?.loginSuccess) {
       toast.success("로그인 성공!", {
@@ -79,13 +131,29 @@ function Loginmaincomponents() {
       setIsMobileBlocked(width < 768);
       setIsExtraLargeScreen(width >= 3200);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [setIsMobileBlocked, setIsExtraLargeScreen]);
+<<<<<<< HEAD
+  
+  // ✨ API 호출을 마운트 시 한 번만 실행하도록 수정 (location 의존성 제거)
+  useEffect(() => {
+    axiosInstance
+      .get("/me")
+      .then((response) => {
+        setData(response.data);
+        console.log("사용자 데이터 로드 성공:", response.data);
+      })
+      .catch((error) => {
+        console.error("하트시스템호출 에러:", error);
+      });
+  }, []); // 👈 의존성 배열을 빈 배열 []로 수정하여 마운트 시 1회만 호출되도록 변경했습니다.
+  
+=======
 
   // 퀴즈 진행 상태 관리
+>>>>>>> origin/main
   useEffect(() => {
     const isQuizPath = location.pathname.includes("/quiz");
     
@@ -102,11 +170,22 @@ function Loginmaincomponents() {
     if (isQuizPath && TF && totalQuestions > 0 && score === totalQuestions) {
       setTimeout(() => setQuizProgress(prev => ({ ...prev, score: 0 })), 1500);
     }
+<<<<<<< HEAD
+  }, [score, totalQuestions, TF, location.pathname, setShow]);
+  
+  if (isMobileBlocked) {
+    return <MobileBlocker />;
+  }
+  if (isExtraLargeScreen) {
+    return <BigBlocker />;
+  }
+=======
   }, [score, totalQuestions, TF, location.pathname, setQuizProgress]);
 
   // 화면 차단 처리
   if (isMobileBlocked) return <MobileBlocker />;
   if (isExtraLargeScreen) return <BigBlocker />;
+>>>>>>> origin/main
 
   // 메뉴 클릭 핸들러
   const handleMenuClick = (id, path) => {
@@ -142,7 +221,11 @@ function Loginmaincomponents() {
       <div className="changebox">
         <S.Topbar>
           <div className="b" onClick={() => navigate("/roadmap")}>
+<<<<<<< HEAD
+            <img src={back} alt="뒤로가기"></img>
+=======
             <img src={back} alt="뒤로가기" />
+>>>>>>> origin/main
           </div>
           
           {/* 퀴즈 진행 바 */}
@@ -160,6 +243,23 @@ function Loginmaincomponents() {
           {/* 상단 우측 아이콘 */}
           <div className="rcon">
             <div className="img">
+<<<<<<< HEAD
+              <img src={heart} alt="하트"></img>
+              {/* data가 null일 때 0을 반환하도록 옵셔널 체이닝 적용 */}
+              <h5>{formatNumber(data?.hearts ?? 0)}</h5>
+              
+              <img src={dia} alt="다이아몬드"></img>
+              {/* data가 null일 때 0을 반환하도록 옵셔널 체이닝 적용 */}
+              <h5>{formatNumber(data?.pointBalance ?? 0)}</h5>
+              
+              <img src={point} alt="포인트"></img>
+              {/* data가 null일 때 0을 반환하도록 옵셔널 체이닝 적용 */}
+              <h5>{formatNumber(data?.boundPoint ?? 0)}</h5>
+              
+              <img src={ticket} alt="티켓" />
+              <h5>5</h5> 
+              <img src={king} alt="왕관"></img>
+=======
               <img src={heart} alt="하트" />
               <h5>{testheart}</h5>
               <img src={dia} alt="다이아몬드" />
@@ -167,6 +267,7 @@ function Loginmaincomponents() {
               <img src={ticket} alt="티켓" />
               <h5>5</h5>
               <img src={king} alt="프리미엄" />
+>>>>>>> origin/main
               <h5 className="premiun">Premium</h5>
             </div>
           </div>
@@ -179,5 +280,9 @@ function Loginmaincomponents() {
     </div>
   );
 }
+<<<<<<< HEAD
+export default Loginmaincomponents;
+=======
 
 export default Loginmaincomponents;
+>>>>>>> origin/main

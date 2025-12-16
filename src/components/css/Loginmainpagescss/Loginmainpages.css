@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   padding-right: 2.4rem;
+  
 }
 
 .topbar-progress-background {
@@ -146,7 +147,7 @@ h5 {
   font-weight: 700;
   line-height: normal;
   margin: 0;
-  margin-right: 3rem;
+  margin-right: 1.6rem;
 }
 
 .img {

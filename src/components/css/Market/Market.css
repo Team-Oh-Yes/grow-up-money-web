@@ -55,7 +55,7 @@
 
 .mtitle {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   font-size: 2rem;
   font-weight: 700;
@@ -69,8 +69,6 @@
   /* 제목 영역과 스크롤 영역이 자연스럽게 연결되도록 그림자 제거 */
 }
 .sell {
-  position: absolute;
-  right: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -161,7 +159,23 @@ p {
   margin-bottom: -0.2rem;
   font-weight: 500;
 }
-
+.tshow {
+  color: white;
+  background-color: #fe9c32;
+  padding: 8px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* 버튼 그림자 강화 */
+  transition: all 0.2s;
+}
+.tshow:hover {
+  background-color: #dc7c15;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  transform: translateY(-1px);
+}
 
 /* ========================================================================= */
 /* 4. 모달 스타일 */

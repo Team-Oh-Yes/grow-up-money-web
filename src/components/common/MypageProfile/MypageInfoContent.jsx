@@ -8,7 +8,7 @@ import axiosInstance from '../../api/axiosInstance';
 
 // Const
 export default function MypageInfoContent() {
-    const [userInfo, setUserInfo] = useState({ userId: '', email: '' });
+    const [userInfo, setUserInfo] = useState({ username: '', email: '' });
     const [isLoading, setIsLoading] = useState(true);
     const [showPasswordModal, setShowPasswordModal] = useState(false);
     const [passwordData, setPasswordData] = useState({
@@ -26,11 +26,11 @@ export default function MypageInfoContent() {
     const fetchUserInfo = async () => {
         try {
             setIsLoading(true);
-            const response = await axiosInstance.get('/my/profile');
-            const { userId, email } = response.data;
+            const response = await axiosInstance.get('/me');
+            const { username, email } = response.data;
             
             setUserInfo({
-                userId: userId || '',
+                username: username || '',
                 email: email || ''
             });
         } catch (error) {
@@ -96,7 +96,7 @@ export default function MypageInfoContent() {
 
         try {
             setIsChangingPassword(true);
-            await axiosInstance.patch('/my/password', {
+            await axiosInstance.post('/users/changePassword', {
                 currentPassword,
                 newPassword
             });
@@ -134,7 +134,7 @@ export default function MypageInfoContent() {
             <div className='profile-Info-content'>
                 <div className='profile-Info-content-item'>
                     <div className='profile-Info-setting-title'>아이디(ID)</div>
-                    <div className='profile-Info-setting-text'>{userInfo.userId || '-'}</div>
+                    <div className='profile-Info-setting-text'>{userInfo.username || '-'}</div>
                 </div>
 
                 <div className='profile-Info-content-item'>
@@ -144,7 +144,6 @@ export default function MypageInfoContent() {
 
                 <div className='profile-Info-content-item'>
                     <div className='profile-Info-setting-title'>비밀번호(PW)</div>
-                    <div className='profile-Info-setting-text'>**************</div>
                     <div className='profile-Info-password-button' onClick={handleOpenPasswordModal}>
                         변경하기
                     </div>
@@ -153,7 +152,7 @@ export default function MypageInfoContent() {
 
             {/* 비밀번호 변경 모달 */}
             {showPasswordModal && (
-                <div className='profile-Info-password-modal-overlay' onClick={handleClosePasswordModal}>
+                <div className='profile-Info-password-modal-overlay'>
                     <div className='profile-Info-password-modal' onClick={(e) => e.stopPropagation()}>
                         <div className='profile-Info-password-modal-title'>비밀번호 변경</div>
                         

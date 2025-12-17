@@ -63,14 +63,14 @@ export default function MypageProfileContent() {
         if (!file) return;
 
         // 파일 유효성 검사
-        const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        const validTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp', 'image/jpg'];
         if (!validTypes.includes(file.type)) {
             toast.error('지원하지 않는 이미지 형식입니다.');
             return;
         }
 
-        if (file.size > 5 * 1024 * 1024) { // 5MB 제한
-            toast.error('파일 크기는 5MB 이하여야 합니다.');
+        if (file.size > 10 * 1024 * 1024) { // 10MB 제한
+            toast.error('파일 크기는 10MB 이하여야 합니다.');
             return;
         }
 

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { quizProgressState, Testheart } from "../../../atoms";
 import answer from "../../../img/answer.png";
-import dia from "../../../img/Icon/diamond.svg";
+import diam from "../../../img/Icon/dia.svg";
 import nanswer from "../../../img/nanswer.png";
 import cream from "../../../img/NFT/cream.svg";
 import axiosInstance from "../../api/axiosInstance";
@@ -24,12 +24,15 @@ function Quiz() {
   const [serverResponse, setServerResponse] = useState(null);
   const [isSubmittingAnswer, setIsSubmittingAnswer] = useState(false);
 
+  // 412 에러(잠금 상태) 여부를 확인하는 상태 추가
+  const [isLocked, setIsLocked] = useState(false);
+
   const themeIdString = i || "";
   const themeNumberString = themeIdString.replace("theme", "");
   const original_string = d || "";
   const unitFreeString = original_string.replace("unit", "");
 
-  // 1. 퀴즈 데이터 로드
+  // 1. 퀴즈 데이터 로드 및 412 에러 핸들링
   useEffect(() => {
     if (themeNumberString && unitFreeString) {
       axiosInstance
@@ -44,32 +47,25 @@ function Quiz() {
         })
         .catch((error) => {
           console.error("퀴즈 데이터 로드 실패:", error);
+          // 서버에서 412 에러를 보냈을 경우 (선행 학습 미완료)
+          if (error.response && error.response.status === 412) {
+            setIsLocked(true);
+          }
           setIsLoading(false);
         });
     }
   }, [themeNumberString, unitFreeString]);
 
-  // ✨ 2. [수정] 데이터 로드가 완료되었을 때 딱 한 번 새로고침 실행
+  // 2. 레슨 시작 API 호출
   useEffect(() => {
-    if (quizData) {
-      const storageKey = `refreshed_${i}_${d}`;
-      const hasRefreshed = sessionStorage.getItem(storageKey);
-
-      if (!hasRefreshed) {
-        // 새로고침 했다는 표시를 먼저 저장 (무한 루프 방지)
-        sessionStorage.setItem(storageKey, "true");
-        window.location.reload();
-      }
+    if (unitFreeString && !isLocked) {
+      axiosInstance
+        .post(`/roadmap/lesson/${parseInt(unitFreeString)}/start`)
+        .catch((err) => console.log("학습 시작 기록 실패"));
     }
-  }, [quizData, i, d]); // quizData가 채워지면 실행됨
+  }, [unitFreeString, isLocked]);
 
-  // 레슨 시작 API 호출
-  useEffect(() => {
-    if (unitFreeString) {
-      axiosInstance.post(`/roadmap/lesson/${parseInt(unitFreeString)}/start`);
-    }
-  }, [unitFreeString]);
-
+  // 스페이스바 조작 이벤트
   const handleSpacebarPress = (event) => {
     if (
       quizData &&
@@ -91,7 +87,7 @@ function Quiz() {
     return () => window.removeEventListener("keydown", handleSpacebarPress);
   }, [quizData, currentQuestionIndex, isAnswered, isSubmittingAnswer]);
 
-  // 퀴즈 시작 시 초기화
+  // 퀴즈 시작 시 초기 상태 설정
   useEffect(() => {
     if (!isInitialized && quizData) {
       setCurrentQuestionIndex(0);
@@ -115,7 +111,7 @@ function Quiz() {
     }
   }, [currentQuestionIndex, isInitialized, quizData, setProgress]);
 
-  // 퀴즈 종료 시 progress 초기화
+  // 퀴즈 종료 시 전역 프로그레스 초기화
   useEffect(() => {
     const isQuizFinished =
       currentQuestionIndex >= (quizData?.questions.length || 0);
@@ -127,6 +123,11 @@ function Quiz() {
       });
     }
   }, [currentQuestionIndex, quizData, setProgress]);
+
+  // 학습하러 가기 (learn 페이지로 이동)
+  const goToLearn = () => {
+    navigate(`/roadmap/${i}/${d}/learn`);
+  };
 
   const handleContinue = async () => {
     try {
@@ -172,13 +173,44 @@ function Quiz() {
       .catch(() => setIsSubmittingAnswer(false));
   };
 
+  // 로딩 중 화면
   if (isLoading)
     return (
       <div className="Qmaincon">
         <p>퀴즈를 불러오는 중...</p>
       </div>
     );
-    
+
+  // 412 에러 발생 시 (잠금 화면)
+  if (isLocked) {
+    return (
+      <div className="modal-overlay">
+        <div className="modal-container">
+          <div className="modal-image-wrapper">
+            <img src={cream} className="modal-character" alt="캐릭터" />
+          </div>
+          <div className="modal-content">
+            <h2 className="modal-title">잠깐! 아직 준비가 필요해요</h2>
+            <p className="modal-description">
+              이전 학습을 완료해야
+              <br />
+              재미있는 퀴즈에 도전할 수 있어요!
+            </p>
+            <div className="modal-button-group">
+              <button className="btn-primary" onClick={goToLearn}>
+                학습하러 가기
+              </button>
+              <button className="btn-secondary" onClick={handleStop}>
+                나중에 하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 데이터가 없는 경우
   if (!quizData)
     return (
       <div className="Qmaincon">
@@ -186,6 +218,7 @@ function Quiz() {
       </div>
     );
 
+  // 하트가 없는 경우
   if (testheart === 0) {
     return (
       <div className="rqCcon">
@@ -193,7 +226,7 @@ function Quiz() {
           <img src={cream} className="igotp" alt="크림" />
           <div className="rqcbox">
             <button className="rgo">
-              <img src={dia} alt="다이아" />
+              <img src={diam} alt="다이아" className="H" />
               하트구매하기
             </button>
             <button className="rstop" onClick={handleStop}>
@@ -205,6 +238,7 @@ function Quiz() {
     );
   }
 
+  // 퀴즈 완료 화면
   const isQuizFinished = currentQuestionIndex >= quizData.questions.length;
   if (isQuizFinished) {
     return (

@@ -17,6 +17,7 @@ import SignUp from "./components/common/SignUp/SignUp.jsx";
 import MainTheme from "./components/common/Theme/MainTheme";
 import Planpages from "./components/common/plancomponents/Planpages";
 import Tshow from "./components/common/Market/Tshow.jsx";
+import Ranking from "./components/common/Ranking/Ranking.jsx";
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
@@ -139,6 +140,20 @@ const router = createBrowserRouter([
         path:"tshow",
         element: <Tshow></Tshow>
       }
+    ],
+  },
+  {
+    path: "/ranking",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Loginmaincomponents />
+      </Suspense>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Ranking />,
+      },
     ],
   },
 ]);

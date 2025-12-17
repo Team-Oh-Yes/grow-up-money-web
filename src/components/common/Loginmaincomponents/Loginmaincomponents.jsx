@@ -66,7 +66,7 @@ function Loginmaincomponents() {
     const path = location.pathname;
     if (path.includes("/roadmap")) {
       setActive("box1");
-    } else if (path.includes("/rank")) {
+    } else if (path.includes("/ranking")) {
       setActive("box2");
     } else if (path.includes("/market")) {
       setActive("box3");
@@ -169,7 +169,7 @@ function Loginmaincomponents() {
           </div>
           <div
             className={active === "box2" ? "boxactive" : "box"}
-            onClick={() => Action("box2", "/rank")}
+            onClick={() => Action("box2", "/ranking")}
           >
             <img src={rank} alt="랭킹 이미지"></img>
             <p>랭킹</p>

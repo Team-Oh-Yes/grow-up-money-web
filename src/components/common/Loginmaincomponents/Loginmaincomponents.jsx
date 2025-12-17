@@ -18,6 +18,7 @@ import MobileBlocker from "../../../MobileBlocker";
 import axiosInstance from "../../api/axiosInstance";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
+import Learn from "../Loadmapcomponents/Learn";
 
 function Loginmaincomponents() {
   const [testheart, setTestheart] = useRecoilState(Testheart);
@@ -38,6 +39,7 @@ function Loginmaincomponents() {
   const Shop = location.pathname.includes("/shop");
   const More = location.pathname.includes("/more");
   const My = location.pathname.includes("/my");
+  const Learn = location.pathname.includes("/learn");
   const isQuizPage = location.pathname.includes("/quiz");
 
   const formatNumber = (num) => {
@@ -160,9 +162,8 @@ function Loginmaincomponents() {
 
       <div className="changebox">
         <S.Topbar>
-          {/* ✨ 왼쪽 영역: 퀴즈면 화살표, 아니면 텍스트 타이틀 */}
           <div className="topbar-left-content">
-            {isQuizPage ? (
+            {isQuizPage || Learn ? (
               <div className="b" onClick={() => navigate("/roadmap")}>
                 <img src={back} alt="back" />
               </div>

@@ -6,7 +6,7 @@ export default function ShopHeader() {
   const location = useLocation();
 
   const tabs = [
-    { id: "shops", label: "재화상점" },
+    { id: "shop", label: "재화상점" },
     { id: "goods", label: "굿즈 구매" },
     { id: "points", label: "포인트 구매" },
     { id: "random", label: "행운 뽑기" },

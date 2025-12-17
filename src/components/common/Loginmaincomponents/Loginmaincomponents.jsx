@@ -4,16 +4,16 @@ import { useRecoilState } from "recoil";
 import { Big, Mobilestate, quizProgressState, Testheart } from "../../../atoms";
 import BigBlocker from "../../../BigBlocker";
 import back from "../../../img/Icon/arrow.svg";
-import ticket from "../../../img/Icon/ticket.svg";
-import heart from "../../../img/Icon/heart.svg";
 import point from "../../../img/Icon/bouncepoint.svg";
+import dia from "../../../img/Icon/diamond.svg";
+import heart from "../../../img/Icon/heart.svg";
+import ticket from "../../../img/Icon/ticket.svg";
 import map from "../../../img/Side-top-bar/home.svg";
 import more from "../../../img/Side-top-bar/more.svg";
-import dia from "../../../img/Icon/diamond.svg";
-import pro from "../../../img/Side-top-bar/user.svg";
 import rank from "../../../img/Side-top-bar/ranking.svg";
 import store from "../../../img/Side-top-bar/shop.svg";
 import trade from "../../../img/Side-top-bar/trade.svg";
+import pro from "../../../img/Side-top-bar/user.svg";
 import MobileBlocker from "../../../MobileBlocker";
 import axiosInstance from "../../api/axiosInstance";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
@@ -31,7 +31,13 @@ function Loginmaincomponents() {
 
   const [data, setData] = useState(null);
 
-  // ✨ 현재 페이지가 퀴즈 페이지인지 확인
+  // 경로 판별 변수
+  const Roadmap = location.pathname.includes("/roadmap");
+  const Rank = location.pathname.includes("/ranking");
+  const Trade = location.pathname.includes("/market");
+  const Shop = location.pathname.includes("/shop");
+  const More = location.pathname.includes("/more");
+  const My = location.pathname.includes("/my");
   const isQuizPage = location.pathname.includes("/quiz");
 
   const formatNumber = (num) => {
@@ -45,6 +51,7 @@ function Loginmaincomponents() {
     return number.toString();
   };
 
+  // 사이드바 active 상태 관리
   useEffect(() => {
     const path = location.pathname;
     if (path.includes("/roadmap")) setActive("box1");
@@ -55,6 +62,7 @@ function Loginmaincomponents() {
     else if (path.includes("/more")) setActive("box6");
   }, [location.pathname]);
 
+  // 유저 정보 로드
   useEffect(() => {
     axiosInstance
       .get("/me")
@@ -67,7 +75,7 @@ function Loginmaincomponents() {
       .catch((error) => console.error("데이터 로드 에러:", error));
   }, [setTestheart]);
 
-  // ✨ 퀴즈 페이지가 아닐 때 progress 초기화
+  // 퀴즈 페이지 아닐 때 progress 초기화
   useEffect(() => {
     if (!isQuizPage && TF) {
       setShow({
@@ -78,6 +86,7 @@ function Loginmaincomponents() {
     }
   }, [isQuizPage, TF, setShow]);
 
+  // 화면 크기 리스너
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -96,7 +105,7 @@ function Loginmaincomponents() {
     setActive(e);
     navigate(n);
   };
-  
+
   const safeProgressPercentage = TF ? (score / totalQuestions) * 100 || 0 : 0;
 
   return (
@@ -148,13 +157,28 @@ function Loginmaincomponents() {
           </div>
         </div>
       </S.Sidebar>
+
       <div className="changebox">
         <S.Topbar>
-          <div className="b" onClick={() => navigate("/roadmap")}>
-            <img src={back} alt="back" />
+          {/* ✨ 왼쪽 영역: 퀴즈면 화살표, 아니면 텍스트 타이틀 */}
+          <div className="topbar-left-content">
+            {isQuizPage ? (
+              <div className="b" onClick={() => navigate("/roadmap")}>
+                <img src={back} alt="back" />
+              </div>
+            ) : (
+              <div className="top-title-text">
+                {Roadmap && "로드맵"}
+                {Rank && "랭킹"}
+                {Trade && "거래소"}
+                {Shop && "상점"}
+                {My && "마이페이지"}
+                {More && "더보기"}
+              </div>
+            )}
           </div>
+
           <div className="topbar-progress-container">
-            {/* ✨ 퀴즈 페이지이면서 TF가 true일 때만 프로그레스바 표시 */}
             {isQuizPage && TF && (
               <div className="topbar-progress-background">
                 <div
@@ -164,19 +188,25 @@ function Loginmaincomponents() {
               </div>
             )}
           </div>
+
           <div className="rcon">
             <div className="img">
-              <img src={heart} alt="하트" />
-              <h5>{formatNumber(testheart)}</h5>
-
-              <img src={dia} alt="다이아" />
-              <h5>{formatNumber(data?.pointBalance ?? 0)}</h5>
-
-              <img src={point} alt="포인트" />
-              <h5>{formatNumber(data?.boundPoint ?? 0)}</h5>
-
-              <img src={ticket} alt="티켓" />
-              <h5>5</h5>
+              <div className="case">
+                <img src={heart} alt="하트" />
+                <h5>{formatNumber(testheart)}</h5>
+              </div>
+              <div className="case">
+                <img src={dia} alt="다이아" />
+                <h5>{formatNumber(data?.pointBalance ?? 0)}</h5>
+              </div>
+              <div className="case">
+                <img src={point} alt="포인트" />
+                <h5>{formatNumber(data?.boundPoint ?? 0)}</h5>
+              </div>
+              <div className="case">
+                <img src={ticket} alt="티켓" />
+                <h5>5</h5>
+              </div>
             </div>
           </div>
         </S.Topbar>
@@ -187,4 +217,5 @@ function Loginmaincomponents() {
     </div>
   );
 }
+
 export default Loginmaincomponents;

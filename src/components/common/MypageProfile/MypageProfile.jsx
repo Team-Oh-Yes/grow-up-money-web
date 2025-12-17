@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 // Components import
 import MypageHeader from './MypageHeader';
 import MypageProfileContent from './MypageProfileContent';
-import MypageInfoContent from './MypageInfoContent';
+import MypageInfoContent from './MypageinfoContent';
 import MypageDevelopContent from './MypageDevelopContent';
 
 // Const

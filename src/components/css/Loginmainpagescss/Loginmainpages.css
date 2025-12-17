@@ -343,8 +343,8 @@ h5 {
 }
 
 .top-title-text {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 500;
-  color: #333;
-  margin-left: 1rem; /* 화살표 버튼 위치와 맞춤 */
+  color: #000000;
+  margin-left: 48px; /* 화살표 버튼 위치와 맞춤 */
 }

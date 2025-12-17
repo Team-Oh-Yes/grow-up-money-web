@@ -6,7 +6,6 @@ export const Topbar = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  padding-left: 2rem;
 `;
 
 export const Sidebar = styled.div`

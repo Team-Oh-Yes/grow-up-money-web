@@ -205,3 +205,47 @@
     font-size: 16px;
     font-weight: 600;
 }
+
+.profile-Info-logout-modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #181F29;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.profile-Info-logout-img {
+    display: block;
+    margin: 0 auto;
+    width: 120px;
+    height: auto;
+}
+
+.profile-Info-logout-modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 28px;
+}
+
+.profile-Info-logout-modal-cancel,
+.profile-Info-logout-modal-submit {
+    flex: 1;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.profile-Info-logout-modal-cancel {
+    background-color: #FE8401;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.profile-Info-logout-modal-submit {
+    color: #FF0000;
+    font-weight: 500;
+}

@@ -10,7 +10,8 @@ import axiosInstance from '../../api/axiosInstance';
 // Const
 export default function Ranking() {
     return (
-        <div className='mypage-profile-container'>
+        <div className='ranking-container'>
+            <div></div>
         </div>
     );
 }

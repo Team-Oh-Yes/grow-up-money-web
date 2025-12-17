@@ -7,12 +7,16 @@ import { toast } from 'react-toastify';
 // AxiosInstance import
 import axiosInstance from '../../api/axiosInstance';
 
+// Img import
+import LogoutImg from '../../../img/MypageProfile/LogoutImg.svg';
+
 // Const
 export default function MypageInfoContent() {
     const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState({ username: '', email: '' });
     const [isLoading, setIsLoading] = useState(true);
     const [showPasswordModal, setShowPasswordModal] = useState(false);
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
     const [passwordData, setPasswordData] = useState({
         currentPassword: '',
         newPassword: '',
@@ -62,6 +66,16 @@ export default function MypageInfoContent() {
             newPassword: '',
             confirmPassword: ''
         });
+    };
+
+    // 로그아웃 모달 열기
+    const handleOpenLogoutModal = () => {
+        setShowLogoutModal(true);
+    };
+
+    // 로그아웃 모달 닫기
+    const handleCloseLogoutModal = () => {
+        setShowLogoutModal(false);
     };
 
     // 비밀번호 입력 핸들러
@@ -171,10 +185,8 @@ export default function MypageInfoContent() {
                 </div>
 
                 <div className='profile-Info-content-item'>
-                    <div 
-                        className={`profile-Info-logout-button ${isLoggingOut ? 'disabled' : ''}`} 
-                        onClick={!isLoggingOut ? handleLogout : undefined}
-                    >
+                    <div className={`profile-Info-logout-button ${isLoggingOut ? 'disabled' : ''}`}
+                        onClick={handleOpenLogoutModal}>
                         로그아웃
                     </div>
                 </div>
@@ -189,48 +201,63 @@ export default function MypageInfoContent() {
                         <div className='profile-Info-password-modal-content'>
                             <div className='profile-Info-password-input-group'>
                                 <label>현재 비밀번호</label>
-                                <input
-                                    type='password'
+                                <input type='password'
                                     placeholder='현재 비밀번호를 입력하세요'
                                     value={passwordData.currentPassword}
-                                    onChange={(e) => handlePasswordChange('currentPassword', e.target.value)}
-                                />
+                                    onChange={(e) => handlePasswordChange('currentPassword', e.target.value)} />
                             </div>
                             
                             <div className='profile-Info-password-input-group'>
                                 <label>새 비밀번호</label>
-                                <input
-                                    type='password'
+                                <input type='password'
                                     placeholder='새 비밀번호를 입력하세요 (8자 이상)'
                                     value={passwordData.newPassword}
-                                    onChange={(e) => handlePasswordChange('newPassword', e.target.value)}
-                                />
+                                    onChange={(e) => handlePasswordChange('newPassword', e.target.value)} />
                             </div>
                             
                             <div className='profile-Info-password-input-group'>
                                 <label>새 비밀번호 확인</label>
-                                <input
-                                    type='password'
+                                <input type='password'
                                     placeholder='새 비밀번호를 다시 입력하세요'
                                     value={passwordData.confirmPassword}
-                                    onChange={(e) => handlePasswordChange('confirmPassword', e.target.value)}
-                                />
+                                    onChange={(e) => handlePasswordChange('confirmPassword', e.target.value)} />
                             </div>
                         </div>
                         
                         <div className='profile-Info-password-modal-buttons'>
-                            <button 
-                                className='profile-Info-password-modal-cancel'
-                                onClick={handleClosePasswordModal}
-                            >
+                            <button className='profile-Info-password-modal-cancel'
+                                onClick={handleClosePasswordModal}>
                                 취소
                             </button>
-                            <button 
-                                className={`profile-Info-password-modal-submit ${isChangingPassword ? 'disabled' : ''}`}
+                            <button className={`profile-Info-password-modal-submit ${isChangingPassword ? 'disabled' : ''}`}
                                 onClick={!isChangingPassword ? handleSubmitPasswordChange : undefined}
-                                disabled={isChangingPassword}
-                            >
+                                disabled={isChangingPassword}>
                                 {isChangingPassword ? '변경 중...' : '변경하기'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* 로그아웃 모달 */}
+            {showLogoutModal && (
+                <div className='profile-Info-password-modal-overlay'>
+                    <div className='profile-Info-password-modal' onClick={(e) => e.stopPropagation()}>
+                        <div className='profile-Info-logout-modal-title'>정말 학습을 종료하시겠습니까?</div>
+
+                        <div>
+                            <img className='profile-Info-logout-img' src={LogoutImg} alt="LogoutImg" />
+                        </div>
+                        
+                        <div className='profile-Info-logout-modal-buttons'>
+                            <button className='profile-Info-logout-modal-cancel'
+                                onClick={handleCloseLogoutModal}>
+                                계속하기
+                            </button>
+                            <button className={`profile-Info-logout-modal-submit ${isLoggingOut ? 'disabled' : ''}`}
+                                onClick={!isLoggingOut ? handleLogout : undefined}
+                                disabled={isLoggingOut}>
+                                {isLoggingOut ? '로그아웃 중...' : '로그아웃'}
                             </button>
                         </div>
                     </div>

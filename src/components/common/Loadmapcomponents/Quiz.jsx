@@ -29,6 +29,7 @@ function Quiz() {
   const original_string = d || "";
   const unitFreeString = original_string.replace("unit", "");
 
+  // 1. 퀴즈 데이터 로드
   useEffect(() => {
     if (themeNumberString && unitFreeString) {
       axiosInstance
@@ -48,6 +49,21 @@ function Quiz() {
     }
   }, [themeNumberString, unitFreeString]);
 
+  // ✨ 2. [수정] 데이터 로드가 완료되었을 때 딱 한 번 새로고침 실행
+  useEffect(() => {
+    if (quizData) {
+      const storageKey = `refreshed_${i}_${d}`;
+      const hasRefreshed = sessionStorage.getItem(storageKey);
+
+      if (!hasRefreshed) {
+        // 새로고침 했다는 표시를 먼저 저장 (무한 루프 방지)
+        sessionStorage.setItem(storageKey, "true");
+        window.location.reload();
+      }
+    }
+  }, [quizData, i, d]); // quizData가 채워지면 실행됨
+
+  // 레슨 시작 API 호출
   useEffect(() => {
     if (unitFreeString) {
       axiosInstance.post(`/roadmap/lesson/${parseInt(unitFreeString)}/start`);
@@ -75,13 +91,13 @@ function Quiz() {
     return () => window.removeEventListener("keydown", handleSpacebarPress);
   }, [quizData, currentQuestionIndex, isAnswered, isSubmittingAnswer]);
 
-  // ✨ 퀴즈 시작 시 초기화
+  // 퀴즈 시작 시 초기화
   useEffect(() => {
     if (!isInitialized && quizData) {
       setCurrentQuestionIndex(0);
       setScore(0);
       setProgress({
-        TF: true, // ✨ 퀴즈 진행 중임을 표시
+        TF: true,
         score: 0,
         totalQuestions: quizData.questions.length,
       });
@@ -89,19 +105,20 @@ function Quiz() {
     }
   }, [quizData, isInitialized, setProgress]);
 
-  // ✨ 현재 문제 진행도를 실시간으로 업데이트 (정답 여부 무관)
+  // 현재 문제 진행도 업데이트
   useEffect(() => {
     if (isInitialized && quizData) {
       setProgress((prev) => ({
         ...prev,
-        score: currentQuestionIndex, // 푼 문제 수로 진행도 표시
+        score: currentQuestionIndex,
       }));
     }
   }, [currentQuestionIndex, isInitialized, quizData, setProgress]);
 
-  // ✨ 퀴즈 종료 시 progress 초기화
+  // 퀴즈 종료 시 progress 초기화
   useEffect(() => {
-    const isQuizFinished = currentQuestionIndex >= (quizData?.questions.length || 0);
+    const isQuizFinished =
+      currentQuestionIndex >= (quizData?.questions.length || 0);
     if (isQuizFinished && quizData) {
       setProgress({
         TF: false,
@@ -122,7 +139,6 @@ function Quiz() {
     try {
       await axiosInstance.post(`/roadmap/lesson/${unitFreeString}/complete`);
     } catch (e) {}
-    // ✨ 학습 중단 시에도 progress 초기화
     setProgress({
       TF: false,
       score: 0,
@@ -162,6 +178,7 @@ function Quiz() {
         <p>퀴즈를 불러오는 중...</p>
       </div>
     );
+    
   if (!quizData)
     return (
       <div className="Qmaincon">
@@ -239,14 +256,12 @@ function Quiz() {
             let imgSrc = null;
             if (isAnswered && serverResponse) {
               const correctIndex = parseInt(serverResponse.correctAnswer) - 1;
-              
-              // 사용자가 선택한 답
+
               if (option === selectedAnswer) {
                 buttonClass += serverResponse.isCorrect ? " TAC" : " FAC";
                 imgSrc = serverResponse.isCorrect ? answer : nanswer;
               }
-              
-              // 오답인 경우 정답도 표시
+
               if (!serverResponse.isCorrect && index === correctIndex) {
                 buttonClass += " TAC";
                 imgSrc = answer;
@@ -269,4 +284,5 @@ function Quiz() {
     </div>
   );
 }
+
 export default Quiz;

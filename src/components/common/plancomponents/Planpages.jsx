@@ -28,16 +28,15 @@ const PLANS = [
     priceDisplay: "4900",
     period: "영구",
     description: "Grow Up Money의 영구 유료 제공 플랜",
-    features: [
-      "MONTHLY PREMIUM의 모든 기능",
-      "영구 구독",
-    ],
+    features: ["MONTHLY PREMIUM의 모든 기능", "영구 구독"],
     className: "Premium",
     buttonClassName: "currentPlanPremium",
   },
 ];
 
-const TOSS_CLIENT_KEY = import.meta.env.VITE_TOSS_CLIENT_KEY || "test_ck_Ba5PzR0ArnnN1xXZMoWGrvmYnNeD";
+const TOSS_CLIENT_KEY =
+  import.meta.env.VITE_TOSS_CLIENT_KEY ||
+  "test_ck_Ba5PzR0ArnnN1xXZMoWGrvmYnNeD";
 const BASE_URL = import.meta.env.VITE_BASE_URL || window.location.origin;
 
 function Planpages() {

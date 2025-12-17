@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 // Img import
 import PremiumImg from '../../../img/MypageProfile/PremiumImg.svg';
-import DefaultProfileIcon from '../../../img/MypageProfile/테스트프로필.png';
+import DefaultProfileIcon from '../../../img/MypageProfile/기본프로필.svg';
 
 // AxiosInstance import
 import axiosInstance from '../../api/axiosInstance';

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { quizProgressState, Testheart } from "../../../atoms";
 import answer from "../../../img/answer.png";
-import dia from "../../../img/Icon/basil_diamond-solid.png";
+import dia from "../../../img/Icon/diamond.svg";
 import nanswer from "../../../img/nanswer.png";
 import cream from "../../../img/NFT/cream.svg";
 import axiosInstance from "../../api/axiosInstance";

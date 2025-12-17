@@ -18,7 +18,7 @@
   display: flex;
   gap: 52px;
   margin-left: 44px;
-  font-size: 18px;
+  /* font-size: 18px; */
 }
 
 .clickbutton {

@@ -3,7 +3,6 @@ import '../../css/LoginAndSignUp/Login.css';
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 // AxiosInstance import
 import axiosInstance from '../../api/axiosInstance';

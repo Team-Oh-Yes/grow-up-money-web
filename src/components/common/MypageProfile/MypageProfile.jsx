@@ -59,9 +59,11 @@ export default function MypageProfile() {
     };
 
     return (
-        <div className='mypage-profile-container'>
+        <div className='mypage-profile-main-container' >
             <MypageHeader activeTab={activeTab} onTabChange={handleTabChange} />
-            {renderContent()}
+            <div className='mypage-profile-container'>
+                {renderContent()}
+            </div>
         </div>
     );
 }

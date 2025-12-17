@@ -4,6 +4,9 @@ import { toast } from "react-toastify";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
+{/* 테스트용 - 삭제 해야됨 */}
+import onepage from '../../../img/roadmap/1page.svg';
+
 function MainTheme() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,6 +34,8 @@ function MainTheme() {
       <div className="First ho" onClick={() => navigate("/roadmap/theme1")}>
         <Tamatitle n={1} />
         <TamaP n={"경제의 문을 열다"} />
+        {/* 테스트용 - 삭제 해야됨 */}
+        <img className="tama-img" src={onepage} alt="1page" />
       </div>
       <div className="Second ho" onClick={() => navigate("/roadmap/theme2")}>
         <Tamatitle n={2} />

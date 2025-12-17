@@ -208,11 +208,12 @@ h5 {
   height: 100%;
   background: #fe8d67;
   flex-shrink: 0;
-  opacity: 0.4;
+  /* opacity: 0.4; */
   transition: all 1s ease;
   /* [수정] 왼쪽 모서리 둥글게 */
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
+  cursor: pointer;
 }
 .Second {
   background-color: #feb567;
@@ -259,6 +260,7 @@ h5 {
   flex-shrink: 0;
   opacity: 0.4;
   transition: all 1s ease;
+  cursor: pointer;
 }
 .ho:hover {
   opacity: 1;
@@ -325,4 +327,11 @@ h5 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* 테스트용 - 삭제 해야됨 */
+.tama-img {
+  position: relative;
+  top: 340px;
+  left: 26.5px;
 }

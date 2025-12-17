@@ -1,6 +1,7 @@
 // Link import
 import '../../css/MypageProfile/MypageInfoContent.css';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // AxiosInstance import
@@ -8,6 +9,7 @@ import axiosInstance from '../../api/axiosInstance';
 
 // Const
 export default function MypageInfoContent() {
+    const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState({ username: '', email: '' });
     const [isLoading, setIsLoading] = useState(true);
     const [showPasswordModal, setShowPasswordModal] = useState(false);
@@ -17,6 +19,7 @@ export default function MypageInfoContent() {
         confirmPassword: ''
     });
     const [isChangingPassword, setIsChangingPassword] = useState(false);
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
 
     // 개인정보 조회
     useEffect(() => {
@@ -115,6 +118,24 @@ export default function MypageInfoContent() {
         }
     };
 
+    // 로그아웃
+    const handleLogout = async () => {
+        if (isLoggingOut) return;
+
+        try {
+            setIsLoggingOut(true);
+            await axiosInstance.post('/users/logout');
+            toast.info('로그아웃되었습니다.');
+            navigate('/Login');
+        } catch (error) {
+            console.error('로그아웃 실패:', error);
+            // 에러가 발생해도 로그인 페이지로 이동 (쿠키가 이미 만료된 경우 등)
+            navigate('/Login');
+        } finally {
+            setIsLoggingOut(false);
+        }
+    };
+
     if (isLoading) {
         return (
             <div className='mypage-main loading-container'>
@@ -146,6 +167,15 @@ export default function MypageInfoContent() {
                     <div className='profile-Info-setting-title'>비밀번호(PW)</div>
                     <div className='profile-Info-password-button' onClick={handleOpenPasswordModal}>
                         변경하기
+                    </div>
+                </div>
+
+                <div className='profile-Info-content-item'>
+                    <div 
+                        className={`profile-Info-logout-button ${isLoggingOut ? 'disabled' : ''}`} 
+                        onClick={!isLoggingOut ? handleLogout : undefined}
+                    >
+                        로그아웃
                     </div>
                 </div>
             </div>

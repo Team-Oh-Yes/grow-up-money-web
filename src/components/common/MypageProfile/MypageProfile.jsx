@@ -1,12 +1,7 @@
 // Link import
 import '../../css/MypageProfile/MypageProfile.css';
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-// AxiosInstance import
-import axiosInstance from '../../api/axiosInstance';
 
 // Components import
 import MypageHeader from './MypageHeader';
@@ -23,7 +18,7 @@ export default function MypageProfile() {
         // 초기 로딩 시뮬레이션
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 120);
+        }, 20);
 
         return () => clearTimeout(timer);
     }, []);
@@ -35,7 +30,7 @@ export default function MypageProfile() {
         // 탭 변경 시 로딩 시뮬레이션
         setTimeout(() => {
             setIsLoading(false);
-        }, 120);
+        }, 20);
     };
 
     const renderContent = () => {

@@ -194,3 +194,14 @@
     background-color: #cccccc;
     cursor: not-allowed;
 }
+
+.profile-Info-logout-button {
+    padding: 4px 124px;
+    background-color: #ff4d4f;
+    border-radius: 8px;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { quizProgressState, Testheart } from "../../../atoms";
+import { quizProgressState } from "../../../atoms"; 
 import answer from "../../../img/answer.png";
 import dia from "../../../img/Icon/basil_diamond-solid.png";
 import nanswer from "../../../img/nanswer.png";
@@ -10,35 +10,36 @@ import axiosInstance from "../../api/axiosInstance";
 import "../../css/loadmapcss/Quiz.css";
 
 function Quiz() {
-  const [testheart, setTestheart] = useRecoilState(Testheart);
   const navigate = useNavigate();
   const { i, d } = useParams();
+  
+  // 상태 관리
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
-  const [selectedAnswer, setSelectedAnswer] = useState(null); // UI 표시용: 선택된 옵션의 문자열
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
   const [progress, setProgress] = useRecoilState(quizProgressState);
   const [isInitialized, setIsInitialized] = useState(false);
   const [quizData, setQuizData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [serverResponse, setServerResponse] = useState(null);
-  const [isSubmittingAnswer, setIsSubmittingAnswer] = useState(false); // 💡 정답 제출 로딩 상태 추가
+  const [isSubmittingAnswer, setIsSubmittingAnswer] = useState(false);
+  
+  // 하트 부족 상태 추가
+  const [isHeartEmpty, setIsHeartEmpty] = useState(false);
 
+  // URL 파라미터 파싱
   const themeIdString = i || "";
   const themeNumberString = themeIdString.replace("theme", "");
   const original_string = d || "";
   const unitFreeString = original_string.replace("unit", "");
 
+  // 1. 퀴즈 데이터 로드 (GET)
   useEffect(() => {
     if (themeNumberString && unitFreeString) {
       axiosInstance
-        .get(
-          `/roadmap/theme/${parseInt(themeNumberString)}/unit/${parseInt(
-            unitFreeString
-          )}/quiz`
-        )
+        .get(`/roadmap/theme/${parseInt(themeNumberString)}/unit/${parseInt(unitFreeString)}/quiz`)
         .then((response) => {
-          console.log("퀴즈 로드맵:", response.data);
           setQuizData(response.data);
           setIsLoading(false);
         })
@@ -49,30 +50,19 @@ function Quiz() {
     }
   }, [themeNumberString, unitFreeString]);
 
-  useEffect(() => {
-    if (unitFreeString) {
-      axiosInstance
-        .post(`/roadmap/lesson/${parseInt(unitFreeString)}/start`)
-        .then((response) => {
-          console.log("퀴즈 시작 API 호출 성공:");
-        })
-        .catch((error) => {
-          console.error("퀴즈 시작 API 호출 실패:");
-        });
-    }
-  }, [unitFreeString]);
-
+  // 2. 스페이스바 다음 문제 이동
   const handleSpacebarPress = (event) => {
     if (
       quizData &&
       currentQuestionIndex < quizData.questions.length &&
       (event.key === " " || event.key === "Spacebar") &&
       isAnswered &&
-      !isSubmittingAnswer // 로딩 중이 아닐 때만 넘어감
+      !isSubmittingAnswer &&
+      !isHeartEmpty // 하트가 없을 땐 작동 방지
     ) {
       event.preventDefault();
       setCurrentQuestionIndex((prev) => prev + 1);
-      setIsAnswered(false); // 다음 문제로 넘어갈 때 상태 초기화
+      setIsAnswered(false);
       setSelectedAnswer(null);
       setServerResponse(null);
     }
@@ -80,11 +70,10 @@ function Quiz() {
 
   useEffect(() => {
     window.addEventListener("keydown", handleSpacebarPress);
-    return () => {
-      window.removeEventListener("keydown", handleSpacebarPress);
-    };
-  }, [quizData, currentQuestionIndex, isAnswered, isSubmittingAnswer]);
+    return () => window.removeEventListener("keydown", handleSpacebarPress);
+  }, [quizData, currentQuestionIndex, isAnswered, isSubmittingAnswer, isHeartEmpty]);
 
+  // 3. 초기화
   useEffect(() => {
     if (!isInitialized && quizData) {
       setCurrentQuestionIndex(0);
@@ -97,120 +86,59 @@ function Quiz() {
       }));
       setIsInitialized(true);
     }
-  }, [quizData]);
+  }, [quizData, isInitialized, setProgress]);
 
-  const handleContinue = async () => {
-    try {
-      await axiosInstance.post(`/roadmap/lesson/${unitFreeString}/complete`);
-      console.log("퀴즈 완료 API 호출 성공 (Continue)");
-    } catch (error) {
-      console.error("퀴즈 완료 API 호출 실패 (Continue):", error);
-    }
-    navigate(`/roadmap/${i}/unit${parseInt(unitFreeString) + 1}/learn`);
-  };
+  // 4. 네비게이션 함수
+  const handleContinue = () => navigate(`/roadmap/${i}/unit${parseInt(unitFreeString) + 1}/learn`);
+  const handleStop = () => navigate("/roadmap");
 
-  const handleStop = async () => {
-    try {
-      await axiosInstance.post(`/roadmap/lesson/${unitFreeString}/complete`);
-      console.log("퀴즈 완료 API 호출 성공 (Stop)");
-    } catch (error) {
-      console.error("퀴즈 완료 API 호출 실패 (Stop):", error);
-    }
-    navigate("/roadmap");
-  };
-
-  useEffect(() => {
-    if (quizData) {
-      setProgress((prev) => ({
-        ...prev,
-        totalQuestions: quizData.questions.length,
-      }));
-    }
-  }, [quizData, setProgress]);
-
-  useEffect(() => {
-    if (quizData && currentQuestionIndex >= quizData.questions.length) {
-      setProgress((prev) => ({
-        ...prev,
-        TF: true,
-        score: score, // 퀴즈 완료 시 최종 점수 반영
-      }));
-    }
-  }, [currentQuestionIndex, quizData, setProgress, score]);
-
-  // selectedOption: 옵션 문자열, selectedIndex: 0-based 인덱스
+  // 5. 정답 선택 및 서버 제출 (핵심 수정 부분)
   const handleAnswerClick = (selectedOption, selectedIndex) => {
-    if (isAnswered || !quizData || isSubmittingAnswer) return;
+    if (isAnswered || !quizData || isSubmittingAnswer || isHeartEmpty) return;
 
     setIsAnswered(true);
-    setIsSubmittingAnswer(true); // 💡 API 호출 시작: 로딩 상태 활성화
-    setSelectedAnswer(selectedOption); // UI 표시용으로 옵션 문자열 저장
+    setIsSubmittingAnswer(true);
+    setSelectedAnswer(selectedOption);
 
-    const currentQuiz = quizData.questions[currentQuestionIndex];
-
-    // API 명세에 따라 적절한 ID를 사용하세요.
-    const quizId = currentQuestionIndex + 1;
-
-    // 서버에 1-based 인덱스(문자열) 전송
-    const user_answer_index = selectedIndex + 1;
+    const quizId = currentQuestionIndex + 1; 
     const payload = {
-      answer: user_answer_index.toString(),
+      answer: (selectedIndex + 1).toString(),
     };
 
     axiosInstance
       .post(`/roadmap/quiz/${quizId}/answer`, payload)
       .then((response) => {
-        console.log("퀴즈 정답 호출 성공:", response.data);
-
         setServerResponse(response.data);
-
         if (response.data.isCorrect) {
           setScore((prev) => prev + 1);
         }
-
-        if (response.data.remainingHearts !== undefined) {
-          setTestheart(response.data.remainingHearts);
-        }
-
-        setIsSubmittingAnswer(false); // 💡 API 호출 완료 (성공)
+        setIsSubmittingAnswer(false);
       })
       .catch((error) => {
-        console.error(
-          "퀴즈 정답 API 호출 실패:",
-          error.response ? error.response.data : error.message
-        );
-
-        // 에러가 발생해도 서버 응답이 없는 상태로 넘어갈 수 있도록 처리
-        setIsSubmittingAnswer(false); // 💡 API 호출 완료 (실패)
+        // 서버 응답 에러 핸들링 (402 하트 부족)
+        if (error.response && error.response.status === 402) {
+          console.log("하트 부족 감지:", error.response.data.detail);
+          setIsHeartEmpty(true);
+        } else {
+          console.error("기타 API 오류:", error);
+        }
+        setIsSubmittingAnswer(false);
       });
   };
 
+  // ------------------------- 조건부 렌더링 -------------------------
+
+  // 1. 로딩 화면
   if (isLoading) {
     return (
       <div className="Qmaincon">
-        <div className="Tcon">
-          <div className="Qcon">
-            <p>퀴즈를 불러오는 중...</p>
-          </div>
-        </div>
+        <div className="Tcon"><div className="Qcon"><p>퀴즈를 불러오는 중...</p></div></div>
       </div>
     );
   }
 
-  if (!quizData) {
-    return (
-      <div className="Qmaincon">
-        <div className="Tcon">
-          <div className="Qcon">
-            <p>퀴즈 데이터를 불러올 수 없습니다.</p>
-            <button onClick={handleStop}>돌아가기</button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (testheart === 0) {
+  // 2. 하트 부족 화면 (수정된 부분)
+  if (isHeartEmpty) {
     return (
       <div className="rqCcon">
         <div className="rqrealcon">
@@ -229,8 +157,8 @@ function Quiz() {
     );
   }
 
-  const isQuizFinished = currentQuestionIndex >= quizData.questions.length;
-  if (isQuizFinished) {
+  // 3. 퀴즈 완료 화면
+  if (quizData && currentQuestionIndex >= quizData.questions.length) {
     return (
       <div className="learncon">
         <div className="gostop">
@@ -240,12 +168,8 @@ function Quiz() {
               <span className="score">{score}</span>개 맞추셨어요
             </p>
             <div className="qcbox">
-              <button className="rego" onClick={handleContinue}>
-                학습 하러가기
-              </button>
-              <button className="restop" onClick={handleStop}>
-                그만하기
-              </button>
+              <button className="rego" onClick={handleContinue}>학습 하러가기</button>
+              <button className="restop" onClick={handleStop}>그만하기</button>
             </div>
           </div>
         </div>
@@ -253,76 +177,59 @@ function Quiz() {
     );
   }
 
+  // 4. 일반 퀴즈 풀이 화면
   const currentQuiz = quizData.questions[currentQuestionIndex];
 
   return (
     <div className="Qmaincon">
       <div className="Tcon">
         <div className="Qcon">
-          <p>
-            {currentQuestionIndex + 1}. {currentQuiz.stem}
-          </p>
+          <p>{currentQuestionIndex + 1}. {currentQuiz.stem}</p>
           <div className="skip">
-            {isAnswered && !isSubmittingAnswer ? ( // 정답 확인 완료 후
-              <p>{"<Space Bar>를 눌러 다음 문제로 넘어가세요"}</p>
-            ) : isSubmittingAnswer ? ( // 정답 확인 중
+            {isSubmittingAnswer ? (
               <p>정답을 확인하는 중입니다...</p>
+            ) : isAnswered ? (
+              <p>{"<Space Bar>를 눌러 다음 문제로 넘어가세요"}</p>
             ) : (
-              // 답 선택 대기 중
               <p>답을 선택해 주세요</p>
             )}
           </div>
         </div>
       </div>
       <div className="Acon">
-        {isSubmittingAnswer ? (
-          <div className="quiz-loading-message">
-            <p>정답 확인 중...</p>
-            {/* 여기에 로딩 스피너 같은 시각적 요소를 추가할 수 있습니다. */}
-          </div>
-        ) : (
-          currentQuiz.options.map((option, index) => {
-            let buttonClass = "AC";
-            let imgSrc = null;
+        {currentQuiz.options.map((option, index) => {
+          let buttonClass = "AC";
+          let imgSrc = null;
 
-            if (isAnswered && serverResponse) {
-              // 서버의 correctAnswer는 1-based 인덱스 (문자열 "1", "2", "3", "4")
-              const correctIndex = parseInt(serverResponse.correctAnswer) - 1; // 0-based 인덱스
-
-              // 1. 사용자가 선택한 답에 대한 표시
-              if (option === selectedAnswer) {
-                if (serverResponse.isCorrect) {
-                  buttonClass += " TAC";
-                  imgSrc = answer;
-                } else {
-                  buttonClass += " FAC";
-                  imgSrc = nanswer;
-                }
-              }
-
-              // 2. 오답일 때 정답 보여주기 (사용자가 선택한 답이 아닌, 실제 정답일 경우)
-              if (!serverResponse.isCorrect && index === correctIndex) {
-                if (option !== selectedAnswer) {
-                  buttonClass += " TAC_show_correct";
-                }
+          if (isAnswered && serverResponse) {
+            const correctIndex = parseInt(serverResponse.correctAnswer) - 1;
+            if (option === selectedAnswer) {
+              if (serverResponse.isCorrect) {
+                buttonClass += " TAC";
+                imgSrc = answer;
+              } else {
+                buttonClass += " FAC";
+                imgSrc = nanswer;
               }
             }
+            if (!serverResponse.isCorrect && index === correctIndex) {
+              buttonClass += " TAC_show_correct";
+            }
+          }
 
-            return (
-              <button
-                key={index}
-                className={buttonClass}
-                // 옵션 문자열과 0-based 인덱스를 모두 전달
-                onClick={() => handleAnswerClick(option, index)}
-                disabled={isAnswered}
-              >
-                {imgSrc && <img src={imgSrc} alt="정답/오답 아이콘" />}
-                <p className="QA">{option}</p>
-                {imgSrc && <img src={imgSrc} alt="정답/오답 아이콘" />}
-              </button>
-            );
-          })
-        )}
+          return (
+            <button
+              key={index}
+              className={buttonClass}
+              onClick={() => handleAnswerClick(option, index)}
+              disabled={isAnswered || isSubmittingAnswer}
+            >
+              {imgSrc && <img src={imgSrc} alt="icon" />}
+              <p className="QA">{option}</p>
+              {imgSrc && <img src={imgSrc} alt="icon" />}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

@@ -4,12 +4,12 @@
 
 .rcon {
   height: 100%;
-  width: 28rem !important;
+  width: 20rem !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 2.4rem;
-  
+  margin-right: 1rem;
+  margin-left: 1.5rem;
 }
 
 .topbar-progress-background {

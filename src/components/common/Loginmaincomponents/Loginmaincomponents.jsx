@@ -202,6 +202,8 @@ function Loginmaincomponents() {
             <img src={more} alt="더보기 이미지"></img>
             <p>더보기</p>
           </div>
+          <img src={king} alt="왕관"></img>
+          <h5 className="premiun">Premium</h5>
         </div>
       </S.Sidebar>
       <div className="changebox">
@@ -235,8 +237,6 @@ function Loginmaincomponents() {
 
               <img src={ticket} alt="티켓" />
               <h5>5</h5>
-              <img src={king} alt="왕관"></img>
-              <h5 className="premiun">Premium</h5>
             </div>
           </div>
         </S.Topbar>

@@ -1,7 +1,6 @@
 // Link import
 import '../../css/MypageProfile/MypageProfile.css';
 import { useState, useEffect } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
 
 // Components import
 import MypageHeader from './MypageHeader';

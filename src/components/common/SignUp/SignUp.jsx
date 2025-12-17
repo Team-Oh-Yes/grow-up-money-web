@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import axiosInstance from '../../api/axiosInstance';
 import GoogleIcon from '../../../img/Google-icon.png';
+import PasswordStrength, { getPasswordStrength } from '../PasswordStrength/PasswordStrength';
 
 // Const
 export default function SignUp() {
@@ -84,6 +85,10 @@ export default function SignUp() {
             toast.info('비밀번호는 8자 이상이어야 합니다', toastcode(1000));
             toast.clearWaitingQueue();
             return;
+        } else if (getPasswordStrength(sendData.password).level < 2) {
+            toast.info('비밀번호가 너무 약합니다. 대문자, 숫자, 특수문자를 포함해주세요', toastcode(2000));
+            toast.clearWaitingQueue();
+            return;
         } else if (sendData.password !== confirmPassword) {
             toast.info('비밀번호가 일치하지 않습니다', toastcode(1000));
             toast.clearWaitingQueue();
@@ -110,9 +115,12 @@ export default function SignUp() {
             .catch(error => {
                 console.error('API Error:', error);
                 
-                if (error.message) {
+                if (error.response?.data?.errors?.password) {
                     // 요청 설정 중에 에러가 발생한 경우
-                    toast.error(error.message, toastcode(3000));
+                    toast.error(error.response?.data?.errors?.password, toastcode(3000));
+                    toast.clearWaitingQueue();
+                } else if (error.response?.data?.detail) {
+                    toast.error(error.response?.data?.detail, toastcode(3000));
                     toast.clearWaitingQueue();
                 }
             });
@@ -145,7 +153,10 @@ export default function SignUp() {
                         {/* 회원가입 폼 */}
                         <form className="signup-form">
                             <input type="text" className="signup-input" placeholder="아이디" value={sendData.username} onChange={onChangeId} />
-                            <input type="password" className="signup-input" placeholder="비밀번호" value={sendData.password} onChange={onChangePassword} />
+                            <div className="signup-password-wrapper">
+                                <input type="password" className="signup-input" placeholder="비밀번호" value={sendData.password} onChange={onChangePassword} />
+                                <PasswordStrength password={sendData.password} />
+                            </div>
                             <input type="password" className="signup-input" placeholder="비밀번호 확인" value={confirmPassword} onChange={onChangeConfirmPassword} />
                             <input type="email" className="signup-input" placeholder="이메일" value={sendData.email} onChange={onChangeEmail} />
 

@@ -3,7 +3,7 @@ import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import { ToastContainer, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Toaster } from "react-hot-toast";
+// import { Toaster } from "react-hot-toast";
 import axiosInstance from "./components/api/axiosInstance";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      <Toaster />
+      {/* <Toaster /> */}
       <RouterProvider router={router} />
       <ToastContainer limit={1} transition={Bounce} />
     </>

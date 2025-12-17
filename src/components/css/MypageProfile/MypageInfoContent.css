@@ -249,3 +249,134 @@
     color: #FF0000;
     font-weight: 500;
 }
+
+/* 이메일 인증 섹션 */
+.profile-Info-email-verification-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.profile-Info-email-verification-section label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #181F29;
+}
+
+.profile-Info-email-verification-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-Info-email-text {
+    font-size: 14px;
+    color: #666666;
+    flex: 1;
+}
+
+.profile-Info-verified-badge {
+    font-size: 14px;
+    font-weight: 600;
+    color: #00c853;
+    background-color: #e8f5e9;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.profile-Info-send-code-button {
+    padding: 8px 16px;
+    background-color: #fe8401;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.profile-Info-send-code-button:hover:not(.disabled) {
+    background-color: #e57700;
+}
+
+.profile-Info-send-code-button.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.profile-Info-verification-code-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.profile-Info-verification-code-row input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    text-align: center;
+}
+
+.profile-Info-verification-code-row input:focus {
+    border-color: #fe8401;
+}
+
+.profile-Info-verify-button {
+    padding: 10px 20px;
+    background-color: #fe8401;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.profile-Info-verify-button:hover:not(.disabled) {
+    background-color: #e57700;
+}
+
+.profile-Info-verify-button.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* 비밀번호 강도 표시 */
+.profile-Info-password-strength {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.profile-Info-password-strength-bars {
+    display: flex;
+    gap: 4px;
+}
+
+.profile-Info-strength-bar {
+    width: 40px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #e0e0e0;
+    transition: background-color 0.3s;
+}
+
+.profile-Info-password-strength-text {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.profile-Info-password-hint {
+    font-size: 12px;
+    color: #ff4d4d;
+    margin-top: 4px;
+}

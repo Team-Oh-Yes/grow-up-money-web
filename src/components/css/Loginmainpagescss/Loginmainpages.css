@@ -4,12 +4,10 @@
 
 .rcon {
   height: 100%;
-  width: 20rem !important;
+  width: 24rem !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 1rem;
-  margin-left: 1.5rem;
 }
 
 .topbar-progress-background {
@@ -80,9 +78,23 @@ body {
   transition: all 0.2s ease;
   cursor: pointer;
 }
-
+.king {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
 img {
   margin-right: 0.5rem;
+}
+.kingbox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 3rem;
+  left: 0rem;
+  padding-right: 1rem;
 }
 
 .box:hover {
@@ -147,12 +159,13 @@ h5 {
   font-weight: 700;
   line-height: normal;
   margin: 0;
-  margin-right: 1.6rem;
+  margin-right: 1.4rem;
 }
 
 .img {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .premiun {

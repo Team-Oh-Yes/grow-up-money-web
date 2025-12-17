@@ -202,7 +202,9 @@ function Loginmaincomponents() {
             <img src={more} alt="더보기 이미지"></img>
             <p>더보기</p>
           </div>
-          <img src={king} alt="왕관"></img>
+        </div>
+        <div className="kingbox">
+          <img src={king} alt="왕관" className="king"></img>
           <h5 className="premiun">Premium</h5>
         </div>
       </S.Sidebar>

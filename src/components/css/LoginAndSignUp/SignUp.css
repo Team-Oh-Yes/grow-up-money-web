@@ -176,3 +176,11 @@
 .signup-login-link .signup-link:hover {
   text-decoration: underline;
 }
+
+/* 비밀번호 입력 wrapper */
+.signup-password-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}

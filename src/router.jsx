@@ -1,23 +1,22 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Mainpages from "./components/Add/Mainpages";
-// import Loginmaincomponents from "./components/common/Loginmaincomponents/Loginmaincomponents";
 import Adminpages from "./components/common/AdminComponents/AdminPages";
-import Error from "./error/Error";
-// import Themecomponents from "./components/common/Theme/Themecomponents"; // Assuming the path to your Theme component is correct
 import Learn from "./components/common/Loadmapcomponents/Learn";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
 import Login from "./components/common/Login/Login.jsx";
 import Market from "./components/common/Market/Market.jsx";
+import Tshow from "./components/common/Market/Tshow.jsx";
 import MypageProfile from "./components/common/MypageProfile/MypageProfile.jsx";
+import Planpages from "./components/common/plancomponents/Planpages";
+import Ranking from "./components/common/Ranking/Ranking.jsx";
 import EULA from "./components/common/Serviccenter/EULA";
 import FaQ from "./components/common/Serviccenter/FaQ.jsx";
 import Notice from "./components/common/Serviccenter/Notice.jsx";
+import Shopcomponents from "./components/common/Shopcomponents/Shopcomponents.jsx";
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import MainTheme from "./components/common/Theme/MainTheme";
-import Planpages from "./components/common/plancomponents/Planpages";
-import Tshow from "./components/common/Market/Tshow.jsx";
-import Ranking from "./components/common/Ranking/Ranking.jsx";
+import Error from "./error/Error";
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
@@ -137,9 +136,9 @@ const router = createBrowserRouter([
         element: <Market />,
       },
       {
-        path:"tshow",
-        element: <Tshow></Tshow>
-      }
+        path: "tshow",
+        element: <Tshow></Tshow>,
+      },
     ],
   },
   {
@@ -153,6 +152,20 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Ranking />,
+      },
+    ],
+  },
+  {
+    path: "/shop",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Loginmaincomponents />
+      </Suspense>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Shopcomponents />,
       },
     ],
   },

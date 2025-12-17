@@ -20,7 +20,7 @@ import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
 
 function Loginmaincomponents() {
-  const [testheart, setTestheart] = useRecoilState(Testheart); // ✨ 실시간 하트 상태 구독
+  const [testheart, setTestheart] = useRecoilState(Testheart);
   const navigate = useNavigate();
   const location = useLocation();
   const [active, setActive] = useState("box1");
@@ -30,6 +30,9 @@ function Loginmaincomponents() {
   const { TF, score, totalQuestions } = show;
 
   const [data, setData] = useState(null);
+
+  // ✨ 현재 페이지가 퀴즈 페이지인지 확인
+  const isQuizPage = location.pathname.includes("/quiz");
 
   const formatNumber = (num) => {
     if (num === null || num === undefined) return "0";
@@ -57,7 +60,6 @@ function Loginmaincomponents() {
       .get("/me")
       .then((response) => {
         setData(response.data);
-        // ✨ 최초 로드 시 서버 하트 값을 Recoil에 저장하여 모든 컴포넌트 동기화
         if (response.data.hearts !== undefined) {
           setTestheart(response.data.hearts);
         }
@@ -65,7 +67,17 @@ function Loginmaincomponents() {
       .catch((error) => console.error("데이터 로드 에러:", error));
   }, [setTestheart]);
 
-  // 화면 리사이즈 및 퀴즈 프로그레스 로직 생략 (기존과 동일)
+  // ✨ 퀴즈 페이지가 아닐 때 progress 초기화
+  useEffect(() => {
+    if (!isQuizPage && TF) {
+      setShow({
+        TF: false,
+        score: 0,
+        totalQuestions: 0,
+      });
+    }
+  }, [isQuizPage, TF, setShow]);
+
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -84,6 +96,7 @@ function Loginmaincomponents() {
     setActive(e);
     navigate(n);
   };
+  
   const safeProgressPercentage = TF ? (score / totalQuestions) * 100 || 0 : 0;
 
   return (
@@ -141,7 +154,8 @@ function Loginmaincomponents() {
             <img src={back} alt="back" />
           </div>
           <div className="topbar-progress-container">
-            {TF && (
+            {/* ✨ 퀴즈 페이지이면서 TF가 true일 때만 프로그레스바 표시 */}
+            {isQuizPage && TF && (
               <div className="topbar-progress-background">
                 <div
                   className="topbar-progress-bar"
@@ -153,7 +167,6 @@ function Loginmaincomponents() {
           <div className="rcon">
             <div className="img">
               <img src={heart} alt="하트" />
-              {/* ✨ data.hearts 대신 실시간 상태인 testheart 사용 */}
               <h5>{formatNumber(testheart)}</h5>
 
               <img src={dia} alt="다이아" />

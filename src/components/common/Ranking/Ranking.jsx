@@ -10,3 +10,4 @@ export default function Ranking() {
     );
 }
 //에러수정
+//수정

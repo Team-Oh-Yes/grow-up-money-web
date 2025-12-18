@@ -1,6 +1,11 @@
 import { useCallback, useEffect } from "react";
+import { toast } from 'react-toastify';
 // CSS 경로는 환경에 맞게 확인해주세요.
-import './../../css/Shop/ShopShop.css';
+import '../../css/ShopComponents/ShopShop.css';
+
+// Img Imports
+import dia from '../../../img/Icon/diamond.svg';
+import ticket from '../../../img/Icon/ticket.svg';
 
 const TOSS_CLIENT_KEY =
     import.meta.env.VITE_TOSS_CLIENT_KEY ||
@@ -15,13 +20,16 @@ export default function StorePage() {
         const result = params.get("result");
 
         if (result === "success") {
-            alert("결제가 성공적으로 완료되었습니다.");
+            toast.success("결제가 성공적으로 완료되었습니다.");
+            toast.clearWaitingQueue();
             // 결과 확인 후 URL 파라미터 제거
             window.history.replaceState({}, "", window.location.pathname);
         }
 
         if (result === "fail") {
-            alert("결제가 실패되었습니다.");
+            toast.info("결제가 실패되었습니다.");
+            toast.clearWaitingQueue();
+            // 결과 확인 후 URL 파라미터 제거
             window.history.replaceState({}, "", window.location.pathname);
         }
     }, []);
@@ -32,7 +40,8 @@ export default function StorePage() {
     const handlePayment = useCallback((product) => {
         // window.TossPayments가 로드되었는지 확인이 필요합니다.
         if (!window.TossPayments) {
-            alert("결제 모듈을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.");
+            toast.error("결제 모듈을 불러오지 못했습니다.");
+            toast.clearWaitingQueue();
             return;
         }
 
@@ -49,15 +58,18 @@ export default function StorePage() {
 
     const products = Array(15).fill(null).map((_, i) => ({
         id: i,
-        name: `[프로필 배너] 강아지 ${i + 1}`,
+        // name: `[프로필 배너] 강아지 ${i + 1}`,
+        name: "울트라 슈퍼 뽑기권 5장",
         price: 1000
     }));
 
     const renderProductCard = (product, index) => (
         <div key={index} className="product-wrapper">
             {/* 카드 전체 클릭 시 결제되도록 하거나, 버튼을 따로 두는 것이 좋습니다 */}
-            <div className="product-card" onClick={() => handlePayment(product)}>
-                <div className="product-image"></div>
+            <div className="product-card">
+                <div className="product-image-container">
+                    <img className="product-image" src={ticket} alt={product.name} />
+                </div>
 
                 <div className="product-info">
                     <div className="info-content">
@@ -65,8 +77,8 @@ export default function StorePage() {
 
                         <div className="price-container">
                             <div className="price-content">
-                                <div className="diamond-icon"></div>
-                                <div className="price-text">{product.price.toLocaleString()}원</div>
+                                <img className="diamond-icon" src={dia} alt="diamond" />
+                                <div className="price-text" onClick={() => handlePayment(product)}>{product.price}</div>
                             </div>
                         </div>
                     </div>

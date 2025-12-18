@@ -27,6 +27,7 @@ const AdminFTCollections = ({ onClose, onSuccess }) => {
         // 필수 필드 검증
         if (!formData.name || !formData.themeId) {
             toast.error("컬렉션명과 테마 ID는 필수입니다.");
+            toast.clearWaitingQueue();
             return;
         }
 
@@ -43,6 +44,7 @@ const AdminFTCollections = ({ onClose, onSuccess }) => {
 
             await axiosInstance.post('/admin/nft/collections', payload);
             toast.success("컬렉션이 성공적으로 생성되었습니다!");
+            toast.clearWaitingQueue();
             if (onSuccess) onSuccess();
             onClose();
 
@@ -77,6 +79,7 @@ const AdminFTCollections = ({ onClose, onSuccess }) => {
         } catch (error) {
             console.error("컬렉션 생성 실패:", error);
             toast.error("컬렉션 생성에 실패했습니다.");
+            toast.clearWaitingQueue();
         }
     };
 

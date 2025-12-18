@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "../../css/ShopComponents/ShopComponents.css";
 import ShopContent from "./ShopContent.jsx";
 import ShopHeader from "./Shopheader.jsx";
+import ShopGoods from "./ShopGoods.jsx";
 import ShopRandom from "./ShopRandom.jsx";
 import ShopShop from "./ShopShop.jsx";
 import ShopPoints from "./ShopPoints.jsx";
@@ -43,7 +44,7 @@ export default function ShopComponents() {
             case "shop":
                 return <ShopShop />;
             case "goods":
-                return <ShopContent />;
+                return <ShopGoods />;
             case "points":
                 return <ShopPoints/>;
             case "random":

@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import { toast } from "react-toastify";
 import "../../css/Planpages/Planpages.css";
 
 // 플랜 데이터
@@ -47,12 +48,14 @@ function Planpages() {
     const result = params.get("result");
 
     if (result === "success") {
-      alert("결제가 성공적으로 완료되었습니다.");
+      toast.success("결제가 성공적으로 완료되었습니다.");
+      toast.clearWaitingQueue();
       window.history.replaceState({}, "", "/more");
     }
 
     if (result === "fail") {
-      alert("결제가 실패되었습니다.");
+      toast.info("결제가 실패되었습니다.");
+      toast.clearWaitingQueue();
       window.history.replaceState({}, "", "/more");
     }
   }, []);

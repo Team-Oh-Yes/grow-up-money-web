@@ -43,6 +43,7 @@ export default function MypageStatusContent() {
         } catch (error) {
             console.error('사용자 통계 조회 실패:', error);
             toast.error('사용자 통계를 불러오는데 실패했습니다.');
+            toast.clearWaitingQueue();
         } finally {
             setIsLoading(false);
         }

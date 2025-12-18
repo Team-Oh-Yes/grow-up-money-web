@@ -18,6 +18,9 @@ import SignUp from "./components/common/SignUp/SignUp.jsx";
 import MainTheme from "./components/common/Theme/MainTheme";
 import Error from "./error/Error";
 import PaymentCallback from "./components/common/plancomponents/PaymentCallback.jsx";
+import ShopPaySuccess from "./components/common/Shopcomponents/result/Success";
+import ShopPayFail from "./components/common/Shopcomponents/result/Fail";
+
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents")
@@ -178,6 +181,14 @@ const router = createBrowserRouter([
         element: <ShopComponents />,
       },
     ],
+  },
+  {
+    path: "/shop/result/success",
+    element: <ShopPaySuccess />,
+  },
+  {
+    path: "/shop/result/fail",
+    element: <ShopPayFail />,
   },
 ]);
 

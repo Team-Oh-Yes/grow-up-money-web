@@ -5,6 +5,7 @@ import arrow from "../../../img/오른쪽.png";
 import axiosInstance from "../../api/axiosInstance";
 import "../../css/loadmapcss/learn.css";
 import { Ldata } from "../../data/loadmap/learndata";
+import '../../css/MypageProfile/MypageInfoContent.css';
 
 function Learn() {
   let location = useLocation();
@@ -96,21 +97,41 @@ function Learn() {
     <div className="lcon">
       {showChose ? (
         // 퀴즈/종료 선택 화면
-        <div className="Ccon">
-          <div className="realcon">
-            <div>
-              <img src={ma} className="m" alt="character" />
-            </div>
-            <div className="cbox">
-              <button className="go" onClick={handleContinue}>
-                퀴즈 풀러가기
-              </button>
-              <button className="stop" onClick={handleStop}>
-                학습 그만하기
-              </button>
-            </div>
+        // <div className="Ccon">
+        //   <div className="realcon">
+        //     <div>
+        //       <img src={ma} className="m" alt="character" />
+        //     </div>
+        //     <div className="cbox">
+        //       <button className="go" onClick={handleContinue}>
+        //         퀴즈 풀러가기
+        //       </button>
+        //       <button className="stop" onClick={handleStop}>
+        //         학습 그만하기
+        //       </button>
+        //     </div>
+        //   </div>
+        // </div>
+        <div className='profile-Info-password-modal-overlay'>
+          <div className='profile-Info-password-modal' onClick={(e) => e.stopPropagation()}>
+              <div className='profile-Info-logout-modal-title'>퀴즈 학습으로 넘어갈까요?</div>
+
+              <div className='profile-Info-logout-modal-content'>
+                  <img className='profile-Info-logout-img' src={ma} alt="character" />
+              </div>
+              
+              <div className='profile-Info-logout-modal-buttons'>
+                  <button className='profile-Info-logout-modal-cancel'
+                      onClick={handleContinue}>
+                      퀴즈 풀러가기
+                  </button>
+                  <button className={`profile-Info-logout-modal-submit`}
+                      onClick={handleStop}>
+                        학습 그만하기
+                  </button>
+              </div>
           </div>
-        </div>
+      </div>
       ) : (
         // 스토리 진행 화면
         <>
@@ -119,7 +140,7 @@ function Learn() {
               <img
                 // 이미지가 누락되었을 경우를 대비하여 alt 속성을 추가하는 것이 좋습니다.
                 src={currentUnit.text[story].img}
-                className="random"
+                className="randomN"
                 alt="학습 이미지"
               />
             </div>

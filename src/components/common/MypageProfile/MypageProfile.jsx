@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 // Components import
 import MypageHeader from './MypageHeader';
 import MypageProfileContent from './MypageProfileContent';
+import MypageStatusContent from './MypageStatusContent';
 import MypageInfoContent from './MypageInfoContent';
 import MypageDevelopContent from './MypageDevelopContent';
 
@@ -45,7 +46,7 @@ export default function MypageProfile() {
             case 'profile':
                 return <MypageProfileContent />;
             case 'status':
-                return <MypageDevelopContent />; 
+                return <MypageStatusContent />; 
             case 'billing':
                 return <MypageDevelopContent />;
             case 'info':

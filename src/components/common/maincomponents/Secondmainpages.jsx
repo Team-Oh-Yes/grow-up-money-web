@@ -22,7 +22,7 @@ const Secondmainpages = () => {
       update: "시스템 업데이트",
       date: "2025.12.19",
       title: "TossPayment X Grow Money",
-      description: "다양한 결제 수단이 추가되었습니다.",
+      description: "TossPayment를 이용하여 해외결제를 포함한 30여개의 카드사 결제가 가능합니다.",
       isSpecial: "news-card-1",
     },
     {
@@ -42,22 +42,22 @@ const Secondmainpages = () => {
     {
       update: "시스템 업데이트",
       date: "2025.09.23",
-      title: "디자인 본격적 스타트",
-      description: "오늘 2025 나르샤 Oh! Yes팀 디자인 중이라고 합니다!",
+      title: "Grow Money 정식출시",
+      description: "Grow Money가 정식출시 되었습니다.",
       isSpecial: "news-card-4",
     },
     {
       update: "공지 사항",
       date: "2025.09.22",
       title: "베타테스터를 모집합니다!",
-      description: "오늘 2025 나르샤 Oh! Yes팀 웹 중이라고 합니다!",
+      description: "더 나은 Grow Money를 만들기 위해 베타테스터를 모집합니다.",
       isSpecial: "news-card-5",
     },
     {
       update: "시스템 업데이트",
       date: "2025.09.21",
-      title: "백엔드 본격적 스타트",
-      description: "오늘 2025 나르샤 Oh! Yes팀 서버 개발 중이라고 합니다!",
+      title: "첫 번째 업데이트",
+      description: "오늘 Grow Money 0.5V 버전이 출시되었습니다.",
       isSpecial: "news-card-6",
     },
   ];

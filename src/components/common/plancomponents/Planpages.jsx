@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import "../../css/Planpages/Planpages.css";
 
 // 플랜 데이터
@@ -6,8 +6,8 @@ const PLANS = [
   {
     id: "monthly",
     name: "MONTHLY PREMIUM",
-    price: 8900,
-    priceDisplay: "8900",
+    price: 1900,
+    priceDisplay: "1900",
     period: "월",
     description: "Grow Up Money의 월별 유료 제공 플랜",
     features: [
@@ -24,23 +24,39 @@ const PLANS = [
   {
     id: "everlasting",
     name: "EVERLASTING PREMIUM",
-    price: 29000,
-    priceDisplay: "29,000",
+    price: 4900,
+    priceDisplay: "4900",
     period: "영구",
     description: "Grow Up Money의 영구 유료 제공 플랜",
-    features: [
-      "MONTHLY PREMIUM의 모든 기능",
-      "영구 구독",
-    ],
+    features: ["MONTHLY PREMIUM의 모든 기능", "영구 구독"],
     className: "Premium",
     buttonClassName: "currentPlanPremium",
   },
 ];
 
-const TOSS_CLIENT_KEY = import.meta.env.VITE_TOSS_CLIENT_KEY || "test_ck_Ba5PzR0ArnnN1xXZMoWGrvmYnNeD";
-const BASE_URL = import.meta.env.VITE_BASE_URL || window.location.origin;
+const TOSS_CLIENT_KEY =
+  import.meta.env.VITE_TOSS_CLIENT_KEY ||
+  "test_ck_Ba5PzR0ArnnN1xXZMoWGrvmYnNeD";
 
 function Planpages() {
+  /* =========================
+     결제 결과 알람 처리
+     ========================= */
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const result = params.get("result");
+
+    if (result === "success") {
+      alert("결제가 성공적으로 완료되었습니다.");
+      window.history.replaceState({}, "", "/more");
+    }
+
+    if (result === "fail") {
+      alert("결제가 실패되었습니다.");
+      window.history.replaceState({}, "", "/more");
+    }
+  }, []);
+
   const handlePayment = useCallback((plan) => {
     const tossPayments = window.TossPayments(TOSS_CLIENT_KEY);
 
@@ -48,8 +64,8 @@ function Planpages() {
       amount: plan.price,
       orderId: `order_${Date.now()}`,
       orderName: `Grow Money ${plan.name}`,
-      successUrl: `${BASE_URL}/plan`,
-      failUrl: `${BASE_URL}/plan`,
+      successUrl: `${window.location.origin}/plan?result=success`,
+      failUrl: `${window.location.origin}/plan?result=fail`,
     });
   }, []);
 
@@ -58,10 +74,12 @@ function Planpages() {
       <div className="topBar">
         <div className="Plan">
           <span>플랜 업그레이드</span>
+
           <div className="plans">
             {PLANS.map((plan) => (
               <div key={plan.id} className={plan.className}>
                 <span>{plan.name}</span>
+
                 <p className="Dollor">₩</p>
                 <p className="price">{plan.priceDisplay}</p>
                 <p className="USD">KRW /</p>
@@ -74,6 +92,7 @@ function Planpages() {
                 >
                   <div>플랜 업그레이드</div>
                 </button>
+
                 <ul className="features">
                   {plan.features.map((feature, index) => (
                     <li key={index}>{feature}</li>

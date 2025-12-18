@@ -26,6 +26,9 @@
   height: 2rem;
   border-radius: 12px;
   font-size: 0.96rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .rstop {
   background-color: #ffffff;
@@ -55,7 +58,7 @@
 }
 .rqcbox {
   display: flex;
-  gap: 1rem;
+  gap: 0.4rem;
   flex-direction: column;
 }
 .igotp {
@@ -113,6 +116,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.H {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 .gostop {
   position: relative;
@@ -283,4 +291,118 @@
     height: 4rem;
     font-size: 1.3rem;
   }
+}
+/* 412 에러(잠금) 화면 전용 스타일 */
+
+/* 모달 전체 배경 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* 배경 어둡게 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px); /* 배경 흐림 효과 */
+}
+
+/* 모달 본체 카드 */
+.modal-container {
+  background-color: white;
+  border-radius: 30px;
+  width: 22rem;
+  height: 27rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 캐릭터 이미지 */
+.modal-image-wrapper {
+  margin: 0px;
+}
+
+.modal-character {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+  margin: 0px;
+}
+
+/* 텍스트 스타일 */
+.modal-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.modal-description {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* 버튼 그룹 */
+.modal-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 공통 버튼 스타일 */
+.quiz-button {
+  background-color: #fe8401;
+  border: none;
+  width: 15rem;
+  height: 2rem;
+  border-radius: 12px;
+  font-size: 0.96rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 메인 버튼 (학습하러 가기) */
+.btn-primary {
+  background: #fe8401; /* 원하는 메인 색상으로 변경 가능 */
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #d47006;
+  transform: translateY(-1px);
+}
+
+/* 서브 버튼 (그만하기) */
+.btn-secondary {
+  background-color: #ffffff;
+  border: none;
+  width: 15rem;
+  height: 2rem;
+  border-radius: 12px;
+  color: #fe8401;
+  font-size: 0.96rem;
+}
+
+.btn-secondary:hover {
+  background: #e8e8e8;
+  color: #666;
 }

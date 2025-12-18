@@ -3,11 +3,11 @@
 }
 
 /* 2. 768px ~ 1920px 사이: 16px에서 20px로 점점 커짐 (유동적 범위) */
-@media (min-width: 768px) and (max-width: 1920px) {
+/* @media (min-width: 768px) and (max-width: 1920px) {
   :root {
     font-size: calc(16px + (20 - 16) * ((100vw - 768px) / (1920 - 768)));
   }
-}
+} */
 
 body {
   margin: 0px;
@@ -31,7 +31,7 @@ body {
 }
 
 .box {
-  width: 12rem;
+  width: 100%;
   height: 3rem;
   display: flex;
   padding: 0.5rem 7rem 0.5rem 1rem;
@@ -44,10 +44,6 @@ body {
   font-weight: 500;
   transition: all 0.2s ease;
   cursor: pointer;
-}
-
-img {
-  margin-right: 0.5rem;
 }
 
 .box:hover {
@@ -64,7 +60,7 @@ img {
 
 .boxactive {
   color: #fe8401;
-  width: 12rem;
+  width: 100%;
   height: 3rem;
   display: flex;
   padding: 0.5rem 7rem 0.5rem 1rem;
@@ -110,7 +106,6 @@ h5 {
   font-weight: 700;
   line-height: normal;
   margin: 0;
-  margin-right: 3rem;
 }
 
 .img {
@@ -118,6 +113,7 @@ h5 {
   align-items: center;
   position: absolute;
   right: 2.5rem;
+  margin-right: 0.5rem;
 }
 
 .premiun {
@@ -134,7 +130,6 @@ h5 {
 .mainbox {
   flex: 1;
   width: 100%;
-  padding: 0rem 2rem 1.5rem 3rem;
   box-sizing: border-box;
   display: flex;
   border-radius: 15px; /* 복원 */
@@ -150,6 +145,7 @@ h5 {
   overflow-y: hidden;
   border-radius: 15px; /* tama에도 radius를 적용하여 flex item이 없을 때를 대비 */
   background: transparent; /* tama 배경색 */
+  padding: 0rem 2rem 1.5rem 3rem;
 }
 /* Flex Item 색상 클래스는 변경 없음 */
 .First1 {
@@ -319,6 +315,7 @@ h5 {
   opacity: 0.7;
   transition: all 1s ease;
   position: relative;
+  cursor: pointer;
 }
 .ho:hover {
   opacity: 1;
@@ -502,8 +499,8 @@ p {
   flex-direction: column;
   gap: 10px;
   opacity: 0;
-  transition: opacity 0.4s ease; 
-  pointer-events: none; 
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 .learn {
   border: #ffbe85 solid 2px;

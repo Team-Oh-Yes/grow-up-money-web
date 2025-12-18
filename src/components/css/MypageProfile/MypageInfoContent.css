@@ -10,7 +10,7 @@
     background-size: cover;
 }
 
-.Info-title {
+.profile-Info-title {
     font-size: 28px;
     font-weight: 600;
     color: #181F29;
@@ -25,14 +25,14 @@
     background-color: #8C8989;
 }
 
-.Info-content {
+.profile-Info-content {
     display: flex;
     flex-direction: column;
     gap: 24px;
     margin: 26px 0 0 48px;
 }
 
-.Info-content-item {
+.profile-Info-content-item {
     display: flex;
     color: #181F29;
     justify-content: start;
@@ -40,19 +40,19 @@
     gap: 16px;
 }
 
-.Info-setting-title {
+.profile-Info-setting-title {
     font-size: 18px;
     font-weight: 400;
     color: #181F29;
 }
 
-.Info-setting-text {
+.profile-Info-setting-text {
     font-size: 21px;
     font-weight: 500;
     color: #777777;
 }
 
-.email-button {
+.profile-Info-password-button {
     padding: 3px 24px;
     background-color: #fe8401;
     border-radius: 100px;
@@ -61,4 +61,328 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
+}
+
+.profile-Info-password-button:hover {
+    background-color: #e57700;
+}
+
+/* 로딩 스피너 */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #fe8401;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 비밀번호 변경 모달 */
+.profile-Info-password-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.profile-Info-password-modal {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-Info-password-modal-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #181F29;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.profile-Info-password-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-Info-password-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-Info-password-input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #181F29;
+}
+
+.profile-Info-password-input-group input {
+    padding: 12px 16px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.profile-Info-password-input-group input:focus {
+    border-color: #fe8401;
+}
+
+.profile-Info-password-input-group input::placeholder {
+    color: #A0A0A0;
+}
+
+.profile-Info-password-modal-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.profile-Info-password-modal-cancel,
+.profile-Info-password-modal-submit {
+    flex: 1;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.profile-Info-password-modal-cancel {
+    background-color: #E8E8E8;
+    color: #666666;
+}
+
+.profile-Info-password-modal-cancel:hover {
+    background-color: #D8D8D8;
+}
+
+.profile-Info-password-modal-submit {
+    background-color: #fe8401;
+    color: #ffffff;
+}
+
+.profile-Info-password-modal-submit:hover {
+    background-color: #e57700;
+}
+
+.profile-Info-password-modal-submit.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.profile-Info-logout-button {
+    padding: 4px 124px;
+    background-color: #ff4d4f;
+    border-radius: 8px;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.profile-Info-logout-modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #181F29;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.profile-Info-logout-modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.profile-Info-logout-img {
+    display: block;
+    width: 120px;
+    height: auto;
+}
+
+.profile-Info-logout-modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 28px;
+}
+
+.profile-Info-logout-modal-cancel,
+.profile-Info-logout-modal-submit {
+    flex: 1;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.profile-Info-logout-modal-cancel {
+    background-color: #FE8401;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.profile-Info-logout-modal-submit {
+    color: #FF0000;
+    font-weight: 500;
+}
+
+/* 이메일 인증 섹션 */
+.profile-Info-email-verification-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.profile-Info-email-verification-section label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #181F29;
+}
+
+.profile-Info-email-verification-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-Info-email-text {
+    font-size: 14px;
+    color: #666666;
+    flex: 1;
+}
+
+.profile-Info-verified-badge {
+    font-size: 14px;
+    font-weight: 600;
+    color: #00c853;
+    background-color: #e8f5e9;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.profile-Info-send-code-button {
+    padding: 8px 16px;
+    background-color: #fe8401;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.profile-Info-send-code-button:hover:not(.disabled) {
+    background-color: #e57700;
+}
+
+.profile-Info-send-code-button.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.profile-Info-verification-code-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.profile-Info-verification-code-row input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    text-align: center;
+}
+
+.profile-Info-verification-code-row input:focus {
+    border-color: #fe8401;
+}
+
+.profile-Info-verify-button {
+    padding: 10px 20px;
+    background-color: #fe8401;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.profile-Info-verify-button:hover:not(.disabled) {
+    background-color: #e57700;
+}
+
+.profile-Info-verify-button.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* 비밀번호 강도 표시 */
+.profile-Info-password-strength {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.profile-Info-password-strength-bars {
+    display: flex;
+    gap: 4px;
+}
+
+.profile-Info-strength-bar {
+    width: 40px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #e0e0e0;
+    transition: background-color 0.3s;
+}
+
+.profile-Info-password-strength-text {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.profile-Info-password-hint {
+    font-size: 12px;
+    color: #ff4d4d;
+    margin-top: 4px;
 }

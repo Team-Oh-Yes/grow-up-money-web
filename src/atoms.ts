@@ -38,3 +38,8 @@ export const Testheart = atom({
   key: "heart",
   default: 3,
 });
+// atoms.js 에 추가
+export const userStatsUpdateTrigger = atom({
+  key: "userStatsUpdateTrigger",
+  default: 0, // 숫자를 증가시켜 리렌더링 트리거
+});

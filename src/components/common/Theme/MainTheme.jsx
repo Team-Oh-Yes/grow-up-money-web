@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
+
 function MainTheme() {
   const location = useLocation();
   const navigate = useNavigate();

@@ -1,177 +1,215 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { Big, Mobilestate, quizProgressState, Testheart } from "../../../atoms";
-
-// Components
 import BigBlocker from "../../../BigBlocker";
+import back from "../../../img/Icon/arrow.svg";
+import point from "../../../img/Icon/bouncepoint.svg";
+import dia from "../../../img/Icon/diamond.svg";
+import heart from "../../../img/Icon/heart.svg";
+import ticket from "../../../img/Icon/ticket.svg";
+import map from "../../../img/Side-top-bar/home.svg";
+import more from "../../../img/Side-top-bar/more.svg";
+import rank from "../../../img/Side-top-bar/ranking.svg";
+import store from "../../../img/Side-top-bar/shop.svg";
+import trade from "../../../img/Side-top-bar/trade.svg";
+import pro from "../../../img/Side-top-bar/user.svg";
 import MobileBlocker from "../../../MobileBlocker";
+import axiosInstance from "../../api/axiosInstance";
+import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
 
-// Images
-import back from "../../../img/back.png";
-import king from "../../../img/crown.png";
-import ticket from "../../../img/gacha2.png";
-import heart from "../../../img/heart.png";
-import map from "../../../img/loadmap.png";
-import more from "../../../img/more.png";
-import dia from "../../../img/point.png";
-import pro from "../../../img/profile.png";
-import rank from "../../../img/rank.png";
-import store from "../../../img/store.png";
-import trade from "../../../img/trade.png";
-
-// CSS
-import "../../css/Loginmainpagescss/Loginmainpages.css";
-
-// 사이드바 메뉴 데이터
-const MENU_ITEMS = [
-  { id: "box1", path: "/roadmap", icon: map, label: "로드맵" },
-  { id: "box2", path: "/rank", icon: rank, label: "랭킹" },
-  { id: "box3", path: "/market", icon: trade, label: "거래소" },
-  { id: "box4", path: "/shop", icon: store, label: "상점" },
-  { id: "box5", path: "/my", icon: pro, label: "마이페이지" },
-  { id: "box6", path: "/more", icon: more, label: "더보기" },
-];
-
 function Loginmaincomponents() {
+  const [testheart, setTestheart] = useRecoilState(Testheart);
   const navigate = useNavigate();
   const location = useLocation();
-  
-  // States
   const [active, setActive] = useState("box1");
-  const [testheart] = useRecoilState(Testheart);
   const [isMobileBlocked, setIsMobileBlocked] = useRecoilState(Mobilestate);
   const [isExtraLargeScreen, setIsExtraLargeScreen] = useRecoilState(Big);
-  const [quizProgress, setQuizProgress] = useRecoilState(quizProgressState);
-  
-  const { TF, score, totalQuestions } = quizProgress;
+  const [show, setShow] = useRecoilState(quizProgressState);
+  const { TF, score, totalQuestions } = show;
 
-  // 현재 경로에 따라 활성 메뉴 설정
+  const [data, setData] = useState(null);
+
+  // 경로 판별 변수
+  const Roadmap = location.pathname.includes("/roadmap");
+  const Rank = location.pathname.includes("/ranking");
+  const Trade = location.pathname.includes("/market");
+  const Shop = location.pathname.includes("/shop");
+  const More = location.pathname.includes("/more");
+  const My = location.pathname.includes("/my");
+  const Learn = location.pathname.includes("/learn");
+  const isQuizPage = location.pathname.includes("/quiz");
+
+  const formatNumber = (num) => {
+    if (num === null || num === undefined) return "0";
+    const number = Number(num);
+    if (isNaN(number)) return String(num);
+    if (number >= 1000000)
+      return (number / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+    if (number >= 1000)
+      return (number / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+    return number.toString();
+  };
+
+  // 사이드바 active 상태 관리
   useEffect(() => {
-    const currentMenu = MENU_ITEMS.find(item => 
-      location.pathname.includes(item.path.slice(1))
-    );
-    if (currentMenu) setActive(currentMenu.id);
+    const path = location.pathname;
+    if (path.includes("/roadmap")) setActive("box1");
+    else if (path.includes("/ranking")) setActive("box2");
+    else if (path.includes("/market")) setActive("box3");
+    else if (path.includes("/shop")) setActive("box4");
+    else if (path.includes("/my")) setActive("box5");
+    else if (path.includes("/more")) setActive("box6");
   }, [location.pathname]);
 
-  // 로그인 성공 토스트
+  // 유저 정보 로드
   useEffect(() => {
-    if (location.state?.loginSuccess) {
-      toast.success("로그인 성공!", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        theme: "light",
-      });
-      window.history.replaceState({}, document.title);
-    }
-  }, [location]);
+    axiosInstance
+      .get("/me")
+      .then((response) => {
+        setData(response.data);
+        if (response.data.hearts !== undefined) {
+          setTestheart(response.data.hearts);
+        }
+      })
+      .catch((error) => console.error("데이터 로드 에러:", error));
+  }, [setTestheart]);
 
-  // 화면 크기 감지
+  // 퀴즈 페이지 아닐 때 progress 초기화
+  useEffect(() => {
+    if (!isQuizPage && TF) {
+      setShow({
+        TF: false,
+        score: 0,
+        totalQuestions: 0,
+      });
+    }
+  }, [isQuizPage, TF, setShow]);
+
+  // 화면 크기 리스너
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       setIsMobileBlocked(width < 768);
       setIsExtraLargeScreen(width >= 3200);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [setIsMobileBlocked, setIsExtraLargeScreen]);
 
-  // 퀴즈 진행 상태 관리
-  useEffect(() => {
-    const isQuizPath = location.pathname.includes("/quiz");
-    
-    if (isQuizPath && !TF) {
-      setQuizProgress(prev => ({ ...prev, TF: true }));
-    } else if (!isQuizPath && TF) {
-      setQuizProgress({ TF: false, score: 0, totalQuestions: 4 });
-    }
-  }, [location.pathname, TF, setQuizProgress]);
-
-  // 퀴즈 완료 시 점수 리셋
-  useEffect(() => {
-    const isQuizPath = location.pathname.includes("/quiz");
-    if (isQuizPath && TF && totalQuestions > 0 && score === totalQuestions) {
-      setTimeout(() => setQuizProgress(prev => ({ ...prev, score: 0 })), 1500);
-    }
-  }, [score, totalQuestions, TF, location.pathname, setQuizProgress]);
-
-  // 화면 차단 처리
   if (isMobileBlocked) return <MobileBlocker />;
   if (isExtraLargeScreen) return <BigBlocker />;
 
-  // 메뉴 클릭 핸들러
-  const handleMenuClick = (id, path) => {
-    setActive(id);
-    navigate(path);
+  const Action = (e, n) => {
+    setActive(e);
+    navigate(n);
   };
 
-  // 퀴즈 진행률 계산
-  const progressPercentage = TF && totalQuestions > 0 
-    ? (score / totalQuestions) * 100 
-    : 0;
+  const safeProgressPercentage = TF ? (score / totalQuestions) * 100 || 0 : 0;
 
   return (
     <div className="maincon">
-      {/* 사이드바 */}
       <S.Sidebar>
         <p className="title">Grow Money</p>
         <div className="con">
-          {MENU_ITEMS.map(({ id, path, icon, label }) => (
-            <div
-              key={id}
-              className={active === id ? "boxactive" : "box"}
-              onClick={() => handleMenuClick(id, path)}
-            >
-              <img src={icon} alt={label} />
-              <p>{label}</p>
-            </div>
-          ))}
+          <div
+            className={active === "box1" ? "boxactive" : "box"}
+            onClick={() => Action("box1", "/roadmap")}
+          >
+            <img src={map} alt="map" />
+            <p>로드맵</p>
+          </div>
+          <div
+            className={active === "box2" ? "boxactive" : "box"}
+            onClick={() => Action("box2", "/ranking")}
+          >
+            <img src={rank} alt="rank" />
+            <p>랭킹</p>
+          </div>
+          <div
+            className={active === "box3" ? "boxactive" : "box"}
+            onClick={() => Action("box3", "/market")}
+          >
+            <img src={trade} alt="trade" />
+            <p>거래소</p>
+          </div>
+          <div
+            className={active === "box4" ? "boxactive" : "box"}
+            onClick={() => Action("box4", "/shop")}
+          >
+            <img src={store} alt="store" />
+            <p>상점</p>
+          </div>
+          <div
+            className={active === "box5" ? "boxactive" : "box"}
+            onClick={() => Action("box5", "/my")}
+          >
+            <img src={pro} alt="pro" />
+            <p>마이페이지</p>
+          </div>
+          <div
+            className={active === "box6" ? "boxactive" : "box"}
+            onClick={() => Action("box6", "/more")}
+          >
+            <img src={more} alt="more" />
+            <p>더보기</p>
+          </div>
         </div>
       </S.Sidebar>
 
-      {/* 메인 콘텐츠 */}
       <div className="changebox">
         <S.Topbar>
-          <div className="b" onClick={() => navigate("/roadmap")}>
-            <img src={back} alt="뒤로가기" />
+          <div className="topbar-left-content">
+            {isQuizPage || Learn ? (
+              <div className="b" onClick={() => navigate("/roadmap")}>
+                <img src={back} alt="back" />
+              </div>
+            ) : (
+              <div className="top-title-text">
+                {Roadmap && "로드맵"}
+                {Rank && "랭킹"}
+                {Trade && "거래소"}
+                {Shop && "상점"}
+                {My && "마이페이지"}
+                {More && "더보기"}
+              </div>
+            )}
           </div>
-          
-          {/* 퀴즈 진행 바 */}
+
           <div className="topbar-progress-container">
-            {TF && (
+            {isQuizPage && TF && (
               <div className="topbar-progress-background">
                 <div
                   className="topbar-progress-bar"
-                  style={{ width: `${progressPercentage}%` }}
+                  style={{ width: `${safeProgressPercentage}%` }}
                 />
               </div>
             )}
           </div>
 
-          {/* 상단 우측 아이콘 */}
           <div className="rcon">
             <div className="img">
-              <img src={heart} alt="하트" />
-              <h5>{testheart}</h5>
-              <img src={dia} alt="다이아몬드" />
-              <h5>5</h5>
-              <img src={ticket} alt="티켓" />
-              <h5>5</h5>
-              <img src={king} alt="프리미엄" />
-              <h5 className="premiun">Premium</h5>
+              <div className="case">
+                <img src={heart} alt="하트" className="icon" />
+                <h5>{formatNumber(testheart)}</h5>
+              </div>
+              <div className="case">
+                <img src={dia} alt="다이아" className="icon" />
+                <h5>{formatNumber(data?.pointBalance ?? 0)}</h5>
+              </div>
+              <div className="case">
+                <img src={point} alt="포인트" className="icon" />
+                <h5>{formatNumber(data?.boundPoint ?? 0)}</h5>
+              </div>
+              <div className="case">
+                <img src={ticket} alt="티켓" className="icon" />
+                <h5>5</h5>
+              </div>
             </div>
           </div>
         </S.Topbar>
-
         <div className="mainbox">
           <Outlet />
         </div>

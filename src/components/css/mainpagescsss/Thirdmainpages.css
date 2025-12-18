@@ -21,7 +21,7 @@ h2 {
 .title {
   position: absolute;
   top: 39px;
-  left: 29px;
+  /* left: 29px; */
   font-size: 40px;
   font-weight: bold;
 }

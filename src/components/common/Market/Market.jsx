@@ -32,7 +32,7 @@ function Market() {
         setListings(listData);
       }
     } catch (error) {
-      console.error("데이터 로딩 실패:", error);
+      console.error("데이터 로딩 실패:", error.response?.data || error);
     } finally {
       setLoading(false);
     }
@@ -60,7 +60,7 @@ function Market() {
 
   const handleBuyNFT = async (item) => {
     try {
-      const response = await axiosInstance.post("/market/purchase", {
+      await axiosInstance.post("/market/purchase", {
         tradeId: item.tradeId,
       });
 
@@ -78,7 +78,6 @@ function Market() {
       setMyNFTs((prev) => [...prev, nftWithoutPrice]);
       setShow(false);
     } catch (error) {
-      // ✨ 400 에러 처리 추가
       const isSelfListed = error.response?.status === 400;
 
       Swal.fire({
@@ -138,11 +137,12 @@ function Market() {
   );
 }
 
+// 판매 등록 모달 (수정된 핵심 부분)
 function PriceModal({ nft, setShowPriceModal, handleSellNFT }) {
   const [price, setPrice] = useState("");
 
   const handleSubmit = async () => {
-    const numPrice = parseInt(price);
+    const numPrice = Number(price);
     if (!numPrice || numPrice <= 0) {
       Swal.fire({
         text: "올바른 가격을 입력해주세요.",
@@ -170,11 +170,46 @@ function PriceModal({ nft, setShowPriceModal, handleSellNFT }) {
 
       handleSellNFT(nft, numPrice);
     } catch (error) {
-      Swal.fire({
-        title: "등록 실패",
-        text: error.response?.data?.message || "서버 오류",
-        icon: "error",
-      });
+      const errorData = error.response?.data;
+      console.log("🔥 서버 에러 응답:", errorData);
+
+      // 1. E400_PRICE_OUT_OF_RANGE 혹은 detail에 범위 정보가 있는 경우 모두 동일한 UI 출력
+      if (errorData?.error_code === "E400_PRICE_OUT_OF_RANGE" || (errorData?.detail && errorData.detail.includes("범위"))) {
+        
+        // 서버에서 상세 필드(minPrice 등)를 안 줬을 때를 대비해 detail 문자열에서 숫자 추출 (선택 사항)
+        const displayMin = errorData.minPrice || "범위 미달";
+        const displayMax = errorData.maxPrice || "범위 초과";
+        const displayInput = errorData.inputPrice || numPrice;
+
+        Swal.fire({
+          title: "가격 범위 초과",
+          html: `
+            <div style="text-align: center;">
+              <p>입력하신 가격: <b>${displayInput}p</b></p>
+              <p style="color: #d33;">허용 범위: <b>${errorData.detail ? errorData.detail.split('범위: ')[1] : `${displayMin}p ~ ${displayMax}p`}</b></p>
+              <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">범위에 맞춰 가격을 수정해주세요.</p>
+            </div>
+          `,
+          icon: "error",
+          confirmButtonColor: "#d33",
+        });
+      } 
+      // 2. 그 외 일반 유효성 검사 실패 (10 입력 시 detail에 메시지가 담겨오는 경우)
+      else if (errorData?.detail) {
+        Swal.fire({
+          title: "등록 실패",
+          text: errorData.detail,
+          icon: "error",
+          confirmButtonColor: "#d33",
+        });
+      }
+      else {
+        Swal.fire({
+          title: "등록 실패",
+          text: errorData?.message || "서버 오류가 발생했습니다.",
+          icon: "error",
+        });
+      }
     }
   };
 
@@ -190,6 +225,7 @@ function PriceModal({ nft, setShowPriceModal, handleSellNFT }) {
           onChange={(e) => setPrice(e.target.value)}
           className="price-input"
           placeholder="가격을 입력하세요"
+          autoFocus
         />
         <div className="trade-buttons">
           <button className="bid-btn" onClick={handleSubmit}>판매 등록</button>
@@ -225,15 +261,19 @@ function Buy({ sample, trademain, setSell, sell }) {
         <button className="sbt" onClick={() => setSell(!sell)}>판매하기</button>
       </div>
       <div className="market">
-        {sample.map((item, idx) => (
-          <div key={item.tokenId || idx} className="tradecon" onClick={() => trademain(item)}>
-            <div className="pro">
-              <img src={item.imageUrl} className="mimg" alt="" />
-              <div>{item.collectionName}</div>
+        {sample.length > 0 ? (
+          sample.map((item, idx) => (
+            <div key={item.tokenId || idx} className="tradecon" onClick={() => trademain(item)}>
+              <div className="pro">
+                <img src={item.imageUrl} className="mimg" alt="" />
+                <div>{item.collectionName}</div>
+              </div>
+              <div className="sub"><p>{item.price}p</p></div>
             </div>
-            <div className="sub"><p>{item.price}p</p></div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="no-item">등록된 매물이 없습니다.</p>
+        )}
       </div>
     </div>
   );
@@ -247,19 +287,22 @@ function Sell({ setSell, sell, myNFTs, openPriceModal }) {
         <button className="sbt" onClick={() => setSell(!sell)}>구매하기</button>
       </div>
       <div className="market">
-        {myNFTs.map((nft, idx) => (
-          <div key={nft.tokenId || idx} className="tradecon" onClick={() => openPriceModal(nft)}>
-            <div className="pro">
-              <img src={nft.imageUrl} className="mimg" alt="" />
-              <div>{nft.collectionName}</div>
+        {myNFTs.length > 0 ? (
+          myNFTs.map((nft, idx) => (
+            <div key={nft.tokenId || idx} className="tradecon" onClick={() => openPriceModal(nft)}>
+              <div className="pro">
+                <img src={nft.imageUrl} className="mimg" alt="" />
+                <div>{nft.collectionName}</div>
+              </div>
+              <div className="sub"><p>판매하기</p></div>
             </div>
-            <div className="sub"><p>판매하기</p></div>
-          </div>
-        ))} 
+          ))
+        ) : (
+          <p className="no-item">판매 가능한 NFT가 없습니다.</p>
+        )} 
       </div>
     </div>
   );
 }
-//기모찌
-
+//응애
 export default Market;

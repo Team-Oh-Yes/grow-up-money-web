@@ -31,10 +31,10 @@ function ThirdMainPages() {
       setCurrentImage(currentImage - 1); // 이전 이미지로
     }
   }
-
+//수정
   return (
     <div className="Thirdmainpageback">
-      <h1 className="title mainpage-mini-title">먼저보기</h1>
+      <h1 className="title mainpage-mini-title">미리보기</h1>
       {/* 이미지 슬라이더 */}
       <div className="slider">
         {/* 이전 버튼 */}

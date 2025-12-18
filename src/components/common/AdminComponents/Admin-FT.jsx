@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import '../../css/Admincss/Admin-FT.css';
 import searchIcon from '../../../img/searchIcon.svg';
 import AdminFTHistory from './Admin-FT-history';
@@ -181,7 +182,8 @@ export default function FtManagement() {
 
     // NFT 발급 핸들러
     const handleIssue = useCallback((id) => {
-        alert(`NFT (ID: ${id}) 발급 기능은 준비중입니다.`);
+        toast.info(`NFT (ID: ${id}) 발급 기능은 준비중입니다.`);
+        toast.clearWaitingQueue();
     }, []);
 
     // 발급 팝업 성공 핸들러

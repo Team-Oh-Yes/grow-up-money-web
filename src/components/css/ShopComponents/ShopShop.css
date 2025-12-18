@@ -6,9 +6,12 @@
 
 .store-container {
     width: 100%;
-    min-height: 100vh;
-    background: linear-gradient(180deg, #FFF9F0 0%, #F9F9F9 100%);
-    padding: 40px 20px 120px 20px;
+    min-height: 124vh;
+    background-image: url('../../../img/MypageProfile/BackgroundImg.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 40px 31px 120px 31px;
 }
 
 .products-container {
@@ -33,29 +36,28 @@
 .product-card {
     width: 100%;
     background: #FFFFFF;
-    border: 1px solid rgba(254, 132, 1, 0.15);
+    border: 0.5px solid #777777;
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.3s ease;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-.product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(254, 132, 1, 0.2);
-    border-color: rgba(254, 132, 1, 0.4);
-}
-
-.product-image {
+.product-image-container {
     width: 100%;
     aspect-ratio: 1;
-    background: linear-gradient(135deg, #FFB366 0%, #FE8401 100%);
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+}
+
+.product-image {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    z-index: 1;
 }
 
 .product-image::before {
@@ -79,24 +81,26 @@
 }
 
 .product-info {
-    background: linear-gradient(180deg, #FFF5E8 0%, #FFE8CC 100%);
-    padding: 20px 16px 32px 16px;
+    background: #FFF0DE;
+    padding: 16px 16px 23px 16px;
 }
 
 .info-content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    align-items: start;
+    width: 100%;
+    gap: 13px;
 }
 
 .product-name {
     font-family: 'Pretendard', -apple-system, sans-serif;
     font-weight: 700;
     font-size: 16px;
-    line-height: 1.4;
+    line-height: 1;
     color: #FE8401;
     text-align: center;
-    min-height: 44px;
+    min-height: 21px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -104,48 +108,35 @@
 
 .price-container {
     background: #FFFFFF;
-    border-radius: 12px;
+    border-radius: 7px;
     padding: 10px;
-    box-shadow: 0 2px 8px rgba(254, 132, 1, 0.1);
+    width: 100%;
     transition: all 0.2s ease;
-}
-
-.product-card:hover .price-container {
-    box-shadow: 0 4px 12px rgba(254, 132, 1, 0.2);
-    transform: scale(1.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .price-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 4px;
 }
 
 .diamond-icon {
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(135deg, #0283F1 0%, #0066CC 100%);
-    border-radius: 50%;
+    width: 19px;
+    height: 19px;
+    color: #0283F1;
     position: relative;
-    box-shadow: 0 2px 8px rgba(2, 131, 241, 0.3);
-}
-
-.diamond-icon::before {
-    content: '◆';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 10px;
 }
 
 .price-text {
-    font-family: 'Pretendard', -apple-system, sans-serif;
-    font-weight: 700;
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 14px;
     color: #28282D;
+    line-height: 1;
     letter-spacing: -0.02em;
 }
 

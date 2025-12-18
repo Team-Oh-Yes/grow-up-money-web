@@ -27,6 +27,7 @@ const AdminFTCollections = ({ onClose, onSuccess }) => {
         // 필수 필드 검증
         if (!formData.name || !formData.themeId) {
             toast.error("컬렉션명과 테마 ID는 필수입니다.");
+            toast.clearWaitingQueue();
             return;
         }
 
@@ -43,12 +44,42 @@ const AdminFTCollections = ({ onClose, onSuccess }) => {
 
             await axiosInstance.post('/admin/nft/collections', payload);
             toast.success("컬렉션이 성공적으로 생성되었습니다!");
+            toast.clearWaitingQueue();
             if (onSuccess) onSuccess();
             onClose();
+
+            // 디버깅: 실제 유저 데이터 확인
+            console.log('API Response - User data:', data.content);
+
+            const mappedUsers = data.content.map(user => {
+                console.log('User status:', user.status, 'suspensionType:', user.suspensionType);
+                return {
+                    id: user.username,
+                    email: user.email,
+                    // 정지된 유저는 정지 기간을 표시, 정상 유저는 "정상" 표시
+                    status: user.status === 'SUSPENDED' && user.suspensionType
+                        ? USER_STATUS[user.suspensionType] || '계정 정지'
+                        : USER_STATUS[user.status] || user.status,
+                    role: user.role,
+                    created_at: user.created_at,
+                    updated_at: user.updated_at
+                };
+            });
+
+            setUsers(mappedUsers);
+            setPagination({
+                currentPage: data.number,
+                totalPages: data.totalPages || 0,
+                totalElements: data.numberOfElements || 0,
+                size: data.size,
+                isFirst: data.first,
+                isLast: data.last
+            });
 
         } catch (error) {
             console.error("컬렉션 생성 실패:", error);
             toast.error("컬렉션 생성에 실패했습니다.");
+            toast.clearWaitingQueue();
         }
     };
 

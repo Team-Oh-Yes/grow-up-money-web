@@ -1,4 +1,4 @@
-.mypage-main {
+.ShopGoods-main {
     margin: 40px 97px 0 97px;
     height: 785px;
     width: calc(100% - 474px);
@@ -10,7 +10,17 @@
     background-size: cover;
 }
 
-.develop-mypage-main {
+.ShopGoods-container {
+    width: 100%;
+    min-height: 90vh;
+    background-image: url('../../../img/MypageProfile/BackgroundImg.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 40px 31px 120px 31px;
+}
+
+.develop-ShopGoods-main {
     height: 100%;
     width: 100%;
     border-radius: 20px 20px 0 0;
@@ -19,7 +29,7 @@
     align-items: center;
 }
 
-.develop-mypage-title {
+.develop-ShopGoods-title {
     font-size: 48px;
     font-weight: 600;
     color: #fe8401;

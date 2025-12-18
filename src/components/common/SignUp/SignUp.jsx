@@ -115,6 +115,8 @@ export default function SignUp() {
                 console.error('API Error:', error);
                 
                 if (error.response?.data?.errors?.password) {
+
+                if (error.message) {
                     // 요청 설정 중에 에러가 발생한 경우
                     toast.error(error.response?.data?.errors?.password, toastcode(3000));
                     toast.clearWaitingQueue();
@@ -122,7 +124,7 @@ export default function SignUp() {
                     toast.error(error.response?.data?.detail, toastcode(3000));
                     toast.clearWaitingQueue();
                 }
-            });
+    }});
     };
 
     return (
@@ -137,7 +139,7 @@ export default function SignUp() {
                     {/* 소셜 회원가입 섹션 */}
                     <div className="social-signup-section">
                         <p className="social-signup-title">소셜 회원가입</p>
-                    
+
                         <div className="social-signup-buttons">
                             {/* 구글 회원가입 버튼 */}
                             <Earth img={GoogleIcon} alt="login with Google" href={"https://growmoney.duckdns.org/oauth2/authorization/google"} />

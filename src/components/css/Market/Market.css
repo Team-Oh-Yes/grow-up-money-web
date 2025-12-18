@@ -1,6 +1,5 @@
 /* ========================================================================= */
 /* 1. 기본 레이아웃 및 컨테이너 */
-/* ========================================================================= */
 
 .Mcon {
   width: 100%;
@@ -10,6 +9,10 @@
   align-items: stretch;
   flex-direction: column;
   background-color: #ffffff;
+}
+.P{
+    font-size: 36px;
+    font-weight: 400;
 }
 
 .market {
@@ -45,20 +48,19 @@
 /* ========================================================================= */
 /* 2. 제목 및 판매 버튼 */
 /* ========================================================================= */
-
 .mtitle {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around; /* 양 끝으로 배치 */
   align-items: center;
-  font-size: 2rem;
+  padding: 1.5rem 1.5rem; /* 좌우에도 1.5rem 패딩 추가 */
   font-weight: 700;
   color: #333;
-  position: relative;
-  padding: 1.5rem 0;
-  flex-shrink: 0;
   border-bottom: 1px solid #e0e0e0;
   background-color: #f9f9f9;
+  flex-shrink: 0;
 }
+
+
 .sell {
   display: flex;
   justify-content: center;

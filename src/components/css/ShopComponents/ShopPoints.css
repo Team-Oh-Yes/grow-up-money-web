@@ -1,276 +1,205 @@
-
-.point-exchange-container {
-    position: relative;
-    width: 100%;
-    max-width: 1256px;
-    min-height: 892px;
-    background: #F9F9F9;
-    padding: 31px;
-    margin: 0 auto;
-    font-family: 'Pretendard', -apple-system, sans-serif;
+.shop-points-container {
+  flex: 1;
+  background-color: #F9F9F9;
+  font-family: "Pretendard", -apple-system, sans-serif;
+  padding-top: 4rem;
+  background-image: url('../../../img/MypageProfile/BackgroundImg.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.point-exchange-content {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+/* 상단 영역 컨테이너 */
+.shop-header-area {
+  margin: 0 30px 40px 30px;
+  background-color: rgba(255, 240, 222, 1);
+  border-radius: 18px;
+  overflow: hidden; /* 내부 헤더 흰색 배경이 삐져나가지 않게 */
+  padding-bottom: 10px;
+  border-bottom: 2px solid #fcead6;
 }
 
-.exchange-header {
-    width: 100%;
-    height: 170px;
-    background: #FFF0DE;
-    border-radius: 13px;
-    position: relative;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    transition: box-shadow 0.3s ease;
+/* 타이틀 바 */
+.shop-header-title-row {
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
-.exchange-header:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+.shop-title {
+  font-size: 1.4rem;
+  color: #e67e22;
+  font-weight: 700;
 }
 
-.header-title-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background: #FFFFFF;
-    border-radius: 13px 13px 0 0;
-    display: flex;
-    align-items: center;
-    padding: 0 28px;
+/* 입력부 + 버튼부 레이아웃 */
+.shop-flex-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* 수직 중앙 정렬 중요 */
+  padding: 0 30px;
+  gap: 40px;
 }
 
-.header-title {
-    font-weight: 600;
-    font-size: 24px;
-    color: #FE8401;
-    margin: 0;
+.input-field-group {
+  flex: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.header-content {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
+.point-main-logo {
+  width: 60px;
+  height: auto;
 }
 
-.current-points-box {
-    background: #FFFFFF;
-    border-radius: 13px;
-    padding: 14px 120px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
+.orange-input-box {
+  flex: 1;
+  border: 4px solid #e67e22;
+  border-radius: 15px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  padding: 0 25px;
+  background: #fff;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.current-points-box:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
+.input-text-large {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 30px;
+  font-weight: 500;
+  color: #000000;
+  background: transparent;
 }
 
-.diamond-icon {
-    font-size: 36px;
+/* 오른쪽 결제 섹션 정렬 */
+.payment-summary-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }
 
-.points-value {
-    font-weight: 600;
-    font-size: 28px;
-    color: #000000;
+.summary-info-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #555;
+  display: flex;
+  align-items: center;
 }
 
-.purchase-info {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.icon-xs {
+  width: 20px;
+  margin-left: 6px;
 }
 
-.purchase-text {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    justify-content: flex-end;
+/* 결제 버튼 정렬 및 스타일 */
+.confirm-pay-btn {
+  width: 8em;
+  background: #e67e22; /* 오렌지색으로 가시성 확보 */
+  color: #fff;
+  border: none;
+  padding: 6px 0px;
+  border-radius: 12px;
+  font-weight: 650;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+  transition: all 0.2s ease;
+  gap: 8px; /* 아이콘과 텍스트 사이 간격 */
 }
 
-.purchase-label {
-    font-weight: 800;
-    font-size: 18px;
-    color: #FE8401;
+.confirm-pay-btn:hover {
+  background: #d35400;
+  transform: translateY(-2px);
 }
 
-.small-diamond-icon {
-    font-size: 26px;
+.icon-btn-sm {
+  width: 22px;
+  filter: brightness(0) invert(1); /* 다이아 아이콘을 버튼색에 맞춰 흰색으로 변경 */
 }
 
-.purchase-button {
-    background: #FFFFFF;
-    border-radius: 7px;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    cursor: pointer;
-    border: 1px solid #FFE5C8;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+.cost-text {
+  letter-spacing: 0.5px;
 }
 
-.purchase-button:hover {
-    transform: scale(1.02);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-color: #FE8401;
+/* 하단 그리드 영역 */
+.shop-grid-area {
+  padding: 40px 30px;
 }
 
-.blue-diamond-icon {
-    font-size: 19px;
+.points-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
 }
 
-.balance-text {
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: -0.03em;
-    color: #28282D;
+.pts-card {
+  display: flex;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fff;
 }
 
-.packages-grid {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+.pts-card:hover {
+  border-color: #fcead6;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
-.package-card {
-    width: 226px;
-    height: 336px;
-    background: #FFFFFF;
-    border: 0.5px solid #D0D0D0;
-    border-radius: 13px;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+.pts-card.is-active {
+  border: 4px solid #e67e22;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(230, 126, 34, 0.2);
 }
 
-.package-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(254, 132, 1, 0.15);
-    border-color: #FE8401;
+.card-top-img {
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-.package-icon-area {
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, calc(-50% - 54px));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
+.card-top-img img {
+  width: 80%;
+  object-fit: contain;
 }
 
-.package-card:hover .package-icon-area {
-    transform: translate(-50%, calc(-50% - 58px));
+.card-bottom-info {
+  flex: 1;
+  background-color: #fdf2e9;
+  padding: 20px;
+  text-align: center; /* 라벨과 가격 정렬 */
 }
 
-.package-diamond-icon {
-    font-size: 140px;
-    transition: all 0.3s ease;
+.pts-label {
+  color: #e67e22;
+  font-weight: 800;
+  font-size: 18px;
+  margin-bottom: 12px;
 }
 
-.package-card:hover .package-diamond-icon {
-    font-size: 150px;
-}
-
-.package-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 109px;
-    background: #FFF0DE;
-    border-radius: 0 0 13px 13px;
-    padding: 16px 19px;
-    transition: background 0.3s ease;
-}
-
-.package-card:hover .package-footer {
-    background: #FFE5C8;
-}
-
-.package-info {
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-}
-
-.package-points {
-    font-weight: 800;
-    font-size: 18px;
-    color: #FE8401;
-    transition: color 0.3s ease;
-}
-
-.package-card:hover .package-points {
-    color: #E67700;
-}
-
-.package-price-box {
-    background: #FFFFFF;
-    border-radius: 7px;
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-}
-
-.package-card:hover .package-price-box {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-    transform: scale(1.02);
-}
-
-.money-bag-icon {
-    font-size: 19px;
-}
-
-.package-price {
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: -0.03em;
-    color: #28282D;
-}
-
-@media (max-width: 1280px) {
-    .packages-grid {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 768px) {
-    .point-exchange-container {
-        padding: 16px;
-    }
-
-    .header-content {
-        flex-direction: column;
-        padding: 20px;
-        gap: 16px;
-    }
-
-    .purchase-info {
-        align-items: center;
-    }
+.pts-price-tag {
+  background: white;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
 }

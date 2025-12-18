@@ -52,6 +52,7 @@ export default function MypageProfileContent() {
         } catch (error) {
             console.error('프로필 조회 실패:', error);
             toast.error('프로필 정보를 불러오는데 실패했습니다.');
+            toast.clearWaitingQueue();
         } finally {
             setIsLoading(false);
         }
@@ -66,11 +67,13 @@ export default function MypageProfileContent() {
         const validTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp', 'image/jpg'];
         if (!validTypes.includes(file.type)) {
             toast.error('지원하지 않는 이미지 형식입니다.');
+            toast.clearWaitingQueue();
             return;
         }
 
         if (file.size > 10 * 1024 * 1024) { // 10MB 제한
             toast.error('파일 크기는 10MB 이하여야 합니다.');
+            toast.clearWaitingQueue();
             return;
         }
 
@@ -106,6 +109,7 @@ export default function MypageProfileContent() {
     const handleSave = async () => {
         if (!displayName.trim()) {
             toast.error('닉네임을 입력해주세요.');
+            toast.clearWaitingQueue();
             return;
         }
 
@@ -142,9 +146,11 @@ export default function MypageProfileContent() {
             });
 
             toast.success('프로필이 저장되었습니다.');
+            toast.clearWaitingQueue();
         } catch (error) {
             console.error('프로필 저장 실패:', error);
             toast.error('프로필 저장에 실패했습니다.');
+            toast.clearWaitingQueue();
         } finally {
             setIsSaving(false);
         }
@@ -164,6 +170,7 @@ export default function MypageProfileContent() {
         setProfileImage(originalData.profileImage);
         setFileName(originalData.fileName);
         toast.info('변경사항이 취소되었습니다.');
+        toast.clearWaitingQueue();
     };
 
     // 파일 선택 버튼 클릭

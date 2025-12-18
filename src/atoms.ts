@@ -36,7 +36,7 @@ export const roadmapdata = atom({
 });
 export const Testheart = atom({
   key: "heart",
-  default: 3,
+  default: 0,
 });
 // atoms.js 에 추가
 export const userStatsUpdateTrigger = atom({

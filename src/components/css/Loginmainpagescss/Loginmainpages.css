@@ -87,8 +87,6 @@ body {
   margin: 0px;
   position: relative;
 }
-@media (max-width: 1024px) {
-}
 
 .maincon {
   width: 100vw;

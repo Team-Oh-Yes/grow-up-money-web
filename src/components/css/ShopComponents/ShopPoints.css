@@ -147,6 +147,7 @@
 }
 
 .pts-card {
+  display: flex;
   border: 1px solid #eee;
   border-radius: 20px;
   overflow: hidden;

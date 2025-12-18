@@ -18,7 +18,6 @@ import MobileBlocker from "../../../MobileBlocker";
 import axiosInstance from "../../api/axiosInstance";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
-import Learn from "../Loadmapcomponents/Learn";
 
 function Loginmaincomponents() {
   const [testheart, setTestheart] = useRecoilState(Testheart);
@@ -193,19 +192,19 @@ function Loginmaincomponents() {
           <div className="rcon">
             <div className="img">
               <div className="case">
-                <img src={heart} alt="하트" />
+                <img src={heart} alt="하트" className="icon" />
                 <h5>{formatNumber(testheart)}</h5>
               </div>
               <div className="case">
-                <img src={dia} alt="다이아" />
+                <img src={dia} alt="다이아" className="icon" />
                 <h5>{formatNumber(data?.pointBalance ?? 0)}</h5>
               </div>
               <div className="case">
-                <img src={point} alt="포인트" />
+                <img src={point} alt="포인트" className="icon" />
                 <h5>{formatNumber(data?.boundPoint ?? 0)}</h5>
               </div>
               <div className="case">
-                <img src={ticket} alt="티켓" />
+                <img src={ticket} alt="티켓" className="icon" />
                 <h5>5</h5>
               </div>
             </div>

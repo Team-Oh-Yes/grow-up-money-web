@@ -122,9 +122,6 @@
   height: 20px;
   object-fit: contain;
 }
-img {
-  margin-right: 3px !important;
-}
 .gostop {
   position: relative;
   width: 50rem;
@@ -371,7 +368,7 @@ img {
 }
 
 /* 공통 버튼 스타일 */
-button {
+.quiz-button {
   background-color: #fe8401;
   border: none;
   width: 15rem;

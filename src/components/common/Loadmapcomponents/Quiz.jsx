@@ -197,10 +197,10 @@ function Quiz() {
               재미있는 퀴즈에 도전할 수 있어요!
             </p>
             <div className="modal-button-group">
-              <button className="btn-primary" onClick={goToLearn}>
+              <button className="btn-primary quiz-button" onClick={goToLearn}>
                 학습하러 가기
               </button>
-              <button className="btn-secondary" onClick={handleStop}>
+              <button className="btn-secondary quiz-button" onClick={handleStop}>
                 나중에 하기
               </button>
             </div>

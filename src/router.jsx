@@ -13,11 +13,12 @@ import Ranking from "./components/common/Ranking/Ranking.jsx";
 import EULA from "./components/common/Serviccenter/EULA";
 import FaQ from "./components/common/Serviccenter/FaQ.jsx";
 import Notice from "./components/common/Serviccenter/Notice.jsx";
-import Shopcomponents from "./components/common/Shopcomponents/Shopcomponents.jsx";
-import Shopmain from "./components/common/Shopcomponents/Shopmain.jsx";
+import ShopComponents from "./components/common/Shopcomponents/Shopcomponents.jsx";
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import MainTheme from "./components/common/Theme/MainTheme";
 import Error from "./error/Error";
+import PaymentCallback from "./components/common/plancomponents/PaymentCallback.jsx";
+
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
 );
@@ -78,6 +79,15 @@ const router = createBrowserRouter([
   {
     path: "/servicecenter/eula",
     element: <EULA />,
+    errorElement: <Error />
+  },
+  {
+    path: "/plan",
+    element: <PaymentCallback />,
+  },
+  {
+    path: "/admin",
+    element: <Adminpages />,
     errorElement: <Error />,
   },
   {
@@ -90,7 +100,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Planpages />,
+        element: <Planpages />, // ✅ 여기서만
       },
     ],
   },
@@ -165,11 +175,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Shopcomponents />,
-      },
-      {
-        path: ":any",
-        element: <Shopmain></Shopmain>,
+        element: <ShopComponents />,
       },
     ],
   },

@@ -166,15 +166,19 @@ const DownArrow = styled.img`
 // =========== 컴포넌트 시작 ===========
 
 function Navbar({ setLogin }) {
+  const navigate = (path) => {
+    window.location.href = path;
+  };
+  
   return (
     <Header>
       <LogoBox>GROW MONEY™</LogoBox>
       <NavMenu>
-        <button className="Topbutton home">홈</button>
-        <button className="Topbutton load">로드맵</button>
-        <button className="Topbutton rank">랭킹</button>
-        <button className="Topbutton shop">상점</button>
-        <button className="Topbutton my">마이프로필</button>
+        <button className="Topbutton home" onClick={() => navigate("/login")}>홈</button>
+        <button className="Topbutton load" onClick={() => navigate("/login")}>로드맵</button>
+        <button className="Topbutton rank" onClick={() => navigate("/login")}>랭킹</button>
+        <button className="Topbutton shop" onClick={() => navigate("/login")}>상점</button>
+        <button className="Topbutton my" onClick={() => navigate("/login")}>마이프로필</button>
       </NavMenu>
       <UserMenu>
         <button className="login-btn" onClick={() => setLogin(true)}>

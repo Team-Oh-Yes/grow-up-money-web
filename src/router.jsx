@@ -20,7 +20,7 @@ import Error from "./error/Error";
 import PaymentCallback from "./components/common/plancomponents/PaymentCallback.jsx";
 
 const Loginmaincomponents = lazy(() =>
-  import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
+  import("./components/common/Loginmaincomponents/Loginmaincomponents")
 );
 
 const Themecomponents = lazy(() =>

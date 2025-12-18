@@ -34,7 +34,7 @@ function ThirdMainPages() {
 
   return (
     <div className="Thirdmainpageback">
-      <h1 className="title">먼저보기</h1>
+      <h1 className="title mainpage-mini-title">먼저보기</h1>
       {/* 이미지 슬라이더 */}
       <div className="slider">
         {/* 이전 버튼 */}

@@ -54,7 +54,16 @@ body {
   overflow: hidden;
 }
 
-.title {
+.logo-title {
+  color: #fe8401;
+  font-family: Pretendard;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.mainpage-mini-title {
   color: #fe8401;
   font-family: Pretendard;
   font-size: 40px;
@@ -106,6 +115,7 @@ body {
   width: auto !important;
   white-space: nowrap;
   margin: 0px;
+  margin-left: 16px;
 }
 
 .boxactive {
@@ -126,6 +136,7 @@ body {
   width: auto !important;
   white-space: nowrap;
   margin: 0px;
+  margin-left: 16px;
 }
 .QA {
   margin: 0 !important;

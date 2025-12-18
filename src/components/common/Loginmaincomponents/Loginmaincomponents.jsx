@@ -112,7 +112,7 @@ function Loginmaincomponents() {
   return (
     <div className="maincon">
       <S.Sidebar>
-        <p className="title">Grow Money</p>
+        <p className="title logo-title">Grow Money</p>
         <div className="con">
           <div
             className={active === "box1" ? "boxactive" : "box"}

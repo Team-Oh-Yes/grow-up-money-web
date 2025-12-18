@@ -124,7 +124,7 @@ export default function SignUp() {
                     toast.error(error.response?.data?.detail, toastcode(3000));
                     toast.clearWaitingQueue();
                 }
-            });
+    }});
     };
 
     return (

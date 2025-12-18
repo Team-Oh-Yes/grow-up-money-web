@@ -17,6 +17,7 @@ import ShopComponents from "./components/common/Shopcomponents/Shopcomponents.js
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import MainTheme from "./components/common/Theme/MainTheme";
 import Error from "./error/Error";
+import PaymentCallback from "./components/common/plancomponents/PaymentCallback.jsx";
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents.jsx")
@@ -80,9 +81,9 @@ const router = createBrowserRouter([
     element: <EULA />,
     errorElement: <Error />
   },
-  {path:"/plan",
-    element :<Planpages />,
-    errorElement: <Error />
+  {
+    path: "/plan",
+    element: <PaymentCallback />,
   },
   {
     path: "/admin",
@@ -99,7 +100,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Planpages />,
+        element: <Planpages />, // ✅ 여기서만
       },
     ],
   },

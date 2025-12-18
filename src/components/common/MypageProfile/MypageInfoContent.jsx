@@ -227,11 +227,11 @@ export default function MypageInfoContent() {
             setIsLoggingOut(true);
             await axiosInstance.post('/users/logout');
             toast.info('로그아웃되었습니다.');
-            navigate('/Login');
+            navigate('/');
         } catch (error) {
             console.error('로그아웃 실패:', error);
             // 에러가 발생해도 로그인 페이지로 이동 (쿠키가 이미 만료된 경우 등)
-            navigate('/Login');
+            navigate('/');
         } finally {
             setIsLoggingOut(false);
         }
@@ -377,7 +377,7 @@ export default function MypageInfoContent() {
                         <div className='profile-Info-logout-modal-buttons'>
                             <button className='profile-Info-logout-modal-cancel'
                                 onClick={handleCloseLogoutModal}>
-                                계속하기
+                                계속 학습하기
                             </button>
                             <button className={`profile-Info-logout-modal-submit ${isLoggingOut ? 'disabled' : ''}`}
                                 onClick={!isLoggingOut ? handleLogout : undefined}

@@ -61,6 +61,7 @@ export default function MypageInfoContent() {
         } catch (error) {
             console.error('개인정보 조회 실패:', error);
             toast.error('개인정보를 불러오는데 실패했습니다.');
+            toast.clearWaitingQueue();
         } finally {
             setIsLoading(false);
         }
@@ -125,9 +126,11 @@ export default function MypageInfoContent() {
             setEmailVerificationStep(1);
             setCountdown(30); // 30초 카운트다운
             toast.success('인증 코드가 이메일로 전송되었습니다.');
+            toast.clearWaitingQueue();
         } catch (error) {
             console.error('인증 코드 전송 실패:', error);
             toast.error('인증 코드 전송에 실패했습니다.');
+            toast.clearWaitingQueue();
         } finally {
             setIsSendingCode(false);
         }
@@ -137,11 +140,13 @@ export default function MypageInfoContent() {
     const handleVerifyCode = async () => {
         if (isVerifying || !verificationCode) {
             toast.error('인증 코드를 입력해주세요.');
+            toast.clearWaitingQueue();
             return;
         }
 
         if (verificationCode.length !== 6) {
             toast.error('인증 코드는 6자리여야 합니다.');
+            toast.clearWaitingQueue();
             return;
         }
 
@@ -153,9 +158,11 @@ export default function MypageInfoContent() {
             });
             setEmailVerificationStep(2);
             toast.success('이메일 인증이 완료되었습니다.');
+            toast.clearWaitingQueue();
         } catch (error) {
             console.error('인증 코드 확인 실패:', error);
             toast.error('인증 코드가 올바르지 않습니다.');
+            toast.clearWaitingQueue();
         } finally {
             setIsVerifying(false);
         }
@@ -168,33 +175,39 @@ export default function MypageInfoContent() {
         // 이메일 인증 확인
         if (emailVerificationStep !== 2) {
             toast.error('이메일 인증을 완료해주세요.');
+            toast.clearWaitingQueue();
             return;
         }
 
         // 유효성 검사
         if (!currentPassword || !newPassword || !confirmPassword) {
             toast.error('모든 필드를 입력해주세요.');
+            toast.clearWaitingQueue();
             return;
         }
 
         if (newPassword.length < 8) {
             toast.error('새 비밀번호는 8자 이상이어야 합니다.');
+            toast.clearWaitingQueue();
             return;
         }
 
         // 비밀번호 강도 확인
         if (passwordStrength.level < 2) {
             toast.error('비밀번호가 너무 약합니다. 대문자, 숫자, 특수문자를 포함해주세요.');
+            toast.clearWaitingQueue();
             return;
         }
 
         if (newPassword !== confirmPassword) {
             toast.error('새 비밀번호가 일치하지 않습니다.');
+            toast.clearWaitingQueue();
             return;
         }
 
         if (currentPassword === newPassword) {
             toast.error('새 비밀번호는 현재 비밀번호와 달라야 합니다.');
+            toast.clearWaitingQueue();
             return;
         }
 
@@ -206,13 +219,16 @@ export default function MypageInfoContent() {
             });
 
             toast.success('비밀번호가 변경되었습니다.');
+            toast.clearWaitingQueue();
             handleClosePasswordModal();
         } catch (error) {
             console.error('비밀번호 변경 실패:', error);
             if (error.response?.status === 400) {
                 toast.error('현재 비밀번호가 일치하지 않습니다.');
+                toast.clearWaitingQueue();
             } else {
                 toast.error('비밀번호 변경에 실패했습니다.');
+                toast.clearWaitingQueue();
             }
         } finally {
             setIsChangingPassword(false);
@@ -227,6 +243,7 @@ export default function MypageInfoContent() {
             setIsLoggingOut(true);
             await axiosInstance.post('/users/logout');
             toast.info('로그아웃되었습니다.');
+            toast.clearWaitingQueue();
             navigate('/');
         } catch (error) {
             console.error('로그아웃 실패:', error);

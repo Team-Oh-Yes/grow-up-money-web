@@ -26,6 +26,7 @@ export default function StatusPopup({ user, onClose }) {
 
         if (!enumLabel) {
             toast.error("정지 기간을 선택해주세요.");
+            toast.clearWaitingQueue();
             return;
         }
 
@@ -37,12 +38,14 @@ export default function StatusPopup({ user, onClose }) {
             });
 
             toast.success("유저 계정 정지가 성공했습니다!");
+            toast.clearWaitingQueue();
             GetUserRow();
             onClose();
             
         } catch (error) {
             console.error("유저 상태 정지에 실패했습니다", error);
             toast.error("유저 정지 요청에 실패했습니다.");
+            toast.clearWaitingQueue();
         }
     };
 

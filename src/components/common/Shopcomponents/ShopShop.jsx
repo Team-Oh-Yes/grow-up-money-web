@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react";
+import { toast } from 'react-toastify';
 // CSS 경로는 환경에 맞게 확인해주세요.
-import '/Users/dgsw2025/Oh!Yes/grow-up-money-web/src/components/css/Shop/ShopShop.css';
+import '../../css/Shop/ShopShop.css';
 
 const TOSS_CLIENT_KEY =
     import.meta.env.VITE_TOSS_CLIENT_KEY ||
@@ -15,13 +16,16 @@ export default function StorePage() {
         const result = params.get("result");
 
         if (result === "success") {
-            alert("결제가 성공적으로 완료되었습니다.");
+            toast.success("결제가 성공적으로 완료되었습니다.");
+            toast.clearWaitingQueue();
             // 결과 확인 후 URL 파라미터 제거
             window.history.replaceState({}, "", window.location.pathname);
         }
 
         if (result === "fail") {
-            alert("결제가 실패되었습니다.");
+            toast.info("결제가 실패되었습니다.");
+            toast.clearWaitingQueue();
+            // 결과 확인 후 URL 파라미터 제거
             window.history.replaceState({}, "", window.location.pathname);
         }
     }, []);
@@ -32,7 +36,8 @@ export default function StorePage() {
     const handlePayment = useCallback((product) => {
         // window.TossPayments가 로드되었는지 확인이 필요합니다.
         if (!window.TossPayments) {
-            alert("결제 모듈을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.");
+            toast.error("결제 모듈을 불러오지 못했습니다.");
+            toast.clearWaitingQueue();
             return;
         }
 

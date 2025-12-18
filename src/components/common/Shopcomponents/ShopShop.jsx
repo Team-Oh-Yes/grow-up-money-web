@@ -1,7 +1,11 @@
 import { useCallback, useEffect } from "react";
 import { toast } from 'react-toastify';
 // CSS 경로는 환경에 맞게 확인해주세요.
-import '../../css/Shop/ShopShop.css';
+import '../../css/ShopComponents/ShopShop.css';
+
+// Img Imports
+import dia from '../../../img/Icon/diamond.svg';
+import ticket from '../../../img/Icon/ticket.svg';
 
 const TOSS_CLIENT_KEY =
     import.meta.env.VITE_TOSS_CLIENT_KEY ||
@@ -54,15 +58,18 @@ export default function StorePage() {
 
     const products = Array(15).fill(null).map((_, i) => ({
         id: i,
-        name: `[프로필 배너] 강아지 ${i + 1}`,
+        // name: `[프로필 배너] 강아지 ${i + 1}`,
+        name: "울트라 슈퍼 뽑기권 5장",
         price: 1000
     }));
 
     const renderProductCard = (product, index) => (
         <div key={index} className="product-wrapper">
             {/* 카드 전체 클릭 시 결제되도록 하거나, 버튼을 따로 두는 것이 좋습니다 */}
-            <div className="product-card" onClick={() => handlePayment(product)}>
-                <div className="product-image"></div>
+            <div className="product-card">
+                <div className="product-image-container">
+                    <img className="product-image" src={ticket} alt={product.name} />
+                </div>
 
                 <div className="product-info">
                     <div className="info-content">
@@ -70,8 +77,8 @@ export default function StorePage() {
 
                         <div className="price-container">
                             <div className="price-content">
-                                <div className="diamond-icon"></div>
-                                <div className="price-text">{product.price.toLocaleString()}원</div>
+                                <img className="diamond-icon" src={dia} alt="diamond" />
+                                <div className="price-text" onClick={() => handlePayment(product)}>{product.price}</div>
                             </div>
                         </div>
                     </div>

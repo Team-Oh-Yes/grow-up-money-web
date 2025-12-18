@@ -43,3 +43,7 @@ export const userStatsUpdateTrigger = atom({
   key: "userStatsUpdateTrigger",
   default: 0, // 숫자를 증가시켜 리렌더링 트리거
 });
+export const userInfoState = atom({
+  key: "userInfoState",
+  default: null, // 초기값
+});

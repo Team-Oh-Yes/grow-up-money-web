@@ -1,22 +1,23 @@
 import { useState } from "react";
+import { useSetRecoilState } from "recoil";
 import random from "../../../img/random/뽑기통.svg";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from 'react-toastify';
 import "../../css/ShopComponents/Random.css";
+import dia from '../../../img/Icon/randomdia.svg';
 
 function ShopRandom() {
   const [showResult, setShowResult] = useState(false);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isShaking, setIsShaking] = useState(false); // 흔들림 상태 추가
+  const [isShaking, setIsShaking] = useState(false);
 
   const handleDraw = async (count) => {
     if (loading) return;
 
     setLoading(true);
-    setIsShaking(true); // 흔들기 시작
+    setIsShaking(true);
 
-    // 1초 뒤에 흔들기 멈춤
     setTimeout(() => {
       setIsShaking(false);
     }, 1000);
@@ -25,11 +26,15 @@ function ShopRandom() {
 
     try {
       const res = await axiosInstance.post(endpoint);
-      // 애니메이션이 최소 1초는 보여야 하므로 결과는 애니메이션 종료 시점에 맞춰 보여주는 것이 자연스럽습니다.
+      console.log(res.data);
+
       setTimeout(() => {
         setResults(res.data.results);
         setShowResult(true);
         setLoading(false);
+        
+        // 결과 표시 후 유저 정보 다시 불러오기
+        refreshUserData();
       }, 1000);
     } catch (error) {
       toast.error('뽑기에 실패했습니다.', {...toastcode(2000)});
@@ -39,10 +44,26 @@ function ShopRandom() {
     }
   };
 
+  // 유저 데이터 새로고침 함수
+  const refreshUserData = async () => {
+    try {
+      const response = await axiosInstance.get("/me");
+      // 여기서 pointBalance를 업데이트하려면 부모 컴포넌트나 전역 상태를 사용해야 합니다
+      // 현재는 Loginmaincomponents에서 data를 관리하므로 이벤트를 발생시키거나
+      // 전역 상태를 사용하는 방법이 필요합니다
+      window.dispatchEvent(new CustomEvent('updateUserData', { detail: response.data }));
+    } catch (error) {
+      console.error("유저 정보 갱신 에러:", error);
+    }
+  };
+
+  const handleCloseResult = () => {
+    setShowResult(false);
+  };
+
   return (
     <div className="shopcon">
       <div className="button-group">
-        {/* isShaking이 true일 때만 vibrate 클래스 적용 */}
         <img src={random} className={`random ${isShaking ? "vibrate" : ""}`} alt="뽑기통" />
         <div>
           <div className="bt">
@@ -57,7 +78,7 @@ function ShopRandom() {
       </div>
 
       {showResult && (
-        <div className="result-overlay" onClick={() => setShowResult(false)}>
+        <div className="result-overlay" onClick={handleCloseResult}>
           <div className="result-modal" onClick={(e) => e.stopPropagation()}>
             <h2>뽑기 결과</h2>
             <div className="result-container">
@@ -70,14 +91,14 @@ function ShopRandom() {
                     </>
                   ) : (
                     <>
-                      <div className="point-box">💰</div>
+                      <div className="point-box"><img src={dia} alt="다이아" /></div>
                       <p>{item.rewardValue}p</p>
                     </>
                   )}
                 </div>
               ))}
             </div>
-            <button className="close-bt" onClick={() => setShowResult(false)}>확인</button>
+            <button className="close-bt" onClick={handleCloseResult}>확인</button>
           </div>
         </div>
       )}

@@ -77,6 +77,23 @@ function Loginmaincomponents() {
       .catch((error) => console.error("데이터 로드 에러:", error));
   }, [setTestheart]);
 
+  // CustomEvent 리스너 추가 (뽑기 후 실시간 업데이트용)
+  useEffect(() => {
+    const handleUpdateUserData = (event) => {
+      const updatedData = event.detail;
+      setData(updatedData);
+      if (updatedData.hearts !== undefined) {
+        setTestheart(updatedData.hearts);
+      }
+    };
+
+    window.addEventListener('updateUserData', handleUpdateUserData);
+    
+    return () => {
+      window.removeEventListener('updateUserData', handleUpdateUserData);
+    };
+  }, [setTestheart]);
+
   // 퀴즈 페이지 아닐 때 progress 초기화
   useEffect(() => {
     if (!isQuizPage && TF) {

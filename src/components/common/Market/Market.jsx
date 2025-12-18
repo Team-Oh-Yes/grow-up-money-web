@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
+import Swal from "sweetalert2";
 import "../../css/Market/Market.css";
 
 function Market() {
@@ -62,7 +63,13 @@ function Market() {
       const response = await axiosInstance.post("/market/purchase", {
         tradeId: item.tradeId,
       });
-      console.log("구매 성공:", response.data);
+
+      Swal.fire({
+        title: "구매 성공!",
+        text: "NFT가 보관함에 추가되었습니다.",
+        icon: "success",
+        confirmButtonColor: "#4CAF50",
+      });
       
       setListings((prev) =>
         prev.filter((listing) => listing.tokenId !== item.tokenId)
@@ -70,10 +77,18 @@ function Market() {
       const { price, ...nftWithoutPrice } = item;
       setMyNFTs((prev) => [...prev, nftWithoutPrice]);
       setShow(false);
-      alert("구매가 완료되었습니다.");
     } catch (error) {
-      console.error("구매 실패:", error.response?.data || error.message);
-      alert("구매 실패: " + (error.response?.data?.message || "서버 오류"));
+      // ✨ 400 에러 처리 추가
+      const isSelfListed = error.response?.status === 400;
+
+      Swal.fire({
+        title: "구매 실패",
+        text: isSelfListed 
+          ? "자신이 올렸던 항목입니다." 
+          : (error.response?.data?.message || "서버 오류가 발생했습니다."),
+        icon: "error",
+        confirmButtonColor: "#d33",
+      });
     }
   };
 
@@ -129,7 +144,10 @@ function PriceModal({ nft, setShowPriceModal, handleSellNFT }) {
   const handleSubmit = async () => {
     const numPrice = parseInt(price);
     if (!numPrice || numPrice <= 0) {
-      alert("올바른 가격을 입력해주세요.");
+      Swal.fire({
+        text: "올바른 가격을 입력해주세요.",
+        icon: "warning",
+      });
       return;
     }
 
@@ -141,11 +159,22 @@ function PriceModal({ nft, setShowPriceModal, handleSellNFT }) {
       };
 
       await axiosInstance.post("/market/listings", sellData);
+      
+      Swal.fire({
+        title: "등록 완료",
+        text: "판매소에 성공적으로 등록되었습니다.",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
       handleSellNFT(nft, numPrice);
-      alert("판매 등록되었습니다.");
     } catch (error) {
-      console.error("등록 실패:", error.response?.data || error.message);
-      alert("등록 실패: " + (error.response?.data?.message || "서버 오류"));
+      Swal.fire({
+        title: "등록 실패",
+        text: error.response?.data?.message || "서버 오류",
+        icon: "error",
+      });
     }
   };
 
@@ -153,7 +182,6 @@ function PriceModal({ nft, setShowPriceModal, handleSellNFT }) {
     <div className="trade-content" onClick={() => setShowPriceModal(false)}>
       <div className="trade-modal-inner" onClick={(e) => e.stopPropagation()}>
         <h2>판매 가격 설정</h2>
-        {/* nftImageUrl -> imageUrl 로 변경 */}
         <img src={nft?.imageUrl} className="trade-img" alt="" />
         <h3>{nft?.collectionName}</h3>
         <input
@@ -177,7 +205,6 @@ function Trade({ item, setShow, handleBuyNFT }) {
     <div className="trade-content" onClick={() => setShow(false)}>
       <div className="trade-modal-inner" onClick={(e) => e.stopPropagation()}>
         <h2>구입하기</h2>
-        {/* nftImageUrl -> imageUrl 로 변경 */}
         <img src={item?.imageUrl} className="trade-img" alt="" />
         <h3>{item?.collectionName}</h3>
         <p className="item-price">{item?.price}p</p>
@@ -201,7 +228,6 @@ function Buy({ sample, trademain, setSell, sell }) {
         {sample.map((item, idx) => (
           <div key={item.tokenId || idx} className="tradecon" onClick={() => trademain(item)}>
             <div className="pro">
-              {/* nftImageUrl -> imageUrl 로 변경 */}
               <img src={item.imageUrl} className="mimg" alt="" />
               <div>{item.collectionName}</div>
             </div>
@@ -224,16 +250,16 @@ function Sell({ setSell, sell, myNFTs, openPriceModal }) {
         {myNFTs.map((nft, idx) => (
           <div key={nft.tokenId || idx} className="tradecon" onClick={() => openPriceModal(nft)}>
             <div className="pro">
-              {/* nftImageUrl -> imageUrl 로 변경 */}
               <img src={nft.imageUrl} className="mimg" alt="" />
               <div>{nft.collectionName}</div>
             </div>
             <div className="sub"><p>판매하기</p></div>
           </div>
-        ))}
+        ))} 
       </div>
     </div>
   );
 }
+//기모찌
 
 export default Market;

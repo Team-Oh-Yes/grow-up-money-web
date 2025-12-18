@@ -304,5 +304,5 @@ function Sell({ setSell, sell, myNFTs, openPriceModal }) {
     </div>
   );
 }
-
+//응애
 export default Market;

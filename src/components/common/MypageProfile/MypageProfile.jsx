@@ -1,7 +1,6 @@
 // Link import
 import '../../css/MypageProfile/MypageProfile.css';
 import { useState, useEffect } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
 
 // Components import
 import MypageHeader from './MypageHeader';
@@ -59,9 +58,11 @@ export default function MypageProfile() {
     };
 
     return (
-        <div className='mypage-profile-container'>
+        <div className='mypage-profile-main-container' >
             <MypageHeader activeTab={activeTab} onTabChange={handleTabChange} />
-            {renderContent()}
+            <div className='mypage-profile-container'>
+                {renderContent()}
+            </div>
         </div>
     );
 }

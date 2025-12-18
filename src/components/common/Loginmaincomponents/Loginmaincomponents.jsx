@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { Big, Mobilestate, quizProgressState, Testheart } from "../../../atoms";
 import BigBlocker from "../../../BigBlocker";
-import back from "../../../img/back.png";
-import king from "../../../img/crown.png";
-import ticket from "../../../img/gacha2.png";
-import heart from "../../../img/heart.png";
+import back from "../../../img/Icon/arrow.svg";
 import point from "../../../img/Icon/bouncepoint.svg";
-import map from "../../../img/loadmap.png";
-import more from "../../../img/more.png";
-import dia from "../../../img/point.png";
-import pro from "../../../img/profile.png";
-import rank from "../../../img/rank.png";
-import store from "../../../img/store.png";
-import trade from "../../../img/trade.png";
+import dia from "../../../img/Icon/diamond.svg";
+import heart from "../../../img/Icon/heart.svg";
+import ticket from "../../../img/Icon/ticket.svg";
+import map from "../../../img/Side-top-bar/home.svg";
+import more from "../../../img/Side-top-bar/more.svg";
+import rank from "../../../img/Side-top-bar/ranking.svg";
+import store from "../../../img/Side-top-bar/shop.svg";
+import trade from "../../../img/Side-top-bar/trade.svg";
+import pro from "../../../img/Side-top-bar/user.svg";
 import MobileBlocker from "../../../MobileBlocker";
 import axiosInstance from "../../api/axiosInstance";
 import "../../css/Loginmainpagescss/Loginmainpages.css";
 import * as S from "../../styled/top&sidebar";
+import Learn from "../Loadmapcomponents/Learn";
 
 function Loginmaincomponents() {
   const [testheart, setTestheart] = useRecoilState(Testheart);
@@ -31,129 +30,85 @@ function Loginmaincomponents() {
   const [show, setShow] = useRecoilState(quizProgressState);
   const { TF, score, totalQuestions } = show;
 
-  const toastcode = (time = 1000) => ({
-    position: "top-right",
-    autoClose: time,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: 0,
-    theme: "light",
-  });
   const [data, setData] = useState(null);
 
-  // ✨ 숫자를 k, m 형식으로 포맷팅하는 함수
+  // 경로 판별 변수
+  const Roadmap = location.pathname.includes("/roadmap");
+  const Rank = location.pathname.includes("/ranking");
+  const Trade = location.pathname.includes("/market");
+  const Shop = location.pathname.includes("/shop");
+  const More = location.pathname.includes("/more");
+  const My = location.pathname.includes("/my");
+  const Learn = location.pathname.includes("/learn");
+  const isQuizPage = location.pathname.includes("/quiz");
+
   const formatNumber = (num) => {
     if (num === null || num === undefined) return "0";
     const number = Number(num);
-
     if (isNaN(number)) return String(num);
-
-    if (number >= 1000000) {
-      // 100만 이상: M (예: 1.5M)
+    if (number >= 1000000)
       return (number / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
-    }
-    if (number >= 1000) {
-      // 1천 이상: k (예: 1.2k, 10k)
+    if (number >= 1000)
       return (number / 1000).toFixed(1).replace(/\.0$/, "") + "k";
-    }
     return number.toString();
   };
-  // ----------------------------------------------------
 
+  // 사이드바 active 상태 관리
   useEffect(() => {
     const path = location.pathname;
-    if (path.includes("/roadmap")) {
-      setActive("box1");
-    } else if (path.includes("/ranking")) {
-      setActive("box2");
-    } else if (path.includes("/market")) {
-      setActive("box3");
-    } else if (path.includes("/shop")) {
-      setActive("box4");
-    } else if (path.includes("/my")) {
-      setActive("box5");
-    } else if (path.includes("/more")) {
-      setActive("box6");
-    }
+    if (path.includes("/roadmap")) setActive("box1");
+    else if (path.includes("/ranking")) setActive("box2");
+    else if (path.includes("/market")) setActive("box3");
+    else if (path.includes("/shop")) setActive("box4");
+    else if (path.includes("/my")) setActive("box5");
+    else if (path.includes("/more")) setActive("box6");
   }, [location.pathname]);
 
-  //현수야고침
-  useEffect(() => {
-    if (location.state?.loginSuccess) {
-      toast.success("로그인 성공!", { ...toastcode(2000) });
-      toast.clearWaitingQueue();
-
-      window.history.replaceState({}, document.title);
-    }
-  }, [location]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (typeof window !== "undefined") {
-        const width = window.innerWidth;
-        setIsMobileBlocked(width < 768);
-        setIsExtraLargeScreen(width >= 3200);
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, [setIsMobileBlocked, setIsExtraLargeScreen]);
-
-  // ✨ API 호출을 마운트 시 한 번만 실행하도록 수정 (location 의존성 제거)
+  // 유저 정보 로드
   useEffect(() => {
     axiosInstance
       .get("/me")
       .then((response) => {
         setData(response.data);
-        console.log("사용자 데이터 로드 성공:", response.data);
+        if (response.data.hearts !== undefined) {
+          setTestheart(response.data.hearts);
+        }
       })
-      .catch((error) => {
-        console.error("하트시스템호출 에러:", error);
+      .catch((error) => console.error("데이터 로드 에러:", error));
+  }, [setTestheart]);
+
+  // 퀴즈 페이지 아닐 때 progress 초기화
+  useEffect(() => {
+    if (!isQuizPage && TF) {
+      setShow({
+        TF: false,
+        score: 0,
+        totalQuestions: 0,
       });
-  }, []); // 👈 의존성 배열을 빈 배열 []로 수정하여 마운트 시 1회만 호출되도록 변경했습니다.
-
-  useEffect(() => {
-    const isQuizPath = location.pathname.includes("/quiz");
-
-    if (isQuizPath && !TF) {
-      setShow((prev) => ({ ...prev, TF: true }));
-    } else if (!isQuizPath && TF) {
-      setShow({ TF: false, score: 0, totalQuestions: 4 });
     }
-  }, [location.pathname, TF, setShow]);
+  }, [isQuizPage, TF, setShow]);
 
+  // 화면 크기 리스너
   useEffect(() => {
-    const isQuizPath = location.pathname.includes("/quiz");
-    if (isQuizPath && TF && totalQuestions > 0 && score === totalQuestions) {
-      setTimeout(() => {
-        setShow({ score: 0 });
-      }, 1500);
-    }
-  }, [score, totalQuestions, TF, location.pathname, setShow]);
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobileBlocked(width < 768);
+      setIsExtraLargeScreen(width >= 3200);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setIsMobileBlocked, setIsExtraLargeScreen]);
 
-  if (isMobileBlocked) {
-    return <MobileBlocker />;
-  }
-  if (isExtraLargeScreen) {
-    return <BigBlocker />;
-  }
+  if (isMobileBlocked) return <MobileBlocker />;
+  if (isExtraLargeScreen) return <BigBlocker />;
 
   const Action = (e, n) => {
     setActive(e);
     navigate(n);
   };
 
-  // 프로그레스 퍼센트 계산
-  const progressPercentage = (score / totalQuestions) * 100;
-  const safeProgressPercentage = TF
-    ? isNaN(progressPercentage)
-      ? 0
-      : progressPercentage
-    : 0;
+  const safeProgressPercentage = TF ? (score / totalQuestions) * 100 || 0 : 0;
 
   return (
     <div className="maincon">
@@ -164,57 +119,68 @@ function Loginmaincomponents() {
             className={active === "box1" ? "boxactive" : "box"}
             onClick={() => Action("box1", "/roadmap")}
           >
-            <img src={map} alt="로드맵 이미지"></img>
+            <img src={map} alt="map" />
             <p>로드맵</p>
           </div>
           <div
             className={active === "box2" ? "boxactive" : "box"}
             onClick={() => Action("box2", "/ranking")}
           >
-            <img src={rank} alt="랭킹 이미지"></img>
+            <img src={rank} alt="rank" />
             <p>랭킹</p>
           </div>
           <div
             className={active === "box3" ? "boxactive" : "box"}
             onClick={() => Action("box3", "/market")}
           >
-            <img src={trade} alt="거래소 이미지"></img>
+            <img src={trade} alt="trade" />
             <p>거래소</p>
           </div>
           <div
             className={active === "box4" ? "boxactive" : "box"}
             onClick={() => Action("box4", "/shop")}
           >
-            <img src={store} alt="스토어 이미지"></img>
+            <img src={store} alt="store" />
             <p>상점</p>
           </div>
           <div
             className={active === "box5" ? "boxactive" : "box"}
             onClick={() => Action("box5", "/my")}
           >
-            <img src={pro} alt="프로필 이미지"></img>
+            <img src={pro} alt="pro" />
             <p>마이페이지</p>
           </div>
           <div
             className={active === "box6" ? "boxactive" : "box"}
             onClick={() => Action("box6", "/more")}
           >
-            <img src={more} alt="더보기 이미지"></img>
+            <img src={more} alt="more" />
             <p>더보기</p>
           </div>
         </div>
-        <div className="kingbox">
-          <img src={king} alt="왕관" className="king"></img>
-          <h5 className="premiun">Premium</h5>
-        </div>
       </S.Sidebar>
+
       <div className="changebox">
         <S.Topbar>
-          <div className="b" onClick={() => navigate("/roadmap")}>
-            <img src={back} alt="뒤로가기"></img>
+          <div className="topbar-left-content">
+            {isQuizPage || Learn ? (
+              <div className="b" onClick={() => navigate("/roadmap")}>
+                <img src={back} alt="back" />
+              </div>
+            ) : (
+              <div className="top-title-text">
+                {Roadmap && "로드맵"}
+                {Rank && "랭킹"}
+                {Trade && "거래소"}
+                {Shop && "상점"}
+                {My && "마이페이지"}
+                {More && "더보기"}
+              </div>
+            )}
           </div>
+
           <div className="topbar-progress-container">
-            {TF && (
+            {isQuizPage && TF && (
               <div className="topbar-progress-background">
                 <div
                   className="topbar-progress-bar"
@@ -223,22 +189,25 @@ function Loginmaincomponents() {
               </div>
             )}
           </div>
+
           <div className="rcon">
             <div className="img">
-              <img src={heart} alt="하트"></img>
-              {/* data가 null일 때 0을 반환하도록 옵셔널 체이닝 적용 */}
-              <h5>{formatNumber(data?.hearts ?? 0)}</h5>
-
-              <img src={dia} alt="다이아몬드"></img>
-              {/* data가 null일 때 0을 반환하도록 옵셔널 체이닝 적용 */}
-              <h5>{formatNumber(data?.pointBalance ?? 0)}</h5>
-
-              <img src={point} alt="포인트"></img>
-              {/* data가 null일 때 0을 반환하도록 옵셔널 체이닝 적용 */}
-              <h5>{formatNumber(data?.boundPoint ?? 0)}</h5>
-
-              <img src={ticket} alt="티켓" />
-              <h5>5</h5>
+              <div className="case">
+                <img src={heart} alt="하트" />
+                <h5>{formatNumber(testheart)}</h5>
+              </div>
+              <div className="case">
+                <img src={dia} alt="다이아" />
+                <h5>{formatNumber(data?.pointBalance ?? 0)}</h5>
+              </div>
+              <div className="case">
+                <img src={point} alt="포인트" />
+                <h5>{formatNumber(data?.boundPoint ?? 0)}</h5>
+              </div>
+              <div className="case">
+                <img src={ticket} alt="티켓" />
+                <h5>5</h5>
+              </div>
             </div>
           </div>
         </S.Topbar>
@@ -249,4 +218,5 @@ function Loginmaincomponents() {
     </div>
   );
 }
+
 export default Loginmaincomponents;

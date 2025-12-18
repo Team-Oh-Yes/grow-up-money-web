@@ -5,17 +5,18 @@ import axiosInstance from "../../api/axiosInstance";
 import { toast } from 'react-toastify';
 import "../../css/ShopComponents/Random.css";
 import dia from '../../../img/Icon/randomdia.svg';
+import ticket from '../../../img/Icon/ticket.svg';
 
 function ShopRandom() {
   const [showResult, setShowResult] = useState(false);
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingCount, setLoadingCount] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
 
   const handleDraw = async (count) => {
-    if (loading) return;
+    if (loadingCount) return;
 
-    setLoading(true);
+    setLoadingCount(count);
     setIsShaking(true);
 
     setTimeout(() => {
@@ -31,7 +32,7 @@ function ShopRandom() {
       setTimeout(() => {
         setResults(res.data.results);
         setShowResult(true);
-        setLoading(false);
+        setLoadingCount(0);
         
         // 결과 표시 후 유저 정보 다시 불러오기
         refreshUserData();
@@ -39,7 +40,7 @@ function ShopRandom() {
     } catch (error) {
       toast.error('뽑기에 실패했습니다.', {...toastcode(2000)});
       toast.clearWaitingQueue();
-      setLoading(false);
+      setLoadingCount(0);
       setIsShaking(false);
     }
   };
@@ -67,18 +68,18 @@ function ShopRandom() {
         <img src={random} className={`random ${isShaking ? "vibrate" : ""}`} alt="뽑기통" />
         <div>
           <div className="bt">
-            <button className="gacha-button btn-one" onClick={() => handleDraw(1)} disabled={loading}>
-              {loading ? "뽑는 중..." : "1회 뽑기"}
+            <button className="gacha-button btn-one" onClick={() => handleDraw(1)} disabled={loadingCount !== 0}>
+              <img className="gacha-ticket-icon" src={ticket} alt="티켓" />{loadingCount === 1 ? "뽑는 중..." : "1 개 사용하여 뽑기"}
             </button>
-            <button className="gacha-button btn-five" onClick={() => handleDraw(5)} disabled={loading}>
-              {loading ? "뽑는 중..." : "5회 연속 뽑기"}
+            <button className="gacha-button btn-five" onClick={() => handleDraw(5)} disabled={loadingCount !== 0}>
+              <img className="gacha-ticket-icon" src={ticket} alt="티켓" />{loadingCount === 5 ? "뽑는 중..." : "5 개 사용하여 뽑기"}
             </button>
           </div>
         </div>
       </div>
 
       {showResult && (
-        <div className="result-overlay" onClick={handleCloseResult}>
+        <div className="result-overlay">
           <div className="result-modal" onClick={(e) => e.stopPropagation()}>
             <h2>뽑기 결과</h2>
             <div className="result-container">

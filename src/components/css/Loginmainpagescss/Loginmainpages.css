@@ -10,6 +10,7 @@
   justify-content: center;
 }
 .ho {
+  width: 250px;
   overflow: hidden;
   position: relative;
 }

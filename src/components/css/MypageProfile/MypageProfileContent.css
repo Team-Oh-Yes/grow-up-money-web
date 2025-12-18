@@ -1,13 +1,17 @@
 .mypage-main {
     margin: 40px 97px 0 97px;
-    height: 785px;
+    min-height: calc(100% - 80px);
     width: calc(100% - 474px);
+    min-width: 0;
     background-color: #ffffff;
     border-radius: 20px 20px 0 0;
     background-image: url('../../../img/MypageProfile/BackgroundImg.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+    margin-bottom: 44px;
 }
 
 .profile-setting-title {
@@ -100,7 +104,7 @@
     gap: 20px;
 }
 
-.profile-nickname-container, .profile-intro-container {
+.profile-displayname-container, .profile-intro-container {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -108,7 +112,7 @@
     gap: 6px;
 }
 
-.profile-nickname-title, .profile-intro-title {
+.profile-displayname-title, .profile-intro-title {
     position: relative;
     left: 6px;
     font-size: 18px;
@@ -116,7 +120,7 @@
     color: #181F29;
 }
 
-.profile-nickname-input {
+.profile-displayname-input {
     width: calc(100% - 86px);
     height: 52px;
     border: 2.5px solid #DBDBDB;
@@ -126,11 +130,11 @@
     color: #181F29;
 }
 
-.profile-nickname-input::placeholder {
+.profile-displayname-input::placeholder {
     color: #777777;
 }
 
-.profile-nickname-input:focus {
+.profile-displayname-input:focus {
     outline: none;
     border-color: #FE8401;
 }
@@ -199,6 +203,257 @@
     background-color: #e67300;
 }
 
+.profile-button-save.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.profile-button-save.disabled:hover {
+    background-color: #cccccc;
+}
+
 .profile-button-cancel:hover {
     background-color: #5c5c5c;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #E0E0E0;
+    border-top: 4px solid #fe8401;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 태블릿 (1024px 이하) */
+@media screen and (max-width: 1024px) {
+    .mypage-main {
+        margin: 30px 40px 0 40px;
+        width: calc(100% - 80px);
+        min-height: auto;
+        padding-bottom: 30px;
+    }
+
+    .profile-setting-title {
+        font-size: 24px;
+        margin: 32px 0 14px 32px;
+    }
+
+    .line {
+        width: calc(100% - 60px);
+        left: 30px;
+    }
+
+    .profile-picture-title {
+        font-size: 16px;
+        margin: 24px 0 8px 36px;
+    }
+
+    .profile-picture-container {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 36px;
+        gap: 16px;
+    }
+
+    .profile-picture {
+        width: 130px;
+        height: 130px;
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    .profile-upload-container {
+        left: 0;
+    }
+
+    .profile-displayname-container, .profile-intro-container {
+        left: 30px;
+    }
+
+    .profile-displayname-input,
+    .profile-intro-textarea,
+    .profile-intro-text-count {
+        width: calc(100% - 60px);
+    }
+
+    .profile-save-button-container {
+        width: calc(100% - 60px);
+        left: 30px;
+    }
+
+    .profile-button {
+        width: 100px;
+        height: 42px;
+        font-size: 18px;
+    }
+}
+
+/* 모바일 (768px 이하) */
+@media screen and (max-width: 768px) {
+    .mypage-main {
+        margin: 20px 16px 0 16px;
+        width: calc(100% - 32px);
+        min-height: auto;
+        padding-bottom: 24px;
+    }
+
+    .profile-setting-title {
+        font-size: 20px;
+        margin: 24px 0 12px 20px;
+    }
+
+    .line {
+        width: calc(100% - 40px);
+        left: 20px;
+    }
+
+    .profile-picture-title {
+        font-size: 14px;
+        margin: 20px 0 8px 24px;
+    }
+
+    .profile-picture-container {
+        margin-left: 24px;
+    }
+
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .profile-upload-button {
+        width: 90px;
+        height: 28px;
+        font-size: 12px;
+        flex-shrink: 0;
+    }
+
+    .profile-upload-text {
+        font-size: 14px;
+        left: 12px;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .profile-displayname-container, .profile-intro-container {
+        left: 20px;
+    }
+
+    .profile-displayname-title, .profile-intro-title {
+        font-size: 16px;
+    }
+
+    .profile-displayname-input {
+        width: calc(100% - 40px);
+        height: 46px;
+        padding: 14px 16px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .profile-intro-textarea {
+        width: calc(100% - 40px);
+        height: 100px;
+        padding: 14px 16px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .profile-intro-text-count {
+        width: calc(100% - 40px);
+        font-size: 12px;
+    }
+
+    .profile-save-button-container {
+        width: calc(100% - 40px);
+        left: 20px;
+        top: 20px;
+        gap: 12px;
+    }
+
+    .profile-button {
+        width: 80px;
+        height: 38px;
+        font-size: 16px;
+        border-radius: 10px;
+        flex-shrink: 0;
+    }
+}
+
+/* 아주 작은 화면 (480px 이하) */
+@media screen and (max-width: 480px) {
+    .mypage-main {
+        margin: 16px 12px 0 12px;
+        width: calc(100% - 24px);
+    }
+
+    .profile-setting-title {
+        font-size: 18px;
+        margin: 20px 0 10px 16px;
+    }
+
+    .line {
+        width: calc(100% - 32px);
+        left: 16px;
+    }
+
+    .profile-picture-title {
+        margin: 16px 0 8px 20px;
+    }
+
+    .profile-picture-container {
+        margin-left: 20px;
+        gap: 12px;
+    }
+
+    .profile-picture {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-upload-text {
+        max-width: 100px;
+    }
+
+    .profile-displayname-container, .profile-intro-container {
+        left: 16px;
+    }
+
+    .profile-displayname-input,
+    .profile-intro-textarea,
+    .profile-intro-text-count {
+        width: calc(100% - 32px);
+    }
+
+    .profile-save-button-container {
+        width: calc(100% - 32px);
+        left: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .profile-button {
+        width: 70px;
+        height: 36px;
+        font-size: 14px;
+    }
 }

@@ -1,0 +1,11 @@
+.shop-main {
+    margin: 41.5px 31px 0 31px;
+    min-height: calc(100% - 141.5px);
+    height: 100%;
+    width: calc(100% - 322px);
+    min-width: 0;
+    background-color: #ffffff;
+    border-radius: 20px 20px 0 0;
+    box-sizing: border-box;
+    margin-bottom: 44px;
+}

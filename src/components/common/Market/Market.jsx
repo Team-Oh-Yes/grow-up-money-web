@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import coin from "../../../img/coin.png";
-import m from "../../../img/image 11.svg";
-import cat from "../../../img/NFT/cat.svg";
 import axiosInstance from "../../api/axiosInstance";
+import Swal from "sweetalert2";
 import "../../css/Market/Market.css";
 
 function Market() {
@@ -14,47 +12,39 @@ function Market() {
   const [showPriceModal, setShowPriceModal] = useState(false);
   const [selectedNFTForSale, setSelectedNFTForSale] = useState(null);
   const [listings, setListings] = useState([]);
-  const [myNFTs, setMyNFTs] = useState([
-    {
-      id: 101,
-      name: "똥전",
-      img: coin,
-    },
-    {
-      id: 102,
-      name: "???",
-      img: m,
-    },
-    {
-      id: 103,
-      name: "고양이",
-      img: cat,
-    },
-  ]);
+  const [myNFTs, setMyNFTs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const connect = async () => {
-    const response = await axiosInstance.get("/market/listings");
-    console.log(response);
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const resm = await axiosInstance.get("/nft/my");
+      const res = await axiosInstance.get("/market/listings");
+
+      if (resm.data && resm.data.tradeableNfts) {
+        setMyNFTs(resm.data.tradeableNfts);
+      }
+
+      if (res.data) {
+        const listData = Array.isArray(res.data)
+          ? res.data
+          : res.data.listings || [];
+        setListings(listData);
+      }
+    } catch (error) {
+      console.error("데이터 로딩 실패:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    const isQuizPath = location.pathname.includes("/roadmap");
-    connect();
-    // 초기 샘플 데이터
-    setListings([
-      {
-        id: 1,
-        name: "똥전",
-        img: coin,
-        price: 200,
-      },
-      { id: 2, name: "??", img: m, price: 150 },
-    ]);
+    fetchData();
   }, [location.pathname]);
 
   const trademain = (item) => {
-    setShow(true);
     setSelectedItem(item);
+    setShow(true);
   };
 
   const openPriceModal = (nft) => {
@@ -63,27 +53,56 @@ function Market() {
   };
 
   const handleSellNFT = (nft, price) => {
-    // 내 NFT 목록에서 제거
-    setMyNFTs(myNFTs.filter((item) => item.id !== nft.id));
-    // 거래소에 가격 정보와 함께 추가
-    setListings([...listings, { ...nft, price: price }]);
-    // 모달 닫기
+    setMyNFTs((prev) => prev.filter((item) => item.tokenId !== nft.tokenId));
+    setListings((prev) => [...prev, { ...nft, price: price }]);
     setShowPriceModal(false);
-    setSelectedNFTForSale(null);
   };
 
-  const handleBuyNFT = (item) => {
-    // 거래소에서 제거
-    setListings(listings.filter((listing) => listing.id !== item.id));
-    // 내 NFT 목록에 추가 (가격 정보 제거)
-    const { price, ...nftWithoutPrice } = item;
-    setMyNFTs([...myNFTs, nftWithoutPrice]);
-    // 모달 닫기
-    setShow(false);
+  const handleBuyNFT = async (item) => {
+    try {
+      const response = await axiosInstance.post("/market/purchase", {
+        tradeId: item.tradeId,
+      });
+
+      Swal.fire({
+        title: "구매 성공!",
+        text: "NFT가 보관함에 추가되었습니다.",
+        icon: "success",
+        confirmButtonColor: "#4CAF50",
+      });
+      
+      setListings((prev) =>
+        prev.filter((listing) => listing.tokenId !== item.tokenId)
+      );
+      const { price, ...nftWithoutPrice } = item;
+      setMyNFTs((prev) => [...prev, nftWithoutPrice]);
+      setShow(false);
+    } catch (error) {
+      // ✨ 400 에러 처리 추가
+      const isSelfListed = error.response?.status === 400;
+
+      Swal.fire({
+        title: "구매 실패",
+        text: isSelfListed 
+          ? "자신이 올렸던 항목입니다." 
+          : (error.response?.data?.message || "서버 오류가 발생했습니다."),
+        icon: "error",
+        confirmButtonColor: "#d33",
+      });
+    }
   };
 
   return (
     <>
+      {loading && (
+        <div className="loading-wrapper">
+          <div className="loading-container">
+            <div className="spinner"></div>
+            <p>거래소로 입장하는 중입니다...</p>
+          </div>
+        </div>
+      )}
+
       {sell === false ? (
         <Buy
           sample={listings}
@@ -99,20 +118,22 @@ function Market() {
           openPriceModal={openPriceModal}
         />
       )}
-      {show === true ? (
+
+      {show && (
         <Trade
           item={selectedItem}
           setShow={setShow}
           handleBuyNFT={handleBuyNFT}
         />
-      ) : null}
-      {showPriceModal === true ? (
+      )}
+
+      {showPriceModal && (
         <PriceModal
           nft={selectedNFTForSale}
           setShowPriceModal={setShowPriceModal}
           handleSellNFT={handleSellNFT}
         />
-      ) : null}
+      )}
     </>
   );
 }
@@ -120,12 +141,40 @@ function Market() {
 function PriceModal({ nft, setShowPriceModal, handleSellNFT }) {
   const [price, setPrice] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const numPrice = parseInt(price);
-    if (numPrice && numPrice > 0) {
+    if (!numPrice || numPrice <= 0) {
+      Swal.fire({
+        text: "올바른 가격을 입력해주세요.",
+        icon: "warning",
+      });
+      return;
+    }
+
+    try {
+      const sellData = {
+        tokenId: nft.tokenId,
+        price: numPrice,
+        collectionId: nft.collectionId,
+      };
+
+      await axiosInstance.post("/market/listings", sellData);
+      
+      Swal.fire({
+        title: "등록 완료",
+        text: "판매소에 성공적으로 등록되었습니다.",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
       handleSellNFT(nft, numPrice);
-    } else {
-      alert("올바른 가격을 입력해주세요.");
+    } catch (error) {
+      Swal.fire({
+        title: "등록 실패",
+        text: error.response?.data?.message || "서버 오류",
+        icon: "error",
+      });
     }
   };
 
@@ -133,28 +182,18 @@ function PriceModal({ nft, setShowPriceModal, handleSellNFT }) {
     <div className="trade-content" onClick={() => setShowPriceModal(false)}>
       <div className="trade-modal-inner" onClick={(e) => e.stopPropagation()}>
         <h2>판매 가격 설정</h2>
-        <img src={nft.img} alt={nft.name} className="trade-img" />
-        <h3>{nft.name}</h3>
-        <div className="price-input-container">
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            placeholder="가격을 입력하세요"
-            className="price-input"
-            min="1"
-          />
-        </div>
+        <img src={nft?.imageUrl} className="trade-img" alt="" />
+        <h3>{nft?.collectionName}</h3>
+        <input
+          type="number"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          className="price-input"
+          placeholder="가격을 입력하세요"
+        />
         <div className="trade-buttons">
-          <button className="bid-btn" onClick={handleSubmit}>
-            판매 등록
-          </button>
-          <button
-            className="cancel-btn"
-            onClick={() => setShowPriceModal(false)}
-          >
-            취소
-          </button>
+          <button className="bid-btn" onClick={handleSubmit}>판매 등록</button>
+          <button className="cancel-btn" onClick={() => setShowPriceModal(false)}>취소</button>
         </div>
       </div>
     </div>
@@ -166,19 +205,12 @@ function Trade({ item, setShow, handleBuyNFT }) {
     <div className="trade-content" onClick={() => setShow(false)}>
       <div className="trade-modal-inner" onClick={(e) => e.stopPropagation()}>
         <h2>구입하기</h2>
-        <img src={item.img} alt={item.name} className="trade-img" />
-        <h3>{item.name}</h3>
-        <div className="trade-info">
-          <p>6일후 마감</p>
-          <p className="item-price">{item.price}p</p>
-        </div>
+        <img src={item?.imageUrl} className="trade-img" alt="" />
+        <h3>{item?.collectionName}</h3>
+        <p className="item-price">{item?.price}p</p>
         <div className="trade-buttons">
-          <button className="bid-btn" onClick={() => handleBuyNFT(item)}>
-            구입하기
-          </button>
-          <button className="cancel-btn" onClick={() => setShow(false)}>
-            취소
-          </button>
+          <button className="bid-btn" onClick={() => handleBuyNFT(item)}>구입하기</button>
+          <button className="cancel-btn" onClick={() => setShow(false)}>취소</button>
         </div>
       </div>
     </div>
@@ -189,32 +221,19 @@ function Buy({ sample, trademain, setSell, sell }) {
   return (
     <div className="Mcon">
       <div className="mtitle">
-        거래소
-        <div className="sell">
-          <button className="sbt" onClick={() => setSell(!sell)}>
-            판매하기
-          </button>
-        </div>
+        거래소{" "}
+        <button className="sbt" onClick={() => setSell(!sell)}>판매하기</button>
       </div>
       <div className="market">
-        {sample.map((item) => {
-          return (
-            <div
-              key={item.id}
-              className="tradecon"
-              onClick={() => trademain(item)}
-            >
-              <div className="pro">
-                <img src={item.img} className="mimg" alt={item.name} />
-                <div>{item.name}</div>
-              </div>
-              <div className="sub">
-                <p>6일후 마감</p>
-                <p>{item.price}p</p>
-              </div>
+        {sample.map((item, idx) => (
+          <div key={item.tokenId || idx} className="tradecon" onClick={() => trademain(item)}>
+            <div className="pro">
+              <img src={item.imageUrl} className="mimg" alt="" />
+              <div>{item.collectionName}</div>
             </div>
-          );
-        })}
+            <div className="sub"><p>{item.price}p</p></div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -224,35 +243,23 @@ function Sell({ setSell, sell, myNFTs, openPriceModal }) {
   return (
     <div className="Mcon">
       <div className="mtitle">
-        판매하기
-        <div className="sell">
-          <button className="sbt" onClick={() => setSell(!sell)}>
-            구매하기
-          </button>
-        </div>
+        판매하기{" "}
+        <button className="sbt" onClick={() => setSell(!sell)}>구매하기</button>
       </div>
-      <div style={{ padding: "20px",backgroundColor:"#f9f9f9" }} >팔 NFT를 선택하세요</div>
       <div className="market">
-        {myNFTs.map((nft) => {
-          return (
-            <div
-              key={nft.id}
-              className="tradecon"
-              onClick={() => openPriceModal(nft)}
-            >
-              <div className="pro">
-                <img src={nft.img} className="mimg" alt={nft.name} />
-                <div>{nft.name}</div>
-              </div>
-              <div className="sub">
-                <p>판매하기</p>
-              </div>
+        {myNFTs.map((nft, idx) => (
+          <div key={nft.tokenId || idx} className="tradecon" onClick={() => openPriceModal(nft)}>
+            <div className="pro">
+              <img src={nft.imageUrl} className="mimg" alt="" />
+              <div>{nft.collectionName}</div>
             </div>
-          );
-        })}
+            <div className="sub"><p>판매하기</p></div>
+          </div>
+        ))} 
       </div>
     </div>
   );
 }
+//기모찌
 
 export default Market;

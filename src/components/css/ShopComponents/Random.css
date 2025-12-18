@@ -1,0 +1,108 @@
+/* 기존에 주신 CSS는 그대로 유지됩니다 */
+.shopcon {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../../img/MypageProfile/BackgroundImg.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.bt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gacha-button {
+  background-color: rgba(255, 240, 222, 1);
+  border: 2px solid rgba(255, 190, 133, 1);
+  width: 30rem;
+  height: 3rem;
+  border-radius: 15px;
+  color: rgba(254, 132, 1, 1);
+  cursor: pointer;
+}
+.random {
+  width: 550px;
+  height: 550px;
+  object-fit: contain;
+}
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* --- 모달 및 애니메이션 CSS --- */
+
+.result-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
+}
+
+.result-modal {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  min-width: 350px;
+}
+
+.result-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.result-card {
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100px;
+}
+
+.res-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.point-box {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.close-bt {
+  background-color: rgba(254, 132, 1, 1);
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* 흔들기 애니메이션 (1초 고정용) */
+.vibrate {
+  animation: shake 0.1s infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(5px, 5px) rotate(5deg); }
+  50% { transform: translate(0, 0) rotate(0deg); }
+  75% { transform: translate(-5px, 5px) rotate(-5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}

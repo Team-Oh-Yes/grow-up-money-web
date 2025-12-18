@@ -159,6 +159,7 @@ button:not(.Topbutton)::after {
 .login-btn {
   background: #ff8707 !important;
   color: white !important;
+  width: 7rem !important;
   border: none !important;
   border-radius: 8px !important;
   font-weight: bold !important;
@@ -261,9 +262,6 @@ button:not(.Topbutton):hover {
   .maintitle {
     left: 4px;
     bottom: 20px;
-  }
-  p {
-    font-size: 22px;
   }
   .MainFrame {
     height: calc(100vh - 68px);

@@ -1,189 +1,50 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import '../../css/Admincss/Admin-USER.css';
-import search from '../../../img/searchIcon.svg';
-import StatusPopup from './Admin-USER-status.jsx';
+import { useState } from 'react';
+import '../../css/Admincss/Admin-FT-collections.css';
+import { toast } from 'react-toastify';
 import axiosInstance from '../../api/axiosInstance';
+import Popup from './Popup';
 
-// 페이지네이션 상수
-const DEFAULT_PAGE = 0;
-const DEFAULT_SIZE = 10;
-
-// 한글 검색 유틸리티 함수
-const hangulIncludes = (text, search) => {
-    if (!search) return true;
-
-    const normalize = (str) => str.toLowerCase().replace(/\s/g, '');
-    const normalizedText = normalize(text);
-    const normalizedSearch = normalize(search);
-
-    // 기본 포함 검색
-    if (normalizedText.includes(normalizedSearch)) return true;
-
-    // 초성 검색
-    const CHO = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-
-    const getChosung = (char) => {
-        const code = char.charCodeAt(0);
-        if (code >= 44032 && code <= 55203) {
-            return CHO[Math.floor((code - 44032) / 588)];
-        }
-        return char;
-    };
-
-    const textChosung = Array.from(normalizedText).map(getChosung).join('');
-    return textChosung.includes(normalizedSearch);
-};
-
-// 상수 정의
-const USER_STATUS = {
-    ACTIVE: '정상',
-    NORMAL: '정상',
-    SUSPENDED: '계정 정지',
-    PERMANENT: '영구 정지',
-    ONE_DAY: '1일 정지',
-    THREE_DAYS: '3일 정지',
-    ONE_WEEK: '1주 정지',
-    ONE_MONTH: '1달 정지'
-};
-
-
-const ACTION_TYPES = {
-    BAN: 'ban',
-    POINT: 'point',
-    RECOVER: 'recover'
-};
-
-// 검색바 컴포넌트
-const SearchBar = ({ value, onChange }) => (
-    <div className="search-bar">
-        <div>
-            <img src={search} alt="검색아이콘" />
-        </div>
-        <input
-            type="text"
-            placeholder="유저 ID를 입력해주세요. (초성 검색 가능)"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-        />
-    </div>
-);
-
-// 액션 버튼 컴포넌트
-const ActionButton = ({ type, status, onClick, disabled }) => {
-    const buttonConfig = {
-        [ACTION_TYPES.BAN]: {
-            label: '계정 정지',
-            className: 'btn-status',
-            isActive: status !== USER_STATUS.NORMAL
-        },
-        [ACTION_TYPES.POINT]: {
-            label: '포인트 지급',
-            className: 'btn-point',
-            isActive: false
-        },
-        [ACTION_TYPES.RECOVER]: {
-            label: '유저 계정 복구',
-            className: 'btn-recover',
-            isActive: status !== USER_STATUS.NORMAL
-        }
-    };
-
-    const config = buttonConfig[type];
-
-    return (
-        <button
-            className={`${config.className} ${config.isActive ? 'active' : ''}`}
-            onClick={onClick}
-            disabled={disabled}
-        >
-            {config.label}
-        </button>
-    );
-};
-
-// 유저 행 컴포넌트
-const UserRow = React.memo(({ user, onAction, onBanClick }) => {
-    return (
-        <tr>
-            <td>{user.id}</td>
-            <td>{user.role}</td>
-            <td>{user.email}</td>
-            <td className={user.status === USER_STATUS.NORMAL ? 'status-normal' : 'status-banned'}>
-                {user.status}
-            </td>
-            <td>
-                <ActionButton
-                    type={ACTION_TYPES.BAN}
-                    status={user.status}
-                    onClick={() => onBanClick(user)}
-                    disabled={user.status !== USER_STATUS.NORMAL}
-                />
-            </td>
-            <td>
-                <ActionButton
-                    type={ACTION_TYPES.POINT}
-                    status={user.status}
-                    onClick={() => onAction(user.id, ACTION_TYPES.POINT)}
-                />
-            </td>
-            <td>
-                <ActionButton
-                    type={ACTION_TYPES.RECOVER}
-                    status={user.status}
-                    onClick={() => onAction(user.id, ACTION_TYPES.RECOVER)}
-                    disabled={user.status === USER_STATUS.NORMAL}
-                />
-            </td>
-        </tr>
-    );
-});
-
-// 빈 상태 컴포넌트
-const EmptyState = () => (
-    <tr>
-        <td colSpan="6" style={{ textAlign: 'center', padding: '20px', color: '#999' }}>
-            검색 결과가 없습니다
-        </td>
-    </tr>
-);
-
-// 로딩 상태 컴포넌트
-const LoadingState = () => (
-    <tr>
-        <td colSpan="6" style={{ textAlign: 'center', padding: '20px', color: '#666' }}>
-            로딩 중...
-        </td>
-    </tr>
-);
-
-// 메인 컴포넌트
-export default function UserManagement() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [users, setUsers] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [pagination, setPagination] = useState({
-        currentPage: DEFAULT_PAGE,
-        totalPages: 0,
-        totalElements: 0,
-        size: DEFAULT_SIZE,
-        isFirst: true,
-        isLast: true
+const AdminFTCollections = ({ onClose, onSuccess }) => {
+    const [formData, setFormData] = useState({
+        themeId: 0,
+        name: "",
+        rarity: "COMMON",
+        image2dUrl: "",
+        image3dUrl: "",
+        maxSupply: 1,
+        description: ""
     });
 
-    // 팝업 상태
-    const [selectedUser, setSelectedUser] = useState(null);
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const handleChange = (e) => {
+        const { name, value, type } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: type === 'number' ? parseInt(value) || 0 : value
+        }));
+    };
 
-    // 유저 목록 가져오기
-    const GetUserRow = async (page = DEFAULT_PAGE, size = DEFAULT_SIZE) => {
+    const handleSubmit = async () => {
+        // 필수 필드 검증
+        if (!formData.name || !formData.themeId) {
+            toast.error("컬렉션명과 테마 ID는 필수입니다.");
+            return;
+        }
+
         try {
-            setIsLoading(true);
-            const res = await axiosInstance.get("/admin/users/", {
-                params: { page, size }
-            });
+            const payload = {
+                themeId: formData.themeId,
+                name: formData.name,
+                rarity: formData.rarity,
+                image2dUrl: formData.image2dUrl,
+                image3dUrl: formData.image3dUrl,
+                maxSupply: formData.maxSupply,
+                description: formData.description
+            };
 
-            // API 응답에서 content 배열과 페이지네이션 정보 추출
-            const data = res.data;
+            await axiosInstance.post('/admin/nft/collections', payload);
+            toast.success("컬렉션이 성공적으로 생성되었습니다!");
+            if (onSuccess) onSuccess();
+            onClose();
 
             // 디버깅: 실제 유저 데이터 확인
             console.log('API Response - User data:', data.content);
@@ -214,96 +75,102 @@ export default function UserManagement() {
             });
 
         } catch (error) {
-            console.error("유저 목록을 불러오는데 실패했습니다", error);
-            setUsers([]);
-        } finally {
-            setIsLoading(false);
+            console.error("컬렉션 생성 실패:", error);
+            toast.error("컬렉션 생성에 실패했습니다.");
         }
-    }
-
-
-
-    // 컴포넌트 마운트 시 유저 목록 로드
-    useEffect(() => {
-        GetUserRow();
-    }, []);
-
-    // 필터링된 유저 목록
-    const filteredUsers = useMemo(() => {
-        if (!searchTerm.trim()) return users;
-        return users.filter(user => hangulIncludes(user.id, searchTerm));
-    }, [users, searchTerm]);
-
-    // 계정 정지 버튼 클릭 시 팝업 오픈
-    const handleBanClick = useCallback((user) => {
-        setSelectedUser(user);
-        setIsPopupOpen(true);
-    }, []);
-
-    // 팝업 닫기 핸들러
-    const handleClosePopup = useCallback(() => {
-        setIsPopupOpen(false);
-        setSelectedUser(null);
-    }, []);
-
-    // 액션 핸들러 (포인트 지급, 복구)
-    const handleAction = useCallback(async (userId, actionType) => {
-        if (actionType === ACTION_TYPES.RECOVER) {
-            try {
-                await axiosInstance.post(`/admin/users/${userId}/unsuspend`);
-                alert(`${userId} 계정이 복구되었습니다.`);
-                // 유저 목록 새로고침
-                GetUserRow();
-            } catch (error) {
-                console.error("계정 복구에 실패했습니다", error);
-                alert("계정 복구에 실패했습니다.");
-            }
-        } else if (actionType === ACTION_TYPES.POINT) {
-            alert(`${userId}에게 포인트를 지급합니다.`);
-        }
-    }, []);
+    };
 
     return (
-        <div>
-            <SearchBar value={searchTerm} onChange={setSearchTerm} />
+        <Popup onClose={onClose} title="NFT 컬렉션 생성" width="600px">
+            <div className="nft-form">
+                <div className="form-group">
+                    <label>테마 ID *</label>
+                    <input
+                        type="number"
+                        name="themeId"
+                        value={formData.themeId}
+                        onChange={handleChange}
+                        placeholder="테마 ID를 입력하세요"
+                    />
+                </div>
 
-            <table className="user-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>권한</th>
-                        <th>이메일</th>
-                        <th>계정 상태</th>
-                        <th>상태 제어</th>
-                        <th>포인트 지급</th>
-                        <th>계정 복구</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {isLoading ? (
-                        <LoadingState />
-                    ) : filteredUsers.length > 0 ? (
-                        filteredUsers.map(user => (
-                            <UserRow
-                                key={user.id}
-                                user={user}
-                                onAction={handleAction}
-                                onBanClick={() => handleBanClick(user)}
-                            />
-                        ))
-                    ) : (
-                        <EmptyState />
-                    )}
-                </tbody>
-            </table>
+                <div className="form-group">
+                    <label>컬렉션명 *</label>
+                    <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="컬렉션명을 입력하세요"
+                    />
+                </div>
 
-            {/* 팝업 렌더링 */}
-            {isPopupOpen && (
-                <StatusPopup
-                    user={selectedUser}
-                    onClose={handleClosePopup}
-                />
-            )}
-        </div>
+                <div className="form-group">
+                    <label>희귀도</label>
+                    <select
+                        name="rarity"
+                        value={formData.rarity}
+                        onChange={handleChange}
+                    >
+                        <option value="COMMON">COMMON</option>
+                        <option value="RARE">RARE</option>
+                        <option value="EPIC">EPIC</option>
+                        <option value="LEGENDARY">LEGENDARY</option>
+                    </select>
+                </div>
+
+                <div className="form-group">
+                    <label>2D 이미지 URL</label>
+                    <input
+                        type="text"
+                        name="image2dUrl"
+                        value={formData.image2dUrl}
+                        onChange={handleChange}
+                        placeholder="2D 이미지 URL을 입력하세요"
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>3D 이미지 URL</label>
+                    <input
+                        type="text"
+                        name="image3dUrl"
+                        value={formData.image3dUrl}
+                        onChange={handleChange}
+                        placeholder="3D 이미지 URL을 입력하세요"
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>최대 공급량</label>
+                    <input
+                        type="number"
+                        name="maxSupply"
+                        value={formData.maxSupply}
+                        onChange={handleChange}
+                        placeholder="최대 공급량"
+                        min="1"
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>설명</label>
+                    <textarea
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        placeholder="컬렉션 설명을 입력하세요"
+                        rows="4"
+                    />
+                </div>
+
+                <div className="form-actions">
+                    <button className="btn-cancel" onClick={onClose}>취소</button>
+                    <button className="btn-submit" onClick={handleSubmit}>생성하기</button>
+                </div>
+            </div>
+        </Popup>
     );
-}
+};
+
+export default AdminFTCollections;

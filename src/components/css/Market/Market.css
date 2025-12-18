@@ -1,8 +1,3 @@
-/*
- * 파일: Market.css
- * 목표: 배경색 #f9f9f9에 맞추어 디자인 일관성 및 시각적 계층 구조 개선
- */
-
 /* ========================================================================= */
 /* 1. 기본 레이아웃 및 컨테이너 */
 /* ========================================================================= */
@@ -14,10 +9,9 @@
   justify-content: flex-start;
   align-items: stretch;
   flex-direction: column;
-  background-color: #ffffff; /* (전체 컨테이너 배경 유지) */
+  background-color: #ffffff;
 }
 
-/* 마켓 목록 컨테이너 (스크롤 영역) */
 .market {
   display: flex;
   flex-direction: column;
@@ -27,10 +21,9 @@
   overflow-y: auto;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  background-color: #f9f9f9 !important; /* 배경색 설정 */
+  background-color: #f9f9f9 !important;
 }
 
-/* 스크롤바 스타일링 (배경색에 맞춰 트랙 색상 조정) */
 .market::-webkit-scrollbar {
   width: 6px;
 }
@@ -55,7 +48,7 @@
 
 .mtitle {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   font-size: 2rem;
   font-weight: 700;
@@ -63,14 +56,10 @@
   position: relative;
   padding: 1.5rem 0;
   flex-shrink: 0;
-  /* 제목 아래 구분선을 더 얇게 처리하여 깔끔하게 분리 */
   border-bottom: 1px solid #e0e0e0;
-  background-color: #f9f9f9; /* 배경색 설정 */
-  /* 제목 영역과 스크롤 영역이 자연스럽게 연결되도록 그림자 제거 */
+  background-color: #f9f9f9;
 }
 .sell {
-  position: absolute;
-  right: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,7 +73,7 @@
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* 버튼 그림자 강화 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   transition: all 0.2s;
 }
 .sbt:hover {
@@ -104,14 +93,14 @@
   cursor: pointer;
   padding: 1.2rem;
   border-radius: 12px;
-  background-color: #ffffff; /* 항목 배경을 흰색으로 두어 #f9f9f9 배경 위에서 돋보이게 함 */
-  border: 1px solid #ffffff; /* 경계선을 흰색으로 두어 #f9f9f9 배경과 대비 */
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); /* 항목이 떠 있는 듯한 은은한 그림자 */
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
 .tradecon:hover {
-  background-color: #fffaf5; /* 호버 시 미세한 색상 변화 */
+  background-color: #fffaf5;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
@@ -119,10 +108,9 @@
   width: 60px;
   height: 60px;
   padding: 5px;
-
   object-fit: contain;
   border-radius: 8px;
-  background-color: #f0f0f0; /* 이미지 배경을 연한 회색으로 */
+  background-color: #f0f0f0;
   border: 1px solid #e5e5e5;
 }
 .pro {
@@ -153,15 +141,6 @@
 p {
   margin: 0px;
 }
-.market + div {
-  font-size: 1.1rem;
-  color: #555;
-  padding: 0 1.5rem;
-  margin-top: 0.5rem;
-  margin-bottom: -0.2rem;
-  font-weight: 500;
-}
-
 
 /* ========================================================================= */
 /* 4. 모달 스타일 */
@@ -182,7 +161,7 @@ p {
 }
 
 .trade-modal-inner {
-  background-color: white; /* 배경색 유지 */
+  background-color: white;
   border-radius: 20px;
   padding: 2.5rem;
   max-width: 450px;
@@ -216,22 +195,6 @@ h3 {
   color: #fe9c32;
 }
 
-.trade-info {
-  display: flex;
-  gap: 2rem;
-  justify-content: space-around;
-  width: 100%;
-  padding: 1rem 0;
-  border-top: 1px dashed #ddd;
-  border-bottom: 1px dashed #ddd;
-}
-
-.trade-info p {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #555;
-}
-
 .trade-content input {
   width: 100%;
   padding: 1rem;
@@ -239,13 +202,7 @@ h3 {
   border: 1px solid #ddd;
   border-radius: 8px;
   outline: none;
-  transition: border-color 0.3s;
   text-align: center;
-}
-
-.trade-content input:focus {
-  border-color: #fe9c32;
-  box-shadow: 0 0 0 3px rgba(254, 156, 50, 0.2);
 }
 
 .trade-buttons {
@@ -264,7 +221,6 @@ h3 {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .bid-btn {
@@ -272,17 +228,53 @@ h3 {
   color: white;
 }
 
-.bid-btn:hover {
-  transform: translateY(-2px);
-  background-color: #dc7c15;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
 .cancel-btn {
   background-color: #e9ecef;
   color: #495057;
 }
 
-.cancel-btn:hover {
-  background-color: #ced4da;
+/* ========================================================================= */
+/* 5. 로딩 스타일 (중앙 정렬 수정 완료) */
+/* ========================================================================= */
+
+.loading-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  z-index: 2000;           
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #fe9c32; /* 앱 테마색으로 변경 */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
 }

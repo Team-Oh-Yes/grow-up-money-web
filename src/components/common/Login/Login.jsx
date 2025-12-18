@@ -3,7 +3,6 @@ import '../../css/LoginAndSignUp/Login.css';
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 // AxiosInstance import
 import axiosInstance from '../../api/axiosInstance';
@@ -85,7 +84,7 @@ export default function Login() {
                 console.log('로그인 성공:', response.data);
 
                 // 메인 페이지로 이동하면서 state 전달
-                navigate('/my', { state: { loginSuccess: true } });
+                navigate('/roadmap', { state: { loginSuccess: true } });
             })
 
             // 실패 시

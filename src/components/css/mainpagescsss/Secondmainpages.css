@@ -3,12 +3,11 @@
 /* "최신 소식" 전체 섹션 */
 .latest-news {
   width: 100%;
-  margin: 50px 0;
-  padding-left: 29px;
+  padding: 50px 29px 60px 29px;
   font-family: "Pretendard";
   box-sizing: border-box;
   position: relative;
-  padding-right: 29px;
+  background-color: #F5F5F5;
 }
 
 /* "최신 소식" 헤더 (제목 + 화살표) */
@@ -17,7 +16,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 /* 헤더 제목 ("최신 소식") */
@@ -32,10 +31,9 @@
 
 /* 헤더 화살표 */
 .header-arrow {
-  font-size: 24px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #888;
+  min-height: 31px;
+  min-width: 18px;
+  margin-right: 9px;
   background-color: transparent;
   border: none;
 }
@@ -44,13 +42,24 @@
 .card-list {
   display: flex;
   gap: 20px;
+  row-gap: 30px;
+  flex-wrap: wrap; /* 여러 줄 허용 */
 }
 
 /* 개별 뉴스 카드 한 개 */
 .news-card {
-  flex: 1;
+  flex: 0 0 calc((100% - 40px) / 3); /* 가로 3개 배치 (간격 20px 두 개 제외) */
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* responsive: 2 columns on medium, 1 column on small screens */
+@media (max-width: 1024px) {
+  .news-card { flex: 0 0 calc((100% - 20px) / 2); }
+}
+@media (max-width: 520px) {
+  .news-card { flex: 0 0 100%; }
 }
 
 /* 카드 이미지 영역 */
@@ -59,12 +68,33 @@
   padding-top: 60%;
   position: relative;
   background-color: #f0f0f0;
-  background-image: linear-gradient(45deg, #ddd 25%, transparent 25%),
-    linear-gradient(-45deg, #ddd 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #ddd 75%),
-    linear-gradient(-45deg, transparent 75%, #ddd 75%);
-  background-size: 20px 20px;
+  background-image: url('../../../img/MainPage/BackgroundImg.svg');
+  background-size: cover;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.news-card-1 {
+  background-image: url('../../../img/MainPage/TossPayments.svg');
+}
+
+.news-card-2 {
+  background-image: url('../../../img/MainPage/Premium.svg');
+}
+
+.news-card-3 {
+  background-image: url('../../../img/MainPage/ApplePay.svg');
+}
+
+.news-card-4 {
+  background-image: url('../../../img/MainPage/1update.svg');
+}
+
+.news-card-5 {
+  background-image: url('../../../img/MainPage/BetaTester.svg');
+}
+
+.news-card-6 {
+  background-image: url('../../../img/MainPage/05update.svg');
 }
 
 .header-title {

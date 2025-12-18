@@ -4,13 +4,55 @@
 
 .rcon {
   height: 100%;
-  width: 28rem !important;
-  display: flex;
+  width: 29rem;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  padding-right: 2.4rem;
 }
-
+.ho {
+  overflow: hidden;
+  position: relative;
+}
+.sp1 {
+  width: 25rem;
+  height: 25rem;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  right: -8rem;
+}
+.sp2 {
+  width: 25rem;
+  height: 25rem;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  right: -11rem;
+}
+.sp3 {
+  width: 25rem;
+  height: 25rem;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  right: -11rem;
+}
+.sp4 {
+  width: 25rem;
+  height: 25rem;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  right: -12rem;
+}
+.sp5 {
+  width: 25rem;
+  height: 25rem;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  right: -12rem;
+}
 .topbar-progress-background {
   flex: 1;
   height: 2rem;
@@ -36,16 +78,14 @@
   align-items: center;
 }
 /* 2. 768px ~ 1920px 사이: 16px에서 20px로 점점 커짐 (유동적 범위) */
-@media (min-width: 768px) and (max-width: 1920px) {
+/* @media (min-width: 768px) and (max-width: 1920px) {
   :root {
     font-size: calc(16px + (20 - 16) * ((100vw - 768px) / (1920 - 768)));
   }
-}
+} */
 body {
   margin: 0px;
   position: relative;
-}
-@media (max-width: 1024px) {
 }
 
 .maincon {
@@ -55,7 +95,7 @@ body {
   overflow: hidden;
 }
 
-.title {
+.logo-title {
   color: #fe8401;
   font-family: Pretendard;
   font-size: 2rem;
@@ -64,8 +104,18 @@ body {
   line-height: normal;
 }
 
+.mainpage-mini-title {
+  color: #fe8401;
+  font-family: Pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 29px;
+}
+
 .box {
-  width: 12rem;
+  width: 100%;
   height: 3rem;
   display: flex;
   padding: 0.5rem 7rem 0.5rem 1rem;
@@ -79,9 +129,21 @@ body {
   transition: all 0.2s ease;
   cursor: pointer;
 }
+.king {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
 
-img {
-  margin-right: 0.5rem;
+.kingbox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 3rem;
+  left: 0rem;
+  padding-right: 1rem;
 }
 
 .box:hover {
@@ -94,11 +156,12 @@ img {
   width: auto !important;
   white-space: nowrap;
   margin: 0px;
+  margin-left: 16px;
 }
 
 .boxactive {
   color: #fe8401;
-  width: 12rem;
+  width: 100%;
   height: 3rem;
   display: flex;
   padding: 0.5rem 7rem 0.5rem 1rem;
@@ -114,6 +177,7 @@ img {
   width: auto !important;
   white-space: nowrap;
   margin: 0px;
+  margin-left: 16px;
 }
 .QA {
   margin: 0 !important;
@@ -126,7 +190,7 @@ img {
   align-items: flex-start;
   gap: 14px;
   top: 17%;
-  left: 1.5rem;
+  /* left: 1.5rem; */
 }
 
 .changebox {
@@ -146,12 +210,23 @@ h5 {
   font-weight: 700;
   line-height: normal;
   margin: 0;
-  margin-right: 3rem;
+}
+.case {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
 }
 
 .img {
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-right: 0.5rem;
+}
+.icon {
+  margin-right: 3px !important;
 }
 
 .premiun {
@@ -169,7 +244,7 @@ h5 {
   width: 100%;
   box-sizing: border-box;
   display: flex;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   overflow: hidden;
   /* padding: 0rem 2rem 1.5rem 2rem !important; */
 }
@@ -185,7 +260,6 @@ h5 {
   margin-bottom: 10px;
   padding-bottom: 15px;
   padding: 0rem 2rem 1.5rem 2rem !important;
-
   /* 이전 코드에서 제거된 부분: overflow: hidden; 및 border-radius: 15px; */
 }
 
@@ -195,11 +269,12 @@ h5 {
   height: 100%;
   background: #fe8d67;
   flex-shrink: 0;
-  opacity: 0.4;
+  /* opacity: 0.4; */
   transition: all 1s ease;
   /* [수정] 왼쪽 모서리 둥글게 */
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
+  cursor: pointer;
 }
 .Second {
   background-color: #feb567;
@@ -246,6 +321,7 @@ h5 {
   flex-shrink: 0;
   opacity: 0.4;
   transition: all 1s ease;
+  cursor: pointer;
 }
 .ho:hover {
   opacity: 1;
@@ -312,4 +388,19 @@ h5 {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.topbar-left-content {
+  display: flex;
+  align-items: center;
+  width: auto;
+  margin-right: 1rem;
+}
+
+.top-title-text {
+  font-size: 28px;
+  font-weight: 500;
+  color: #000000;
+  margin-left: 48px; /* 화살표 버튼 위치와 맞춤 */
 }

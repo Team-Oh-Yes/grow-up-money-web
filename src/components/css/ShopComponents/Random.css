@@ -60,7 +60,7 @@
 .result-modal {
   background: white;
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 12px;
   text-align: center;
   min-width: 350px;
 }
@@ -68,16 +68,22 @@
 .result-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 12px;
   justify-content: center;
-  margin: 20px 0;
+  margin: 40px 0;
 }
 
 .result-card {
   border: 1px solid #eee;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   width: 100px;
+}
+
+/* NFT 보상일 때 강조 테두리 색상 */
+.result-card.nft {
+  border-color: #FE8401;
+  background-color: #FFF0DE;
 }
 
 .res-img {
@@ -95,7 +101,7 @@
   background-color: rgba(254, 132, 1, 1);
   color: white;
   border: none;
-  padding: 10px 30px;
+  padding: 10px 60px;
   border-radius: 10px;
   cursor: pointer;
 }

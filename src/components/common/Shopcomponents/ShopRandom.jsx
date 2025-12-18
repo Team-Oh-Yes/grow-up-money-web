@@ -84,7 +84,7 @@ function ShopRandom() {
             <h2>뽑기 결과</h2>
             <div className="result-container">
               {results.map((item, idx) => (
-                <div key={idx} className="result-card">
+                <div key={idx} className={`result-card ${item.rewardType === "NFT" ? "nft" : ""}`}>
                   {item.rewardType === "NFT" ? (
                     <>
                       <img src={item.nftImageUrl} alt={item.nftName} className="res-img" />

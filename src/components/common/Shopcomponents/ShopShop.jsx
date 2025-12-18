@@ -8,75 +8,40 @@ export default function StorePage() {
         price: 1000
     });
 
-    return (
+    const renderProductCard = (product, index) => (
+        <div key={index} className="product-wrapper">
+            <div className="product-card">
+                <div className="product-image"></div>
 
-            <div className="store-container">
+                <div className="product-info">
+                    <div className="info-content">
+                        <div className="product-name">{product.name}</div>
 
-                <div className="products-container">
-                    <div className="product-row">
-                        {products.slice(0, 5).map((product, index) => (
-                            <div key={index} className="product-wrapper">
-                                <div className="product-card">
-                                    <div className="product-image"></div>
-                                    <div className="product-info">
-                                        <div className="info-content">
-                                            <div className="product-name">{product.name}</div>
-                                            <div className="price-container">
-                                                <div className="price-content">
-                                                    <div className="diamond-icon"></div>
-                                                    <div className="price-text">{product.price}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div className="price-container">
+                            <div className="price-content">
+                                <div className="diamond-icon"></div>
+                                <div className="price-text">{product.price}</div>
                             </div>
-                        ))}
-                    </div>
-
-                    <div className="product-row">
-                        {products.slice(5, 10).map((product, index) => (
-                            <div key={index} className="product-wrapper">
-                                <div className="product-card">
-                                    <div className="product-image"></div>
-                                    <div className="product-info">
-                                        <div className="info-content">
-                                            <div className="product-name">{product.name}</div>
-                                            <div className="price-container">
-                                                <div className="price-content">
-                                                    <div className="diamond-icon"></div>
-                                                    <div className="price-text">{product.price}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="product-row">
-                        {products.slice(10, 15).map((product, index) => (
-                            <div key={index} className="product-wrapper">
-                                <div className="product-card">
-                                    <div className="product-image"></div>
-                                    <div className="product-info">
-                                        <div className="info-content">
-                                            <div className="product-name">{product.name}</div>
-                                            <div className="price-container">
-                                                <div className="price-content">
-                                                    <div className="diamond-icon"></div>
-                                                    <div className="price-text">{product.price}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                        </div>
                     </div>
                 </div>
             </div>
-        
+        </div>
+    );
+
+    const renderProductRow = (products, startIndex) => (
+        <div className="product-row">
+            {products.slice(startIndex, startIndex + 5).map(renderProductCard)}
+        </div>
+    );
+
+    return (
+        <div className="store-container">
+            <div className="products-container">
+                {renderProductRow(products, 0)}
+                {renderProductRow(products, 5)}
+                {renderProductRow(products, 10)}
+            </div>
+        </div>
     );
 }

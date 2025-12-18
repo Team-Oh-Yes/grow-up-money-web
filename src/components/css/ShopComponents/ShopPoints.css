@@ -101,7 +101,9 @@
   width: 20px;
   margin-left: 6px;
 }
-
+.toss-pay-btn{
+    color: #ffffff !important;
+}
 /* 결제 버튼 정렬 및 스타일 */
 .confirm-pay-btn {
   width: 8em;

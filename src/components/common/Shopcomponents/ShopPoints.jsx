@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import pointsIcon from "../../../img/Icon/bouncepoint.svg";
-import diaIcon from "../../../img/Icon/diamond.svg";
 import axiosInstance from "../../api/axiosInstance";
+import dia from "../../../img/logo/diam.svg";
 import "../../css/ShopComponents/ShopPoints.css";
 
 const ShopPoints = () => {
@@ -10,16 +10,16 @@ const ShopPoints = () => {
   const [diamondCost, setDiamondCost] = useState(2500);
 
   const packages = [
-    { id: 1, points: 500, price: 10000 },
-    { id: 2, points: 1000, price: 10000 },
-    { id: 3, points: 2500, price: 10000 },
-    { id: 4, points: 5000, price: 10000 },
-    { id: 5, points: 10000, price: 10000 },
+    { id: 1, points: 500, price: 1000 },
+    { id: 2, points: 1000, price: 2000 },
+    { id: 3, points: 2500, price: 3000 },
+    { id: 4, points: 5000, price: 4000 },
+    { id: 5, points: 10000, price: 5000 },
   ];
 
   useEffect(() => {
     const num = parseInt(inputPoints) || 0;
-    setDiamondCost(num * 5);
+    setDiamondCost(num * 5); // 포인트당 5다이아 가정
   }, [inputPoints]);
 
   const handlePackageClick = (pkg) => {
@@ -35,31 +35,34 @@ const ShopPoints = () => {
 
   const handleExchange = async () => {
     const finalPoints = parseInt(inputPoints);
-    if (!finalPoints || finalPoints <= 0) return alert("수량을 입력해주세요.");
+    if (!finalPoints || finalPoints <= 0) {
+      alert("수량을 입력해주세요.");
+      return;
+    }
+
     try {
-      await axiosInstance.post("/exchange/points", {
-        points: finalPoints,
-        cost: diamondCost,
+      // 사용자가 요청한 {"amount": 수량} 형식 적용
+      await axiosInstance.post("/shop/points/exchange", {
+        amount: finalPoints,
       });
+
       alert("환전이 완료되었습니다!");
       window.dispatchEvent(new Event("refreshUserData"));
     } catch (error) {
-      alert("다이아몬드가 부족합니다.");
+      alert(error.response?.data?.message || "다이아몬드가 부족합니다.");
     }
   };
 
   return (
     <div className="shop-points-container">
-      {/* 상단 섹션 */}
       <div className="shop-header-area">
         <div className="shop-header-title-row">
           <h1 className="shop-title">포인트 환전</h1>
         </div>
 
         <div className="shop-flex-layout">
-          {/* 왼쪽: 입력창 구역 */}
           <div className="input-field-group">
-            <img src={pointsIcon} className="point-main-logo" alt="pts" />
+            <img src={dia} className="point-main-logo" alt="pts" />
             <div className="orange-input-box">
               <input
                 type="text"
@@ -71,21 +74,19 @@ const ShopPoints = () => {
             </div>
           </div>
 
-          {/* 오른쪽: 결제 및 요약 구역 */}
           <div className="payment-summary-group">
             <div className="summary-info-text">
-              구매 포인트 : <img src={pointsIcon} className="icon-xs" alt="p" />
-              <strong>{Number(inputPoints).toLocaleString()}</strong>
+              구매 포인트 : <img src={dia} className="icon-xs" alt="p" />
+              <strong>{Number(inputPoints || 0).toLocaleString()}</strong>
             </div>
             <button className="confirm-pay-btn" onClick={handleExchange}>
-              <img src={diaIcon} className="icon-btn-sm" alt="d" />
+              <img src={pointsIcon} className="icon-btn-sm" alt="d" />
               <span className="cost-text">{diamondCost.toLocaleString()}</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* 하단 그리드 영역 */}
       <div className="shop-grid-area">
         <div className="points-grid">
           {packages.map((pkg) => (
@@ -95,14 +96,14 @@ const ShopPoints = () => {
               onClick={() => handlePackageClick(pkg)}
             >
               <div className="card-top-img">
-                <img src={pointsIcon} alt="pts" />
+                <img src={dia} alt="pts" />
               </div>
               <div className="card-bottom-info">
                 <p className="pts-label">
                   {pkg.points.toLocaleString()} 포인트
                 </p>
                 <div className="pts-price-tag">
-                  💰 {pkg.price.toLocaleString()}원
+                  {pkg.price.toLocaleString()}원
                 </div>
               </div>
             </div>

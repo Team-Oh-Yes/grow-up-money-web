@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import random from "../../../img/random/뽑기통.svg";
 import axiosInstance from "../../api/axiosInstance";
+import { toast } from 'react-toastify';
 import "../../css/ShopComponents/Random.css";
 import dia from '../../../img/Icon/randomdia.svg';
 
@@ -36,8 +37,8 @@ function ShopRandom() {
         refreshUserData();
       }, 1000);
     } catch (error) {
-      console.error("에러 발생:", error);
-      alert("뽑기에 실패했습니다.");
+      toast.error('뽑기에 실패했습니다.', {...toastcode(2000)});
+      toast.clearWaitingQueue();
       setLoading(false);
       setIsShaking(false);
     }

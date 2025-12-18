@@ -534,7 +534,7 @@ p {
   margin: 0px;
 }
 .choice {
-    z-index: 2;
+  z-index: 2;
   position: absolute;
   top: 50%;
   left: 50%;

@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 // CSS 경로는 환경에 맞게 확인해주세요.
-import '/Users/dgsw2025/Oh!Yes/grow-up-money-web/src/components/css/Shop/ShopShop.css';
+import './../../css/Shop/ShopShop.css';
 
 const TOSS_CLIENT_KEY =
     import.meta.env.VITE_TOSS_CLIENT_KEY ||

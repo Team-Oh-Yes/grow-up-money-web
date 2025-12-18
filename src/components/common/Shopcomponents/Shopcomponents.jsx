@@ -5,6 +5,7 @@ import ShopContent from "./ShopContent.jsx";
 import ShopHeader from "./Shopheader.jsx";
 import ShopRandom from "./ShopRandom.jsx";
 import ShopShop from "./ShopShop.jsx";
+import ShopPoints from "./ShopPoints.jsx";
 
 // Const
 export default function ShopComponents() {
@@ -44,7 +45,7 @@ export default function ShopComponents() {
             case "goods":
                 return <ShopContent />;
             case "points":
-                return <ShopContent />;
+                return <ShopPoints/>;
             case "random":
                 return <ShopRandom />;
             default:

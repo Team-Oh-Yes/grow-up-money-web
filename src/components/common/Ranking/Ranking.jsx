@@ -9,3 +9,4 @@ export default function Ranking() {
         </div>
     );
 }
+//에러수정

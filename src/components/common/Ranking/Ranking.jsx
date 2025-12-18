@@ -35,41 +35,48 @@ export default function Ranking() {
     { id: 29, rank: 29, name: "제갈량", score: 1600 },
     { id: 30, rank: 30, name: "사마의", score: 1400 },
   ];
-
   return (
     <div className="ranking-container">
-      <img src={rankone} className="rone"></img>
-      <div className="ranking-list">
-        {rankData.map((user) => (
-          <div
-            key={user.id}
-            className={`rank-item ${
-              user.rank === 1
-                ? "rank-item-1"
-                : user.rank === 2
-                ? "rank-item-2"
-                : user.rank === 3
-                ? "rank-item-3"
-                : ""
-            }`}
-          >
-            <div className="rank-number">{user.rank}</div>
+      <img src={rankone} className="rone" alt="decoration" />
 
-            <div className="rank-name">{user.name}</div>
-
-            <div className="rank-score">
-              {user.score.toLocaleString()} 포인트
-            </div>
-
+      <div className="ranking-board">
+        {" "}
+        {/* 전체 게시판 역할을 하는 컨테이너 */}
+        <h1 className="rtitle">랭킹</h1> {/* 타이틀은 고정 */}
+        <div className="ranking-scroll-area">
+          {" "}
+          {/* 실제 맵이 돌아가고 스크롤이 생기는 영역 */}
+          {rankData.map((user) => (
             <div
-              className={`rank-avatar ${user.rank === 1 ? "avatar-first" : ""}`}
+              key={user.id}
+              className={`rank-item ${
+                user.rank === 1
+                  ? "rank-item-1"
+                  : user.rank === 2
+                  ? "rank-item-2"
+                  : user.rank === 3
+                  ? "rank-item-3"
+                  : ""
+              }`}
             >
-              {user.rank === 1 ? "🍰" : "🌱"}
+              <div className="rank-number">{user.rank}</div>
+              <div className="rank-name">{user.name}</div>
+              <div className="rank-score">
+                {user.score.toLocaleString()} 포인트
+              </div>
+              <div
+                className={`rank-avatar ${
+                  user.rank === 1 ? "avatar-first" : ""
+                }`}
+              >
+                {user.rank === 1 ? "🍰" : "🌱"}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-      <img src={ranktwo} className="rtwo"></img>
+
+      <img src={ranktwo} className="rtwo" alt="decoration" />
     </div>
   );
 }

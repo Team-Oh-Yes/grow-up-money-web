@@ -33,10 +33,6 @@ function Loginmaincomponents() {
 
   // 경로 판별 변수
   const Roadmap = location.pathname.includes("/roadmap");
-  const Rank = location.pathname.includes("/ranking");
-  const Trade = location.pathname.includes("/market");
-  const Shop = location.pathname.includes("/shop");
-  const More = location.pathname.includes("/more");
   const My = location.pathname.includes("/my");
   const Learn = location.pathname.includes("/learn");
   const isQuizPage = location.pathname.includes("/quiz");
@@ -169,11 +165,7 @@ function Loginmaincomponents() {
             ) : (
               <div className="top-title-text">
                 {Roadmap && "로드맵"}
-                {Rank && "랭킹"}
-                {Trade && "거래소"}
-                {Shop && "상점"}
                 {My && "마이페이지"}
-                {More && "더보기"}
               </div>
             )}
           </div>

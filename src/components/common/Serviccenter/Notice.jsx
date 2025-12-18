@@ -22,11 +22,11 @@ function Notice() {
                 <nav className="contents">
                     <details className="noticeItem">
                         <summary>
-                            새로운 FT 출시 안내 <span className="arrow">▼</span>
+                            TossPayments 추가 <span className="arrow">▼</span>
                         </summary>
                         <div className='line'></div>
                         <div className="answer">
-                            <p>안녕하세요, GROW MONEY입니다. 새로운 FT "쇼핑 가방 괴물"이 출시되었습니다! 이번 FT는 로드맵의 특정 단원을 완료한 사용자에게 제공됩니다. 자세한 내용은 로드맵 페이지를 참고해 주세요.</p>
+                            <p>TossPayments로 결제수단이 확장되었습니다. 해외결제를 포함한 27개의 카드사 결제가 가능합니다.</p>
                         </div>
                     </details>
 
@@ -42,11 +42,32 @@ function Notice() {
 
                     <details className="noticeItem">
                         <summary>
-                            플랜 변경 정책 업데이트 <span className="arrow">▼</span>
+                            플랜 변경 가격 업데이트 <span className="arrow">▼</span>
                         </summary>
                         <div className='line'></div>
                         <div className="answer">
-                            <p>안녕하세요, GROW MONEY입니다. 사용자 편의를 위해 플랜 변경 정책이 업데이트되었습니다. 플랜 환불은 1주인 이내 변경시 전액 환불 가능하며, 이후에는 부분 환불이 적용됩니다. 자세한 내용은 플랜 페이지에서 확인해 주세요.</p>
+                            <p>안녕하세요, GROW MONEY입니다. 사용자 편의를 위해 플랜 변경 정책이 업데이트되었습니다. 가격은 월정액이 8900이 1900으로 조정되었고, 영구는 14900원이 4900원으로 조정되었습니다.</p>
+                        </div>
+                    </details>
+
+                    <details className="noticeItem">
+                        <summary>
+                            Pay가 추가되었습니다. <span className="arrow">▼</span>
+                        </summary>
+                        <div className='line'></div>
+                        <div className="answer">
+                            <p>안녕하세요, GROW MONEY입니다. 사용자 편의를 위해 결제 수단이 추가되었습니다. 이제 Pay를 이용하여 결제하실 수 있습니다.</p>
+                            <p>단, Pay는 macOS 10.12 Sierra 이상, 브라우저는 Safari에서만 지원되며, iCloud 계정및 카드가 연결이 되어야 합니다. 자세한 내용은 apple.com을 확인하십시오.</p>
+                        </div>
+                    </details>
+
+                    <details className="noticeItem">
+                        <summary>
+                            베타 테스터 모집 <span className="arrow">▼</span>
+                        </summary>
+                        <div className='line'></div>
+                        <div className="answer">
+                            <p>안녕하세요, GROW MONEY입니다. 더 나은 서비스를 개발하기 위해 배타테스터를 모집합니다. 자세한 내용은 관리자에게 문의하십시오</p>
                         </div>
                     </details>
                 </nav>

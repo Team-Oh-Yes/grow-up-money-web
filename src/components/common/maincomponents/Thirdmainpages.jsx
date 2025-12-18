@@ -31,7 +31,7 @@ function ThirdMainPages() {
       setCurrentImage(currentImage - 1); // 이전 이미지로
     }
   }
-
+//수정
   return (
     <div className="Thirdmainpageback">
       <h1 className="title">미리보기</h1>

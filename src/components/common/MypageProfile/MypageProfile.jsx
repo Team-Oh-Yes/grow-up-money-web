@@ -31,7 +31,7 @@ export default function MypageProfile() {
             setIsLoading(false);
         }, 20);
     };
-
+//왜 안되냐
     const renderContent = () => {
         if (isLoading) {
             return (

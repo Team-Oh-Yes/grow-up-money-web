@@ -46,10 +46,6 @@ body {
   cursor: pointer;
 }
 
-img {
-  margin-right: 0.5rem;
-}
-
 .box:hover {
   border: 2px solid #ffbe85;
   background: #fff0de;
@@ -117,6 +113,7 @@ h5 {
   align-items: center;
   position: absolute;
   right: 2.5rem;
+  margin-right: 0.5rem;
 }
 
 .premiun {

@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react";
 // CSS 경로는 환경에 맞게 확인해주세요.
 import '/Users/dgsw2025/Oh!Yes/grow-up-money-web/src/components/css/Shop/ShopShop.css';
+import points from '/Users/dgsw2025/Oh!Yes/grow-up-money-web/src/img/point.png';
 
 const TOSS_CLIENT_KEY =
     import.meta.env.VITE_TOSS_CLIENT_KEY ||
@@ -40,7 +41,7 @@ export default function StorePage() {
 
         tossPayments.requestPayment("카드", {
             amount: product.price,
-            orderId: `order_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`, // 중복 방지를 위한 랜덤값 추가
+            orderId: `order_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`, 
             orderName: product.name,
             successUrl: `${window.location.origin}/plan?result=success`,
             failUrl: `${window.location.origin}/plan?result=fail`,
@@ -55,7 +56,6 @@ export default function StorePage() {
 
     const renderProductCard = (product, index) => (
         <div key={index} className="product-wrapper">
-            {/* 카드 전체 클릭 시 결제되도록 하거나, 버튼을 따로 두는 것이 좋습니다 */}
             <div className="product-card" onClick={() => handlePayment(product)}>
                 <div className="product-image"></div>
 
@@ -65,7 +65,7 @@ export default function StorePage() {
 
                         <div className="price-container">
                             <div className="price-content">
-                                <div className="diamond-icon"></div>
+                                <img src={points} alt="points" />
                                 <div className="price-text">{product.price.toLocaleString()}원</div>
                             </div>
                         </div>

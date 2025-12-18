@@ -1,0 +1,26 @@
+.mypage-main {
+    margin: 40px 97px 0 97px;
+    height: 785px;
+    width: calc(100% - 474px);
+    background-color: #ffffff;
+    border-radius: 20px 20px 0 0;
+    background-image: url('../../../img/MypageProfile/BackgroundImg.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.develop-mypage-main {
+    height: 100%;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.develop-mypage-title {
+    font-size: 48px;
+    font-weight: 600;
+    color: #181F29;
+}

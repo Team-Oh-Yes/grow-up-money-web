@@ -1,69 +1,90 @@
+import { useCallback } from "react";
 import "../../css/Planpages/Planpages.css";
 
+// 플랜 데이터
+const PLANS = [
+  {
+    id: "monthly",
+    name: "MONTHLY PREMIUM",
+    price: 8900,
+    priceDisplay: "8900",
+    period: "월",
+    description: "Grow Up Money의 월별 유료 제공 플랜",
+    features: [
+      "광고 제거",
+      "FT 고화질 다운로드",
+      "프리미엄용 프로필 꾸미기 가능",
+      "프로필 아이디 그라데이션",
+      "포인트 충전 + 10%",
+      "심화 문제 (포인트 10배)",
+    ],
+    className: "Free",
+    buttonClassName: "currentPlan",
+  },
+  {
+    id: "everlasting",
+    name: "EVERLASTING PREMIUM",
+    price: 29000,
+    priceDisplay: "29,000",
+    period: "영구",
+    description: "Grow Up Money의 영구 유료 제공 플랜",
+    features: [
+      "MONTHLY PREMIUM의 모든 기능",
+      "영구 구독",
+    ],
+    className: "Premium",
+    buttonClassName: "currentPlanPremium",
+  },
+];
+
+const TOSS_CLIENT_KEY = import.meta.env.VITE_TOSS_CLIENT_KEY || "test_ck_Ba5PzR0ArnnN1xXZMoWGrvmYnNeD";
+const BASE_URL = import.meta.env.VITE_BASE_URL || window.location.origin;
+
 function Planpages() {
-  const handlePaymentcurrentPlan = () => {
-    const clientKey = "test_ck_Ba5PzR0ArnnN1xXZMoWGrvmYnNeD";
-    const tossPayments = window.TossPayments(clientKey);
+  const handlePayment = useCallback((plan) => {
+    const tossPayments = window.TossPayments(TOSS_CLIENT_KEY);
 
     tossPayments.requestPayment("카드", {
-      amount: 8900,
-      orderId: "order_" + new Date().getTime(),
-      orderName: "Grow Money \nMONTHLY PREMIUM",
-      successUrl: "http://localhost:5173/plan",
-      failUrl: "http://localhost:5173/plan",
+      amount: plan.price,
+      orderId: `order_${Date.now()}`,
+      orderName: `Grow Money ${plan.name}`,
+      successUrl: `${BASE_URL}/plan`,
+      failUrl: `${BASE_URL}/plan`,
     });
-  };
-
-  const handlePaymentcurrentPlanPremium = () => {
-    const clientKey = "test_ck_Ba5PzR0ArnnN1xXZMoWGrvmYnNeD";
-    const tossPayments = window.TossPayments(clientKey);
-
-    tossPayments.requestPayment("카드", {
-      amount: 29000,
-      orderId: "order_" + new Date().getTime(),
-      orderName: "Grow Money \nEVERLASTING PREMIUM",
-      successUrl: "http://localhost:5173/plan",
-      failUrl: "http://localhost:5173/plan",
-    });
-  };
+  }, []);
 
   return (
-    <div className="planpages-container">
-      <header className="plan-header">
-        <h1>플랜 선택</h1>
-        <p>Grow Money의 모든 기능을 이용하려면 프리미엄 플랜으로 업그레이드하세요!</p>
-      </header>
+    <main className="main-content">
+      <div className="topBar">
+        <div className="Plan">
+          <span>플랜 업그레이드</span>
+          <div className="plans">
+            {PLANS.map((plan) => (
+              <div key={plan.id} className={plan.className}>
+                <span>{plan.name}</span>
+                <p className="Dollor">₩</p>
+                <p className="price">{plan.priceDisplay}</p>
+                <p className="USD">KRW /</p>
+                <p className="perMonth">{plan.period}</p>
+                <p className="explanation">{plan.description}</p>
 
-      <main className="plan-main">
-        <section className="plan-monthly">
-          <h2>월간 프리미엄 플랜</h2>
-          <p className="plan-price">₩8,900 / 월</p>
-          <ul className="plan-features">
-            <li>광고 제거</li>
-            <li>FT 고화질 다운로드</li>
-            <li>프리미엄용 프로필 꾸미기 가능</li>
-            <li>프로필 닉네임 그라데이션</li>
-            <li>포인트 충전 + 10%</li>
-            <li>심화 문제 (포인트 10배)</li>
-          </ul>
-          <button className="plan-select-button" onClick={handlePaymentcurrentPlan}>
-            이 플랜 선택
-          </button>
-        </section>
-
-        <section className="plan-everlasting">
-          <h2>영구 프리미엄 플랜</h2>
-          <p className="plan-price">₩29,000 (일회성 결제)</p>
-          <ul className="plan-features">
-            <li>월간 프리미엄의 모든 기능</li>
-            <li>영구 구독</li>
-          </ul>
-          <button className="plan-select-button" onClick={handlePaymentcurrentPlanPremium}>
-            이 플랜 선택
-          </button>
-        </section>
-      </main>
-    </div>
+                <button
+                  onClick={() => handlePayment(plan)}
+                  className={plan.buttonClassName}
+                >
+                  <div>플랜 업그레이드</div>
+                </button>
+                <ul className="features">
+                  {plan.features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }
 

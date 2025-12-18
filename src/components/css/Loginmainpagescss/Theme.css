@@ -134,7 +134,6 @@ h5 {
 .mainbox {
   flex: 1;
   width: 100%;
-  padding: 0rem 2rem 1.5rem 3rem;
   box-sizing: border-box;
   display: flex;
   border-radius: 15px; /* 복원 */
@@ -150,8 +149,7 @@ h5 {
   overflow-y: hidden;
   border-radius: 15px; /* tama에도 radius를 적용하여 flex item이 없을 때를 대비 */
   background: transparent; /* tama 배경색 */
-  margin-bottom: 10px;
-  padding-bottom: 15px;
+  padding: 0rem 2rem 1.5rem 3rem;
 }
 /* Flex Item 색상 클래스는 변경 없음 */
 .First1 {
@@ -504,8 +502,8 @@ p {
   flex-direction: column;
   gap: 10px;
   opacity: 0;
-  transition: opacity 0.4s ease; 
-  pointer-events: none; 
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 .learn {
   border: #ffbe85 solid 2px;

@@ -1,4 +1,4 @@
-import { memo } from "react"; // 잊지 말고 import 해야 합니다.
+import { memo } from "react";
 import arrow from "../../../img/arrowleft.png";
 function Tamatitle(props) {
   return (

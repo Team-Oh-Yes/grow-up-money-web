@@ -1,11 +1,11 @@
-// Link import
 import '../../css/LoginAndSignUp/SignUp.css';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import Sign from '../../api/signup';;
+import axiosInstance from '../../api/axiosInstance';
 import GoogleIcon from '../../../img/Google-icon.png';
+import PasswordStrength, { getPasswordStrength } from '../PasswordStrength/PasswordStrength';
 
 // Const
 export default function SignUp() {
@@ -19,11 +19,11 @@ export default function SignUp() {
 
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const Earth = ({ img, alt }) => {
+    const Earth = ({ img, alt, href }) => {
         return (
-            <button type="button" className="social-signup-btn">
-                <img src={img} alt={alt} className="social-signup-icon" />
-            </button>
+            <a href={href} className="social-login-btn">
+                <img src={img} alt={alt} className="social-login-icon" />
+            </a>
         );
     };
 
@@ -74,7 +74,7 @@ export default function SignUp() {
 
         // 유효성 검사
         if (!sendData.username) {
-            toast.info('닉네임을 입력해주세요', toastcode(1000));
+            toast.info('아이디을 입력해주세요', toastcode(1000));
             toast.clearWaitingQueue();
             return;
         } else if (!sendData.password) {
@@ -83,6 +83,10 @@ export default function SignUp() {
             return;
         } else if (sendData.password.length < 8) {
             toast.info('비밀번호는 8자 이상이어야 합니다', toastcode(1000));
+            toast.clearWaitingQueue();
+            return;
+        } else if (getPasswordStrength(sendData.password).level < 2) {
+            toast.info('비밀번호가 너무 약합니다. 대문자, 숫자, 특수문자를 포함해주세요', toastcode(2000));
             toast.clearWaitingQueue();
             return;
         } else if (sendData.password !== confirmPassword) {
@@ -100,7 +104,7 @@ export default function SignUp() {
         }
 
         // API 요청
-        Sign.post('/users/signup', sendData)
+        axiosInstance.post('/users/signup', sendData)
             // 성공 시
             .then(response => {
                 // 로그인 페이지로 이동하면서 state 전달
@@ -111,9 +115,12 @@ export default function SignUp() {
             .catch(error => {
                 console.error('API Error:', error);
                 
-                if (error.message) {
+                if (error.response?.data?.errors?.password) {
                     // 요청 설정 중에 에러가 발생한 경우
-                    toast.error(error.message, toastcode(3000));
+                    toast.error(error.response?.data?.errors?.password, toastcode(3000));
+                    toast.clearWaitingQueue();
+                } else if (error.response?.data?.detail) {
+                    toast.error(error.response?.data?.detail, toastcode(3000));
                     toast.clearWaitingQueue();
                 }
             });
@@ -134,7 +141,7 @@ export default function SignUp() {
                     
                         <div className="social-signup-buttons">
                             {/* 구글 회원가입 버튼 */}
-                            <Earth img={GoogleIcon} alt="Sign up with Google" />
+                            <Earth img={GoogleIcon} alt="login with Google" href={"https://growmoney.duckdns.org/oauth2/authorization/google"} />
                         </div>
                     </div>
 
@@ -146,12 +153,15 @@ export default function SignUp() {
                         {/* 회원가입 폼 */}
                         <form className="signup-form">
                             <input type="text" className="signup-input" placeholder="아이디" value={sendData.username} onChange={onChangeId} />
-                            <input type="password" className="signup-input" placeholder="비밀번호" value={sendData.password} onChange={onChangePassword} />
+                            <div className="signup-password-wrapper">
+                                <input type="password" className="signup-input" placeholder="비밀번호" value={sendData.password} onChange={onChangePassword} />
+                                <PasswordStrength password={sendData.password} />
+                            </div>
                             <input type="password" className="signup-input" placeholder="비밀번호 확인" value={confirmPassword} onChange={onChangeConfirmPassword} />
                             <input type="email" className="signup-input" placeholder="이메일" value={sendData.email} onChange={onChangeEmail} />
 
                             {/* 회원가입 버튼 */}
-                            <button className="signup-button" type="button" onClick={handleSignUp}>회원가입</button>
+                            <button className="signup-button" type="submit" onClick={handleSignUp}>회원가입</button>
                             <p className="signup-login-link">이미 계정이 있으신가요? <a className="signup-link" href="/login">로그인</a></p>
                         </form>
 

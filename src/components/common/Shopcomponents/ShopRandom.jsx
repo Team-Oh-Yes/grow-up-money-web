@@ -1,7 +1,7 @@
 import { useState } from "react";
 import random from "../../../img/random/뽑기통.svg";
 import axiosInstance from "../../api/axiosInstance";
-import "../../css/Shop/Random.css";
+import "../../css/ShopComponents/Random.css";
 
 function ShopRandom() {
   const [showResult, setShowResult] = useState(false);

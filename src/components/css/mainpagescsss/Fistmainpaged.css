@@ -263,9 +263,6 @@ button:not(.Topbutton):hover {
     left: 4px;
     bottom: 20px;
   }
-  p {
-    font-size: 22px;
-  }
   .MainFrame {
     height: calc(100vh - 68px);
   }

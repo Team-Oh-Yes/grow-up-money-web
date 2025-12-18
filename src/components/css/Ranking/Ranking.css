@@ -25,10 +25,10 @@
 /* 3. 고정 타이틀 */
 .rtitle {
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: #333;
+  margin-bottom: 38px;
+  font-size: 36px;
+  font-weight: 300;
+  color: #000000;
   flex-shrink: 0;
 }
 
@@ -127,24 +127,6 @@
 .avatar-first {
   background-color: #fff9c4;
   border-color: #ffd700;
-}
-
-/* 6. 커스텀 스크롤바 디자인 */
-.ranking-scroll-area::-webkit-scrollbar {
-  width: 8px;
-}
-
-.ranking-scroll-area::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.ranking-scroll-area::-webkit-scrollbar-thumb {
-  background: #fe8401;
-  border-radius: 10px;
-}
-
-.ranking-scroll-area::-webkit-scrollbar-thumb:hover {
-  background: #e67700;
 }
 
 /* 7. 양옆 데코레이션 이미지 */

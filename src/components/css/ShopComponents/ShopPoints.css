@@ -1,8 +1,12 @@
 .shop-points-container {
   flex: 1;
-  background-color: #fff;
+  background-color: #F9F9F9;
   font-family: "Pretendard", -apple-system, sans-serif;
   padding-top: 4rem;
+  background-image: url('../../../img/MypageProfile/BackgroundImg.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 /* 상단 영역 컨테이너 */
@@ -176,6 +180,7 @@
 }
 
 .card-bottom-info {
+  flex: 1;
   background-color: #fdf2e9;
   padding: 20px;
   text-align: center; /* 라벨과 가격 정렬 */

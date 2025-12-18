@@ -140,7 +140,7 @@ function Learn() {
               <img
                 // 이미지가 누락되었을 경우를 대비하여 alt 속성을 추가하는 것이 좋습니다.
                 src={currentUnit.text[story].img}
-                className="random"
+                className="randomN"
                 alt="학습 이미지"
               />
             </div>

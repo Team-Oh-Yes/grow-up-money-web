@@ -1,5 +1,6 @@
+import rankone from "../../../img/NFT/rankone.svg";
+import ranktwo from "../../../img/NFT/ranktwo.svg";
 import "../../css/Ranking/Ranking.css";
-
 export default function Ranking() {
   // 더미 데이터 (이미지 UI 기준) - 스크롤을 위해 데이터 확장
   const rankData = [
@@ -37,11 +38,20 @@ export default function Ranking() {
 
   return (
     <div className="ranking-container">
+      <img src={rankone} className="rone"></img>
       <div className="ranking-list">
         {rankData.map((user) => (
           <div
             key={user.id}
-            className={`rank-item ${user.rank <= 3 ? "rank-top" : ""}`}
+            className={`rank-item ${
+              user.rank === 1
+                ? "rank-item-1"
+                : user.rank === 2
+                ? "rank-item-2"
+                : user.rank === 3
+                ? "rank-item-3"
+                : ""
+            }`}
           >
             <div className="rank-number">{user.rank}</div>
 
@@ -59,6 +69,7 @@ export default function Ranking() {
           </div>
         ))}
       </div>
+      <img src={ranktwo} className="rtwo"></img>
     </div>
   );
 }

@@ -4,10 +4,16 @@ import { useRecoilState } from "recoil";
 import { Big, Mobilestate } from "../../../atoms";
 import BigBlocker from "../../../BigBlocker";
 import arrow from "../../../img/arrow_back_ios_new.png";
+import sub4 from "../../../img/NFT/cream.svg";
+import sub2 from "../../../img/NFT/m.svg";
+import sub5 from "../../../img/NFT/sub.svg";
+import sub1 from "../../../img/NFT/subone.svg";
+import sub3 from "../../../img/NFT/roadmap.svg";
 import MobileBlocker from "../../../MobileBlocker";
 import "../../css/Loginmainpagescss/Theme.css";
 import TamaP from "./TamaP";
 import Tamatitle from "./Tamatitle";
+
 function Themecomponents() {
   const [isMobileBlocked, setIsMobileBlocked] = useRecoilState(Mobilestate);
   const [isExtraLargeScreen, setIsExtraLargeScreen] = useRecoilState(Big);
@@ -126,26 +132,31 @@ function Themecomponents() {
         <Tamatitle n={result} m={1} />
         <TamaP n={n[0]} />
         <Button d={1} />
+        <img src={sub1} className="sb1"></img>
       </div>
       <div className={`Second${result} ho`}>
         <Tamatitle n={result} m={2} />
         <TamaP n={n[1]} />
         <Button d={2} />
+        <img src={sub2} className="sb2"></img>
       </div>
       <div className={`Third${result} ho`}>
         <Tamatitle n={result} m={3} />
         <TamaP n={n[2]} />
         <Button d={3} />
+        <img src={sub3} className="sb3"></img>
       </div>
       <div className={`Fouth${result} ho`}>
         <Tamatitle n={result} m={4} />
         <TamaP n={n[3]} />
         <Button d={4} />
+        <img src={sub4} className="sb4"></img>
       </div>
       <div className={`Fifth${result} ho`}>
         <Tamatitle n={result} m={5} />
         <TamaP n={n[4]} />
         <Button d={5} />
+        <img src={sub5} className="sb5"></img>
       </div>
       {result === "10" ? ( // == 대신 === 사용
         ""

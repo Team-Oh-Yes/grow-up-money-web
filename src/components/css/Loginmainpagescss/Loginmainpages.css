@@ -9,7 +9,50 @@
   align-items: center;
   justify-content: center;
 }
-
+.ho {
+  overflow: hidden;
+  position: relative;
+}
+.sp1 {
+  width: 25rem;
+  height: 25rem;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  right: -8rem;
+}
+.sp2 {
+  width: 25rem;
+  height: 25rem;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  right: -11rem;
+}
+.sp3 {
+  width: 25rem;
+  height: 25rem;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  right: -11rem;
+}
+.sp4 {
+  width: 25rem;
+  height: 25rem;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  right: -12rem;
+}
+.sp5 {
+  width: 25rem;
+  height: 25rem;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  right: -12rem;
+}
 .topbar-progress-background {
   flex: 1;
   height: 2rem;
@@ -173,8 +216,8 @@ h5 {
   gap: 2rem;
   margin-right: 0.5rem;
 }
-.icon{
-    margin-right: 3px;
+.icon {
+  margin-right: 3px;
 }
 
 .premiun {

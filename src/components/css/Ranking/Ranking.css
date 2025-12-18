@@ -1,122 +1,151 @@
-/* 랭킹 컨테이너 */
+/* 랭킹 전체 컨테이너 */
 .ranking-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
+
 
 /* 랭킹 타이틀 */
 .ranking-title {
-    text-align: center;
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: #333;
-    flex-shrink: 0;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333;
+  flex-shrink: 0;
 }
 
 /* 랭킹 리스트 컨테이너 */
 .ranking-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    overflow-y: auto;
-    padding-right: 10px;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 50rem;
+  height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  z-index: 10;
 }
-/* 끝 */
+
 /* 개별 랭킹 아이템 */
 .rank-item {
-    display: flex;
-    align-items: center;
-    padding: 8px 100px;
-    background-color: #FFFFFF;
-    border: 2px solid #E0E0E0;
-    border-radius: 50px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-    cursor: pointer;
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0px 2rem;
+  width: 48rem;
+  height: 4.5rem;
+  background-color: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .rank-item:hover {
-    transform: translateY(-2px);
+  transform: translateY(-2px);
 }
 
 /* 상위 3등 스타일 */
 .rank-item.rank-top {
-    background-color: #FFF8E1;
-    border: 3px solid #FFB300;
+  background-color: #fff8e1;
+  border: 3px solid rgba(252, 190, 9, 1);
 }
 
 /* 순위 번호 */
 .rank-number {
-    font-size: 24px;
-    font-weight: bold;
-    min-width: 50px;
-    color: #666;
+  font-size: 24px;
+  font-weight: bold;
+  min-width: 50px;
+  color: #666;
 }
 
 .rank-top .rank-number {
-    color: #FFB300;
+  color: #ffb300;
 }
 
 /* 이름 */
 .rank-name {
-    flex: 1;
-    font-size: 18px;
-    font-weight: 500;
-    margin-left: 20px;
-    color: #333;
+  flex: 1;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 20px;
+  color: #333;
 }
 
 /* 점수 */
 .rank-score {
-    font-size: 18px;
-    font-weight: bold;
-    color: #666;
-    margin-right: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+  margin-right: 15px;
 }
 
 .rank-top .rank-score {
-    color: #FFB300;
+  color: #ffb300;
 }
 
 /* 아바타 */
 .rank-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #81C784;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #81c784;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
 }
 
 .rank-avatar.avatar-first {
-    background-color: #FFD54F;
+  background-color: #ffd54f;
 }
 
 /* 스크롤바 스타일링 */
 .ranking-list::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 .ranking-list::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
+  background: #f1f1f1;
+  border-radius: 10px;
 }
 
 .ranking-list::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
+  background: rgba(254, 132, 1, 1);
+  border-radius: 10px;
 }
 
 .ranking-list::-webkit-scrollbar-thumb:hover {
-    background: #555;
+  background: #555;
+}
+
+/* 양옆 이미지 */
+.rone {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  left: -10rem;
+  z-index: 1;
+}
+
+.rtwo {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0px;
+  right: -10rem;
+  z-index: 1;
 }

@@ -11,18 +11,31 @@
 }
 .bt {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 .gacha-button {
-  background-color: rgba(255, 240, 222, 1);
-  border: 2px solid rgba(255, 190, 133, 1);
-  width: 30rem;
-  height: 3rem;
-  border-radius: 15px;
-  color: rgba(254, 132, 1, 1);
+  background-color: #FFF0DE;
+  border: 1px solid #FFBE85;
+  width: 333px;
+  height: 42px;
+  border-radius: 100px;
+  font-size: 16px;
+  color: #FE8401;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
 }
+
+.gacha-ticket-icon {
+  width: 16px;
+  height: 16px;
+}
+
 .random {
   width: 550px;
   height: 550px;
@@ -32,13 +45,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.bt {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
 }
 
 /* --- 모달 및 애니메이션 CSS --- */
@@ -54,7 +60,7 @@
 .result-modal {
   background: white;
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 12px;
   text-align: center;
   min-width: 350px;
 }
@@ -62,16 +68,22 @@
 .result-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 12px;
   justify-content: center;
-  margin: 20px 0;
+  margin: 40px 0;
 }
 
 .result-card {
   border: 1px solid #eee;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   width: 100px;
+}
+
+/* NFT 보상일 때 강조 테두리 색상 */
+.result-card.nft {
+  border-color: #FE8401;
+  background-color: #FFF0DE;
 }
 
 .res-img {
@@ -89,7 +101,7 @@
   background-color: rgba(254, 132, 1, 1);
   color: white;
   border: none;
-  padding: 10px 30px;
+  padding: 10px 60px;
   border-radius: 10px;
   cursor: pointer;
 }

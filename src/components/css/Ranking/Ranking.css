@@ -1,4 +1,4 @@
-/* 랭킹 전체 컨테이너 */
+/* 1. 전체 컨테이너: 화면 전체 배경 */
 .ranking-container {
   width: 100%;
   height: 100vh;
@@ -8,144 +8,144 @@
   gap: 40px;
   position: relative;
   overflow: hidden;
+  background-color: #f9f9f9;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+/* 2. 중앙 보드: 랭킹 리스트를 담는 큰 상자 */
+.ranking-board {
+  display: flex;
+  flex-direction: column;
+  width: 55rem; /* 너비를 조금 더 넓게 조정 */
+  height: 92vh; /* 85vh에서 92vh로 늘려 스크롤창을 더 길게 만듦 */
+  z-index: 10;
+  padding-top: 20px;
+}
 
-/* 랭킹 타이틀 */
-.ranking-title {
+/* 3. 고정 타이틀 */
+.rtitle {
   text-align: center;
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 30px;
-  color: #333;
+  margin-bottom: 38px;
+  font-size: 36px;
+  font-weight: 300;
+  color: #000000;
   flex-shrink: 0;
 }
 
-/* 랭킹 리스트 컨테이너 */
-.ranking-list {
+/* 4. 스크롤 영역: 핵심 수정 부분 */
+.ranking-scroll-area {
+  flex: 1; /* 부모(ranking-board)의 남은 높이를 전부 사용 */
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: 50rem;
-  height: 80vh;
-  overflow-y: auto;
+  gap: 15px;
+  overflow-y: auto; /* 내용이 길어지면 세로 스크롤 발생 */
   overflow-x: hidden;
-  padding: 20px;
-  z-index: 10;
+  padding: 10px 25px 40px 25px; /* 아래쪽에 여백(40px)을 주어 마지막 아이템이 잘 보임 */
+  /* 기존의 max-height: 500px 삭제됨 */
 }
 
-/* 개별 랭킹 아이템 */
+/* 5. 개별 랭킹 아이템 */
 .rank-item {
   display: flex;
   align-items: center;
-  padding: 0px 2rem;
-  width: 48rem;
-  height: 4.5rem;
+  justify-content: space-between;
+  padding: 12px 25px;
+  width: 100%;
+  min-height: 5rem;
   background-color: #ffffff;
   border: 2px solid #e0e0e0;
   border-radius: 50px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
   flex-shrink: 0;
 }
 
 .rank-item:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border-color: #fe8401;
 }
 
-/* 상위 3등 스타일 */
-.rank-item.rank-top {
-  background-color: #fff8e1;
-  border: 3px solid rgba(252, 190, 9, 1);
-}
+/* 상위 3등 강조 색상 */
+.rank-item-1 { border: 2px solid #ffd700; background-color: #fffdf0; }
+.rank-item-2 { border: 2px solid #c0c0c0; }
+.rank-item-3 { border: 2px solid #cd7f32; }
 
-/* 순위 번호 */
+/* 순위 번호, 이름, 점수 */
 .rank-number {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 26px;
+  font-weight: 900;
   min-width: 50px;
-  color: #666;
+  color: #444;
 }
 
-.rank-top .rank-number {
-  color: #ffb300;
-}
-
-/* 이름 */
 .rank-name {
   flex: 1;
-  font-size: 18px;
-  font-weight: 500;
-  margin-left: 20px;
+  margin: 0 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
   color: #333;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* 점수 */
 .rank-score {
-  font-size: 18px;
-  font-weight: bold;
-  color: #666;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fe8401;
   margin-right: 15px;
 }
 
-.rank-top .rank-score {
-  color: #ffb300;
-}
-
-/* 아바타 */
-.rank-avatar {
-  width: 50px;
-  height: 50px;
+/* 아바타 컨테이너 */
+.rank-avatar-container {
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+  flex-shrink: 0;
   border-radius: 50%;
-  background-color: #81c784;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #f0f0f0;
+  border: 2px solid #eee;
+}
+
+.rank-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.default-emoji {
   font-size: 24px;
 }
 
-.rank-avatar.avatar-first {
-  background-color: #ffd54f;
+.avatar-first {
+  background-color: #fff9c4;
+  border-color: #ffd700;
 }
 
-/* 스크롤바 스타일링 */
-.ranking-list::-webkit-scrollbar {
-  width: 8px;
-}
-
-.ranking-list::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.ranking-list::-webkit-scrollbar-thumb {
-  background: rgba(254, 132, 1, 1);
-  border-radius: 10px;
-}
-
-.ranking-list::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* 양옆 이미지 */
+/* 7. 양옆 데코레이션 이미지 */
 .rone {
-  width: 500px;
-  height: 500px;
-  object-fit: contain;
+  width: 400px;
   position: absolute;
-  bottom: 0px;
-  left: -10rem;
+  bottom: -10px;
+  left: -5rem;
   z-index: 1;
+  pointer-events: none;
+  opacity: 0.8;
 }
 
 .rtwo {
-  width: 500px;
-  height: 500px;
-  object-fit: contain;
+  width: 400px;
   position: absolute;
-  bottom: 0px;
-  right: -10rem;
+  bottom: -10px;
+  right: -5rem;
   z-index: 1;
+  pointer-events: none;
+  opacity: 0.8;
 }

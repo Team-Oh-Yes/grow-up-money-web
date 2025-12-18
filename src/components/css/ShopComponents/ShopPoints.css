@@ -1,0 +1,276 @@
+
+.point-exchange-container {
+    position: relative;
+    width: 100%;
+    max-width: 1256px;
+    min-height: 892px;
+    background: #F9F9F9;
+    padding: 31px;
+    margin: 0 auto;
+    font-family: 'Pretendard', -apple-system, sans-serif;
+}
+
+.point-exchange-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.exchange-header {
+    width: 100%;
+    height: 170px;
+    background: #FFF0DE;
+    border-radius: 13px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s ease;
+}
+
+.exchange-header:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.header-title-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #FFFFFF;
+    border-radius: 13px 13px 0 0;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+}
+
+.header-title {
+    font-weight: 600;
+    font-size: 24px;
+    color: #FE8401;
+    margin: 0;
+}
+
+.header-content {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.current-points-box {
+    background: #FFFFFF;
+    border-radius: 13px;
+    padding: 14px 120px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.current-points-box:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.diamond-icon {
+    font-size: 36px;
+}
+
+.points-value {
+    font-weight: 600;
+    font-size: 28px;
+    color: #000000;
+}
+
+.purchase-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.purchase-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: flex-end;
+}
+
+.purchase-label {
+    font-weight: 800;
+    font-size: 18px;
+    color: #FE8401;
+}
+
+.small-diamond-icon {
+    font-size: 26px;
+}
+
+.purchase-button {
+    background: #FFFFFF;
+    border-radius: 7px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    border: 1px solid #FFE5C8;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.purchase-button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: #FE8401;
+}
+
+.blue-diamond-icon {
+    font-size: 19px;
+}
+
+.balance-text {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.03em;
+    color: #28282D;
+}
+
+.packages-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.package-card {
+    width: 226px;
+    height: 336px;
+    background: #FFFFFF;
+    border: 0.5px solid #D0D0D0;
+    border-radius: 13px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.package-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(254, 132, 1, 0.15);
+    border-color: #FE8401;
+}
+
+.package-icon-area {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, calc(-50% - 54px));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.package-card:hover .package-icon-area {
+    transform: translate(-50%, calc(-50% - 58px));
+}
+
+.package-diamond-icon {
+    font-size: 140px;
+    transition: all 0.3s ease;
+}
+
+.package-card:hover .package-diamond-icon {
+    font-size: 150px;
+}
+
+.package-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 109px;
+    background: #FFF0DE;
+    border-radius: 0 0 13px 13px;
+    padding: 16px 19px;
+    transition: background 0.3s ease;
+}
+
+.package-card:hover .package-footer {
+    background: #FFE5C8;
+}
+
+.package-info {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.package-points {
+    font-weight: 800;
+    font-size: 18px;
+    color: #FE8401;
+    transition: color 0.3s ease;
+}
+
+.package-card:hover .package-points {
+    color: #E67700;
+}
+
+.package-price-box {
+    background: #FFFFFF;
+    border-radius: 7px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.package-card:hover .package-price-box {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: scale(1.02);
+}
+
+.money-bag-icon {
+    font-size: 19px;
+}
+
+.package-price {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.03em;
+    color: #28282D;
+}
+
+@media (max-width: 1280px) {
+    .packages-grid {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .point-exchange-container {
+        padding: 16px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        padding: 20px;
+        gap: 16px;
+    }
+
+    .purchase-info {
+        align-items: center;
+    }
+}

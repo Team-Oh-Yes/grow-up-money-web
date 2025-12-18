@@ -260,5 +260,6 @@ function Sell({ setSell, sell, myNFTs, openPriceModal }) {
     </div>
   );
 }
+//기모찌
 
 export default Market;

@@ -84,9 +84,7 @@ body {
   height: 30px;
   object-fit: contain;
 }
-img {
-  margin-right: 0.5rem;
-}
+
 .kingbox {
   width: 100%;
   display: flex;
@@ -161,11 +159,11 @@ h5 {
   line-height: normal;
   margin: 0;
 }
-.case{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
+.case {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
 }
 
 .img {
@@ -173,6 +171,10 @@ h5 {
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  margin-right: 0.5rem;
+}
+.icon{
+    margin-right: 3px;
 }
 
 .premiun {

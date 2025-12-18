@@ -78,6 +78,15 @@ const router = createBrowserRouter([
   {
     path: "/servicecenter/eula",
     element: <EULA />,
+    errorElement: <Error />
+  },
+  {path:"/plan",
+    element :<Planpages />,
+    errorElement: <Error />
+  },
+  {
+    path: "/admin",
+    element: <Adminpages />,
     errorElement: <Error />,
   },
   {

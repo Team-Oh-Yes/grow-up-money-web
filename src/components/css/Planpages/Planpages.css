@@ -68,409 +68,421 @@ button {
 
 /* Main content */
 .main-content {
-  flex-grow: 1;
-  padding: 2rem;
-  padding-left: 0;
-  box-sizing: border-box;
+    flex-grow: 1;
+    padding: 2rem;
+    padding-left: 0;
+    box-sizing: border-box;
 }
 
 /* Main icon + text */
 .main {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .main img {
-  width: 2rem;
-  height: 2rem;
-  aspect-ratio: 1 / 1;
+    width: 2rem;
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+}
+
+/* Container: Sidebar + Main */
+.planpages-container {
+    display: flex;
+    min-height: 100vh;
+    background: #fff;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 20%;
+    max-width: 256px;
+    min-width: 200px;
+    padding: 1rem;
+    background: #f8f8f8;
+    box-sizing: border-box;
+}
+
+/* Sidebar Title */
+.sidebar-title {
+    color: #FE8401;
+    font-family: Pretendard, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* List Items */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.loadMap, .ranking, .exchange, .store, .account, .more {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #777;
+    font-family: Pretendard, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.loadMap:hover, .ranking:hover, .exchange:hover, .store:hover, .account:hover, .more:hover {
+    background: #ffe5cc;
+}
+
+/* Main icon + text */
+.main {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.main img {
+    width: 2rem;
+    height: 2rem;
+    aspect-ratio: 1 / 1;
 }
 
 .topBar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 .state {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: 837px;
 }
 
-.heart,
-.diamondIcon,
-.ticketIcon {
-  width: 26px;
-  height: 26px;
-  aspect-ratio: 1/1;
+.heart, .diamondIcon, .ticketIcon {
+    width: 26px;
+    height: 26px;
+    aspect-ratio: 1/1;
 }
 
 .premiumIcon {
-  width: 26.002px;
-  height: 24.341px;
-  fill: #ffc600;
+    width: 26.002px;
+    height: 24.341px;
+    fill: #FFC600;
 }
 
-.life,
-.diamond,
-.ticket,
-.isPremium {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+.life, .diamond, .ticket, .isPremium {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
-.life span,
-.diamond span,
-.ticket span {
-  color: #3d3d3d;
-  font-family: Pretendard;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.life, .diamond, .ticket span {
+    color: #3D3D3D;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;    
 }
 
 .isPremium span {
-  color: #fe8401;
-  font-family: Pretendard;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+    color: #FE8401;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;   
 }
 
 .plan {
-  width: 100%;
-  height: 100%;
-  flex-shrink: 0;
-  background: #f9f9f9;
-  position: relative;
+    width: 1256px;
+    height: 892px;
+    flex-shrink: 0;
+    background: #F9F9F9;
 }
 
-.Plan {
-  width: 100%;
-  position: relative;
-}
+.Plan span {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
-.Plan > span {
-  color: #000;
-  font-family: Pretendard;
-  font-size: clamp(24px, 4vw, 36px);
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  display: block;
-  text-align: center;
-  margin-bottom: 15px;
+    position: absolute;
+    margin-left: 514px;
+    margin-bottom: 35px;
 }
 
 .BitCon {
-  width: clamp(200px, 30vw, 400px);
-  height: auto;
-  flex-shrink: 0;
-  aspect-ratio: 200/263;
-  position: absolute;
-  left: 0;
-  bottom: -100px;
-  z-index: 0;
-  pointer-events: none;
+    width: 400px;
+    height: 526px;
+    flex-shrink: 0;
+    aspect-ratio: 200/263;
+    
+    position: absolute;
+    margin-top: 418px;
+
+    z-index: 0;
 }
 
 .DDongJon {
-  width: clamp(200px, 30vw, 400px);
-  height: auto;
-  flex-shrink: 0;
-  aspect-ratio: 200/191;
-  position: absolute;
-  right: 0;
-  bottom: -50px;
-  z-index: 0;
-  pointer-events: none;
+    width: 400px;
+    height: 382px;
+    flex-shrink: 0;
+    aspect-ratio: 200/191;
+
+    position: absolute;
+    margin-left: 930px;
+    margin-top: 510px;
+
+    z-index: 0;
 }
+
 
 .plans {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  gap: clamp(20px, 4vw, 60px);
-  margin-top: 60px;
-  flex-wrap: wrap;
-  padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 60px;
+
+    margin-left: 216px;
+    margin-top: 118px;
 }
 
-.Free,
+.Free {
+    width: 382px;
+    height: 740px;
+    border-radius: 14px;
+    border: 1px solid #FDE5CE;
+    background: #FFF8F5;
+
+    z-index: 1;
+}
+
 .Premium {
-  width: 100%;
-  max-width: 382px;
-  min-width: 280px;
-  height: auto;
-  min-height: 740px;
-  border-radius: 14px;
-  border: 1px solid #fde5ce;
-  background: #fff8f5;
-  z-index: 1;
-  position: relative;
-  padding: 30px 24px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+    width: 382px;
+    height: 740px;
+    border-radius: 14px;
+    border: 1px solid #FDE5CE;
+    background: #FFF8F5;
+
+    z-index: 1;
 }
 
-.Free > span,
-.Premium > span {
-  color: #0d0d0d;
-  font-family: Pretendard;
-  font-size: clamp(20px, 3vw, 28px);
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-bottom: 30px;
+.Free span {
+    color: #0D0D0D;
+    font-family: Pretendard;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 24px;
+    margin-right: 292px;
+    margin-bottom: 677px;
+}
+
+.Premium span {
+    color: #0D0D0D;
+    font-family: Pretendard;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 24px;
+    margin-right: 245px;
+    margin-bottom: 677px;
 }
 
 .Dollor {
-  color: #777777;
-  font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  position: absolute;
-  top: 85px;
-  left: 24px;
+    color: #777777;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    position: absolute;
+    margin-top: 85px;
+    margin-left: 24px;
 }
 
-.Free .price,
-.Premium .price {
-  color: #0d0d0d;
-  font-family: Pretendard;
-  font-size: clamp(32px, 5vw, 48px);
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin-left: 16px;
-  margin-top: 25px;
-}
+.Free .price {
+    color: #0D0D0D;
+    font-family: Pretendard;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 
-.Free .USD,
-.Premium .USD {
-  color: #5d5d5d;
-  font-family: Pretendard;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  position: absolute;
-  top: 100px;
+    position: absolute;
+    margin-top: 80px;
+    margin-left: 40px;
 }
-
 .Free .USD {
-  left: 170px;
-}
+    color: #5D5D5D;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
-.Premium .USD {
-  left: 210px;
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 170px;
 }
-
 .perMonth {
-  color: #5d5d5d;
-  font-family: Pretendard;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  position: absolute;
-  top: 115px;
-}
+    color: #5D5D5D;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
-.Free .perMonth {
-  left: 170px;
-}
-
-.Premium .perMonth {
-  left: 210px;
+    position: absolute;
+    margin-top: 115px;
+    margin-left: 170px;
 }
 
 .explanation {
-  color: #0d0d0d;
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
-  margin-top: 30px;
-  width: 100%;
-}
+    color: #0D0D0D;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
-.currentPlan,
-.currentPlanPremium {
-  width: 100%;
-  height: 44px;
-  border-radius: 50px;
-  background: #fe8401;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  color: #ffffff;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.currentPlan:hover,
-.currentPlanPremium:hover {
-  background: #e67501;
-}
-
-.Free .features,
-.Premium .features {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 30px;
-  padding-left: 16px;
-  list-style: none;
-}
-
-.Free .features li,
-.Premium .features li {
-  color: #0d0d0d;
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.6;
-  position: relative;
-  padding-left: 20px;
-}
-
-.Free .features li::before,
-.Premium .features li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #fe8401;
-  font-weight: 700;
-}
-
-/* 반응형 미디어 쿼리 */
-@media (max-width: 1400px) {
-  .state {
-    gap: 20px;
-  }
-
-  .BitCon,
-  .DDongJon {
-    display: none;
-  }
-}
-
-@media (max-width: 1024px) {
-  .planpages-container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    max-width: 100%;
-    min-width: auto;
-    padding: 1rem;
-  }
-
-  .list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .main-content {
-    padding: 1.5rem;
-  }
-
-  .topBar {
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-  }
-
-  .state {
-    margin-left: 0;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-
-  .plans {
-    margin-top: 40px;
-  }
-}
-
-@media (max-width: 768px) {
-  .sidebar-title {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  .main-content {
-    padding: 1rem;
-  }
-
-  .life span,
-  .diamond span,
-  .ticket span,
-  .isPremium span {
-    font-size: 16px;
-  }
-
-  .heart,
-  .diamondIcon,
-  .ticketIcon {
-    width: 20px;
-    height: 20px;
-  }
-
-  .plans {
-    gap: 20px;
-    padding: 0 10px;
-  }
-
-  .Free,
-  .Premium {
-    min-height: 650px;
-    padding: 24px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .state {
-    gap: 10px;
-  }
-
-  .life,
-  .diamond,
-  .ticket,
-  .isPremium {
-    gap: 5px;
-  }
-
-  .Free,
-  .Premium {
-    min-width: 100%;
-    padding: 20px 16px;
-  }
-
-  .currentPlan,
-  .currentPlanPremium {
-    font-size: 13px;
+    position: absolute;
+    margin-top: 140px;
+    margin-left: 24px;
+    width: 334px;
     height: 40px;
-  }
+}
+
+.currentPlan {
+    width: 334px;
+    height: 44px;
+    border-radius: 50px;
+    background: #FE8401;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 24px;
+
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    color: #FFFFFF; /* ✅ 글자색 흰색으로 지정 */
+    text-decoration: none; /* ✅ 혹시 a태그면 밑줄 제거 */
+}
+
+.currentPlanPremium {
+    width: 334px;
+    height: 44px;
+    border-radius: 50px;
+    background: #FE8401;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 24px;
+
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    color: #FFFFFF; /* ✅ 글자색 흰색으로 지정 */
+    text-decoration: none; /* ✅ 혹시 a태그면 밑줄 제거 */
+}
+
+.Free .features{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    position: absolute;
+    margin-top: 270px;
+    margin-left: 40px;
+}
+
+.Free .features li{
+    margin-bottom: 5px;
+}
+
+.Premium .price{
+    color: #0D0D0D;
+    font-family: Pretendard;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    position: absolute;
+    margin-top: 80px;
+    margin-left: 40px;
+}
+
+.Premium .USD{
+    color: #5D5D5D;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 210px;
+}
+
+.Premium .perMonth{
+    color: #5D5D5D;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    position: absolute;
+    margin-top: 115px;
+    margin-left: 210px;
+}
+
+.Premium .features{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    position: absolute;
+    margin-top: 270px;
+    margin-left: 40px;
+}
+
+.Premium .features li{
+    margin-bottom: 5px;
 }

@@ -33,22 +33,23 @@ function Loginmaincomponents() {
 
   // 경로 판별 변수
   const Roadmap = location.pathname.includes("/roadmap");
-  const Rank = location.pathname.includes("/ranking");
-  const Trade = location.pathname.includes("/market");
-  const Shop = location.pathname.includes("/shop");
-  const More = location.pathname.includes("/more");
   const My = location.pathname.includes("/my");
   const Learn = location.pathname.includes("/learn");
   const isQuizPage = location.pathname.includes("/quiz");
 
+  // 숫자 포맷 함수 (k, M, B 단위 추가)
   const formatNumber = (num) => {
     if (num === null || num === undefined) return "0";
     const number = Number(num);
     if (isNaN(number)) return String(num);
-    if (number >= 1000000)
+
+    if (number >= 1000000000) // 10억 이상
+      return (number / 1000000000).toFixed(1).replace(/\.0$/, "") + "B";
+    if (number >= 1000000) // 100만 이상
       return (number / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
-    if (number >= 1000)
+    if (number >= 1000) // 1000 이상
       return (number / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+    
     return number.toString();
   };
 
@@ -112,7 +113,7 @@ function Loginmaincomponents() {
   return (
     <div className="maincon">
       <S.Sidebar>
-        <p className="title">Grow Money</p>
+        <p className="title logo-title">Grow Money</p>
         <div className="con">
           <div
             className={active === "box1" ? "boxactive" : "box"}
@@ -169,11 +170,7 @@ function Loginmaincomponents() {
             ) : (
               <div className="top-title-text">
                 {Roadmap && "로드맵"}
-                {Rank && "랭킹"}
-                {Trade && "거래소"}
-                {Shop && "상점"}
                 {My && "마이페이지"}
-                {More && "더보기"}
               </div>
             )}
           </div>

@@ -1,5 +1,5 @@
 import "../../css/mainpagescsss/Secondmainpages.css";
-import arrow from "../../../img/Icon/r-arrow.svg";
+import arrow from "../../../img/MainPage/test1.png";
 
 // 개별 뉴스 카드 컴포넌트
 const NewsCard = ({ date, title, description, isSpecial }) => {

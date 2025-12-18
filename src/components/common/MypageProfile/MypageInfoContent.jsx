@@ -370,7 +370,7 @@ export default function MypageInfoContent() {
                     <div className='profile-Info-password-modal' onClick={(e) => e.stopPropagation()}>
                         <div className='profile-Info-logout-modal-title'>정말 학습을 종료하시겠습니까?</div>
 
-                        <div>
+                        <div className='profile-Info-logout-modal-content'>
                             <img className='profile-Info-logout-img' src={LogoutImg} alt="LogoutImg" />
                         </div>
                         

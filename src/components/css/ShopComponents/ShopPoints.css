@@ -105,8 +105,8 @@
 /* 결제 버튼 정렬 및 스타일 */
 .confirm-pay-btn {
   width: 8em;
-  background: #e67e22; /* 오렌지색으로 가시성 확보 */
-  color: #fff;
+  background: #ffffff; 
+  color: #000000;
   border: none;
   padding: 6px 0px;
   border-radius: 12px;
@@ -121,14 +121,9 @@
   gap: 8px; /* 아이콘과 텍스트 사이 간격 */
 }
 
-.confirm-pay-btn:hover {
-  background: #d35400;
-  transform: translateY(-2px);
-}
-
 .icon-btn-sm {
   width: 22px;
-  filter: brightness(0) invert(1); /* 다이아 아이콘을 버튼색에 맞춰 흰색으로 변경 */
+  z-index: 1;
 }
 
 .cost-text {

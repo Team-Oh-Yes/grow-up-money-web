@@ -1,5 +1,5 @@
 import "../../css/mainpagescsss/Secondmainpages.css";
-import arrow from "../../../img/newcontentarrow.png";
+import arrow from "../../../img/Icon/r-arrow.svg";
 
 // 개별 뉴스 카드 컴포넌트
 const NewsCard = ({ date, title, description, isSpecial }) => {
@@ -28,6 +28,24 @@ const Secondmainpages = () => {
       date: "2025.09.22",
       title: "프론트엔드 본격적 스타트",
       description: "오늘 2025 나르샤 Oh! Yes팀 웹 중이라고 합니다!",
+      isSpecial: false,
+    },
+    {
+      date: "2025.09.21",
+      title: "백엔드 본격적 스타트",
+      description: "오늘 2025 나르샤 Oh! Yes팀 서버 개발 중이라고 합니다!",
+      isSpecial: false,
+    },
+    {
+      date: "2025.09.21",
+      title: "백엔드 본격적 스타트",
+      description: "오늘 2025 나르샤 Oh! Yes팀 서버 개발 중이라고 합니다!",
+      isSpecial: false,
+    },
+    {
+      date: "2025.09.21",
+      title: "백엔드 본격적 스타트",
+      description: "오늘 2025 나르샤 Oh! Yes팀 서버 개발 중이라고 합니다!",
       isSpecial: false,
     },
     {

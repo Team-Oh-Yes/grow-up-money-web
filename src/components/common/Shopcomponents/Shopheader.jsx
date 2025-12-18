@@ -1,17 +1,18 @@
-import '../../css/Shop/Shop.css';
+// Link import
+import '../../css/ShopComponents/ShopHeader.css';
 
 // Const
 export default function ShopHeader({ activeTab, onTabChange }) {
     const tabs = [
         { id: 'shop', label: '재화상점' },
-        { id: 'status', label: '굿즈 구매' },
-        { id: 'billing', label: '포인트 구매' },
-        { id: 'info', label: '행운 뽑기' },
+        { id: 'goods', label: '굿즈 구매' },
+        { id: 'points', label: '포인트 구매' },
+        { id: 'random', label: '행운 뽑기' },
     ];
 
     return (
-        <div className='S-container'>
-            <div className='S-button'>
+        <div className='shop-header-container'>
+            <div className='shop-header-button'>
                 {tabs.map((tab) => (
                     <div
                         key={tab.id}

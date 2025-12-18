@@ -57,10 +57,11 @@ body {
 .title {
   color: #fe8401;
   font-family: Pretendard;
-  font-size: 2rem;
+  font-size: 40px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin-left: 29px;
 }
 
 .box {

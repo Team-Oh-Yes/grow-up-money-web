@@ -371,7 +371,7 @@ img {
 }
 
 /* 공통 버튼 스타일 */
-button {
+.quiz-button {
   background-color: #fe8401;
   border: none;
   width: 15rem;

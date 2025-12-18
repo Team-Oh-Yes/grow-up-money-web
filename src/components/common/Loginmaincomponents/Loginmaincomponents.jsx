@@ -205,7 +205,7 @@ function Loginmaincomponents() {
               </div>
               <div className="case">
                 <img src={ticket} alt="티켓" className="icon" />
-                <h5>5</h5>
+                <h5>{formatNumber(data?.gachaTickets ?? 0)}</h5>
               </div>
             </div>
           </div>

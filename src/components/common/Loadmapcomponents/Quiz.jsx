@@ -124,7 +124,6 @@ function Quiz() {
     }
   }, [currentQuestionIndex, quizData, setProgress]);
 
-  // 학습하러 가기 (learn 페이지로 이동)
   const goToLearn = () => {
     navigate(`/roadmap/${i}/${d}/learn`);
   };

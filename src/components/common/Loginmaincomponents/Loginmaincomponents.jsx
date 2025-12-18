@@ -37,14 +37,19 @@ function Loginmaincomponents() {
   const Learn = location.pathname.includes("/learn");
   const isQuizPage = location.pathname.includes("/quiz");
 
+  // 숫자 포맷 함수 (k, M, B 단위 추가)
   const formatNumber = (num) => {
     if (num === null || num === undefined) return "0";
     const number = Number(num);
     if (isNaN(number)) return String(num);
-    if (number >= 1000000)
+
+    if (number >= 1000000000) // 10억 이상
+      return (number / 1000000000).toFixed(1).replace(/\.0$/, "") + "B";
+    if (number >= 1000000) // 100만 이상
       return (number / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
-    if (number >= 1000)
+    if (number >= 1000) // 1000 이상
       return (number / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+    
     return number.toString();
   };
 

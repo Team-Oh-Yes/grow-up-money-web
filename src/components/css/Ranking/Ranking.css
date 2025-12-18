@@ -26,8 +26,8 @@
 .rtitle {
   text-align: center;
   margin-bottom: 1rem;
-  font-size: 3rem;
-  font-weight: 900;
+  font-size: 2.4rem;
+  font-weight: 600;
   color: #333;
   flex-shrink: 0; /* 높이가 줄어들지 않게 고정 */
 }
@@ -65,9 +65,16 @@
 }
 
 /* 상위 3등 강조 색상 (필요 시 유지) */
-.rank-item-1 { border: 2px solid #FFD700; background-color: #FFFDF0; }
-.rank-item-2 { border: 2px solid #C0C0C0; }
-.rank-item-3 { border: 2px solid #CD7F32; }
+.rank-item-1 {
+  border: 2px solid #ffd700;
+  background-color: #fffdf0;
+}
+.rank-item-2 {
+  border: 2px solid #c0c0c0;
+}
+.rank-item-3 {
+  border: 2px solid #cd7f32;
+}
 
 /* 순위 번호, 이름, 점수 */
 .rank-number {
@@ -91,7 +98,7 @@
 .rank-score {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #FE8401;
+  color: #fe8401;
   margin-right: 20px;
 }
 
@@ -100,7 +107,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: #E8F5E9;
+  background-color: #e8f5e9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,7 +116,7 @@
 }
 
 .avatar-first {
-  background-color: #FFF9C4;
+  background-color: #fff9c4;
 }
 
 /* 6. 커스텀 스크롤바 디자인 */
@@ -123,7 +130,7 @@
 }
 
 .ranking-scroll-area::-webkit-scrollbar-thumb {
-  background: #FE8401; /* 오렌지색 포인트 */
+  background: #fe8401; /* 오렌지색 포인트 */
   border-radius: 10px;
   border: 2px solid #f1f1f1; /* 스크롤바 바깥 여백 느낌 */
 }
@@ -151,4 +158,56 @@
   right: -8rem;
   z-index: 1;
   pointer-events: none;
+}
+/* 랭킹 아이템 줄 맞춤을 위한 설정 */
+.rank-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  /* 기존 배경색 및 보더 스타일 유지 */
+}
+
+/* 닉네임 영역: 너무 길어지면 생략 표시 (...) */
+.rank-name {
+  flex: 1;
+  margin: 0 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+/* 이미지 컨테이너 40px 고정 */
+.rank-avatar-container {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px; 
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  border: 1px solid #eee;
+}
+
+/* 이미지 실제 설정 */
+.rank-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 원형 안에 꽉 차게 */
+  display: block;
+}
+
+/* 이모지 텍스트 크기 */
+.default-emoji {
+  font-size: 20px;
+}
+
+/* 스크롤 영역 설정 */
+.ranking-scroll-area {
+  max-height: 500px; /* 원하는 높이로 조절 */
+  overflow-y: auto;
 }

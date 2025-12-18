@@ -397,6 +397,7 @@ h5 {
   display: flex;
   align-items: center;
   width: auto;
+  margin-right: 1rem;
 }
 
 .top-title-text {

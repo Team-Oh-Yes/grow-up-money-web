@@ -34,6 +34,7 @@ function Quiz() {
   const themeNumberString = themeIdString.replace("theme", "");
   const original_string = d || "";
   const unitFreeString = original_string.replace("unit", "");
+
   useEffect(() => {
     if (themeNumberString && unitFreeString) {
       axiosInstance
@@ -56,7 +57,6 @@ function Quiz() {
     }
   }, [themeNumberString, unitFreeString]);
 
-  // 2. 레슨 시작 기록
   useEffect(() => {
     if (unitFreeString && !isLocked) {
       axiosInstance
@@ -70,7 +70,6 @@ function Quiz() {
     window.location.reload();
   };
 
-  // 스페이스바 이벤트 핸들러
   const handleSpacebarPress = (event) => {
     if (
       quizData &&
@@ -92,7 +91,6 @@ function Quiz() {
     return () => window.removeEventListener("keydown", handleSpacebarPress);
   }, [quizData, currentQuestionIndex, isAnswered, isSubmittingAnswer]);
 
-  // 초기화 및 진행도 업데이트 logic
   useEffect(() => {
     if (!isInitialized && quizData) {
       setCurrentQuestionIndex(0);
@@ -150,7 +148,6 @@ function Quiz() {
     navigate("/roadmap");
   };
 
-  // 정답 선택 및 API 전송 (수정된 부분)
   const handleAnswerClick = (selectedOption, selectedIndex) => {
     if (isAnswered || !quizData || isSubmittingAnswer) return;
 
@@ -158,8 +155,6 @@ function Quiz() {
     setIsSubmittingAnswer(true);
     setSelectedAnswer(selectedOption);
 
-    // 단원별(Unit) 10개씩 매핑하는 로직
-    // 1단원: 1~10, 2단원: 11~20 ...
     const unitNumber = parseInt(unitFreeString);
     const quizId = (unitNumber - 1) * 10 + (currentQuestionIndex + 1);
 
@@ -269,12 +264,18 @@ function Quiz() {
 
   const currentQuiz = quizData.questions[currentQuestionIndex];
 
+  // ✅ Qcon 테두리 색상 변경을 위한 클래스 로직
+  let qconClass = "Qcon";
+  if (isAnswered && serverResponse) {
+    qconClass += serverResponse.isCorrect ? " TQ" : " FQ";
+  }
+
   return (
     <div className="Qmaincon">
       <div className="Tcon">
-        <div className="Qcon">
+        <div className={qconClass}>
           <p>
-            {currentQuestionIndex + 1}. {currentQuiz.stem}
+            Q{currentQuestionIndex + 1}. {currentQuiz.stem}
           </p>
           <div className="skip">
             {isAnswered && !isSubmittingAnswer ? (

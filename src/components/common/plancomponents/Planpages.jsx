@@ -40,7 +40,7 @@ const TOSS_CLIENT_KEY =
 
 function Planpages() {
   /* =========================
-     결제 결과 알람 처리
+    결제 결과 알람 처리
      ========================= */
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);

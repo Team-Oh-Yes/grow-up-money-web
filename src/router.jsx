@@ -5,9 +5,11 @@ import Adminpages from "./components/common/AdminComponents/AdminPages";
 import Learn from "./components/common/Loadmapcomponents/Learn";
 import Quiz from "./components/common/Loadmapcomponents/Quiz";
 import Login from "./components/common/Login/Login.jsx";
+import PreviewLearn from "./components/common/maincomponents/PreQ.jsx";
 import Market from "./components/common/Market/Market.jsx";
 import Tshow from "./components/common/Market/Tshow.jsx";
 import MypageProfile from "./components/common/MypageProfile/MypageProfile.jsx";
+import PaymentCallback from "./components/common/plancomponents/PaymentCallback.jsx";
 import Planpages from "./components/common/plancomponents/Planpages";
 import Ranking from "./components/common/Ranking/Ranking.jsx";
 import EULA from "./components/common/Serviccenter/EULA";
@@ -17,7 +19,7 @@ import ShopComponents from "./components/common/Shopcomponents/Shopcomponents.js
 import SignUp from "./components/common/SignUp/SignUp.jsx";
 import MainTheme from "./components/common/Theme/MainTheme";
 import Error from "./error/Error";
-import PaymentCallback from "./components/common/plancomponents/PaymentCallback.jsx";
+import PreviewQuiz from "./components/common/maincomponents/PreQuiz.jsx";
 
 const Loginmaincomponents = lazy(() =>
   import("./components/common/Loginmaincomponents/Loginmaincomponents")
@@ -79,7 +81,7 @@ const router = createBrowserRouter([
   {
     path: "/servicecenter/eula",
     element: <EULA />,
-    errorElement: <Error />
+    errorElement: <Error />,
   },
   {
     path: "/plan",
@@ -179,6 +181,14 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/pre",
+    element: <PreviewLearn />,
+  },
+  {
+    path:"/preq",
+    element:<PreviewQuiz />
+  }
 ]);
 
 export default router;

@@ -1,0 +1,14 @@
+.precon{
+    width: 100vw;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.prebt{
+    background-color: #FE8401;
+    width: 12rem;
+    height: 4rem;
+    color: white;
+    border-radius: 15px;
+}

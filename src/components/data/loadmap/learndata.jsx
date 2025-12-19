@@ -1,9 +1,9 @@
 import coin from "../../../img/coin.png";
 import cream from "../../../img/image 11.svg";
-// 아래 이미지 경로들은 실제 경로에 맞춰 수정이 필요할 수 있습니다.
 import c from "../../../img/NFT/c.svg";
 import m from "../../../img/NFT/m.svg";
 import r from "../../../img/NFT/l.svg";
+
 
 export const Ldata = [
   {

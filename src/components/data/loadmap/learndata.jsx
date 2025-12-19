@@ -1,9 +1,9 @@
 import coin from "../../../img/coin.png";
 import cream from "../../../img/image 11.svg";
-// 아래 이미지 경로들은 실제 경로에 맞춰 수정이 필요할 수 있습니다.
 import c from "../../../img/NFT/c.svg";
 import m from "../../../img/NFT/m.svg";
 import r from "../../../img/NFT/l.svg";
+
 
 export const Ldata = [
   {
@@ -93,7 +93,7 @@ export const Ldata = [
     text: [
       {
         id: 1,
-        real: "안녕하세요! 여러분에게 희소성과 선택에 대해 알려줄 ‘크림롤(NFT이름)’이라고 해요!",
+        real: "안녕하세요! 여러분에게 희소성과 선택에 대해 알려줄 ‘크림롤’이라고 해요!",
         img: cream,
       },
       {
@@ -133,7 +133,7 @@ export const Ldata = [
       },
       {
         id: 9,
-        real: "집에 와서 필기를 할 때 손이 편한 것이 너무 만족스러웠어요. 이것은 '편익'(편리하고 유익한 것)을 위해 합리적인 선택을 한 것이랍니다!",
+        real: "집에 와서 필기를 할 때 손이 편한 것이 너무 만족스러웠어요. 이것은 '편익'을 위해 합리적인 선택을 한 것이랍니다!",
         img: cream,
       },
       {

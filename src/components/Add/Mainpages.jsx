@@ -5,6 +5,7 @@ import BigBlocker from "../../BigBlocker";
 import MobileBlocker from "../../MobileBlocker";
 import { Big, Loginstate, Mobilestate } from "../../atoms";
 import Firstmainpages from "../common/maincomponents/Firstmainpages";
+import Fourth from "../common/maincomponents/Fourth";
 import Secondmainpages from "../common/maincomponents/Secondmainpages";
 import Thirdmainpages from "../common/maincomponents/Thirdmainpages";
 import "../css/mainpagescsss/Mainpages.css";
@@ -17,7 +18,7 @@ function Mainpages() {
   useEffect(() => {
     if (Login) {
       navigate("/login");
-      setLogin(false); 
+      setLogin(false);
     }
   }, [Login, navigate, setLogin]);
   useEffect(() => {
@@ -28,13 +29,13 @@ function Mainpages() {
         setIsExtraLargeScreen(width >= 3200);
       }
     };
-    console.log(isMobileBlocked)
-    console.log(isExtraLargeScreen)
+    console.log(isMobileBlocked);
+    console.log(isExtraLargeScreen);
     handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [setIsMobileBlocked, setIsExtraLargeScreen]); 
+  }, [setIsMobileBlocked, setIsExtraLargeScreen]);
   if (isMobileBlocked) {
     return <MobileBlocker />;
   }
@@ -46,6 +47,7 @@ function Mainpages() {
   return (
     <div>
       <Firstmainpages setLogin={setLogin} />
+      <Fourth />
       <Secondmainpages />
       <Thirdmainpages />
     </div>

@@ -54,6 +54,8 @@ function ShopRandom() {
       // 전역 상태를 사용하는 방법이 필요합니다
       window.dispatchEvent(new CustomEvent('updateUserData', { detail: response.data }));
     } catch (error) {
+      toast.error('유저 정보 갱신에 실패했습니다.', {...toastcode(2000)});
+      toast.clearWaitingQueue();
       console.error("유저 정보 갱신 에러:", error);
     }
   };

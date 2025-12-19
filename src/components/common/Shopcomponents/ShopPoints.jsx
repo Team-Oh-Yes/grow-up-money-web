@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import pointsIcon from "../../../img/Icon/bouncepoint.svg";
 import axiosInstance from "../../api/axiosInstance";
 import dia from "../../../img/logo/diam.svg";
@@ -36,7 +37,8 @@ const ShopPoints = () => {
   const handleExchange = async () => {
     const finalPoints = parseInt(inputPoints);
     if (!finalPoints || finalPoints <= 0) {
-      alert("수량을 입력해주세요.");
+      toast.info("수량을 입력해주세요.");
+      toast.clearWaitingQueue();
       return;
     }
 
@@ -45,11 +47,13 @@ const ShopPoints = () => {
       await axiosInstance.post("/shop/points/exchange", {
         amount: finalPoints,
       });
-
-      alert("환전이 완료되었습니다!");
+      toast.success("포인트 환전 성공!");
+      toast.clearWaitingQueue();
+      
       window.dispatchEvent(new Event("refreshUserData"));
     } catch (error) {
-      alert(error.response?.data?.message || "다이아몬드가 부족합니다.");
+      toast.info(error.response?.data?.message || "다이아몬드가 부족합니다.");
+      toast.clearWaitingQueue();
     }
   };
 

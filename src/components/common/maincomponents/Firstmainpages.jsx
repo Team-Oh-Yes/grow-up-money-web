@@ -47,6 +47,7 @@ const LogoBox = styled.div`
   font-size: 26px;
   font-weight: 700;
   margin-left: 0px;
+  cursor: pointer;
   /* ... 기존 미디어 쿼리 동일 ... */
 `;
 
@@ -172,7 +173,7 @@ function Navbar({ setLogin }) {
   
   return (
     <Header>
-      <LogoBox>GROW MONEY™</LogoBox>
+      <LogoBox onClick={() => navigate("/")}>GROW MONEY™</LogoBox>
       <NavMenu>
         <button className="Topbutton home" onClick={() => navigate("/login")}>홈</button>
         <button className="Topbutton load" onClick={() => navigate("/login")}>로드맵</button>
